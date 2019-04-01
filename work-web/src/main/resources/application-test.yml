@@ -1,0 +1,77 @@
+server:
+  port: 7080
+  compression:
+   enabled: true
+#logging:
+#  path: /var/www/logs
+#  config: classpath:logback-spring.xml
+info:
+  app-name: lore
+  app-host: http://127.0.0.1:${server.port}
+  app-description: ${info.app-name} 描述
+  app-version: ${project.version}
+#######maven pom \u91cc\u7684\u914d\u7f6e
+management:
+  endpoints:
+    web:
+      base-path: /admin/monitor
+      exposure:
+        exclude: ["env","beans" ,"shutdown" ]
+        include: "*"
+      path-mapping:
+        health: healthcheck
+  endpoint:
+    logfile:
+      enabled: true
+    health:
+      enabled: true
+      ## 查看明细
+      show-details: always
+spring:
+  main:
+    banner-mode: "off"
+  output:
+    ansi:
+      enabled: DETECT
+  profiles:
+    include: shiro
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  messages:
+    encoding: UTF-8
+#  freemarker:
+#    prefix:
+#    suffix: .ftl
+#    templateLoaderPath: classpath:/templates/tpl/, classpath:/templates/sms/, classpath:/templates/email/, classpath:/templates/code/
+#    templateEncoding: UTF-8
+#    content-type: text/html
+#    prefer-file-system-access: false
+#    cache: false
+#    settings:
+#      template_update_delay: 0
+#      number_format: '0.##'   #数字格式化，无小数点
+#      boolean_format: 'true,false'
+#    request-context-attribute: request
+  redis:
+    host: 127.0.0.1
+    database: 0
+    port: 6379
+    password:
+  session:
+    store-type: redis
+  mail:
+    host: smtp.163.com
+    username: lkg61230413@163.com
+    password: lkg178wk
+    from: GG<lkg61230413@163.com>
+    template-path: classpath:/templates/email/
+    properties:mail:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+          required: true
+      debug: true

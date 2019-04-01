@@ -1,0 +1,7 @@
+### Core \u8bbe\u7f6e
+spring:
+  profiles:
+   active: test
+
+
+
