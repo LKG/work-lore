@@ -25,6 +25,7 @@
         <module>work-conf</module>
         <module>work-user</module>
         <module>work-media</module>
+        <module>work-frame</module>
     </modules>
     <properties>
         <docker.image.prefix>spring-boot</docker.image.prefix>
