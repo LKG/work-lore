@@ -26,6 +26,7 @@
         <module>work-user</module>
         <module>work-media</module>
         <module>work-frame</module>
+        <module>work-shop</module>
     </modules>
     <properties>
         <docker.image.prefix>spring-boot</docker.image.prefix>
@@ -77,6 +78,10 @@
         <jersey-bundle.version>1.9.1</jersey-bundle.version>
         <querydsl.version>4.2.1</querydsl.version>
         <shiro.version>1.4.0</shiro.version>
+        <pdfbox.version>2.0.13</pdfbox.version>
+        <jodconverter.version>4.2.2</jodconverter.version>
+        <openoffice.version>4.1.2</openoffice.version>
+
         <!-- 二维码end -->
         <weixin-tools.version>3.2.0</weixin-tools.version>
         <spring-mobile-device.version>2.0.0.M3</spring-mobile-device.version>
@@ -280,6 +285,57 @@
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
                 <version>${validation.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>${pdfbox.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jodconverter</groupId>
+                <artifactId>jodconverter-core</artifactId>
+                <version>${jodconverter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jodconverter</groupId>
+                <artifactId>jodconverter-local</artifactId>
+                <version>${jodconverter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jodconverter</groupId>
+                <artifactId>jodconverter-spring-boot-starter</artifactId>
+                <version>${jodconverter.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.openoffice/ridl -->
+            <dependency>
+                <groupId>org.openoffice</groupId>
+                <artifactId>ridl</artifactId>
+                <version>${openoffice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openoffice</groupId>
+                <artifactId>juh</artifactId>
+                <version>${openoffice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-mp</artifactId>
+                <version>${weixin-tools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-miniapp</artifactId>
+                <version>${weixin-tools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-open</artifactId>
+                <version>${weixin-tools.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openoffice</groupId>
+                <artifactId>jurt</artifactId>
+                <version>${openoffice.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
