@@ -64,8 +64,6 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 		if (!subject.isAuthenticated() && !subject.isRemembered()) {
 			return true;
 		}
-		Session session = subject.getSession();
-		Serializable sessionId = session.getId();
 		FrameUserVO user = SecurityUtilsHelper.getCurrentUser();
 		// 如果没有登录，直接进行之后的流程
 		if(user==null){
@@ -75,15 +73,19 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 			this.cache = this.cacheManager.getCache(CACHE_NAME);
 		}
 		String username=user.getUserName();
+        Session session = subject.getSession();
+        Serializable sessionId = session.getId();
 		Deque<Serializable> deque = this.cache.get(username,Deque.class);
 		if (deque == null) {
 			deque = Lists.newLinkedList();
+            deque.push(sessionId);
 			this.cache.put(username, deque);
 		}
 		if (!deque.contains(sessionId) && session.getAttribute(kickOutParam) == null) {
 			deque.push(sessionId);
 			this.cache.put(username, deque);
 		}
+        System.out.println("deque.size()deque.size()"+deque.size());
 		while (deque.size() > maxSession) {
 			Serializable kickoutSessionId = null;
 			// 如果踢出后者
@@ -96,16 +98,20 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 			//更新队列
 			this.cache.put(username, deque);
 			try {
-				Session onlineSession = SecurityUtils.getSecurityManager().getSession(new WebSessionKey(kickoutSessionId,request,response));
+				Session onlineSession = SecurityUtils.getSecurityManager().getSession(new DefaultSessionKey(kickoutSessionId));
 				/// 设置会话的kickout属性表示踢出了
+                System.out.println("onlineSession"+onlineSession.getId());
 				if (onlineSession != null) {
 					onlineSession.setAttribute(kickOutParam, true);
 				}
+                System.out.println("----onlineSession----"+session.getAttribute(kickOutParam));
+            System.out.println("-----4---"+session.getAttribute(kickOutParam));
 			} catch (SessionException ise) {
 				logger.debug("Encountered session exception during logout.  This can generally safely be ignored."
 						+ ise);
 			}
 		}
+		System.out.println("-----4---"+session.getAttribute(kickOutParam));
 		if (session.getAttribute(kickOutParam) != null) {
 			try {
 				logger.info("检测到用户重复登录，移除用户"+username);
