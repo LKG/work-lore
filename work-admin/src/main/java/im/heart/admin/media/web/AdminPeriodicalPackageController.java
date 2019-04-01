@@ -42,9 +42,9 @@ public class  AdminPeriodicalPackageController extends AbstractController {
 	private PeriodicalPackageService periodicalPackageService;
 
 	
-	@Value("${prod.oss.bucketName}")
+	@Value("${prod.oss.bucketName:''}")
 	private String bucketName = "";
-	@Value("${prod.oss.site}")
+	@Value("${prod.oss.site:'oss.aliyuncs.com'}")
 	private String ossSite = "oss.aliyuncs.com";
 	@RequestMapping(apiVer)
 	public ModelAndView home(ModelMap model) {

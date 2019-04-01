@@ -15,9 +15,9 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 public class FreeMarkerConfig  implements InitializingBean {
     @Autowired
     private freemarker.template.Configuration configuration;
-    @Value("${info.app-version''}")
+    @Value("${info.app-version:''}")
     private String appVersion = "";
-    @Value("${info.app-host''}")
+    @Value("${info.app-host:''}")
     private String appHost = "";
     @Autowired
     private FreeMarkerViewResolver resolver;

@@ -15,23 +15,23 @@ public class WechatAccountConfig {
     /**
      * 公众平台id
      */
-    @Value("${wechat.mp.appId}")
+    @Value("${wechat.mp.appId:''}")
     private String mpAppId;
     /**
      * 公众平台密钥
      */
-    @Value("${wechat.mp.appSecret}")
+    @Value("${wechat.mp.appSecret:''}")
     private String mpAppSecret;
 
     /**
      * 开放平台id
      */
-    @Value("${wechat.open.appSecret}")
+    @Value("${wechat.open.appSecret:''}")
     private String openAppId;
     /**
      * 开放平台密钥
      */
-    @Value("${wechat.open.appSecret}")
+    @Value("${wechat.open.appSecret:''}")
     private String openAppSecret;
 
     /**

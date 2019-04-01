@@ -51,7 +51,7 @@ public class PeriodicalParserImpl implements PeriodicalParser {
     @Autowired
     private PeriodicalContentService periodicalContentService;
 
-    @Value("${prod.upload.path.root}")
+    @Value("${prod.upload.path.root:''}")
     private String uploadFilePath="";
     @Override
     public void parser(Periodical periodical, InputStream is) {

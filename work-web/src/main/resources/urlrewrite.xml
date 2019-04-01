@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+<urlrewrite>
+    <rule>
+        <from>^/aboutus.?(.*)$</from>
+        <to>/index/aboutus.jhtml</to>
+    </rule>
+    <rule>
+        <from>^/contact.?(.*)$</from>
+        <to>/index/contact.jhtml</to>
+    </rule>
+    <rule>
+        <from>^/helps.?(.*)$</from>
+        <to>/index/helps.jhtml</to>
+    </rule>
+    <rule>
+        <from>^/vip.?(.*)$</from>
+        <to>/index/vip.jhtml</to>
+    </rule>
+    <rule>
+        <from>^/questions.?(.*)$</from>
+        <to>/index/questions.jhtml</to>
+    </rule>
+    <rule>
+        <from>^/agreements.?(.*)$</from>
+        <to>/index/agreements.jhtml</to>
+    </rule>
+    <rule>
+        <from>^/group.?(.*)$</from>
+        <to>/index/group.jhtml</to>
+    </rule>
+    <rule>
+        <from>^/topic.?(.*)$</from>
+        <to>/index/topic.jhtml</to>
+    </rule>
+    <rule>
+        <from>/articles/p-([0-9]+).?(.*)$</from>
+        <to>/articles.jhtml?page=$1</to>
+    </rule>
+    <rule>
+        <from>^/made.?(.*)$</from>
+        <to>/index/made.jhtml</to>
+    </rule>
+    <rule>
+        <from>^/q.?(.*)$</from>
+        <to>/index/q.jhtml</to>
+    </rule>
+</urlrewrite>
