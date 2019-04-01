@@ -1,0 +1,1 @@
+<script src="${appHost}/modules/editor.md/editormd.min.js" ></script>

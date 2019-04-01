@@ -1,0 +1,1 @@
+<script src="${appHost}/modules/jquery.fine-uploader/jquery.fine-uploader.js" ></script>

@@ -1,0 +1,1 @@
+<link rel="stylesheet" href="${appHost}/modules/uploadify/uploadify.css">

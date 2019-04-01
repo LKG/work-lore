@@ -1,0 +1,1 @@
+<script src="${appHost}/modules/swiper/js/swiper.min.js" ></script>

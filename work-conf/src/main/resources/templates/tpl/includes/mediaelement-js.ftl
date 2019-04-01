@@ -1,0 +1,9 @@
+<script src="${appHost}/modules/mediaelement/mediaelement.min.js" ></script>
+<script src="${appHost}/modules/mediaelement/mediaelement-and-player.min.js" ></script>
+<script src="${appHost}/modules/mediaelement/renderers/vimeo.min.js" ></script>
+<script src="${appHost}/modules/mediaelement/renderers/twitch.min.js" ></script>
+<script src="${appHost}/modules/mediaelement/renderers/soundcloud.min.js" ></script>
+<script src="${appHost}/modules/mediaelement/renderers/dailymotion.min.js" ></script>
+<script src="${appHost}/modules/mediaelement/renderers/facebook.min.js" ></script>
+<script src="${appHost}/modules/mediaelement/lang/zh-cn.js" ></script>
+<script src="${appHost}/modules/mediaelement/lang/zh.js" ></script>

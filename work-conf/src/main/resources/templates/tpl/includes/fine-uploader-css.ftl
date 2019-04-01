@@ -1,0 +1,1 @@
+<link rel="stylesheet" href="${appHost}/modules/jquery.fine-uploader/fine-uploader-new.css">
