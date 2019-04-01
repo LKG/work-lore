@@ -75,6 +75,28 @@ spring:
           enable: true
           required: true
       debug: true
+  datasource:
+    url: jdbc:mysql://ss.itaobao.pub:3306/lore-test?Unicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: omw@178.Im
+    #配置监控统计拦截的filters，去掉后监控界面sql将无法统计,'wall'用于防火墙
+    filters: stat,config,wall,slf4j
+    # validation-query: SELECT 1
+    min-idle: 10
+    max-active: 20
+    driverClassName: com.mysql.jdbc.Driver
+    druid:
+      logSlowSql: false
+      mergeSql: true
+      slowSqlMillis: 3000
+      web-stat-filter:
+        url-pattern: "/admin/druid/*"
+      stat-view-servlet:
+        url-pattern : "/admin/druid/*"
+        login-username: admin
+        login-password: #####
+        allow:
+        deny:
   jpa:
     # Specify the DBMS
 #    database: MYSQL

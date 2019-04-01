@@ -1,14 +1,18 @@
 package im.heart.security.filter;
 
+import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import im.heart.security.cache.ShiroCacheConfig;
-import im.heart.security.session.ShiroSessionDAO;
 import im.heart.security.utils.SecurityUtilsHelper;
 import im.heart.usercore.vo.FrameUserVO;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionException;
+import org.apache.shiro.session.mgt.DefaultSessionKey;
+import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.LogoutFilter;
+import org.apache.shiro.web.session.mgt.WebSessionKey;
 import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +46,6 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 	 */
 	private int maxSession = 1;
 	protected static final String CACHE_NAME = ShiroCacheConfig.SESSION_KICKOUT.keyPrefix;
-//	@Autowired
-	private ShiroSessionDAO shiroSessionDAO;
 
 	private Cache cache;
 
@@ -93,7 +95,7 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 				kickoutSessionId = deque.removeLast();
 			}
 			try {
-				Session onlineSession = this.shiroSessionDAO.readSession(kickoutSessionId);
+				Session onlineSession = SecurityUtils.getSecurityManager().getSession(new WebSessionKey(kickoutSessionId,request,response));
 				/// 设置会话的kickout属性表示踢出了
 				if (onlineSession != null) {
 					onlineSession.setAttribute(kickOutParam, true);
