@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("/index/customer")
 public class CustomerController {
     @Autowired
     private CustomerRepository repository;

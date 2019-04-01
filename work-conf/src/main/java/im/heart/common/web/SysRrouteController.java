@@ -1,4 +1,4 @@
-package im.heart.api.web;
+package im.heart.common.web;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
@@ -20,7 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

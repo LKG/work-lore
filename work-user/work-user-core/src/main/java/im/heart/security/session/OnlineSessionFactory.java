@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class OnlineSessionFactory implements SessionFactory {
 	protected static final Logger logger = LoggerFactory.getLogger(OnlineSessionFactory.class);
-	
+
 	@Override
 	public Session createSession(SessionContext initData) {
 		logger.debug("createSession..................");

@@ -13,14 +13,14 @@ import java.io.Serializable;
 import java.math.BigInteger;
 
 /**
- * 
+ *
  * @author gg
  * @desc sessionDAO
  */
-@Component
+
 public class ShiroSessionDAO extends EnterpriseCacheSessionDAO {
 	protected static final Logger logger = LoggerFactory.getLogger(ShiroSessionDAO.class);
-    
+
 	@Override
 	protected Session doReadSession(Serializable sessionId) {
 		logger.debug("doReadSession--"+sessionId);
@@ -28,11 +28,11 @@ public class ShiroSessionDAO extends EnterpriseCacheSessionDAO {
 	}
 	@Override
 	protected void doUpdate(Session session) {
-		if(session instanceof ValidatingSession && !((ValidatingSession)session).isValid()) {  
-	        return; //如果会话过期/停止 没必要再更新了  
+		if(session instanceof ValidatingSession && !((ValidatingSession)session).isValid()) {
+	        return; //如果会话过期/停止 没必要再更新了
 	    }
-		if (session instanceof OnlineSession) {   
-			OnlineSession ss = (OnlineSession) session;  
+		if (session instanceof OnlineSession) {
+			OnlineSession ss = (OnlineSession) session;
             if(ss.getUserId()==null||BigInteger.ZERO.equals(ss.getUserId())){
                 FrameUserVO user = SecurityUtilsHelper.getCurrentUser();
                 if(user!=null){
@@ -42,7 +42,7 @@ public class ShiroSessionDAO extends EnterpriseCacheSessionDAO {
                     ss.setStatus(OnlineSession.OnlineStatus.on_line);
                 }
             }
-            if (!ss.isAttributeChanged()) {    
+            if (!ss.isAttributeChanged()) {
                 return;
             }
 		}

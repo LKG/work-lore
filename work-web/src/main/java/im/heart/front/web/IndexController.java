@@ -19,13 +19,14 @@ public class IndexController {
                                 ModelMap model) {
         request.getSession().setAttribute("username", "admin");
         model.put("sessionId", request.getSession().getId());
+        System.out.println("@@@@@@@@@@@@@@@@@");
         return new ModelAndView("index");
     }
     @ResponseBody
-    @RequestMapping(value = "/get")
-    public String get(HttpServletRequest request) {
+    @RequestMapping(value = "/index/test")
+    public String test(HttpServletRequest request) {
         String userName = (String) request.getSession().getAttribute("username");
-
+        System.out.println("@@@@@@@@userName@@@@@@@@@"+userName);
         return userName;
     }
 }

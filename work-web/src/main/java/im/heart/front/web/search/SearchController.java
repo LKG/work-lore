@@ -9,7 +9,6 @@ import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.web.AbstractController;
 import im.heart.core.web.ResponseError;
 import im.heart.core.web.enums.WebError;
-import im.heart.frame.service.QQGroupService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,8 +49,6 @@ public class SearchController  extends AbstractController {
             this.info = info;
         }
     }
-    @Autowired
-    QQGroupService qqGroupService;
 
     @Autowired
     ArticleService articleService;

@@ -42,7 +42,7 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 	 */
 	private int maxSession = 1;
 	protected static final String CACHE_NAME = ShiroCacheConfig.SESSION_KICKOUT.keyPrefix;
-	@Autowired
+//	@Autowired
 	private ShiroSessionDAO shiroSessionDAO;
 
 	private Cache cache;
