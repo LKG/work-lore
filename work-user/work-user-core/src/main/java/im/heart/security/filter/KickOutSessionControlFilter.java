@@ -80,8 +80,7 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 			deque = Lists.newLinkedList();
 			this.cache.put(username, deque);
 		}
-		Object kickout = session.getAttribute(kickOutParam);
-		if (!deque.contains(sessionId) && kickout == null) {
+		if (!deque.contains(sessionId) && session.getAttribute(kickOutParam) == null) {
 			deque.push(sessionId);
 			this.cache.put(username, deque);
 		}
@@ -94,6 +93,8 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 				// 否则踢出前者
 				kickoutSessionId = deque.removeLast();
 			}
+			//更新队列
+			this.cache.put(username, deque);
 			try {
 				Session onlineSession = SecurityUtils.getSecurityManager().getSession(new WebSessionKey(kickoutSessionId,request,response));
 				/// 设置会话的kickout属性表示踢出了
@@ -105,7 +106,7 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 						+ ise);
 			}
 		}
-		if (kickout != null) {
+		if (session.getAttribute(kickOutParam) != null) {
 			try {
 				logger.info("检测到用户重复登录，移除用户"+username);
 				subject.logout();
