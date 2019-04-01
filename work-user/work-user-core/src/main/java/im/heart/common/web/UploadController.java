@@ -37,7 +37,7 @@ public class UploadController extends AbstractController {
 	protected static final String apiVer = "/upload";
 	@Autowired
 	private FrameUserService frameUserService;
-	@Value("${prod.upload.path.root}")
+	@Value("${prod.upload.path.root:''}")
 	private String uplaodFilePath="";
 	protected static final String  IMG_FILE_PATH= CommonConst.STATIC_UPLOAD_ROOT;
 
