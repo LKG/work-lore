@@ -42,19 +42,19 @@ spring:
       force: true
   messages:
     encoding: UTF-8
-#  freemarker:
-#    prefix:
-#    suffix: .ftl
-#    templateLoaderPath: classpath:/templates/tpl/, classpath:/templates/sms/, classpath:/templates/email/, classpath:/templates/code/
-#    templateEncoding: UTF-8
-#    content-type: text/html
-#    prefer-file-system-access: false
-#    cache: false
-#    settings:
-#      template_update_delay: 0
-#      number_format: '0.##'   #数字格式化，无小数点
-#      boolean_format: 'true,false'
-#    request-context-attribute: request
+  freemarker:
+    prefix:
+    suffix: .ftl
+    templateLoaderPath: classpath:/templates/tpl/, classpath:/templates/sms/, classpath:/templates/email/, classpath:/templates/code/
+    templateEncoding: UTF-8
+    content-type: text/html
+    prefer-file-system-access: false
+    cache: false
+    settings:
+      template_update_delay: 0
+      number_format: '0.##'   #数字格式化，无小数点
+      boolean_format: 'true,false'
+    request-context-attribute: request
   redis:
     host: 127.0.0.1
     database: 0
@@ -75,3 +75,21 @@ spring:
           enable: true
           required: true
       debug: true
+  jpa:
+    # Specify the DBMS
+#    database: MYSQL
+    # Show or not log for each sql query
+    show-sql: true
+    open-in-view: true
+    hibernate:
+      show_sql: false
+      format_sql: true
+      # Hibernate ddl auto (create, create-drop, update)
+      ddl-auto: none
+      # Naming strategy
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      # stripped before adding them to the entity manager)
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        enable_lazy_load_no_trans: true
