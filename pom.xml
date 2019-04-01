@@ -27,6 +27,7 @@
         <module>work-media</module>
         <module>work-frame</module>
         <module>work-shop</module>
+        <module>work-rpt</module>
     </modules>
     <properties>
         <docker.image.prefix>spring-boot</docker.image.prefix>
