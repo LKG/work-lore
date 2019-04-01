@@ -17,16 +17,6 @@ public class IndexController {
     @RequestMapping(value={"/index","/",""},method = RequestMethod.GET)
     public ModelAndView welcome(HttpServletRequest request, HttpServletResponse response,
                                 ModelMap model) {
-        request.getSession().setAttribute("username", "admin");
-        model.put("sessionId", request.getSession().getId());
-        System.out.println("@@@@@@@@@@@@@@@@@");
         return new ModelAndView("index");
-    }
-    @ResponseBody
-    @RequestMapping(value = "/index/test")
-    public String test(HttpServletRequest request) {
-        String userName = (String) request.getSession().getAttribute("username");
-        System.out.println("@@@@@@@@userName@@@@@@@@@"+userName);
-        return userName;
     }
 }
