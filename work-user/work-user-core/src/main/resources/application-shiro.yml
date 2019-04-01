@@ -1,0 +1,27 @@
+shiro:
+  login:
+    url: /login.jhtml
+    success:
+     url: /
+  unauthorizedUrl: /unauthorized.jhtml
+  logout:
+    success:
+      url:  /login.jhtml?logout=1
+  password:
+    hashAlgorithmName: md5
+    hashIterations: 2
+    storedCredentialsHexEncoded: true
+  sessionManager:
+    cookie:
+      domain:
+      httpOnly:
+      maxAge:
+      path:
+      name: jsid
+  rememberMeManager:
+    cookie:
+      maxAge:
+      name: rid
+##@see org.apache.shiro.spring.web.config.AbstractShiroWebConfiguration
+  ##sshiro.sessionManager.cookie.name
+  ##shiro.rememberMeManager.cookie.maxAge

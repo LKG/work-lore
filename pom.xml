@@ -76,6 +76,7 @@
         <hanlp.version>portable-1.7.0</hanlp.version>
         <jersey-bundle.version>1.9.1</jersey-bundle.version>
         <querydsl.version>4.2.1</querydsl.version>
+        <shiro.version>1.4.0</shiro.version>
         <!-- 二维码end -->
         <weixin-tools.version>3.2.0</weixin-tools.version>
         <spring-mobile-device.version>2.0.0.M3</spring-mobile-device.version>
