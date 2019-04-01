@@ -28,6 +28,7 @@
         <module>work-frame</module>
         <module>work-shop</module>
         <module>work-rpt</module>
+        <module>work-admin</module>
     </modules>
     <properties>
         <docker.image.prefix>spring-boot</docker.image.prefix>
