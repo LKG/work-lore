@@ -5,6 +5,9 @@ import com.google.common.collect.Lists;
 import im.heart.security.cache.ShiroCacheConfig;
 import im.heart.security.utils.SecurityUtilsHelper;
 import im.heart.usercore.vo.FrameUserVO;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionException;
 import org.apache.shiro.session.mgt.DefaultSessionKey;
@@ -37,6 +40,15 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 	public static final String DEFAULT_KICK_OUT_PARAM = "kickOut";
     private String redirectUrl = DEFAULT_REDIRECT_URL;
     private String kickOutParam = DEFAULT_KICK_OUT_PARAM;
+
+    @Data
+	@NoArgsConstructor
+	@Builder
+    protected class   KickOutSession{
+		private  Serializable id;
+		private Boolean kickOut;
+	}
+
 	/**
 	 * 踢出之前登录的/之后登录的用户 默认踢出之前登录的用户
 	 */
@@ -71,33 +83,32 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 		String username=user.getUserName();
         Session session = subject.getSession();
 		Serializable sessionId = session.getId();
-		Deque<Serializable> deque = this.cache.get(username,Deque.class);
+		Deque<KickOutSession> deque = this.cache.get(username,Deque.class);
 		if (deque == null) {
 			deque = Lists.newLinkedList();
 		}
 		if (!deque.contains(sessionId) && session.getAttribute(kickOutParam) == null) {
-			deque.push(sessionId);
+			deque.push(KickOutSession.builder().id(sessionId).build());
 		}
 		this.cache.put(username, deque);
+		System.out.println("---------"+JSON.toJSONString(deque));
 		while (deque.size() > maxSession) {
 			// 如果踢出后者
-			Serializable kickOutSessionId = null;
+			KickOutSession kickOutSession = null;
 			if (kickOutAfter) {
-				kickOutSessionId = deque.removeFirst();
+				kickOutSession = deque.removeFirst();
 			} else {
 				// 否则踢出前者
-				kickOutSessionId = deque.removeLast();
+				kickOutSession = deque.removeLast();
 			}
-			System.out.println("kickOutSession="+kickOutSessionId);
 			/// 设置会话的kickout属性表示踢出了
-			//根据sessionId 获取session
-			DefaultSessionKey sessionKey=new DefaultSessionKey(kickOutSessionId);
-			Session kickOutSession=this.sessionManager.getSession(sessionKey);
 			if (kickOutSession != null) {
-				kickOutSession.setAttribute(kickOutParam, true);
+				kickOutSession.setKickOut(true);
 			}
+			//更新缓存
+			this.cache.put(username, deque);
 		}
-		System.out.println("session.getAttribute(kickOutParam)"+session.getAttribute(kickOutParam));
+		System.out.println(JSON.toJSONString(deque));
 		Boolean kickOut=(Boolean)session.getAttribute(kickOutParam);
 		if (kickOut != null&&Boolean.TRUE.equals(kickOut)) {
 			try {
