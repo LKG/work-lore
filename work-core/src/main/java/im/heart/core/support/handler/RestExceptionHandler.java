@@ -41,7 +41,7 @@ public class RestExceptionHandler{
 	}
 	protected Map<String, Object> error(HttpServletRequest request, Exception ex) {
 		Map<String, Object> errorMap = this.error(request,HttpStatus.INTERNAL_SERVER_ERROR);
-		errorMap.put("exception", ex.getMessage());
+		errorMap.put(RequestResult.EXCEPTION, ex.getMessage());
 		return errorMap;
 	}
 	protected ModelAndView chooseView(HttpServletRequest request,Map<String, Object> errorMap){
@@ -104,7 +104,7 @@ public class RestExceptionHandler{
 		Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
 		Map<String, String> messages = BeanValidators.extractPropertyAndMessage(constraintViolations);
 		Map<String, Object> errorMap = this.error(request,ex);
-		errorMap.put("message", messages);
+		errorMap.put(RequestResult.MESSAGE, messages);
 		logger.error("handleConstraintViolationException:"+ex.getStackTrace()[0].getMethodName(), ex);
 		return this.chooseView(request,errorMap);
 	}

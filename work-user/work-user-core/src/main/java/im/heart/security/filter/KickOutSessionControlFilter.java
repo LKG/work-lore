@@ -5,11 +5,11 @@ import com.google.common.collect.Lists;
 import im.heart.security.cache.ShiroCacheConfig;
 import im.heart.security.utils.SecurityUtilsHelper;
 import im.heart.usercore.vo.FrameUserVO;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionException;
 import org.apache.shiro.session.mgt.DefaultSessionKey;
-import org.apache.shiro.session.mgt.eis.SessionDAO;
+import org.apache.shiro.session.mgt.SessionKey;
+import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.LogoutFilter;
 import org.apache.shiro.web.session.mgt.WebSessionKey;
@@ -48,14 +48,10 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 	protected static final String CACHE_NAME = ShiroCacheConfig.SESSION_KICKOUT.keyPrefix;
 
 	private Cache cache;
-
+	@Autowired()
+	private SessionManager sessionManager;
 	@Autowired(required = false)
 	private CacheManager cacheManager;
-
-
-    protected void saveRequest(ServletRequest request) {
-        WebUtils.saveRequest(request);
-    }
 	@Override
 	protected boolean preHandle(ServletRequest request, ServletResponse response)
 			throws Exception {
@@ -74,45 +70,36 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 		}
 		String username=user.getUserName();
         Session session = subject.getSession();
-        Serializable sessionId = session.getId();
+		Serializable sessionId = session.getId();
 		Deque<Serializable> deque = this.cache.get(username,Deque.class);
 		if (deque == null) {
 			deque = Lists.newLinkedList();
-            deque.push(sessionId);
-			this.cache.put(username, deque);
 		}
 		if (!deque.contains(sessionId) && session.getAttribute(kickOutParam) == null) {
 			deque.push(sessionId);
-			this.cache.put(username, deque);
 		}
-        System.out.println("deque.size()deque.size()"+deque.size());
+		this.cache.put(username, deque);
 		while (deque.size() > maxSession) {
-			Serializable kickoutSessionId = null;
 			// 如果踢出后者
+			Serializable kickOutSessionId = null;
 			if (kickOutAfter) {
-				kickoutSessionId = deque.removeFirst();
+				kickOutSessionId = deque.removeFirst();
 			} else {
 				// 否则踢出前者
-				kickoutSessionId = deque.removeLast();
+				kickOutSessionId = deque.removeLast();
 			}
-			//更新队列
-			this.cache.put(username, deque);
-			try {
-				Session onlineSession = SecurityUtils.getSecurityManager().getSession(new DefaultSessionKey(kickoutSessionId));
-				/// 设置会话的kickout属性表示踢出了
-                System.out.println("onlineSession"+onlineSession.getId());
-				if (onlineSession != null) {
-					onlineSession.setAttribute(kickOutParam, true);
-				}
-                System.out.println("----onlineSession----"+session.getAttribute(kickOutParam));
-            System.out.println("-----4---"+session.getAttribute(kickOutParam));
-			} catch (SessionException ise) {
-				logger.debug("Encountered session exception during logout.  This can generally safely be ignored."
-						+ ise);
+			System.out.println("kickOutSession="+kickOutSessionId);
+			/// 设置会话的kickout属性表示踢出了
+			//根据sessionId 获取session
+			DefaultSessionKey sessionKey=new DefaultSessionKey(kickOutSessionId);
+			Session kickOutSession=this.sessionManager.getSession(sessionKey);
+			if (kickOutSession != null) {
+				kickOutSession.setAttribute(kickOutParam, true);
 			}
 		}
-		System.out.println("-----4---"+session.getAttribute(kickOutParam));
-		if (session.getAttribute(kickOutParam) != null) {
+		System.out.println("session.getAttribute(kickOutParam)"+session.getAttribute(kickOutParam));
+		Boolean kickOut=(Boolean)session.getAttribute(kickOutParam);
+		if (kickOut != null&&Boolean.TRUE.equals(kickOut)) {
 			try {
 				logger.info("检测到用户重复登录，移除用户"+username);
 				subject.logout();
@@ -120,7 +107,7 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 				logger.debug("Encountered session exception during logout.  This can generally safely be ignored."
 						+ ise);
 			}
-			saveRequest(request);  
+			WebUtils.saveRequest(request);
 			issueRedirect(request, response, redirectUrl);
 			return false;
 		}
@@ -133,28 +120,5 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 	@Override
 	public void setRedirectUrl(String redirectUrl) {
 		this.redirectUrl = redirectUrl;
-	}
-	public boolean isKickOutAfter() {
-		return kickOutAfter;
-	}
-
-	public void setKickOutAfter(boolean kickOutAfter) {
-		this.kickOutAfter = kickOutAfter;
-	}
-
-	public String getKickOutParam() {
-		return kickOutParam;
-	}
-
-	public void setKickOutParam(String kickOutParam) {
-		this.kickOutParam = kickOutParam;
-	}
-
-	public int getMaxSession() {
-		return maxSession;
-	}
-
-	public void setMaxSession(int maxSession) {
-		this.maxSession = maxSession;
 	}
 }

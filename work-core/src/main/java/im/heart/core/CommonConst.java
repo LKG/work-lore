@@ -62,6 +62,8 @@ public class CommonConst {
      */
     public static class RequestResult {
         public static final String RESULT = "result";
+        public static final String EXCEPTION = "exception";
+        public static final String MESSAGE = "message";
         /**
          * 上个页面地址
          */

@@ -27,14 +27,14 @@ public class ShiroRestExceptionHandler{
 
 	protected Map<String, Object> error(HttpServletRequest request) {
 		Map<String, Object> errorMap = Maps.newHashMap();
-		errorMap.put("httpstatus", HttpStatus.FORBIDDEN.value());
-		errorMap.put("success", false);
-		errorMap.put("request", request.getRequestURL());
+		errorMap.put(RequestResult.HTTP_STATUS, HttpStatus.FORBIDDEN.value());
+		errorMap.put(RequestResult.SUCCESS, false);
+		errorMap.put(RequestResult.RESULT, request.getRequestURL());
 		return errorMap;
 	}
 	protected Map<String, Object> error(HttpServletRequest request, Exception ex) {
 		Map<String, Object> errorMap = this.error(request);
-		errorMap.put("exception", ex.getMessage());
+		errorMap.put(RequestResult.EXCEPTION, ex.getMessage());
 		return errorMap;
 	}
 	protected ModelAndView chooseView(HttpServletRequest request, Map<String, Object> errorMap){
