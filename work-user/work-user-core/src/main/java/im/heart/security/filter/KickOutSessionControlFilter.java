@@ -37,18 +37,7 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 
 	protected static final Logger logger = LoggerFactory.getLogger(KickOutSessionControlFilter.class);
     public static final String DEFAULT_REDIRECT_URL = "/login.jhtml?logout=2";
-	public static final String DEFAULT_KICK_OUT_PARAM = "kickOut";
     private String redirectUrl = DEFAULT_REDIRECT_URL;
-    private String kickOutParam = DEFAULT_KICK_OUT_PARAM;
-
-    @Data
-	@NoArgsConstructor
-	@Builder
-    protected class   KickOutSession{
-		private  Serializable id;
-		private Boolean kickOut;
-	}
-
 	/**
 	 * 踢出之前登录的/之后登录的用户 默认踢出之前登录的用户
 	 */
@@ -60,8 +49,6 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 	protected static final String CACHE_NAME = ShiroCacheConfig.SESSION_KICKOUT.keyPrefix;
 
 	private Cache cache;
-	@Autowired()
-	private SessionManager sessionManager;
 	@Autowired(required = false)
 	private CacheManager cacheManager;
 	@Override
@@ -87,30 +74,27 @@ public class KickOutSessionControlFilter extends LogoutFilter {
 		if (deque == null) {
 			deque = Lists.newLinkedList();
 		}
-		if (!deque.contains(sessionId) && session.getAttribute(kickOutParam) == null) {
-			deque.push(KickOutSession.builder().id(sessionId).build());
+		KickOutSession kickOutSession = KickOutSession.builder().id(sessionId).build();
+		if (!deque.contains(kickOutSession)) {
+			deque.push(kickOutSession);
 		}
 		this.cache.put(username, deque);
-		System.out.println("---------"+JSON.toJSONString(deque));
-		while (deque.size() > maxSession) {
+		if(deque.size() > maxSession){
 			// 如果踢出后者
-			KickOutSession kickOutSession = null;
 			if (kickOutAfter) {
 				kickOutSession = deque.removeFirst();
 			} else {
 				// 否则踢出前者
 				kickOutSession = deque.removeLast();
 			}
-			/// 设置会话的kickout属性表示踢出了
-			if (kickOutSession != null) {
+			//取出的是当前对象代表当前对象可以被清除
+			if(sessionId.equals(kickOutSession.getId())){
 				kickOutSession.setKickOut(true);
+				//更新缓存
+				this.cache.put(username, deque);
 			}
-			//更新缓存
-			this.cache.put(username, deque);
 		}
-		System.out.println(JSON.toJSONString(deque));
-		Boolean kickOut=(Boolean)session.getAttribute(kickOutParam);
-		if (kickOut != null&&Boolean.TRUE.equals(kickOut)) {
+		if(kickOutSession!=null&&Boolean.TRUE.equals(kickOutSession.getKickOut())){
 			try {
 				logger.info("检测到用户重复登录，移除用户"+username);
 				subject.logout();
