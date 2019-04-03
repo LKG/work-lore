@@ -115,3 +115,11 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
         enable_lazy_load_no_trans: true
+alipay:
+  appId: 2016091200495262
+  #服务器异步通知页面路径
+  notify_url: http://test.api.zhifuzi.com/notify/alipay
+  #页面跳转同步通知页面路径
+  return_url: http://test.api.zhifuzi.com/zfzpay/zfzpay/paySuccess.html
+  #请求网关地址
+  URL: https://openapi.alipaydev.com/gateway.do
