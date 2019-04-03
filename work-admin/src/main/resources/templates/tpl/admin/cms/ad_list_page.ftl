@@ -32,8 +32,6 @@
 			   </th>
 	            <th class="page-sort-btn">标题</th>
 	            <th style="width:100px;">类型</th>
-	            <th style="width:50px;" >状态</th>
-	            <th style="width:120px;" >点击量</th>
 	            <th style="width:250px;" >操作</th>
 	          </tr>
 	        </thead>
@@ -44,23 +42,10 @@
 			    <#list result.content as model>
 			    	<tr > 
 			    		<td scope="row" class="text-center" >
-					         <input type="checkbox" id="check_${model.id!''}" name="id" value="${model.id}" />
+					         <input type="checkbox" id="check_${model.id!''}" name="id" value="${model.id!''}" />
 					    </td>
-					     <td title="${model.title}">${model.shortTitle!''}</td>
+					     <td title="${model.title!''}">${model.shortTitle!''}</td>
 					     <td class="text-center" >${model.type!''}</td>
-					     <td class="text-center" >
-					     	<code>${model.categoryName!''} </code>
-					     </td>
-					     <td class="text-center" >
-					     <code><#if (model.isTop) >置顶<#else>未置顶</#if></code>
-					     /
-					      <code><#if (model.isPub) >已发布<#else>未发布</#if></code>
-					     </td>
-					     <td class="text-center" >
-					     	<code>${model.hits!'0'} </code>
-					     	/
-					     	<code>${model.rateTimes!'0'} </code>
-					     </td>
 	 					<td class="operate text-center">
 	 						<a   href="${appHost}/admin/article/${model.id!''}.jhtml"  title="修改"  >
 								<i id="edit-${model.id!''}" data="${model.id!''}" class="fa fa-chain">修改</i>
@@ -86,19 +71,6 @@
 		</td>
 		 <td  title="{{model.title}}">{{model.shortTitle}}</td> 
 		 <td class="text-center" >{{model.type}}</td>
-		 <td class="text-center" >
-			<code>{{model.categoryName}} </code>
-		 </td>
-		 <td class="text-center" >
-			<code>{{if model.isTop}}置顶{{else}}未置顶{{/if}}</code>
-			/
-			<code>{{if model.isPub}}已发布{{else}}未发布{{/if}}</code>
-		 </td>
-		<td class="text-center" >
-			<code>{{model.hits}} </code>
-				/
-			<code>{{model.rateTimes}}</code>
-		</td>
 		<td class="operate text-center">
 			<a   href="${appHost}/admin/article/{{model.id}}.jhtml"  title="修改"  >
 				<i id="edit-{{model.id}}" data="{{model.id}}" class="fa fa-chain">修改</i>

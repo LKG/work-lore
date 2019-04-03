@@ -17,6 +17,7 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.web.filter.DelegatingFilterProxy;
 
 import javax.servlet.Filter;
 import java.util.Map;
@@ -41,7 +42,15 @@ public class ShiroWebFilterConfig extends ShiroWebFilterConfiguration {
 		filterFactoryBean.setFilterChainDefinitionMap(this.shiroFilterChainDefinition.getFilterChainMap());
 		return filterFactoryBean;
 	}
-
+	@Bean
+	public FilterRegistrationBean delegatingFilterProxy(){
+		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+		DelegatingFilterProxy proxy = new DelegatingFilterProxy();
+		proxy.setTargetFilterLifecycle(true);
+		proxy.setTargetBeanName("shiroFilter");
+		filterRegistrationBean.setFilter(proxy);
+		return filterRegistrationBean;
+	}
 	/**
 	 *
 	 * @return

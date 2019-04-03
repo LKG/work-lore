@@ -4,11 +4,9 @@ import im.heart.security.credentials.RetryLimitCredentialsMatcher;
 import im.heart.security.realm.FrameUserRealm;
 import im.heart.security.session.ShiroSessionListener;
 import org.apache.shiro.authz.Authorizer;
-import org.apache.shiro.event.EventBus;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
-import org.apache.shiro.spring.ShiroEventBusBeanPostProcessor;
 import org.apache.shiro.spring.config.web.autoconfigure.ShiroWebAutoConfiguration;
 import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
 import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
@@ -75,6 +73,7 @@ public class ShiroWebConfig extends ShiroWebAutoConfiguration{
 		daap.setProxyTargetClass(true);
 		return daap;
 	}
+
 	/**
 	 * 这里统一做鉴权，即判断哪些请求路径需要用户登录，哪些请求路径不需要用户登录。
 	 *      * 这里只做鉴权，不做权限控制，因为权限用注解来做。
