@@ -12,11 +12,6 @@ import java.math.BigInteger;
  * @desc 扩展认证信息信息认证
  */
 public class FrameAuthenticationInfo extends SimpleAuthenticationInfo{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7362336332897524215L;
 	public FrameAuthenticationInfo(FrameUser user, String passWord,
                                    ByteSource bytes, String name, BigInteger userId) {
 		super(user,passWord,bytes,name);

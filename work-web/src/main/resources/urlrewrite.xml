@@ -35,8 +35,12 @@
         <to>/index/topic.jhtml</to>
     </rule>
     <rule>
+        <from>^/articles.?(.*)$</from>
+        <to>/index/articles.jhtml</to>
+    </rule>
+    <rule>
         <from>/articles/p-([0-9]+).?(.*)$</from>
-        <to>/articles.jhtml?page=$1</to>
+        <to>/index/articles.jhtml?page=$1</to>
     </rule>
     <rule>
         <from>^/made.?(.*)$</from>

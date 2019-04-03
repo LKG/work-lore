@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * <p>Equivalent to {@link im.heart.security.im.heart.security.tags.shiro.web.tags.SecureTag}</p>
+ * <p>Equivalent to {@link im.heart.security.tags.SecureTag}</p>
  *
  */
 public abstract  class SecureTag implements TemplateDirectiveModel {

@@ -9,9 +9,4 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
  */
 public class FrameAuthorizationInfo extends SimpleAuthorizationInfo {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -536721312646152166L;
-
 }

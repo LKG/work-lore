@@ -83,13 +83,24 @@
         <pdfbox.version>2.0.13</pdfbox.version>
         <jodconverter.version>4.2.2</jodconverter.version>
         <openoffice.version>4.1.2</openoffice.version>
-
+        <qiniuyun.version>[7.2.0, 7.2.99]</qiniuyun.version>
+        <upyun.version>4.1.0</upyun.version>
         <!-- 二维码end -->
         <weixin-tools.version>3.2.0</weixin-tools.version>
         <spring-mobile-device.version>2.0.0.M3</spring-mobile-device.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.upyun</groupId>
+                <artifactId>java-sdk</artifactId>
+                <version>${upyun.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.qiniu</groupId>
+                <artifactId>qiniu-java-sdk</artifactId>
+                <version>${qiniuyun.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.session</groupId>
                 <artifactId>spring-session-data-redis</artifactId>

@@ -25,3 +25,4 @@ shiro:
 ##@see org.apache.shiro.spring.web.config.AbstractShiroWebConfiguration
   ##sshiro.sessionManager.cookie.name
   ##shiro.rememberMeManager.cookie.maxAge
+  #shiro.rememberMeManager.cookie.name

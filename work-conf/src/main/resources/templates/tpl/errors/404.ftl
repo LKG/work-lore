@@ -18,7 +18,6 @@
 	  以获得更好的体验！</p>
   <![endif]-->
   <!-- header begin-->
-    <#include "/index-header.ftl" />
   <!-- header end-->
 <!------页面header信息 begin----->
 	<div class="clearfix"></div>
