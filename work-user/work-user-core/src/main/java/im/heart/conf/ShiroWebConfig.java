@@ -10,11 +10,14 @@ import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.config.web.autoconfigure.ShiroWebAutoConfiguration;
 import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
 import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
+import org.apache.shiro.web.servlet.Cookie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -23,8 +26,18 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource(value = "classpath:/application-shiro.yml")
 public class ShiroWebConfig extends ShiroWebAutoConfiguration{
 	protected static final Logger logger = LoggerFactory.getLogger(ShiroWebConfig.class);
-
-
+	@Value("#{ @environment['shiro.rememberMeManager.cookie.name'] ?: T(org.apache.shiro.web.mgt.CookieRememberMeManager).DEFAULT_REMEMBER_ME_COOKIE_NAME }")
+	protected String rememberMeCookieName="rid";
+	@Bean
+	@Override
+	protected Cookie rememberMeCookieTemplate() {
+		return buildCookie(
+				rememberMeCookieName,
+				rememberMeCookieMaxAge,
+				rememberMeCookiePath,
+				rememberMeCookieDomain,
+				rememberMeCookieSecure);
+	}
 	/**
 	 * shiro如何获取用户信息来做登录或权限控制
 	 * @return
