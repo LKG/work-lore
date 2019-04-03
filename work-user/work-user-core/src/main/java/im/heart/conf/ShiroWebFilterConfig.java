@@ -4,12 +4,15 @@ import im.heart.security.filter.FrameAuthenticationFilter;
 import im.heart.security.filter.FrameLogoutFilter;
 import im.heart.security.filter.KickOutSessionControlFilter;
 import im.heart.security.filter.ShiroFilterFactory;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.config.web.autoconfigure.ShiroWebFilterConfiguration;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.filter.authz.SslFilter;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,15 +25,20 @@ import java.util.Map;
 @PropertySource(value = "classpath:/application-shiro.yml")
 public class ShiroWebFilterConfig extends ShiroWebFilterConfiguration {
 	protected static final Logger logger = LoggerFactory.getLogger(ShiroWebFilterConfig.class);
-	@Bean
+	@Autowired
+	protected SecurityManager securityManager;
+	@Autowired
+	protected ShiroFilterChainDefinition shiroFilterChainDefinition;
+
+	@Bean("shiroFilter")
 	@Override
 	protected ShiroFilterFactoryBean shiroFilterFactoryBean() {
 		ShiroFilterFactory filterFactoryBean = new ShiroFilterFactory();
 		filterFactoryBean.setLoginUrl(loginUrl);
 		filterFactoryBean.setSuccessUrl(successUrl);
 		filterFactoryBean.setUnauthorizedUrl(unauthorizedUrl);
-		filterFactoryBean.setSecurityManager(securityManager);
-		filterFactoryBean.setFilterChainDefinitionMap(shiroFilterChainDefinition.getFilterChainMap());
+		filterFactoryBean.setSecurityManager(this.securityManager);
+		filterFactoryBean.setFilterChainDefinitionMap(this.shiroFilterChainDefinition.getFilterChainMap());
 		return filterFactoryBean;
 	}
 

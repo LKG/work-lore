@@ -37,10 +37,6 @@
 						  </#if>
 						  ${message!''}
 					  </p>
-				      <p>
-				        <button type="button" class="btn btn-danger">Take this action</button>
-				        <button type="button" class="btn btn-default">Or do this</button>
-				      </p>
 				    </div>
 	 	 		 <!--userInfo end---->
 			  </div>

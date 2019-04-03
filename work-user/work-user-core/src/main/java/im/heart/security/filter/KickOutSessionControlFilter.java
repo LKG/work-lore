@@ -1,21 +1,13 @@
 package im.heart.security.filter;
 
-import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import im.heart.security.cache.ShiroCacheConfig;
 import im.heart.security.utils.SecurityUtilsHelper;
 import im.heart.usercore.vo.FrameUserVO;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionException;
-import org.apache.shiro.session.mgt.DefaultSessionKey;
-import org.apache.shiro.session.mgt.SessionKey;
-import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.LogoutFilter;
-import org.apache.shiro.web.session.mgt.WebSessionKey;
 import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

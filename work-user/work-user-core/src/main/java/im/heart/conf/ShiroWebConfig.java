@@ -4,13 +4,19 @@ import im.heart.security.credentials.RetryLimitCredentialsMatcher;
 import im.heart.security.realm.FrameUserRealm;
 import im.heart.security.session.ShiroSessionListener;
 import org.apache.shiro.authz.Authorizer;
+import org.apache.shiro.event.EventBus;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.SessionListener;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.ShiroEventBusBeanPostProcessor;
 import org.apache.shiro.spring.config.web.autoconfigure.ShiroWebAutoConfiguration;
 import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
 import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -31,10 +37,32 @@ public class ShiroWebConfig extends ShiroWebAutoConfiguration{
 		frameUserRealm.setCredentialsMatcher(credentialsMatcher());
 		return frameUserRealm;
 	}
+	@Autowired
+	protected SecurityManager securityManager;
+	/**
+	 * 在方法中 注入 securityManager,进行代理控制
+	 */
+	@Bean
+	public MethodInvokingFactoryBean methodInvokingFactoryBean() {
+		MethodInvokingFactoryBean bean = new MethodInvokingFactoryBean();
+		bean.setStaticMethod("org.apache.shiro.SecurityUtils.setSecurityManager");
+		bean.setArguments(new Object[]{securityManager});
+		return bean;
+	}
 	@Bean
 	@Override
 	protected Authorizer authorizer() {
 		return super.authorizer();
+	}
+	/**
+	 * 	LifecycleBeanPostProcessor，这是个DestructionAwareBeanPostProcessor的子类，
+	 * 负责org.apache.shiro.util.Initializable类型bean的生命周期的，初始化和销毁。
+	 * 主要是AuthorizingRealm类的子类，以及EhCacheManager类。
+	 * 协助shiro初始化, 负责调用shiro的init与destory
+	 */
+	@Bean
+	public LifecycleBeanPostProcessor getLifecycleBeanPostProcessor() {
+		return new LifecycleBeanPostProcessor();
 	}
 	/**
 	 *

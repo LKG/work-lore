@@ -129,6 +129,7 @@ public class Ad implements AbstractEntity<BigInteger>{
 	/** 类型 */
 	@NotNull
 	@Column(name = "AD_TYPE", nullable = false)
+	@Enumerated(EnumType.STRING)
 	private Type type;
 
 	/** 内容 */

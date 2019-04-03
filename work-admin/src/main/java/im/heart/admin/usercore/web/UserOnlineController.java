@@ -2,7 +2,6 @@ package im.heart.admin.usercore.web;
 
 import im.heart.core.web.AbstractController;
 import im.heart.security.session.OnlineSession;
-import im.heart.security.session.ShiroSessionDAO;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.session.Session;
@@ -21,17 +20,16 @@ import java.util.Collection;
 public class UserOnlineController extends AbstractController {
 	protected static final String apiVer = "/online";
 	protected static final String VIEW_LIST="admin/usercore/user_online_list";
-	@Autowired
-	private ShiroSessionDAO shiroSessionDAO;
+
 
 	@RequiresPermissions("online:view")
 	@RequestMapping(apiVer+"s")  
     public ModelAndView list(ModelMap model) {  
-        Collection<Session> sessions = this.shiroSessionDAO.getActiveSessions();  
-        super.success(model,sessions);
-        Serializable sessionId = SecurityUtils.getSubject().getSession().getId();
-        model.addAttribute("sessionId", sessionId);  
-        model.addAttribute("sesessionCount", sessions.size());  
+//        Collection<Session> sessions = this.shiroSessionDAO.getActiveSessions();
+//        super.success(model,sessions);
+//        Serializable sessionId = SecurityUtils.getSubject().getSession().getId();
+//        model.addAttribute("sessionId", sessionId);
+//        model.addAttribute("sesessionCount", sessions.size());
 		return new ModelAndView(VIEW_LIST);
     }  
 	@RequiresPermissions("online:delete")
@@ -39,14 +37,14 @@ public class UserOnlineController extends AbstractController {
 	public ModelAndView forceLogout(@RequestParam(value = "ids") String[] ids,ModelMap model){
 		Serializable sessionId = SecurityUtils.getSubject().getSession().getId();
 		for (String id : ids) {		
-			if(sessionId.equals(id)){
-				continue;
-			}
-	       OnlineSession online = (OnlineSession) this.shiroSessionDAO.readSession(id);
-	       if (online == null) {
-	          continue;
-	       }
-	       online.setStatus(OnlineSession.OnlineStatus.force_logout);
+//			if(sessionId.equals(id)){
+//				continue;
+//			}
+//	       OnlineSession online = (OnlineSession) this.shiroSessionDAO.readSession(id);
+//	       if (online == null) {
+//	          continue;
+//	       }
+//	       online.setStatus(OnlineSession.OnlineStatus.force_logout);
 	     }
 		super.success(model);
 		return new ModelAndView(VIEW_LIST);
