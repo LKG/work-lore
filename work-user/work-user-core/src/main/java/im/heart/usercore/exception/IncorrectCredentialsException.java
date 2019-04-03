@@ -1,11 +1,10 @@
 package im.heart.usercore.exception;
-
+/**
+ *
+ * @author gg
+ * @Desc : IncorrectCredentialsException
+ */
 public class IncorrectCredentialsException extends Exception {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 6819474331721989064L;
 
 	public IncorrectCredentialsException(String message) {
 	    super(message);
