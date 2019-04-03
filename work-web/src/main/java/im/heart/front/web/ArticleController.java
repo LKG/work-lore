@@ -32,7 +32,7 @@ public class ArticleController extends AbstractController {
     @Autowired
     private ArticleService articleService;
 
-    @GetMapping(value={"/articles/{id}",apiVer+"/articles/{id}"})
+    @GetMapping(value={"/article/{id}",apiVer+"/article/{id}"})
     protected ModelAndView findById(
             @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
             @PathVariable BigInteger id,
