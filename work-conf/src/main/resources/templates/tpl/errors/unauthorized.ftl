@@ -59,6 +59,8 @@
     	</div>
     </div>
 <!------页面header信息 end----->
-<!------页面版权信息 begin----->
-<!------页面版权信息 end----->
+  <!------页面版权信息 begin----->
+<#include "/includes/footer.ftl" />
+<#include "/includes/footer-js.ftl" />
+  <!------页面版权信息 end----->
 </body>

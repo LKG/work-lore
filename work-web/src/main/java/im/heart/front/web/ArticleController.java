@@ -26,13 +26,16 @@ import java.util.Collection;
 
 @Controller
 public class ArticleController extends AbstractController {
-    protected static final String apiVer = "/index";
+    protected static final String apiVer = "/article";
     protected static final String VIEW_LIST="front/article/article_list";
     protected static final String VIEW_DETAILS="front/article/article_details";
     @Autowired
     private ArticleService articleService;
 
-    @GetMapping(value={"/article/{id}",apiVer+"/article/{id}"})
+    @Autowired
+    private FrameUserFollowService frameUserFollowService;
+
+    @GetMapping(value = apiVer+"/{id}")
     protected ModelAndView findById(
             @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
             @PathVariable BigInteger id,
@@ -44,7 +47,7 @@ public class ArticleController extends AbstractController {
         super.success(model, po);
         return new ModelAndView(VIEW_DETAILS);
     }
-    @GetMapping(value={"/articles",apiVer+"/articles"})
+    @GetMapping(apiVer+"s")
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response,
                              @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
                              @RequestParam(value = "page", required = false, defaultValue = CommonConst.Page.DEFAULT_PAGE+"") Integer page,
