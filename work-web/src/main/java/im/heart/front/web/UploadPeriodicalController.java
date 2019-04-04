@@ -33,13 +33,13 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Controller
-public class UploadMaterialController extends AbstractController {
-    protected static final Logger logger = LoggerFactory.getLogger(UploadMaterialController.class);
+public class UploadPeriodicalController extends AbstractController {
+    protected static final Logger logger = LoggerFactory.getLogger(UploadPeriodicalController.class);
     protected static final String apiVer = "/upload";
     protected static final String  FILE_ROOT_PATH= CommonConst.STATIC_UPLOAD_ROOT;
 
     @Value("${prod.material.file.path:''}")
-    private String materialFilePath="";
+    private String periodicalFilePath="";
     @Value("${prod.upload.path.root:''}")
     private String uploadFilePath="";
 
@@ -85,7 +85,7 @@ public class UploadMaterialController extends AbstractController {
         List<MultipartFile> uploadFileList = super.getFileList(request);
         if (uploadFileList != null && !uploadFileList.isEmpty()) {
             for (MultipartFile file : uploadFileList) {
-                String path = File.separator+materialFilePath+File.separator + DateTime.now().toString("yyyyMMdd") + File.separator;
+                String path = File.separator+periodicalFilePath+File.separator + DateTime.now().toString("yyyyMMdd") + File.separator;
                 try {
                     String realPath = uploadFilePath+path;
                     String realFileName = this.uploadFile(file, realPath);
