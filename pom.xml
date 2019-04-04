@@ -89,9 +89,15 @@
         <weixin-tools.version>3.2.0</weixin-tools.version>
         <spring-mobile-device.version>2.0.0.M3</spring-mobile-device.version>
         <alipay.version>3.7.4.ALL</alipay.version>
+        <qcloudsms.version>1.0.6</qcloudsms.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.github.qcloudsms</groupId>
+                <artifactId>qcloudsms</artifactId>
+                <version>${qcloudsms.version}</version>
+            </dependency>
             <dependency>
                 <groupId>com.alipay.sdk</groupId>
                 <artifactId>alipay-sdk-java</artifactId>

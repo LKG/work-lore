@@ -1,5 +1,7 @@
 package im.heart.core.plugins.sms;
 
+import com.github.qcloudsms.SmsSingleSender;
+import com.github.qcloudsms.SmsSingleSenderResult;
 import im.heart.core.web.ResponseError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,16 @@ import java.util.Map;
 public class SampleSmsSendServiceImpl implements SmsSendService {
 	protected static final Logger logger = LoggerFactory.getLogger(SampleSmsSendServiceImpl.class);
 
+	public static void main(String[] args) {
+		int appId = 1400197686;
+		String appKey = "f9f4cc6fd9ff57f332760650c5d1c755"; //sdkappid 对应的 appkey，需要业务方高度保密
+		String[] params = {"5678"};//数组具体的元素个数和模板中变量个数必须一致，例如事例中templateId:5678对应一个变量，参数数组中元素个数也必须是一个
+		String templateId = "5678";//数组具体的元素个数和模板中变量个数必须一致，例如事例中templateId:5678对应一个变量，参数数组中元素个数也必须是一个
+		String smsSign = "腾讯云";//数组具体的元素个数和模板中变量个数必须一致，例如事例中templateId:5678对应一个变量，参数数组中元素个数也必须是一个
+		SmsSingleSender ssender = new SmsSingleSender(appId, appKey);
+		SmsSingleSenderResult result = ssender.sendWithParam("86", phoneNumbers[0],
+				templateId, params, smsSign, "", "");  // 签名参数未提供或者为空时，会使用默认签名发送
+	}
 	
 	@Profile("prod")
 	@Override

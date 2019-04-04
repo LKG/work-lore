@@ -129,3 +129,8 @@ alipay:
   return_url: http://test.api.zhifuzi.com/zfzpay/zfzpay/paySuccess.html
   #请求网关地址
   URL: https://openapi.alipaydev.com/gateway.do
+
+qcloud:
+  sms:
+    appId: 1400197686
+    appKey: f9f4cc6fd9ff57f332760650c5d1c755
