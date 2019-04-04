@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-lg-7">
                     <div class="input-group" >
-                        <input name="cc" value="gongwk.com" type="hidden"/>
+                        <input name="cc" value="${appHost}" type="hidden"/>
                         <input type="text" class="form-control" id="q"  name="q"  value="${q!''}" aria-label="请输入搜索关键词">
                         <div class="input-group-btn">
                             <select class="form-control" id="qt" data-val="${qt!'1'}"  name="qt" style="width: 110px;padding:6px; 10px;">
