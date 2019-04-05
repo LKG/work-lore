@@ -54,7 +54,7 @@
 </head>
 <body class="page-header-fixed">
 <!-- toolbar begin-->
-<#include "/index-toolbar.ftl" />
+<#include "/index-toolbar.ftl"/>
 <!-- toolbar end-->
 <!-----------------------------------------顶部-------------->
 <!-- header begin-->
@@ -67,6 +67,9 @@
 <!-- 搜索框 end-->
 <!--轮播图上方导航栏  一栏-->
 <#include "/index-nav-top.ftl" />
+<div style="border-bottom: 1px solid #ddd;margin-top: 5px;">
+
+</div>
 <div class="container" style="margin-top: 30px;">
     <ol class="breadcrumb">
         <li><a href="${appHost}/"><@spring.message  code="label.system.index" /></a></li>
@@ -78,83 +81,119 @@
         <div class="panel panel-default">
             <div class="">
                 <ul id="my-tab-rule" class="myNavTab nav nav-tabs" role="tablist">
-                    <li role="presentation" style="cursor:pointer" class="active" >
-                        <a id="my-tab-all"  data-key=""  >
+                    <li role="presentation" style="cursor:pointer" class="active">
+                        <a id="my-tab-all" data-key="">
                             <h4>全部分类 (共<code id="paginationTotal" >${result.totalElements}</code> 份)</h4>
                         </a>
                     </li>
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-economy"  data-key="economy"  >-->
+                    <#--经济-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-politics"  data-key="politics"  >-->
+                    <#--政治-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-tj"  data-key="tj"  >-->
+                    <#--图解-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-history"  data-key="history"  >-->
+                    <#--历史-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-keji"  data-key="keji"  >-->
+                    <#--科技-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-law"  data-key="law"  >-->
+                    <#--法律-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-ll"  data-key="ll"  >-->
+                    <#--理论-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-nationaldefense"  data-key="nationaldefense"  >-->
+                    <#--国防-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-kejiao"  data-key="kejiao"  >-->
+                    <#--科教-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-jiaoyu"  data-key="jiaoyu"  >-->
+                    <#--教育-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-international"  data-key="international"  >-->
+                    <#--国际-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-culture"  data-key="culture"  >-->
+                    <#--文化-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-dangjian"  data-key="dangjian"  >-->
+                    <#--党建-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-community"  data-key="community"  >-->
+                    <#--社会-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-ecology"  data-key="ecology"  >-->
+                    <#--生态-->
+                    <#--</a>-->
+                    <#--</li>-->
+                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
+                    <#--<a id="my-tab-other"  data-key="other"  >-->
+                    <#--其他-->
+                    <#--</a>-->
+                    <#--</li>-->
                 </ul>
             </div>
             <div class="panel-body">
                 <!---文档begin--->
-                <div class="col-md-12  col-xs-12">
-                    <div class="row">
-                        <form class="form-search form-inline" id="search_form">
-                            <input type="hidden" name="page" id="page" value="1">
-                            <div class="form-group">
-                                <label for="periodicalName">名称</label>
-                                <input type="text" class="form-control" style="width: 300px;"  value="${periodicalName!''}" id="periodicalName" name="periodicalName_LIKE" placeholder="名称">
+                <div class="row">
+                    <form class="form-search form-inline" id="search_form">
+                        <input type="hidden" name="page" id="page" value="1">
+                    </form>
+                    <#if (result.content?size<=0) >
+                    <#else>
+                        <#list result.content as model>
+                            <div class="col-md-4 col-lg-3 ">
+                                <div class="thumbnail">
+                                    <a href="${appHost}/doc/${model.id!''}.jhtml" >
+                                        <img src="${appHost}/${model.coverImgUrl!''}" class="img-responsive" alt="${model.periodicalName}">
+                                    </a>
+                                    <div class="caption">
+                                        <h5>${model.periodicalName}</h5>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <select class="form-control" style="display: inline;width: 75px;"name="size" id="paginationSize">
-                                    <option value="10">10</option>
-                                    <option value="20">20</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                    <option value="200">200</option>
-                                </select>
-                            </div>
-                            <button type="button" id="seach-btn" class="btn btn-primary">搜索</button>
-                        </form>
-                    </div>
-                    <div  class="bs-table-tbody"  >
-                        <table style="margin-bottom:0px;"   class="table  table-striped table-bordered table-condensed table-hover">
-                            <thead>
-                            <tr>
-                                <th >文档信息</th>
-                                <th style="width: 150px;">上架时间</th>
-                            </tr>
-                            </thead>
-                            <tbody id="table-tbody"  >
-                            <#if (result.content?size<=0) >
-                                <tr ><td class="text-center" scope="row" colspan='2' ><@spring.message  code="label.default.empty" /></td></tr>
-                            <#else>
-                                <#list result.content as model>
-                                    <tr  >
-                                        <td><a href="${appHost}/doc/${model.id!''}.jhtml" ><i class="fa fa-file-excel-o"></i>${model.periodicalName}</a>
-                                           (浏览量:  <code>${model.hits!'0'} </code> <code>大小：${model.dataSizeHuman}</code> ，共<code>${model.pageNum}</code>页 )
-                                        </td>
-                                        <td>${model.pushTime}</td>
-                                    </tr>
-                                </#list >
-                            </#if>
-
-                            </tbody >
-                            <script id="tr-template-js"  type="text/html">
-                                {{if (content.length>0) }}
-                                {{each content as model}}
-                                <tr  data-num="{{$index}}">
-                                    <td><a href="${appHost}/doc/{{model.id}}.jhtml" ><i class="fa fa-file-excel-o"></i>{{model.periodicalName}}</a>
-                                        ( 浏览量: <code>{{model.hits}}</code>大小：<code>{{model.dataSizeHuman}}</code> ，共<code>{{model.pageNum}}</code>页)
-                                    </td>
-                                    <td>{{model.pushTime}}</td>
-                                </tr>
-                                {{/each}}
-                                {{else}}
-                                <tr id="ext_{{$index}}" class="text-center" >
-                                    <td colspan="2"><@spring.message  code="label.default.empty" /></td>
-                                </tr>
-                                {{/if}}
-                            </script>
-                        </table>
-                    </div>
-                    <!-----分页-begin---->
-                    <div  id="table-pagination" data-totalPages="${result.totalPages}" data-number="${result.number}" style="margin-top: -15px;"  class="clearfix"></div>
-                    <!-----分页-end---->
-
+                        </#list >
+                    </#if>
                 </div>
-                <!---文档end--->
             </div>
+            <!-----分页-begin---->
+            <div  id="table-pagination" data-totalPages="${result.totalPages}" data-number="${result.number}" style="margin-top: -15px;"  class="clearfix"></div>
+            <!-----分页-end---->
         </div>
     </div>
 </div>
@@ -168,7 +207,7 @@
 <!------footer信息 end----->
 <#include "/includes/datePicker.ftl" />
 <script>
-    seajs.use(["js/doc/list.js?v="+Math.random(),"js/search.js?v="+Math.random()]);
+    seajs.use(["js/cms/article.js?v="+Math.random(),"js/search.js?v="+Math.random()]);
 </script>
 </body>
 </html>

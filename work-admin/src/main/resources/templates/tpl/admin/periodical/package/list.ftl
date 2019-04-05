@@ -129,7 +129,7 @@
 					            <i class="fa fa-trash-o"></i> 重新生成
 					        </button>
 				    	</div>
-				        <#include "/pages/pagination-size.ftl" />
+					 <#include "/includes/pagination-total.ftl" />
 				    </div>
 				<!---toolbar end-->
 				 	<div  class="bs-table-tbody"  >

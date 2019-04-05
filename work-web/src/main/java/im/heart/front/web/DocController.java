@@ -75,7 +75,7 @@ public class DocController extends AbstractController {
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response,
                              @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
                              @RequestParam(value = "page", required = false, defaultValue = CommonConst.Page.DEFAULT_PAGE+"") Integer page,
-                             @RequestParam(value = "size", required = false, defaultValue = CommonConst.Page.DEFAULT_SIZE+"") Integer size,
+                             @RequestParam(value = "size", required = false, defaultValue = "16") Integer size,
                              @RequestParam(value = "sort", required = false) String sort,
                              @RequestParam(value = "order", required = false,defaultValue = CommonConst.Page.DEFAULT_ORDER) String order,
                              @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,

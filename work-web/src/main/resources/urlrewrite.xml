@@ -39,6 +39,10 @@
         <to>/articles.jhtml?page=$1</to>
     </rule>
     <rule>
+        <from>/docs/p-([0-9]+).?(.*)$</from>
+        <to>/docs.jhtml?page=$1</to>
+    </rule>
+    <rule>
         <from>^/made.?(.*)$</from>
         <to>/index/made.jhtml</to>
     </rule>

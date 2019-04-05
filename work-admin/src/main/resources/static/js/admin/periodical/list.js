@@ -238,6 +238,61 @@ define(function(require, exports, moudles) {
             }
         }).showModal();
     });
+	// 查看事件
+	$tbody.on("click", ".operate .btn-view",function() {
+		var $this=$(this);
+		var id = $(this).attr("id");
+		var dataId = $this.attr("data");
+		var content=$("#log-"+dataId).html();
+		var d = dialog({
+			id : id,
+			title : '导入日志',
+			content : content,
+		}).showModal();
+	});
+	// 删除事件
+	$tbody.on("click", ".operate .btn-remove", function() {
+		var $this=$(this);
+		var id = $(this).attr("id");
+		var dataId = $this.attr("data");
+		var d = dialog({
+			id : id,
+			title : '消息',
+			content : '是否要删除该记录？',
+			okValue : '确 定',
+			ok : function() {
+				var that = this;
+				that.title('提交中..');
+				$.httpUtil.curl({
+					url : url.api+"/" +dataId + "/disabled.json",
+					type : "post",
+					loading : true,
+					dataType : "json",
+					data : param,
+					success :function(data) {
+						message($this,"更新成功");
+						$("#page").val(1);
+						search(false);
+					},
+				});
+				return true;
+			},
+			cancelValue : '取消',
+			cancel : function() {
+			}
+		}).showModal();
+	});
+	// 全选事件
+	$("#btSelectAll").on("change",function() {
+		var $checkBox = $tbody.find("input[type='checkbox']:not(:disabled)");
+		if ($(this).attr("checked")) {
+			$checkBox.attr("checked",'true');// 全选
+			$("#remove").removeAttr("disabled");
+		} else {
+//									$("#remove").attr("disabled","disabled");
+			$checkBox.removeAttr("checked");// 反选
+		}
+	});
 	var search = function(loading) {
 		$("#btSelectAll").removeAttr("checked");
 		var param = $("#search_form").serialize();
@@ -253,63 +308,6 @@ define(function(require, exports, moudles) {
 							$("#paginationTotal").html(data.result.totalElements);
 							$tbody.empty();
 							$tbody.append(html);
-							// 查看事件
-							$tbody.on("click", ".operate .btn-view",function() {
-								var $this=$(this);
-								var id = $(this).attr("id");
-								var dataId = $this.attr("data");
-								var content=$("#log-"+dataId).html();
-								var d = dialog({
-									id : id,
-									title : '导入日志',
-									content : content,
-								}).showModal();
-							});
-							// 删除事件
-							$tbody.on("click", ".operate .btn-remove", function() {
-								var $this=$(this);
-								var id = $(this).attr("id");
-								var dataId = $this.attr("data");
-								var d = dialog({
-									id : id,
-									title : '消息',
-									content : '是否要删除该记录？',
-									okValue : '确 定',
-									ok : function() {
-										var that = this;
-										that.title('提交中..');
-										$.httpUtil.curl({
-											url : url.api+"/" +dataId + "/disabled.json",
-											type : "post",
-											loading : true,
-											dataType : "json",
-											data : param,
-											success :function(data) {
-												message($this,"更新成功");
-												$("#page").val(1);
-												search(false);
-											},
-										});
-										return true;
-									},
-									cancelValue : '取消',
-									cancel : function() {
-									}
-								}).showModal();
-							});
-
-							// 全选事件
-							$("#btSelectAll").on("change",function() {
-								var $checkBox = $tbody.find("input[type='checkbox']:not(:disabled)");
-								if ($(this).attr("checked")) {
-									$checkBox.attr("checked",'true');// 全选
-									$("#remove").removeAttr("disabled");						
-							    } else {
-//									$("#remove").attr("disabled","disabled");
-									$checkBox.removeAttr("checked");// 反选
-								}
-							});
-
 							// 加载分页组件
 							laypage({
 								cont : 'table-pagination', // 容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div	// id="page1"></div>
@@ -325,22 +323,24 @@ define(function(require, exports, moudles) {
 									}
 								}
 							});
-							laypage({
-								cont : 'table-pagination2', // 容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div	// id="page1"></div>
-								pages : data.result.totalPages, // 通过后台拿到的总页数
-								curr : Number(data.result.number) + 1, // 初始化当前页
-								skip : true,
-								skin : '#AF0000',
-								jump : function(obj, first) { // 触发分页后的回调
-									if (!first) {
-										var curr = obj.curr;
-										$("#page").val(obj.curr);
-										search(false);
-									}
-								}
-							});
 						}
 					}
 				});
-	}
+	};
+
+	var $pagination=$("#table-pagination");
+	laypage({
+		cont : $pagination, // 容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div	// id="page1"></div>
+		pages : $pagination.attr('data-totalPages'), // 通过后台拿到的总页数
+		curr : Number($pagination.attr('data-number')) + 1, // 初始化当前页
+		skip : true,
+		skin : '#AF0000',
+		jump : function(obj, first) { // 触发分页后的回调
+			if (!first) {
+				var curr = obj.curr;
+				$("#page").val(obj.curr);
+				search(false);
+			}
+		}
+	});
 });
