@@ -1,17 +1,14 @@
 package im.heart.front.web;
 
-import com.alibaba.fastjson.JSON;
 import im.heart.core.CommonConst;
 import im.heart.core.enums.Status;
 import im.heart.core.utils.BaseUtils;
 import im.heart.core.web.AbstractController;
 import im.heart.core.web.ResponseError;
 import im.heart.core.web.enums.WebError;
-import im.heart.core.web.utils.WebUtilsEx;
 import im.heart.media.entity.Periodical;
 import im.heart.media.service.PeriodicalService;
 import im.heart.security.utils.SecurityUtilsHelper;
-import im.heart.usercore.entity.FrameUser;
 import im.heart.usercore.vo.FrameUserVO;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -27,9 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
-import java.net.URLEncoder;
 
 @Controller
 public class DownloadController extends AbstractController {
@@ -49,10 +44,6 @@ public class DownloadController extends AbstractController {
         Periodical po = this.periodicalService.findById(id);
         //文件审核通过
         if(!Status.enabled.equals(po.getCheckStatus())){
-            super.fail(model,new ResponseError(WebError.ACCESS_DENIED));
-            return  new ModelAndView(RESULT_PAGE);
-        }
-        if(Boolean.FALSE.equals(po.getIsPub())){
             super.fail(model,new ResponseError(WebError.ACCESS_DENIED));
             return  new ModelAndView(RESULT_PAGE);
         }

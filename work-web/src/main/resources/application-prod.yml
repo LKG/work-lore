@@ -134,3 +134,8 @@ qcloud:
   sms:
     appId: 1400197686
     appKey: f9f4cc6fd9ff57f332760650c5d1c755
+prod:
+  upload:
+    path:
+      root: /var/www/uploads/
+      media: media

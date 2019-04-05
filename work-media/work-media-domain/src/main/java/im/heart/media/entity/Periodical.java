@@ -188,13 +188,6 @@ public class Periodical implements AbstractEntity<BigInteger> {
     private Long downTimes = 0L;
 
     /**
-     * 是否发布.
-     */
-    @NotNull
-    @Column(name = "IS_PUB", nullable = false)
-    private Boolean isPub = Boolean.FALSE;
-
-    /**
      * 是否置顶.
      */
     @NotNull
@@ -243,7 +236,7 @@ public class Periodical implements AbstractEntity<BigInteger> {
     @PreUpdate
     protected void onUpdate() {
         modifyTime = new Date();
-        if (isPub) {
+        if (Status.enabled.equals(checkStatus)) {
             pushTime = new Date();
         }
     }

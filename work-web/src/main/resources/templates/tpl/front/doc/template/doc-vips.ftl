@@ -3,7 +3,7 @@
    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel">
      <div class="panel-body">
          <div class="caption" >
-             <img style="width: 221px;" src="${appHost}/images/qq_vip.jpg"/>
+             <img style="width: 221px;" src="${appHost}/qq/790944904.JPG"/>
          </div>
      </div>
    </div>

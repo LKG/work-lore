@@ -38,9 +38,9 @@ public class UploadPeriodicalController extends AbstractController {
     protected static final String apiVer = "/upload";
     protected static final String  FILE_ROOT_PATH= CommonConst.STATIC_UPLOAD_ROOT;
 
-    @Value("${prod.material.file.path:''}")
+    @Value("${prod.upload.path.media}")
     private String periodicalFilePath="";
-    @Value("${prod.upload.path.root:''}")
+    @Value("${prod.upload.path.root}")
     private String uploadFilePath="";
 
     @Autowired

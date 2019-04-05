@@ -66,7 +66,7 @@
                 <i class="ci-right ">
                     <s class="jt">◇</s>
                 </i>
-                <div class="guanzhu1"><img style="width: 140px;" src="${appHost}/images/qq_vip.jpg"></div>
+                <div class="guanzhu1"><img style="width: 140px;" src="${appHost}/qq/790944904.JPG"></div>
             </li>
             <li class="shu"></li>
             <li class="kehu bj">
