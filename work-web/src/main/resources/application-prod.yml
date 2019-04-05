@@ -7,7 +7,7 @@ server:
 #  config: classpath:logback-spring.xml
 info:
   app-name: lore
-  app-host: http://127.0.0.1:${server.port}
+  app-host: https://www.gongwk.com
   app-description: ${info.app-name} 描述
   app-version: ${project.version}
 #######maven pom \u91cc\u7684\u914d\u7f6e

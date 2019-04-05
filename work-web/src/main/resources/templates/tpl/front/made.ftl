@@ -59,23 +59,7 @@
             </ul>
         </div>
         <div class="panel-body">
-        <div class="row">
-            <#if (result.content?size<=0) >
-            <#else>
-                <#list result.content as model>
-                    <div class="col-sm-4 col-md-3">
-                            <div class="thumbnail">
-                                <img src="/images/qq_vip.jpg" style="width: 200px;" alt="...">
-                                <div class="caption">
-                                    <p>群号：<code>${model.qqNum!''}</code></p>
-                                    <p>名称：${model.name!''} <code>lv${model.qqLevel!'1'}</code></p>
-                                    <p>（<i class="fa fa-group"> </i> ${model.peopleTotal!'200'} / ${model.qqTotal!'1'}）</p>
-                                </div>
-                            </div>
-                    </div>
-                </#list >
-            </#if>
-          </div>
+
         </div>
     </div>
 </div>

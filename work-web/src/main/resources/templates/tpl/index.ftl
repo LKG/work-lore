@@ -7,7 +7,7 @@
 <head>
     <#include "/includes/head.ftl" />
     <meta name="baidu-site-verification" content="v9ouxuGJew" />
-    <title>公文-会议发言稿-工作总结-<@spring.message  code="label.system.name" />-党政- 十九大</title>
+    <title><@spring.message  code="label.system.name" />-会议发言稿-工作总结-党政- 十九大</title>
     <meta name="description" content="<@spring.message  code="label.system.name" />,为您提供愉悦的资料分享体验!" />
     <meta name="Keywords" content="公文、公文库、文秘、ppt模板下载、简历模板、视频教程、ppt素材库、工作总结、工作计划、调研报告、竞聘演讲稿、会议发言稿、学习心得体会、入党申请书、应用公文、论文范文、范文写作技巧" />
     <link href="${appHost}/css/main.css?v=${ver!'1'}" type="text/css" rel="stylesheet">
