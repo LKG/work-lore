@@ -406,7 +406,7 @@ _display: block;
 .font-item:hover .font-item1{display:block;}
 /*轮播图*/
 #lunbo{clear:both;position:absolute;top:0px;left:191px;width:600px;}
-#one{width:590px;overflow:hidden;height:457px;}
+#one{width:601px;overflow:hidden;height:457px;}
 #one li{float:left;width:0;}
 #one .on{width:600px;}
 #two .on{background:red;}

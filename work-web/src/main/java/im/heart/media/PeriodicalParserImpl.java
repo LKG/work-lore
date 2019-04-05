@@ -41,9 +41,10 @@ import java.util.List;
 public class PeriodicalParserImpl implements PeriodicalParser {
     protected static final Logger logger = LoggerFactory.getLogger(PeriodicalParserImpl.class);
     protected static final String  FILE_ROOT_PATH= CommonConst.STATIC_UPLOAD_ROOT;
-    @Resource
-    private DocumentConverter documentConverter;
+
     @Autowired(required = false)
+    private DocumentConverter documentConverter;
+    @Autowired()
     private PeriodicalService periodicalService;
     @Autowired
     private PeriodicalLogService periodicalLogService;
