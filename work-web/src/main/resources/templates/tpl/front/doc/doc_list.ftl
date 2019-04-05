@@ -46,6 +46,10 @@
                 padding: 10px 0px !important;
             }
         }
+        .doc-col{
+            box-shadow: 0 1px 5px rgba(4,0,0,.1);
+        }
+
         .laypage_main{
             clear: none !important;
         }
@@ -175,7 +179,7 @@
 
                     <#else>
                         <#list result.content as model>
-                            <div class="col-sm-6 col-md-4 col-lg-3 ">
+                            <div class="col-sm-6 col-md-4 col-lg-3 doc-col">
                                 <div class="thumbnail" style="">
                                     <a href="${appHost}/doc/${model.id!''}.jhtml" title="${model.periodicalName!''}" target="_blank" >
                                         <img class="lazy" src=""  data-original="${model.coverImgUrl!''}"  width="300" height="150" data-src="" alt="">
