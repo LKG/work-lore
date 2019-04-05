@@ -171,25 +171,33 @@
             <div class="panel-body">
                 <!---文档begin--->
                 <div class="row">
-                    <form class="form-search form-inline" id="search_form">
-                        <input type="hidden" name="page" id="page" value="1">
-                    </form>
                     <#if (result.content?size<=0) >
+
                     <#else>
                         <#list result.content as model>
-                            <div class="col-md-4 col-lg-3 ">
-                                <div class="thumbnail">
-                                    <a href="${appHost}/doc/${model.id!''}.jhtml" >
-                                        <img src="${appHost}/${model.coverImgUrl!''}" class="img-responsive" alt="${model.periodicalName}">
+                            <div class="col-sm-6 col-md-4 col-lg-3 ">
+                                <div class="thumbnail" style="">
+                                    <a href="${appHost}/doc/${model.id!''}.jhtml" title="${model.periodicalName!''}" target="_blank" >
+                                        <img class="lazy" src=""  data-original="${model.coverImgUrl!''}"  width="300" height="150" data-src="" alt="">
                                     </a>
                                     <div class="caption">
-                                        <h5>${model.periodicalName}</h5>
+                                        <h3>
+                                            <a href="/p/buttons/" title=" ${model.periodicalName!''}" target="_blank" >
+                                                ${model.shortTitle!''}
+                                                <br>
+                                            </a>
+                                        </h3>
                                     </div>
                                 </div>
                             </div>
                         </#list >
                     </#if>
+
+
                 </div>
+
+
+                <!---文档end--->
             </div>
             <!-----分页-begin---->
             <div  id="table-pagination" data-totalPages="${result.totalPages}" data-number="${result.number}" style="margin-top: -15px;"  class="clearfix"></div>
@@ -207,7 +215,7 @@
 <!------footer信息 end----->
 <#include "/includes/datePicker.ftl" />
 <script>
-    seajs.use(["js/cms/article.js?v="+Math.random(),"js/search.js?v="+Math.random()]);
+    seajs.use(["js/doc/list.js?v="+Math.random(),"js/search.js?v="+Math.random()]);
 </script>
 </body>
 </html>

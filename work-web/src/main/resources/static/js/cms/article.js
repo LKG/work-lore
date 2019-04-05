@@ -16,6 +16,10 @@ define(function (require, exports, moudles) {
     $("#xx,#xx a").on("click",function () {
         $("#top-banner").hide();
     });
+    $("#refresh,#seach-btn").on("click", function() {
+        $("#page").val(1);
+        window.location.href=url.api+"s/p-1.jhtml";
+    });
     var $pagination=$("#table-pagination");
     laypage({
         cont : $pagination, // 容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div	// id="page1"></div>
