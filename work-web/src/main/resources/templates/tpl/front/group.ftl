@@ -30,7 +30,11 @@
 <!--轮播图上方导航栏  一栏-->
 <div class="clearfix" ></div>
 <div class="container" style="margin-top: 35px" id="main-container">
-
+    <div>
+        <div class="alert alert-info" role="alert">
+            以下群为网站精心挑选优质公文写作交流群
+        </div>
+    </div>
     <div class="panel panel-info">
         <div class="">
             <ul id="my-tab-rule" class="myNavTab nav nav-tabs" role="tablist">
@@ -59,7 +63,7 @@
                 <#list result.content as model>
                     <div class="col-sm-4 col-md-3">
                             <div class="thumbnail">
-                                <img src="/images/qq_vip.jpg" style="width: 200px;" alt="...">
+                                <img src="${model.imgUrl!''}" style="width: 200px;" alt="...">
                                 <div class="caption">
                                     <p>群号：<code>${model.qqNum!''}</code></p>
                                     <p>名称：${model.name!''} <code>lv${model.qqLevel!'1'}</code></p>

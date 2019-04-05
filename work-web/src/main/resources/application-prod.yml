@@ -1,0 +1,136 @@
+server:
+  port: 7080
+  compression:
+   enabled: true
+#logging:
+#  path: /var/www/logs
+#  config: classpath:logback-spring.xml
+info:
+  app-name: lore
+  app-host: http://127.0.0.1:${server.port}
+  app-description: ${info.app-name} 描述
+  app-version: ${project.version}
+#######maven pom \u91cc\u7684\u914d\u7f6e
+management:
+  endpoints:
+    web:
+      base-path: /admin/monitor
+      exposure:
+        exclude: ["env","beans" ,"shutdown" ]
+        include: "*"
+      path-mapping:
+        health: healthcheck
+  endpoint:
+    logfile:
+      enabled: true
+    health:
+      enabled: true
+      ## 查看明细
+      show-details: always
+spring:
+  main:
+    banner-mode: "off"
+  output:
+    ansi:
+      enabled: DETECT
+  profiles:
+    include: shiro
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  messages:
+    encoding: UTF-8
+  freemarker:
+    prefix:
+    suffix: .ftl
+    templateLoaderPath: classpath:/templates/tpl/, classpath:/templates/sms/, classpath:/templates/email/, classpath:/templates/code/
+    templateEncoding: UTF-8
+    content-type: text/html
+    prefer-file-system-access: false
+    cache: false
+    settings:
+      template_update_delay: 0
+      number_format: '0.##'   #数字格式化，无小数点
+      boolean_format: 'true,false'
+    request-context-attribute: request
+  redis:
+    host: 127.0.0.1
+    database: 0
+    port: 6379
+    password:
+  session:
+    store-type: redis
+  mail:
+    host: smtp.163.com
+    username: lkg61230413@163.com
+    password: lkg178wk
+    from: GG<lkg61230413@163.com>
+    template-path: classpath:/templates/email/
+    properties:mail:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+          required: true
+      debug: true
+  datasource:
+    url: jdbc:mysql://ss.itaobao.pub:3306/lore-test?Unicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: omw@178.Im
+    #配置监控统计拦截的filters，去掉后监控界面sql将无法统计,'wall'用于防火墙
+    filters: stat,config,wall,slf4j
+    # validation-query: SELECT 1
+    min-idle: 10
+    max-active: 20
+    driverClassName: com.mysql.jdbc.Driver
+    druid:
+      logSlowSql: false
+      mergeSql: true
+      slowSqlMillis: 3000
+      web-stat-filter:
+        url-pattern: "/admin/druid/*"
+      stat-view-servlet:
+        url-pattern : "/admin/druid/*"
+        login-username: admin
+        login-password: #####
+        allow:
+        deny:
+  jpa:
+    # Specify the DBMS
+#    database: MYSQL
+    # Show or not log for each sql query
+    show-sql: false
+    open-in-view: true
+    hibernate:
+      show_sql: false
+      format_sql: true
+      # Hibernate ddl auto (create, create-drop, update)
+      ddl-auto: none
+      # Naming strategy
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+      # stripped before adding them to the entity manager)
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        enable_lazy_load_no_trans: true
+#jodconverter:
+#  local:
+#    enabled: true
+#    office-home: C:\Program Files (x86)\OpenOffice 4 # 设置Office主目录
+#    portNumbers: 8100,8101,8102 ,8103,,8104 # 开启多个Office进程，每个端口对应一个进程
+#    maxTasksPerProcess: 50 # Office进程重启前的最大进程数
+alipay:
+  appId: 2016091200495262
+  #服务器异步通知页面路径
+  notify_url: http://test.api.zhifuzi.com/notify/alipay
+  #页面跳转同步通知页面路径
+  return_url: http://test.api.zhifuzi.com/zfzpay/zfzpay/paySuccess.html
+  #请求网关地址
+  URL: https://openapi.alipaydev.com/gateway.do
+
+qcloud:
+  sms:
+    appId: 1400197686
+    appKey: f9f4cc6fd9ff57f332760650c5d1c755

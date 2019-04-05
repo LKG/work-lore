@@ -47,8 +47,11 @@ public class QQGroup implements AbstractEntity<BigInteger> {
 	/** 是否发布. */
 	@Column(name = "IS_PUB", nullable = false)
 	private Boolean isPub=Boolean.FALSE;
-	@Column(name = "keyword",length = 512)
+	@Column(name = "KEYWORD",length = 512)
 	private String keyword;
+
+	@Column(name = "IMG_URL",length = 512)
+	private String imgUrl;
 
 	@JSONField (format="yyyy-MM-dd HH:mm:ss" )
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
