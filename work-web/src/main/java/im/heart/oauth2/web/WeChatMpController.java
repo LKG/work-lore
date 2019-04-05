@@ -1,6 +1,7 @@
 package im.heart.oauth2.web;
+
 import com.alibaba.fastjson.JSON;
-import im.heart.common.utils.CacheUtils;
+import im.heart.common.utils.UserCacheUtils;
 import im.heart.core.enums.Status;
 import im.heart.core.web.AbstractController;
 import im.heart.core.web.ResponseError;
@@ -178,8 +179,7 @@ public class WeChatMpController  extends AbstractController {
             ModelMap model) throws WxErrorException{
         log.info("开始绑定手机号：{}。。{} 。。",userPhone,phoneCode);
         //校验验证码
-        Boolean isResponseCorrect = Boolean.FALSE;
-        isResponseCorrect= CacheUtils.checkMobileCode(userPhone, phoneCode);
+        Boolean isResponseCorrect = UserCacheUtils.checkMobileCode(userPhone, phoneCode);
         if(!isResponseCorrect){
             super.fail(model,new ResponseError(WebError.REQUEST_AUTH_VERIFY));
             return  new ModelAndView(RESULT_PAGE);

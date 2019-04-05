@@ -115,10 +115,11 @@ public class BaseUtils {
 	 */
 	public static void setNoCacheHeader(HttpServletResponse response) {
 		// Http 1.0 header
-		response.setDateHeader(HttpHeaders.EXPIRES, 1L);
+		response.setDateHeader(HttpHeaders.EXPIRES, 0L);
 		response.addHeader(HttpHeaders.PRAGMA, "no-cache");
 		// Http 1.1 header
-		response.setHeader(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, max-age=0");
+		response.setHeader(HttpHeaders.CACHE_CONTROL,"no-store, no-cache, max-age=0, must-revalidate");
+		response.addHeader(HttpHeaders.CACHE_CONTROL, "post-check=0, pre-check=0");
 	}
 
 	/**

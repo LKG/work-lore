@@ -1,6 +1,8 @@
 package im.heart.media.vo;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import im.heart.core.CommonConst;
+import im.heart.core.enums.Status;
 import im.heart.media.entity.Periodical;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
@@ -20,6 +22,11 @@ public class PeriodicalVO  extends Periodical {
      */
     private Boolean isBuy=Boolean.FALSE;
 
+    /**
+     * 是否允许下载
+     */
+    private Boolean allowDown=Boolean.FALSE;
+
     @JSONField(format="yyyy-MM-dd")
     private Date createTime;
 
@@ -27,17 +34,17 @@ public class PeriodicalVO  extends Periodical {
     private Date modifyTime;
     @JSONField (serialize = false)
     private Boolean isPub;
-//    @JSONField (serialize = false)
-//    private Status checkStatus;
+    @JSONField (serialize = false)
+    private Status checkStatus;
 
+    @JSONField (serialize = false)
+    private CommonConst.FlowStatus status ;
     @JSONField (serialize = false)
     private String pathUrl;
 
     @JSONField (serialize = false)
     private String realFilePath;
 
-//    @JSONField (serialize = false)
-//    private Status status;
     public PeriodicalVO(Periodical po){
         this(po,true);
     }

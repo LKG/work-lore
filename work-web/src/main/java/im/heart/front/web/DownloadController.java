@@ -1,5 +1,6 @@
 package im.heart.front.web;
 
+import im.heart.common.DownloadCacheUtils;
 import im.heart.core.CommonConst;
 import im.heart.core.enums.Status;
 import im.heart.core.utils.BaseUtils;
@@ -8,12 +9,16 @@ import im.heart.core.web.ResponseError;
 import im.heart.core.web.enums.WebError;
 import im.heart.media.entity.Periodical;
 import im.heart.media.service.PeriodicalService;
+import im.heart.security.cache.ShiroCacheConfig;
 import im.heart.security.utils.SecurityUtilsHelper;
 import im.heart.usercore.vo.FrameUserVO;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,7 +29,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Controller
 public class DownloadController extends AbstractController {
@@ -32,6 +39,29 @@ public class DownloadController extends AbstractController {
     protected static final String apiVer = "/fd";
     @Autowired
     private PeriodicalService periodicalService;
+    private Cache downloadRetryCache;
+    protected static final String CACHE_NAME = DownloadCacheUtils.CacheConfig.DOWNLOAD_CACHE.keyPrefix;
+    @Autowired(required = false)
+    private CacheManager cacheManager;
+
+    private static int MAX_DOWN_COUNT=3;
+
+
+    public Boolean checkDownCount(String username){
+        if(this.downloadRetryCache==null){
+            this.downloadRetryCache = this.cacheManager.getCache(CACHE_NAME);
+        }
+        AtomicInteger retryCount = (AtomicInteger)this.downloadRetryCache.get(username,AtomicInteger.class);
+        if (retryCount == null) {
+            retryCount = new AtomicInteger(0);
+        }
+        int count = retryCount.incrementAndGet();
+        if (count >= MAX_DOWN_COUNT) {
+            return  Boolean.FALSE;
+        }
+        return  Boolean.TRUE;
+    }
+
     @RequestMapping(value = apiVer+"/{id}")
     protected ModelAndView findById(
             @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
@@ -42,24 +72,29 @@ public class DownloadController extends AbstractController {
             ModelMap model) {
         FrameUserVO user= SecurityUtilsHelper.getCurrentUser();
         Periodical po = this.periodicalService.findById(id);
-        //文件审核通过
+
+        if(!checkDownCount(user.getUserName())){
+            super.fail(model,new ResponseError(WebError.AUTH_EXCESSIVE_ATTEMPTS));
+            return  new ModelAndView(RESULT_PAGE);
+        }
+        //限制下载
         if(!Status.enabled.equals(po.getCheckStatus())){
             super.fail(model,new ResponseError(WebError.ACCESS_DENIED));
             return  new ModelAndView(RESULT_PAGE);
         }
         //校验用户是否有权限
-        if(!user.isExpiry()){
-            super.fail(model,new ResponseError(WebError.ACCESS_DENIED));
+        boolean isFree=(BigDecimal.ZERO.compareTo(po.getFinalPrice())==0);
+        if(isFree||user.isExpiry()){
+            if(StringUtils.isBlank(filename)){
+                filename=po.getPeriodicalName().concat(".").concat(po.getFileHeader());
+            }
+            //文件的真实路径
+            response.addHeader("X-Accel-Redirect",po.getRealFilePath());
+            response.addHeader(HttpHeaders.CONTENT_TYPE,"application/octet-stream; charset=utf-8");
+            BaseUtils.setFileDownloadHeader(request,response,filename);
             return  new ModelAndView(RESULT_PAGE);
         }
-        if(StringUtils.isBlank(filename)){
-            filename=po.getPeriodicalName().concat(".").concat(po.getFileHeader());
-        }
-        //文件的真实路径
-        response.addHeader("X-Accel-Redirect","D:\\var\\www\\uploads\\material\\20190316\\201903\\1003\\1003_10.png");
-        response.addHeader(HttpHeaders.CONTENT_TYPE,"application/octet-stream; charset=utf-8");
-        System.out.println(filename);
-        BaseUtils.setFileDownloadHeader(request,response,filename);
-        return new ModelAndView(RESULT_PAGE);
+        super.fail(model,new ResponseError(WebError.ACCESS_DENIED));
+        return  new ModelAndView(RESULT_PAGE);
     }
 }

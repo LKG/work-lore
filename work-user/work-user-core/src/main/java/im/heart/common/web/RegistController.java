@@ -1,6 +1,7 @@
 package im.heart.common.web;
 
-import im.heart.common.utils.CacheUtils;
+import com.google.common.collect.Maps;
+import im.heart.common.utils.UserCacheUtils;
 import im.heart.core.CommonConst;
 import im.heart.core.CommonConst.RequestResult;
 import im.heart.core.enums.Status;
@@ -75,8 +76,8 @@ public class RegistController extends AbstractController {
             @RequestParam(value = "userName", required = false) String userName,
             HttpServletRequest request, HttpServletResponse response,
             ModelMap model) throws Exception {
-		if (StringUtils.isBlank(userName) || userName.length() < 5
-				|| userName.length() > 30) {
+		if (StringUtils.isBlank(userName) || userName.length() < FrameUser.minAccountLength
+				|| userName.length() > FrameUser.maxAccountLength) {
 			super.fail(model);
 			return new ModelAndView(RESULT_PAGE);
 		}
@@ -155,7 +156,7 @@ public class RegistController extends AbstractController {
             RedirectAttributes redirectAttributes) throws ServiceException {
 		String userPhone = frameUser.getUserPhone();
 		String phoneCode=frameUser.getPhoneCode();
-		if (!CacheUtils.checkMobileCode(userPhone,phoneCode)) {
+		if (!UserCacheUtils.checkMobileCode(userPhone,phoneCode)) {
 			super.fail(model);
 			return new ModelAndView(RESULT_PAGE);
 		}
@@ -214,31 +215,32 @@ public class RegistController extends AbstractController {
 			return new ModelAndView(RESULT_PAGE);
 		}*/
 		String phone=frameUser.getUserPhone();
-		if (!CacheUtils.checkMobileCode(phone,phoneCode)) {
+		if (!UserCacheUtils.checkMobileCode(phone,phoneCode)) {
 			ResponseError responseError=new ResponseError(WebError.AUTH_PHONECODE_INCORRECT);
 			this.fail(model,responseError);
 			return new ModelAndView(RESULT_PAGE);
 		}
 		if(ValidatorUtils.isPhone(phone)){
-			CacheUtils.evictMobileCode(phone);
+			UserCacheUtils.evictMobileCode(phone);
 			frameUser.setStatus(Status.enabled);
 		}
 		frameUser.setUserChannel("web");
-		frameUser.setRemark("web user");//
+		frameUser.setRemark("web user");
 		FrameUser newFrameUser = this.frameUserService.save(frameUser);
 		String userEmail=newFrameUser.getUserEmail();
 		if (StringUtilsEx.isNotBlank(userEmail)) {
-			Map<String, Object> modeltemp = new HashMap<String, Object>();// 定义邮件模版
+			Map<String, Object> modeltemp = Maps.newHashMap();
 			modeltemp.put(RequestResult.RESULT, newFrameUser);
 			this.sendEmailService.sendEmail(modeltemp, "用户注册成功提示",
 					"register_sucess.ftl",
 					new String[] { userEmail },
 					new String[] {});
 		}
-		redirectAttributes.addFlashAttribute(RequestResult.RESULT, newFrameUser);
+
 		if(StringUtils.isBlank(format)){
 			format="jhtml";
 		}
+		redirectAttributes.addFlashAttribute(RequestResult.RESULT, newFrameUser);
 		return new ModelAndView(redirectToUrl(apiVer + "/success."+format));
 	}
 }

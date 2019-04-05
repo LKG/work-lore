@@ -65,7 +65,13 @@
             <div class="panel-heading" id="doc-nav-top" ><h4>${result.periodicalName!''}</h4>
                 <i class="fa fa-thumbs-o-up fa-lg pull-right" id="btn-praise"  data-url="${appHost}/doc/${result.id!''}/praise.json" ></i>
                 <a type="button" id="btn-vip" class="btn pull-right" target="_blank" href="${appHost}/vip.jttml" ><i class="fa fa-free-code-camp">加入Vip免费下载</i></a>
-                <a type="button" id="btn-down" class="btn btn-danger pull-right" href="${appHost}/order/getOrderInfo.jhtml?id=${result.id!''}" ><i class="fa  fa-cloud-download">立即下载</i></a>
+                <a type="button" id="btn-down" class="btn btn-danger pull-right"
+                            <#if result.allowDown>
+                                href="${appHost}/fd/${result.id!''}.jhtml"
+                            <#else>
+                                href="${appHost}/order/getOrderInfo.jhtml?id=${result.id!''}"
+                            </#if>
+                        ><i class="fa  fa-cloud-download">立即下载</i></a>
                 <button type="button" id="btn-focus"  class="btn btn-danger pull-right" data-url="${appHost}/doc/${result.id!''}/collect.json">
                     <i class="fa  <#if result.isCollect>fa-heart<#else>fa-heart-o</#if> fa-lg"></i>
                     <span id="collect-txt"><#if result.isCollect>已收藏<#else>收藏</#if></span>

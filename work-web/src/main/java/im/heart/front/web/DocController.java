@@ -12,6 +12,7 @@ import im.heart.media.service.PeriodicalImgService;
 import im.heart.media.service.PeriodicalService;
 import im.heart.media.vo.PeriodicalVO;
 import im.heart.security.utils.SecurityUtilsHelper;
+import im.heart.usercore.entity.FrameUser;
 import im.heart.usercore.entity.FrameUserFollow;
 import im.heart.usercore.service.FrameUserFollowService;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
@@ -29,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
@@ -56,11 +58,14 @@ public class DocController extends AbstractController {
         this.updateHitsById(id);
         Periodical po = this.periodicalService.findById(id);
         PeriodicalVO vo=new PeriodicalVO(po);
-        BigInteger userId= SecurityUtilsHelper.getCurrentUserId();
-        if(!BigInteger.ZERO.equals(userId)){
-            Optional<FrameUserFollow> optional= this.frameUserFollowService.findByUserIdAndRelateIdAndType(userId,po.getId(),po.getPeriodicalType());
+        FrameUser user= SecurityUtilsHelper.getCurrentUser();
+        if(user!=null){
+            Optional<FrameUserFollow> optional= this.frameUserFollowService.findByUserIdAndRelateIdAndType(user.getUserId(),po.getId(),po.getPeriodicalType());
             if(optional.isPresent()){
                 vo.setIsCollect(Boolean.TRUE);
+            }
+            if(BigDecimal.ZERO.compareTo(po.getFinalPrice())==0||user.isExpiry()){
+                vo.setAllowDown(Boolean.TRUE);
             }
         }
         super.success(model,vo );
@@ -114,7 +119,7 @@ public class DocController extends AbstractController {
             @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
             HttpServletRequest request,
             ModelMap model) {
-        BigInteger userId= SecurityUtilsHelper.getCurrentUser().getUserId();
+        BigInteger userId= SecurityUtilsHelper.getCurrentUserId();
         Periodical materialPeriodical=this.periodicalService.findById(id);
         Optional<FrameUserFollow> optional= this.frameUserFollowService.findByUserIdAndRelateIdAndType(userId,id,materialPeriodical.getPeriodicalType());
         if(!optional.isPresent()){

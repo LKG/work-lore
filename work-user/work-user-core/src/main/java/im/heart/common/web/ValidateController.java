@@ -2,7 +2,7 @@ package im.heart.common.web;
 
 import com.google.common.collect.Maps;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import im.heart.common.utils.CacheUtils;
+import im.heart.common.utils.UserCacheUtils;
 import im.heart.core.plugins.captcha.CaptchaServiceException;
 import im.heart.core.plugins.captcha.ImageCaptchaExService;
 import im.heart.core.plugins.qr.QRCodeService;
@@ -58,10 +58,7 @@ public class ValidateController extends AbstractController {
 		ServletOutputStream out = null;
 		try {
 			logger.debug("module："+module+"rand:"+rand);
-			response.setDateHeader("Expires", 0L);
-			response.setHeader("Cache-Control","no-store, no-cache, must-revalidate");
-			response.addHeader("Cache-Control", "post-check=0, pre-check=0");
-			response.setHeader("Pragma", "no-cache");
+			BaseUtils.setNoCacheHeader(response);
 			response.setContentType("image/jpeg");
 			String sessionId = request.getSession().getId();
 
@@ -128,10 +125,7 @@ public class ValidateController extends AbstractController {
 				errorLevel=ErrorCorrectionLevel.L;
 			}
 			BufferedImage bufferedImage = this.qRCodeService.generateQRcodeImage(contents, width, height,margin, errorLevel,logo);
-			response.setDateHeader("Expires", 0L);
-			response.setHeader("Cache-Control","no-store, no-cache, must-revalidate");
-			response.addHeader("Cache-Control", "post-check=0, pre-check=0");
-			response.setHeader("Pragma", "no-cache");
+			BaseUtils.setNoCacheHeader(response);
 			response.setContentType("image/jpeg");
 			out = response.getOutputStream();
 			ImageIO.write(bufferedImage, "png", out);
@@ -160,7 +154,7 @@ public class ValidateController extends AbstractController {
 		Map<String,Object> modeltemp = Maps.newHashMap();
 		modeltemp.put("mobileCode", mobileCode);
 		logger.info("mobileCode:[{}],mobile:[{}], type:[{}],mobilecode-host:[{}]", BaseUtils.getIpAddr(request),mobile,mobileCode,type);
-		CacheUtils.generateMobileCache(mobile, mobileCode);
+		UserCacheUtils.generateMobileCache(mobile, mobileCode);
 		ResponseError responseError=this.smsSendService.sendSms(modeltemp, "register.ftl", new String[]{mobile});
 		if(responseError==null){
 			this.success(model);
@@ -186,8 +180,7 @@ public class ValidateController extends AbstractController {
                                            @RequestParam(value = "phoneCode", required = false) String phoneCode,
                                            ModelMap model){
 		logger.debug("passcode-host:"+request.getLocalAddr());
-		Boolean isResponseCorrect = Boolean.FALSE;
-		isResponseCorrect= CacheUtils.checkMobileCode(userPhone, phoneCode);
+		Boolean isResponseCorrect= UserCacheUtils.checkMobileCode(userPhone, phoneCode);
 		if(isResponseCorrect){
 			super.success(model);
 			return new ModelAndView(RESULT_PAGE);
@@ -222,9 +215,9 @@ public class ValidateController extends AbstractController {
 		}
 		if(isResponseCorrect){
 			super.success(model);
-		}else{
-			super.fail(model);
+			return new ModelAndView(RESULT_PAGE);
 		}
+		super.fail(model);
 		return new ModelAndView(RESULT_PAGE);
 	}
 }

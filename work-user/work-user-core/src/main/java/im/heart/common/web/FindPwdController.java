@@ -3,9 +3,10 @@ package im.heart.common.web;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
+import im.heart.common.CacheUtils;
 import im.heart.common.EmailTplEnum;
 import im.heart.common.SmsTplEnum;
-import im.heart.common.utils.CacheUtils;
+import im.heart.common.utils.UserCacheUtils;
 import im.heart.core.CommonConst;
 import im.heart.core.CommonConst.RequestResult;
 import im.heart.core.plugins.captcha.ImageCaptchaExService;
@@ -103,7 +104,7 @@ public class FindPwdController extends AbstractController {
                                 @RequestParam(value = "k", required = false) String key,
                                 ModelMap model) {
 		if(StringUtilsEx.isNotBlank(key)){
-			Object obj= CacheUtils.getCacheObject(CacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
+			Object obj= CacheUtils.getCacheObject(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 			if(obj!=null&&obj instanceof FrameUser){
 				FrameUser user =(FrameUser)obj;
 				FrameUserVO userVo=new FrameUserVO(user);
@@ -171,7 +172,7 @@ public class FindPwdController extends AbstractController {
 			if(user!=null){
 				this.success(model,user);
 				String uuid= StringUtilsEx.getUUID2();
-				CacheUtils.generatCache(CacheUtils.CacheConfig.FIND_PWD.keyPrefix,uuid, user);
+				CacheUtils.generatCache(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix,uuid, user);
 				if(StringUtilsEx.isBlank(format)){
 					format="jhtml";
 				}
@@ -200,13 +201,12 @@ public class FindPwdController extends AbstractController {
                                              @RequestParam(value = "format", required = false) String format,
                                              @RequestParam(value = "k2", required = false) String key,
                                              ModelMap model){
-		ResponseError responseError=new ResponseError(WebError.REQUEST_PARAMETER_MISSING);
 		if(StringUtilsEx.isBlank(key)){
-			this.fail(model,responseError);
+			this.fail(model,new ResponseError(WebError.REQUEST_PARAMETER_MISSING));
 			return new ModelAndView(RESULT_PAGE);
 		}
 		model.put("k2", key);
-		Object obj= CacheUtils.getCacheObject(CacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
+		Object obj= CacheUtils.getCacheObject(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 		if(obj!=null&&obj instanceof FrameUser){
 			this.success(model);
 			return new ModelAndView("findpwd/resetPwd");
@@ -231,12 +231,11 @@ public class FindPwdController extends AbstractController {
 												  @RequestParam(value = "format", required = false) String format,
 												  @RequestParam(value = "k", required = false) String key,
 												  ModelMap model){
-		ResponseError responseError=new ResponseError(WebError.REQUEST_PARAMETER_MISSING);
 		if(StringUtilsEx.isBlank(key)){
-			this.fail(model,responseError);
+			this.fail(model,new ResponseError(WebError.REQUEST_PARAMETER_MISSING));
 			return new ModelAndView(RESULT_PAGE);
 		}
-		Object obj= CacheUtils.getCacheObject(CacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
+		Object obj= CacheUtils.getCacheObject(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 		if(obj!=null&&obj instanceof FrameUser){
 			FrameUser user =(FrameUser)obj;
 			String userEmail=user.getUserEmail();
@@ -273,18 +272,17 @@ public class FindPwdController extends AbstractController {
             @RequestParam(value = "passWord", required = false) String passWord,
             @RequestParam(value = "retryPassWord", required = false) String retryPassWord,
             ModelMap model) throws Exception {
-		logger.info(WebUtilsEx.getParametersJson(request));
 		if(StringUtilsEx.isBlank(key)){
 			this.fail(model,new ResponseError(WebError.REQUEST_PARAMETER_MISSING));
 			return new ModelAndView(RESULT_PAGE);
 		}
-		Object obj= CacheUtils.getCacheObject(CacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
+		Object obj= CacheUtils.getCacheObject(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 		logger.info(JSON.toJSONString(obj));
 		if(obj!=null&&obj instanceof FrameUser){
 			FrameUser user =(FrameUser)obj;
 			logger.info(WebUtilsEx.getParametersJson(request));
 			this.frameUserService.resetPassword(user.getUserId(), retryPassWord);
-			CacheUtils.evictCache(CacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
+			CacheUtils.evictCache(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 			if(StringUtilsEx.isBlank(format)){
 				format="jhtml";
 			}
@@ -305,7 +303,7 @@ public class FindPwdController extends AbstractController {
 			this.fail(model,new ResponseError(WebError.REQUEST_PARAMETER_MISSING));
 			return new ModelAndView(RESULT_PAGE);
 		}
-		Object obj= CacheUtils.getCacheObject(CacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
+		Object obj= CacheUtils.getCacheObject(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 		if(obj!=null&&obj instanceof FrameUser) {
 			FrameUser user = (FrameUser) obj;
 			String userEmail=user.getUserEmail();
@@ -313,8 +311,8 @@ public class FindPwdController extends AbstractController {
 				format = "jhtml";
 			}
 			Boolean isResponseCorrect = Boolean.FALSE;
-			isResponseCorrect=CacheUtils.checkEmailCode(userEmail, emailCode);
-			CacheUtils.evictCache(CacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
+			isResponseCorrect=UserCacheUtils.checkEmailCode(userEmail, emailCode);
+			CacheUtils.evictCache(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 			if(isResponseCorrect){
 				String key2=generatCache(user);
 				return new ModelAndView(redirectToUrl(apiVer+"/checkSuccess."+format+"?k2="+key2));
@@ -326,7 +324,7 @@ public class FindPwdController extends AbstractController {
 
 	private String generatCache(Object val){
 		String key= StringUtilsEx.getUUID2();
-		CacheUtils.generatCache(CacheUtils.CacheConfig.FIND_PWD.keyPrefix,key, val);
+		CacheUtils.generatCache(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix,key, val);
 		return  key;
 	}
 
@@ -357,12 +355,11 @@ public class FindPwdController extends AbstractController {
             @RequestParam(value = "phoneCode", required = false) String phoneCode,
             @RequestParam(value = "type", required = false) String type,
             ModelMap model) throws Exception {
-		ResponseError responseError=new ResponseError(WebError.REQUEST_PARAMETER_MISSING);
 		if(StringUtilsEx.isBlank(key)){
-			this.fail(model,responseError);
+			this.fail(model,new ResponseError(WebError.REQUEST_PARAMETER_MISSING));
 			return new ModelAndView(RESULT_PAGE);
 		}
-		Object obj= CacheUtils.getCacheObject(CacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
+		Object obj= CacheUtils.getCacheObject(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 		if(obj!=null&&obj instanceof FrameUser){
 			FrameUser user =(FrameUser)obj;
 			if(StringUtilsEx.isBlank(format)){
@@ -372,7 +369,7 @@ public class FindPwdController extends AbstractController {
 				int emailCode = (int) ((Math.random() * 9 + 1) * 100000);
 				Map<String, Object> modelTemp = Maps.newHashMap();
 				String userEmail=user.getUserEmail();
-				CacheUtils.generatEmailCodeCache(userEmail,emailCode);
+				UserCacheUtils.generatEmailCodeCache(userEmail,emailCode);
 				modelTemp.put("k", key);
 				modelTemp.put("emailCode", emailCode);
 				modelTemp.put(RequestResult.RESULT, user);
@@ -384,17 +381,15 @@ public class FindPwdController extends AbstractController {
 				return new ModelAndView(redirectToUrl(apiVer+"/sendEmailSuccess."+format+"?k="+key));
 			}
 			String mobile=user.getUserPhone();
-			Boolean isResponseCorrect = Boolean.FALSE;
-			isResponseCorrect=CacheUtils.checkMobileCode(mobile, phoneCode);
+			Boolean isResponseCorrect = UserCacheUtils.checkMobileCode(mobile, phoneCode);
 			if(isResponseCorrect){
 				//移除key
-				CacheUtils.evictCache(CacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
+				CacheUtils.evictCache(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 				String key2=generatCache(user);
 				return new ModelAndView(redirectToUrl(apiVer+"/checkSuccess."+format+"?k2="+key2));
 			}
-			responseError=new ResponseError(WebError.AUTH_PHONECODE_INCORRECT);
 		}
-		this.fail(model,responseError);
+		this.fail(model,new ResponseError(WebError.AUTH_PHONECODE_INCORRECT));
 		return new ModelAndView(RESULT_PAGE);
 	}
 	/**
@@ -413,7 +408,7 @@ public class FindPwdController extends AbstractController {
 			this.fail(model,responseError);
 			return new ModelAndView(RESULT_PAGE);
 		}
-		Object obj= CacheUtils.getCacheObject(CacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
+		Object obj= CacheUtils.getCacheObject(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 		if(obj!=null&&obj instanceof FrameUser){
 			FrameUser user =(FrameUser)obj;
 			int mobileCode = (int)((Math.random()*9+1)*10000);
@@ -421,7 +416,7 @@ public class FindPwdController extends AbstractController {
 			modelTemp.put("mobileCode", mobileCode);
 			String mobile=user.getUserPhone();
 			logger.info("mobileCode-host:[{}],mobile:[{}] mobileCode:[{}] type:[{}]", BaseUtils.getIpAddr(request),mobile,mobileCode,type);
-			CacheUtils.generateMobileCache(mobile, mobileCode);
+			UserCacheUtils.generateMobileCache(mobile, mobileCode);
 			SmsTplEnum tpl= SmsTplEnum.FIND_PWD;
 			responseError=this.smsSendService.sendSms(modelTemp, tpl.templatePath, new String[]{mobile});
 			if(responseError==null){
@@ -448,18 +443,17 @@ public class FindPwdController extends AbstractController {
                                            @RequestParam(value = "k", required = false ) String key,
                                            @RequestParam(value = "phoneCode", required = false) String phoneCode,
                                            ModelMap model){
-		ResponseError responseError=new ResponseError(WebError.REQUEST_PARAMETER_MISSING);
 		if(StringUtilsEx.isBlank(key)){
-			this.fail(model,responseError);
+			this.fail(model,new ResponseError(WebError.REQUEST_PARAMETER_MISSING));
 			return new ModelAndView(RESULT_PAGE);
 		}
 		logger.info("passcode-host:"+request.getLocalAddr());
-		Object obj= CacheUtils.getCacheObject(CacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
+		Object obj= CacheUtils.getCacheObject(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 		if(obj!=null&&obj instanceof FrameUser){
 			FrameUser user =(FrameUser)obj;
 			String mobile=user.getUserPhone();
 			Boolean isResponseCorrect = Boolean.FALSE;
-			isResponseCorrect=CacheUtils.checkMobileCode(mobile, phoneCode);
+			isResponseCorrect=UserCacheUtils.checkMobileCode(mobile, phoneCode);
 			if(isResponseCorrect){
 				this.success(model);
 				return new ModelAndView(RESULT_PAGE);
