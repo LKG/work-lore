@@ -197,9 +197,8 @@ public class BaseUtils {
 	 * @param fileName 下载后的文件名.
 	 */
 	public static void setFileDownloadHeader(HttpServletRequest request, HttpServletResponse response, String fileName) {
-		final String contentDisposition = "Content-Disposition";
 		try {
-			String agent = request.getHeader("User-Agent");
+			String agent = request.getHeader(HttpHeaders.USER_AGENT);
 			String encodedfileName = null;
 	        if (null != agent) {  
 	        	agent = agent.toLowerCase();  
@@ -213,7 +212,7 @@ public class BaseUtils {
 	            	encodedfileName = "filename=\"" + URLEncoder.encode(fileName,"UTF-8") + "\"";
 	            }
 	        }
-	        response.setHeader(contentDisposition, "attachment; " + encodedfileName);
+	        response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; " + encodedfileName);
 		} catch (UnsupportedEncodingException e) {
 			logger.error(e.getStackTrace()[0].getMethodName(), e);
 		}

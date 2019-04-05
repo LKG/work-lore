@@ -10,6 +10,7 @@ import im.heart.security.utils.SecurityUtilsHelper;
 import im.heart.usercore.vo.FrameUserVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,8 +19,8 @@ public class OptLogUtils{
 	public static  void optLog(HttpServletRequest request, OptLog optLog ){
 		FrameLogOperateService logLoginService=(FrameLogOperateService) ContextManager.getBean(FrameLogOperateService.BEAN_NAME);
 		String headers = WebUtilsEx.getHeadersJson(request);
-		String accept = request.getHeader("accept");
-		String userAgent = request.getHeader("User-Agent");
+		String accept = request.getHeader( HttpHeaders.ACCEPT);
+		String userAgent = request.getHeader(HttpHeaders.USER_AGENT);
 		String url = request.getRequestURI();
 		logger.debug("headers:[{}]accept:[{}]userAgent:[{}]url:[{}]",headers,accept,userAgent,url);
 		String requestParams = WebUtilsEx.getParametersJson(request);

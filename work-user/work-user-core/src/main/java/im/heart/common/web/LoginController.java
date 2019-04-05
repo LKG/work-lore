@@ -16,6 +16,7 @@ import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +47,7 @@ public class LoginController extends AbstractController {
 	private String successUrl = "/";
 	
 	private ModelAndView chooseLoginView(HttpServletRequest request, ModelMap model){
-		String userAgent = request.getHeader("user-agent");
+		String userAgent = request.getHeader(HttpHeaders.USER_AGENT);
 		if(userAgent.indexOf("Android") != -1){
 		    //安卓
 			return new ModelAndView(appLoginFrom, model);

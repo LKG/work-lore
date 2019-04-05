@@ -7,6 +7,7 @@ import org.apache.shiro.session.mgt.SessionFactory;
 import org.apache.shiro.web.session.mgt.WebSessionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,7 +23,7 @@ public class OnlineSessionFactory implements SessionFactory {
             HttpServletRequest request = (HttpServletRequest) sessionContext.getServletRequest();
             if (request != null) {
                 session.setHost(BaseUtils.getIpAddr(request));
-                session.setUserAgent(request.getHeader("User-Agent"));
+                session.setUserAgent(request.getHeader(HttpHeaders.USER_AGENT));
                 session.setSystemHost(BaseUtils.getServerIp() + ":" + request.getLocalPort());
             }
         }

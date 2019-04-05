@@ -130,7 +130,7 @@ public class FrameUser implements AbstractEntity<BigInteger> {
 
 
 	public  Boolean isExpiry(){
-		if(isVip!=null&&isVip&&expiryTime!=null){
+		if(Boolean.TRUE.equals(isVip)&&expiryTime!=null){
 			return new DateTime(expiryTime).isAfterNow();
 		}
 		return Boolean.FALSE;

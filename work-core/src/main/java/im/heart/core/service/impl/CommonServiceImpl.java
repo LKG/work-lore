@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 
@@ -41,7 +42,8 @@ public class CommonServiceImpl<T, ID extends Serializable> implements 	CommonSer
 
 	@Override
 	public T findById(ID id) {
-		return this.jpaRepository.findById(id).get();
+		Optional<T> opt=this.jpaRepository.findById(id);
+		return opt.get();
 	}
 	@Override
 	public boolean existsById(ID id) {

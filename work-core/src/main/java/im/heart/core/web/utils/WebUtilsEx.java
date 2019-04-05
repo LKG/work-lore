@@ -1,6 +1,7 @@
 package im.heart.core.web.utils;
 
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +42,7 @@ public class WebUtilsEx extends WebUtils {
         while (namesEnumeration.hasMoreElements()) {
             String name = (String) namesEnumeration.nextElement();
             Enumeration<?> valueEnumeration = request.getHeaders(name);
-            List<String> values = new ArrayList<String>();
+            List<String> values = Lists.newArrayList();
             while (valueEnumeration.hasMoreElements()) {
                 values.add((String) valueEnumeration.nextElement());
             }
