@@ -44,15 +44,17 @@
                             </#if>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="hot">
-                            <#if freeDocs??&&freeDocs.content??>
+                            <@media.periodical >
                                 <div class="mc">
                                     <ul>
-                                        <#list freeDocs.content as freeDoc>
-                                            <li><a href="${appHost}/doc/${freeDoc.id!''}.jhtml" >#######</a> <a  class="pull-right" href="${appHost}/fd/${freeDoc.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                     <#if docs??&&docs.content??>
+                                        <#list docs.content as model>
+                                            <li><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                         </#list>
+                                    </#if>
                                     </ul>
                                 </div>
-                            </#if>
+                            </@media.periodical>
                         </div>
                     </div>
                 </div>

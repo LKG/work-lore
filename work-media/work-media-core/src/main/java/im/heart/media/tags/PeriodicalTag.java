@@ -1,6 +1,7 @@
 package im.heart.media.tags;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import freemarker.core.Environment;
 import freemarker.template.TemplateDirectiveBody;
 import freemarker.template.TemplateException;
@@ -11,6 +12,7 @@ import im.heart.core.plugins.persistence.DynamicPageRequest;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.tags.BaseDirective;
+import im.heart.core.utils.StringUtilsEx;
 import im.heart.media.entity.Periodical;
 import im.heart.media.service.PeriodicalService;
 import im.heart.media.vo.PeriodicalVO;
@@ -32,31 +34,34 @@ import java.util.Map;
 public class PeriodicalTag extends BaseDirective {
 	protected static final Logger logger = LoggerFactory.getLogger(PeriodicalTag.class);
 
-
 	@Override
 	public void render(Environment env, Map<?, ?> params, TemplateDirectiveBody body)
 			throws IOException, TemplateException {
 		PeriodicalService periodicalService=	ContextManager.getBean(PeriodicalService.class);
-		final Collection<SearchFilter> filters=new HashSet<SearchFilter>();
+		System.out.println("###################################");
+		final Collection<SearchFilter> filters= Sets.newHashSet();
 		int page =  Integer.valueOf(getParam(params,"page","1"));
 		int size =  Integer.valueOf(getParam(params,"size","10"));
 		String sort =  getParam(params,"sort","");
 		String order =  getParam(params,"order");
-		String categoryCode =  getParam(params,"categoryCode");
+		String categoryCode=super.getParam(params, "categoryCode");
+		if(StringUtilsEx.isNotBlank(categoryCode)){
+			filters.add(new SearchFilter("categoryCode", SearchFilter.Operator.LIKES,categoryCode));
+		}
+		System.out.println("###################################");
 		filters.add(new SearchFilter("checkStatus", SearchFilter.Operator.EQ, Status.enabled));
-		filters.add(new SearchFilter("categoryCode", SearchFilter.Operator.LIKES,categoryCode));
 		Specification<Periodical> spec= DynamicSpecifications.bySearchFilter(filters, Periodical.class);
 		PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order,Periodical.class);
 		Page<Periodical> pag = periodicalService.findAll(spec, pageRequest);
+		List<PeriodicalVO> vos = Lists.newArrayList();
 		if(pag!=null&&pag.hasContent()){
-			List<PeriodicalVO> vos = Lists.newArrayList();
 			for(Periodical po:pag.getContent()){
 				vos.add(new PeriodicalVO(po));
 			}
-			Page<PeriodicalVO> docVos  =new PageImpl<PeriodicalVO>(vos,pageRequest,pag.getTotalElements());
+		}
+		Page<PeriodicalVO> docVos  =new PageImpl<PeriodicalVO>(vos,pageRequest,pag.getTotalElements());
 		setVariable("docs",docVos,env);
 		super.renderBody(env,body);
-		}
 	}
 	@Override
 	protected void verifyParameters(Map<?, ?> params) throws TemplateModelException {

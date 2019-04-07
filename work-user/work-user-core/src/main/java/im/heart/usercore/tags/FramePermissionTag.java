@@ -1,6 +1,8 @@
 package im.heart.usercore.tags;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import freemarker.core.Environment;
 import freemarker.template.TemplateDirectiveBody;
 import freemarker.template.TemplateException;
@@ -37,11 +39,11 @@ public class FramePermissionTag extends BaseDirective {
 		FrameUserVO userVO = SecurityUtilsHelper.getCurrentUser();
 		if(userVO!=null){
 			FramePermissionService framePermissionService=	ContextManager.getBean(FramePermissionService.class);
-			final Collection<SearchFilter> filters= new HashSet<SearchFilter>();
+			final Collection<SearchFilter> filters= Sets.newHashSet();
 			filters.add(new SearchFilter("status", Operator.EQ, Status.enabled));
 			Specification<FramePermission> spec= DynamicSpecifications.bySearchFilter(filters, FramePermission.class);
 			List<FramePermission> permissions =framePermissionService.findAll(spec);
-			List<FramePermissionVO> vos=new ArrayList<FramePermissionVO>();
+			List<FramePermissionVO> vos= Lists.newArrayList();
 			String permissionIds = getParam(params, "permissionIds");
 			Map<BigInteger, String> permissionMap=Maps.newHashMap();
 			if(StringUtilsEx.isNotBlank(permissionIds)){

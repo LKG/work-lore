@@ -11,7 +11,7 @@ public class DictItemTag extends SimpleHash {
 
 
 	public DictItemTag() {
-		super(new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_24).build());
+		super(new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_28).build());
 		put("dict", new FrameDictItemTag());
 	}
 }

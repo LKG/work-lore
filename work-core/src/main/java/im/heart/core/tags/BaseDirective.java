@@ -47,7 +47,7 @@ public abstract class BaseDirective implements TemplateDirectiveModel {
 		if (value instanceof TemplateModel) {
 			env.setVariable(name, (TemplateModel) value);
 		} else {
-			env.setVariable(name, new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_24).build().wrap(value));
+			env.setVariable(name, new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_28).build().wrap(value));
 		}
 	}
 
@@ -66,7 +66,7 @@ public abstract class BaseDirective implements TemplateDirectiveModel {
 				env.setVariable(name, (TemplateModel) value);
 			} else {
 				env.setVariable(name,
-						new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_24).build().wrap(value));
+						new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_28).build().wrap(value));
 			}
 		}
 	}

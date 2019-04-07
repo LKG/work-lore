@@ -14,7 +14,7 @@ public class UserInfoTags extends SimpleHash {
 	private static final long serialVersionUID = -470260362141833832L;
 
 	public UserInfoTags() {
-		super(new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_24).build());
+		super(new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_28).build());
 		put("orgs", new FrameUserOrgsTag());
 		put("permission", new FramePermissionTag());
 	}
