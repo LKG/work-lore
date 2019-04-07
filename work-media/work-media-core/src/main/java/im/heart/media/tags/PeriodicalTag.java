@@ -26,7 +26,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +37,6 @@ public class PeriodicalTag extends BaseDirective {
 	public void render(Environment env, Map<?, ?> params, TemplateDirectiveBody body)
 			throws IOException, TemplateException {
 		PeriodicalService periodicalService=	ContextManager.getBean(PeriodicalService.class);
-		System.out.println("###################################");
 		final Collection<SearchFilter> filters= Sets.newHashSet();
 		int page =  Integer.valueOf(getParam(params,"page","1"));
 		int size =  Integer.valueOf(getParam(params,"size","10"));
@@ -48,7 +46,6 @@ public class PeriodicalTag extends BaseDirective {
 		if(StringUtilsEx.isNotBlank(categoryCode)){
 			filters.add(new SearchFilter("categoryCode", SearchFilter.Operator.LIKES,categoryCode));
 		}
-		System.out.println("###################################");
 		filters.add(new SearchFilter("checkStatus", SearchFilter.Operator.EQ, Status.enabled));
 		Specification<Periodical> spec= DynamicSpecifications.bySearchFilter(filters, Periodical.class);
 		PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order,Periodical.class);
@@ -66,9 +63,6 @@ public class PeriodicalTag extends BaseDirective {
 	@Override
 	protected void verifyParameters(Map<?, ?> params) throws TemplateModelException {
 		  // 检查是否传递参数，此指令禁止传参！
-        if (!params.isEmpty()) {
-            throw new TemplateModelException("This directive doesn't allow parameters.");
-        }
 	}
 
 }

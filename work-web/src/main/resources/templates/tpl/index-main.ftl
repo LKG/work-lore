@@ -65,17 +65,68 @@
 <div class="clearfix"></div>
 <div class="container m-container"  style="position: relative;">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-sm-6 col-md-4 doc-col">
             <div class="panel panel-default" style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
                 <div class="panel-heading" style="border-left: 3px solid #FF970D;">
-                    领导讲话稿
+                    民政工作
                 </div>
                 <div class="panel-body">
-
+                    <@media.periodical categoryCode="010001" >
+                        <div class="mc">
+                            <ul>
+                                <#if docs??&&docs.content??>
+                                    <#list docs.content as model>
+                                        <li><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                    </#list>
+                                </#if>
+                            </ul>
+                        </div>
+                    </@media.periodical>
                 </div>
             </div>
-
-
+            <!--- -->
+        </div>
+        <div class="col-sm-6 col-md-4 doc-col">
+            <div class="panel panel-default" style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
+                <div class="panel-heading" style="border-left: 3px solid #FF970D;">
+                    统战工作
+                </div>
+                <div class="panel-body">
+                    <@media.periodical categoryCode="010003">
+                        <div class="mc">
+                            <ul>
+                                <#if docs??&&docs.content??>
+                                    <#list docs.content as model>
+                                        <li><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                    </#list>
+                                </#if>
+                            </ul>
+                        </div>
+                    </@media.periodical>
+                </div>
+            </div>
+            <!--- -->
+        </div>
+        <div class="col-sm-6 col-md-4 doc-col">
+            <div class="panel panel-default" style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
+                <div class="panel-heading" style="border-left: 3px solid #FF970D;">
+                    统计工作
+                </div>
+                <div class="panel-body">
+                    <@media.periodical categoryCode="010004" >
+                        <div class="mc">
+                            <ul>
+                                <#if docs??&&docs.content??>
+                                    <#list docs.content as model>
+                                        <li><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                    </#list>
+                                </#if>
+                            </ul>
+                        </div>
+                    </@media.periodical>
+                </div>
+            </div>
+            <!--- -->
         </div>
     </div>
 </div>
