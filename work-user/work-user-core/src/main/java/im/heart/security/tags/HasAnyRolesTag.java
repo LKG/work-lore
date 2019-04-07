@@ -6,7 +6,9 @@ import org.apache.shiro.subject.Subject;
 
 public class HasAnyRolesTag extends RoleTag {
 
-	  // Delimeter that separates role names in tag attribute
+    /**
+     *  Delimeter that separates role names in tag attribute
+     */
     private static final String ROLE_NAMES_DELIMETER = ",";
     @Override
     protected boolean showTagBody(String roleNames) {

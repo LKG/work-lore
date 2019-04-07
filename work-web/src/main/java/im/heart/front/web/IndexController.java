@@ -6,6 +6,7 @@ import im.heart.cms.entity.Article;
 import im.heart.cms.service.ArticleService;
 import im.heart.cms.vo.ArticleVO;
 import im.heart.core.CommonConst;
+import im.heart.core.enums.Status;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;
 
@@ -43,16 +45,16 @@ public class IndexController extends AbstractController {
 	@RequestMapping(value={"/index","/",""},method = RequestMethod.GET)
 	public ModelAndView welcome(HttpServletRequest request, HttpServletResponse response,
 								ModelMap model) {
-		articlesTop10(request,model);
-		docsTop10(request,model);
+		articlesTop(request,model);
+		docsFree10(request,model);
 		super.success(model);
 		return new ModelAndView("index");
 	}
-	public void articlesTop10(HttpServletRequest request,ModelMap model){
+	public void articlesTop(HttpServletRequest request,ModelMap model){
 		final Collection<SearchFilter> filters= DynamicSpecifications.buildSearchFilters(request);
 		filters.add(new SearchFilter("isPub", SearchFilter.Operator.EQ,Boolean.TRUE));
 		Specification<Article> spec= DynamicSpecifications.bySearchFilter(filters, Article.class);
-		PageRequest pageRequest= DynamicPageRequest.buildPageRequest(1,10, "pushTime", CommonConst.Page.ORDER_DESC, Article.class);
+		PageRequest pageRequest= DynamicPageRequest.buildPageRequest(1,16, "pushTime", CommonConst.Page.ORDER_DESC, Article.class);
 		Page<Article> pag = this.articleService.findAll(spec, pageRequest);
 		if(pag!=null&&pag.hasContent()){
 			List<ArticleVO> vos = Lists.newArrayList();
@@ -64,11 +66,12 @@ public class IndexController extends AbstractController {
 		}
 	}
 
-	public void docsTop10(HttpServletRequest request,ModelMap model){
+	public void docsFree10(HttpServletRequest request,ModelMap model){
 		final Collection<SearchFilter> filters= DynamicSpecifications.buildSearchFilters(request);
-		filters.add(new SearchFilter("isPub", SearchFilter.Operator.EQ,Boolean.TRUE));
+		filters.add(new SearchFilter("checkStatus", SearchFilter.Operator.EQ, Status.enabled));
+		filters.add(new SearchFilter("finalPrice", SearchFilter.Operator.EQ, new BigDecimal(0)));
 		Specification<Periodical> spec= DynamicSpecifications.bySearchFilter(filters, Periodical.class);
-		PageRequest pageRequest= DynamicPageRequest.buildPageRequest(1,5, "pushTime", CommonConst.Page.ORDER_DESC,Periodical.class);
+		PageRequest pageRequest= DynamicPageRequest.buildPageRequest(1,10, "downTimes", CommonConst.Page.ORDER_DESC,Periodical.class);
 		Page<Periodical> pag = this.periodicalService.findAll(spec, pageRequest);
 		if(pag!=null&&pag.hasContent()){
 			List<PeriodicalVO> vos = Lists.newArrayList();
@@ -76,7 +79,8 @@ public class IndexController extends AbstractController {
 				vos.add(new PeriodicalVO(po));
 			}
 			Page<PeriodicalVO> docVos  =new PageImpl<PeriodicalVO>(vos,pageRequest,pag.getTotalElements());
-			model.put("docs",docVos);
+			model.put("freeDocs",docVos);
+			System.out.println(pag.getTotalElements());
 		}
 	}
 

@@ -37,7 +37,7 @@
                         <div class="counter-content" title="文档数量">
                             <i class="fa fa-book"></i>
                             <span class="counter-value">
-                                <#if docs??> ${docs.totalElements!'0'}</#if>
+                                <#if freeDocs??> ${freeDocs.totalElements!'0'}</#if>
                             </span>
                         </div>
                     </div>
@@ -63,13 +63,13 @@
         <div class="extra"><a href="${appHost}/articles.jhtml">更多 ></a></div>
     </div>
     <#if articles??&&articles.content??>
+        <div class="mc">
+        <ul>
         <#list articles.content as article>
-            <div class="mc">
-                <ul>
-                    <li><a href="${appHost}/article/${article.id}.jhtml" ><span>[${article.type}]</span>${article.shortTitle}</a></li>
-                </ul>
-            </div>
+              <li><a href="${appHost}/article/${article.id}.jhtml" ><span>[${article.type}]</span>${article.shortTitle}</a></li>
         </#list>
+        </ul>
+        </div>
     </#if>
 </div>
 </div>

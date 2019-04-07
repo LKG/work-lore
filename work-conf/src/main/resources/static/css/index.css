@@ -369,7 +369,7 @@ _display: block;
 
 
 /*轮播图左边当行蓝*/
-.dd-inner{height:460px;background:#337ab7;width:190px;margin-left:1px;margin-top:7px;margin-left:0px; display: none; box-shadow: 0 1px 5px rgba(4,0,0,.1);}
+.dd-inner{height:458px;background:#337ab7;width:190px;margin-left:1px;margin-top:7px;margin-left:0px; display: none; box-shadow: 0 1px 5px rgba(4,0,0,.1);}
 .dd-inner .item{height:31px;color:#fff;line-height:31px;border-left:2px solid #337ab7;position:relative;}
 .dd-inner .item h3{font-family: "microsoft yahei";font-size:14px;font-weight:400;height:31px;line-height:31px;position: absolute;left:11px;}
 .dd-inner .item a{color:#fff;}
@@ -420,12 +420,12 @@ _display: block;
 #right{position:absolute;right:0px;top:215px;}
 #lunbo:hover .slider-page{display:block;}
 /*轮播图右边快报  服务栏*/
-.m1{border:1px solid #e4e4e4;position:absolute;right: 240px;top:0px;padding: 0px 0px;box-shadow: 0 1px 5px rgba(4,0,0,.1);}
-.m{width: 232px;font-size: 12px;border:1px solid #e4e4e4;position:absolute;right:0;top:0px;padding: 10px 2px;box-shadow: 0 1px 5px rgba(4,0,0,.1);}
+.m1{border:1px solid #e4e4e4;position:absolute; height: 457px;right: 240px;top:0px;padding: 0px 0px;box-shadow: 0 1px 5px rgba(4,0,0,.1);}
+.m{width: 232px;font-size: 12px;border:1px solid #e4e4e4;height: 457px;position:absolute;right:0;top:0px;padding: 10px 2px;box-shadow: 0 1px 5px rgba(4,0,0,.1);}
 .mt{padding: 0px 10px 0px 20px ;border-bottom: 1px dotted #E8E8E7;height: 43px;line-height: 43px;}
 .mt h3{float:left;}
 .mt .extra{float:right;font: 400 9px/43px consolas;}
-.mc{padding:8px 0 0 5px;}
+.mc li{padding:8px 0 0 5px;}
 
 .mc li span{font-weight:700;margin-right:5px;}
 

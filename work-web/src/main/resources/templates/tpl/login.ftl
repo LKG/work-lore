@@ -63,6 +63,12 @@
   var loginUrl="${appHost}/login-in.jhtml?logout=${_error!''}";
  	document.getElementById('login_box').src = loginUrl;
 </script >
-
+ <@shiro.user ><!--有用户登录&ndash;&gt;-->
+     <script type="text/javascript">
+         setInterval(function(){
+             window.location.href="${appHost}/";
+         },1000);
+     </script >
+</@shiro.user>
 </html>
     

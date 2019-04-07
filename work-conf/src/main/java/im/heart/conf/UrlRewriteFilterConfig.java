@@ -26,7 +26,7 @@ public class UrlRewriteFilterConfig  extends UrlRewriteFilter {
     private static final String URL_REWRITE = "classpath:/urlrewrite.xml";
     @Value(URL_REWRITE)
     private Resource resource;
-    @Order(-1)
+    @Order(-2)
     @Bean
     public FilterRegistrationBean urlRewrite(){
         UrlRewriteFilter rewriteFilter=new UrlRewriteFilter();

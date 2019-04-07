@@ -74,6 +74,15 @@ public class PeriodicalServiceImpl   extends CommonServiceImpl<Periodical, BigIn
 		this.updateRateTimesById(id);
 	}
 
+	@Override
+	public void updateDownTimesById(BigInteger id) {
+		this.periodicalRepository.updateRateTimesById(id);
+	}
+	@Async
+	@Override
+	public void addUpdateDownTimesTask(BigInteger id) {
+		this.updateRateTimesById(id);
+	}
 
 	@Override
 	public Page<Periodical> findInitPeriodicalByType(PeriodicalType type,Pageable pageable) {

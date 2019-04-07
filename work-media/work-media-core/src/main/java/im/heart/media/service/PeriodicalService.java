@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.scheduling.annotation.Async;
 
 /**
  * 
@@ -32,4 +33,7 @@ public interface PeriodicalService extends CommonService<Periodical, BigInteger>
 
 	public void updateRateTimesById(BigInteger id);
 	public  void addUpdateRateTimesTask(BigInteger id);
+
+	public void updateDownTimesById(BigInteger id);
+	public void addUpdateDownTimesTask(BigInteger id);
 }

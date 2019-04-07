@@ -86,10 +86,13 @@ public class DownloadController extends AbstractController {
             if(StringUtils.isBlank(filename)){
                 filename=po.getPeriodicalName().concat(".").concat(po.getFileHeader());
             }
-            //文件的真实路径
-            response.addHeader("X-Accel-Redirect",po.getRealFilePath());
-            response.addHeader(HttpHeaders.CONTENT_TYPE,"application/octet-stream; charset=utf-8");
+            this.periodicalService.addUpdateDownTimesTask(id);
             BaseUtils.setFileDownloadHeader(request,response,filename);
+            //文件的真实路径
+            response.addHeader("X-Accel-Redirect","/var/www/uploads/media/2.xls");
+            logger.info("X-Accel-Redirect:"+po.getRealFilePath());
+            response.addHeader(HttpHeaders.CONTENT_TYPE,"application/octet-stream; charset=utf-8");
+
             return  new ModelAndView(RESULT_PAGE);
         }
         super.fail(model,new ResponseError(WebError.ACCESS_DENIED));

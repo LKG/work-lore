@@ -78,13 +78,15 @@ public abstract class BaseDirective implements TemplateDirectiveModel {
 	 * @return
 	 */
 	protected String getParam(Map<?, ?> params, String name) {
+		return getParam(params,name,null);
+	}
+	protected String getParam(Map<?, ?> params, String name,String defaultValue) {
 		Object value = params.get(name);
 		if (value instanceof SimpleScalar) {
 			return ((SimpleScalar) value).getAsString();
 		}
-		return null;
+		return defaultValue;
 	}
-
 	/**
 	 * @Desc 参数校验
 	 * @param params

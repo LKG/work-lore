@@ -58,14 +58,23 @@ $(function(){
 //**************服装鞋包选项卡*******************
 $(function(){
 		$('.tab li').mouseover(function(){
-        $(this).addClass('active').siblings().removeClass('active');
-		$('.tatab-item span').css('right','1px');
-              var index=$(this).index();
-              $('.main').eq(index).show().siblings().hide();
-              $('.side').css('display','block');
-        })
+			 $(this).addClass('active').siblings().removeClass('active');
+			 $('.tatab-item span').css('right','1px');
+			 var index=$(this).index();
+             $('.main').eq(index).show().siblings().hide();
+             $('.side').css('display','block');
+        });
   		  
 });
+
+$(function(){
+	$('.nav-tabs li').on("click mouseover",function () {
+		$(this).addClass('active').siblings().removeClass('active');
+		var index=$(this).index();
+		$('.tab-pane').eq(index).show().siblings().hide();
+	});
+});
+
 //**************服装鞋包轮播*******************
 $(function(){
             //scroll news

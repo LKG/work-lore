@@ -106,7 +106,7 @@
                                                             <div class="media follow-media">
                                                                 <div class="media-left">
                                                                     <div class="thumbnail">
-                                                                        <a href="${appHost}/doc/${model.relateId}.jhtml" ><img class="media-object"  src="/${imgPath}/${model.itemImgUrl}" alt="${model.itemTitle}"></a>
+                                                                        <a href="${appHost}/doc/${model.relateId}.jhtml" ><img class="media-object"  src="${appHost}/${model.itemImgUrl}" alt="${model.itemTitle}"></a>
                                                                     </div>
                                                                 </div>
                                                             </div>

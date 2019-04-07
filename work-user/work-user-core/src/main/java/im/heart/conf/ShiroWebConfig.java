@@ -121,6 +121,8 @@ public class ShiroWebConfig extends ShiroWebAutoConfiguration{
 		chain.addPathDefinition("/index/**", "anon");
 		chain.addPathDefinition("/docs**", "anon");
 		chain.addPathDefinition("/docs/**", "anon");
+		chain.addPathDefinition("/group**", "anon");
+		chain.addPathDefinition("/q**", "anon");
 		chain.addPathDefinition("/article**", "anon");
 		chain.addPathDefinition("/articles/**", "anon");
 		chain.addPathDefinition("/article/**", "anon");

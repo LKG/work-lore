@@ -38,7 +38,7 @@ public class FramePermissionTag extends BaseDirective {
 		if(userVO!=null){
 			FramePermissionService framePermissionService=	ContextManager.getBean(FramePermissionService.class);
 			final Collection<SearchFilter> filters= new HashSet<SearchFilter>();
-			filters.add(new SearchFilter("status", Operator.EQ, Status.enabled));//
+			filters.add(new SearchFilter("status", Operator.EQ, Status.enabled));
 			Specification<FramePermission> spec= DynamicSpecifications.bySearchFilter(filters, FramePermission.class);
 			List<FramePermission> permissions =framePermissionService.findAll(spec);
 			List<FramePermissionVO> vos=new ArrayList<FramePermissionVO>();

@@ -42,6 +42,12 @@ public interface PeriodicalRepository extends JpaRepository<Periodical, BigInteg
 	@Query("update Periodical model set rateTimes=rateTimes+1 WHERE model.id = :id")
 	public void updateRateTimesById(@Param("id") BigInteger id);
 
+	@Modifying
+	@Transactional(rollbackOn = Exception.class)
+	@Query("update Periodical model set downTimes=downTimes+1 WHERE model.id = :id")
+	public void updateDownTimesById(@Param("id") BigInteger id);
+
+
 	/**
 	 * 根据cityId 和type 及code 查询
 	 * @param periodicalCode

@@ -82,6 +82,7 @@ public class DocController extends AbstractController {
                              ModelMap model) {
         final Collection<SearchFilter> filters= DynamicSpecifications.buildSearchFilters(request);
         filters.add(new SearchFilter("checkStatus", SearchFilter.Operator.EQ, Status.enabled));
+        filters.add(new SearchFilter("finalPrice", SearchFilter.Operator.EQ, new BigDecimal(0)));
         Specification<Periodical> spec= DynamicSpecifications.bySearchFilter(filters, Periodical.class);
         PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order,Periodical.class);
         Page<Periodical> pag = this.periodicalService.findAll(spec, pageRequest);
