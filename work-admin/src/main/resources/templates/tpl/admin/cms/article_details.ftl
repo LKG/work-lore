@@ -97,11 +97,11 @@
 						 		<div class="input-group">
 							 		<span class="input-group-addon">文章分类</span>
 							 		<select class="form-control" id="categoryId" name="categoryId">
-									  <@custom.dict dictCode="car_cate" >	
+									  <@dic.dict dictCode="car_cate" >
 									  	<#list items as model>  
 								    	<option value="${model.itemValue}" >${model.itemName}</option>
 								 		 </#list>
-									  </@custom.dict>
+									  </@dic.dict>
 									</select>
 								</div>
 							</div>

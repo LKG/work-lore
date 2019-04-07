@@ -22,11 +22,11 @@
 			      <div class="input-group-addon"><i class="fa fa-mobile"></i></div>
 			      <select name="userType" class="form-control">
 				 <option value="">---</option>
-					<@custom.dict dictCode="user_type" >	
+					<@dic.dict dictCode="user_type" >
 						<#list items as model>  
 							<option value="${model.itemValue}" >${model.itemName}</option>
 						</#list>
-					</@custom.dict>
+					</@dic.dict>
 			</select>
 			    </div>
 			</div>

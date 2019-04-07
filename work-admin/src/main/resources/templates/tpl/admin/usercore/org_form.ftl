@@ -29,11 +29,11 @@
 		 	 <#else>
 		 	 	<div class="input-group-btn"> 
 			 	  <select name="type" style="width:100px" class="form-control" >
-				 	<@custom.dict dictCode="org_type" >	
+				 	<@dic.dict dictCode="org_type" >
 						<#list items as model>
 							<option value="${model.itemValue}" >${model.itemName}</option>
 						</#list>
-					</@custom.dict>
+					</@dic.dict>
 				</select>
 		 		 </div>
 		 	 </#if>
@@ -119,13 +119,13 @@
  <div class="form-group">
 	<label for="category" class="col-xs-3 control-label" >经营范围</label>
 	<div class="col-xs-9">	<#-- 后面考虑从数据库查询获取分类信息 -->
-	 <@custom.dict dictCode="org_cate" >	
+	 <@dic.dict dictCode="org_cate" >
 		<#list items as model>  
 		<label class="checkbox-inline">
 	    <input type="checkbox" id="category_${model.id}"  <#list result.category?split(",") as category><#if category==model.itemValue>checked<#break></#if></#list> name="category"  value="${model.itemValue}">${model.itemName}
 	  	</label>
 		</#list>
-	</@custom.dict>
+	</@dic.dict>
 	</div>
   </div>
   <div class="form-group">

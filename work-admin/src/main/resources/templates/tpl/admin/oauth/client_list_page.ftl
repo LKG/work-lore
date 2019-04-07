@@ -41,11 +41,11 @@
 			 <label for="name" >类型:</label>
 			 <select name="userType" class="form-control" style="width: 85px;">
 			 <option value="">---</option>
-				<@custom.dict dictCode="user_type" >	
+				<@dic.dict dictCode="user_type" >
 					<#list items as model>  
 						<option value="${model.itemValue}" >${model.itemName}</option>
 					</#list>
-				</@custom.dict>
+				</@dic.dict>
 			</select>
 		 </div>
 		<div class="form-group">

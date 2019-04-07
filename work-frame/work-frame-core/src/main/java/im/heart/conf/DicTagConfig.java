@@ -26,7 +26,7 @@ public class DicTagConfig implements InitializingBean {
 	private DictItemTag dictItemTag;
 	@PostConstruct
 	public void setSharedVariable() throws TemplateModelException {
-		configuration.setSharedVariable("custom", dictItemTag);
+		configuration.setSharedVariable("dic", dictItemTag);
 	}
 	@Override
 	public void afterPropertiesSet() throws Exception {

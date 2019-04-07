@@ -17,11 +17,11 @@
 			 <label for="tplType" >类型:</label>
 			 <select name="tplType" class="form-control">
 			 <option value="">---</option> 
-				<#-- <@custom.dict dictCode="tpl_type" >
+				<#-- <@dic.dict dictCode="tpl_type" >
 					<#list items as model>  
 						<option value="${model.itemValue}" >${model.itemName}</option>
 					</#list>
-				</@custom.dict>-->
+				</@dic.dict>-->
 			 </select>
 		 </div>
 		  <button type="button" id="seach-btn" class="btn btn-primary"><@spring.message code="label.default.button.search" /></button>

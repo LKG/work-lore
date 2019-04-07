@@ -96,18 +96,18 @@
 						
 							<td>{{model.relateOrg.name}}(<code>{{model.relateOrg.orgCode}}</code>)</td>
 							<td class="text-center" >
-							 <@custom.dict dictCode="org_cate" >
+							 <@dic.dict dictCode="org_cate" >
 						   	  <#list items as model> 
 						   	  		{{if model.relateType=='${model.itemValue}'}} 
 						     	  		<code>${model.itemName}</code>
 						     	  	{{/if}} 
 							 </#list>
-							</@custom.dict>
+							</@dic.dict>
 							</td>
 							<td >{{model.relateOrg.contacts}}</td>
 							<td>{{model.relateOrg.mobilePhone}}<code>{{model.relateOrg.telePhone}}</code></td>
 							<td>
-							 <@custom.dict dictCode="org_cate" >
+							 <@dic.dict dictCode="org_cate" >
 						   	  {{each model.relateOrg.category.split(",") as cate}}
 						     	  <#list items as model>  
 						     	  	{{if cate=='${model.itemValue}'}}
@@ -115,7 +115,7 @@
 						     	  	{{/if}} 
 								 </#list>
 						      {{/each}}	
-							</@custom.dict>
+							</@dic.dict>
 							</td>
 							</tr>
 						{{/each}}
@@ -154,11 +154,11 @@
 					  	<div class="input-group">
 						   <span class="input-group-addon">类型</span>
 							<select class="form-control" style="width: 100px;" id="categoryIds" name="category_LIKE">
-							  <@custom.dict dictCode="org_category" >	
+							  <@dic.dict dictCode="org_category" >
 								  	<#list items as model>  
 							    	<option value="${model.itemValue}" >${model.itemName}</option>
 							 		 </#list>
-							  </@custom.dict>
+							  </@dic.dict>
 							</select>
 						  </div>
 					  </div>
@@ -230,7 +230,7 @@
 							<td>{{model.contacts}} </td>
 							<td title="{{model.telePhone}}({{model.mobilePhone}})"  >{{model.telePhone}} <code>{{model.mobilePhone}}</code></td>
 							<td>
-							 <@custom.dict dictCode="org_category" >
+							 <@dic.dict dictCode="org_category" >
 						   	  {{each model.category.split(",") as cate}}
 						     	  <#list items as model>  
 						     	  	{{if cate=='${model.itemValue}'}}
@@ -238,7 +238,7 @@
 						     	  	{{/if}} 
 								 </#list>
 						      {{/each}}	
-							</@custom.dict>
+							</@dic.dict>
 							</td>
 							</tr>
 						{{/each}}

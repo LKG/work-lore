@@ -23,11 +23,11 @@
 		  <div class="form-group">
 			 <label for="name" >类型:</label>
 			 <select name="type" class="form-control" >
-			 	<@custom.dict dictCode="org_type" >	
+			 	<@dic.dict dictCode="org_type" >
 					<#list items as model>  
 						<option value="${model.itemValue}" >${model.itemName}</option>
 					</#list>
-				</@custom.dict>
+				</@dic.dict>
 			</select>
 		 </div>
 		 <div class="form-group">

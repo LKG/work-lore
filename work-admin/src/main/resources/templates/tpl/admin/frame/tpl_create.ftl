@@ -97,11 +97,11 @@
 							 	<span class="input-group-addon">类型:</span>
 							 	<select name="tplType" class="form-control">
 								 <option value="">---</option> 
-									<@custom.dict dictCode="tpl_type" >	
+									<@dic.dict dictCode="tpl_type" >
 										<#list items as model>  
 											<option value="${model.itemValue}" >${model.itemName}</option>
 										</#list>
-									</@custom.dict>
+									</@dic.dict>
 								 </select>
 								</div>
 							 </div>
