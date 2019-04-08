@@ -6,10 +6,11 @@ import im.heart.core.service.CommonService;
 import java.math.BigInteger;
 import java.util.List;
 
+
 /**
- * 
- * @功能说明：文章操作接口
- * @作者 LKG
+ *
+ * @author gg
+ * @desc 文章操作接口
  */
 public interface   ArticleService extends CommonService<Article, BigInteger>{
 	
@@ -22,6 +23,7 @@ public interface   ArticleService extends CommonService<Article, BigInteger>{
 	 */
 	public List<Article>  saveAll(Iterable<Article> entities);
 
+	public List<Article> findNearId(BigInteger id,BigInteger categoryId);
 
 	public void addUpdateHitsTask(BigInteger id);
 

@@ -38,42 +38,30 @@ public class ArticleDTO implements AbstractEntity<BigInteger>{
 
 	private BigInteger id;
 	private String title;
-
-	private String author="";
-
-	private String source="";
+	private String author;
+	private String source;
 
 	private String summary;
 
 	/** 页面标题. */
-	private String seoTitle="";
+	private String seoTitle;
 
 	/** 页面关键词. */
-	private String seoKeywords="";
+	private String seoKeywords;
 
 	/** 页面描述 . */
-	private String seoDescription="";
-
-	@Column(name = "URL", nullable = false)
+	private String seoDescription;
 	private String url;
 
-	@Column(name = "TYPE", nullable = false)
 	private String type;
-	/** 是否发布. */
-	private Boolean isPub=Boolean.FALSE;
-
-	/** 是否置顶. */
-	private Boolean isTop=Boolean.FALSE;
 
 	/** 点击数 . */
 
-	private Long hits=0L;
+	private Long hits;
 
-	private Boolean isDeleted=Boolean.FALSE;
+	private Boolean allowComment;
 
-	private boolean allowComment=Boolean.FALSE;
-
-	private BigInteger rateTimes=BigInteger.ZERO;
+	private BigInteger rateTimes;
 
 	private BigInteger userId;
 	/** 页码 . */

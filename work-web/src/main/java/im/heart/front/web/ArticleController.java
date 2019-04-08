@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.List;
 
 @Controller
 public class ArticleController extends AbstractController {
@@ -44,6 +45,8 @@ public class ArticleController extends AbstractController {
             ModelMap model) {
         this.updateHitsById(id);
         Article po = this.articleService.findById(id);
+        List<Article> nearList=this.articleService.findNearId(po.getId(),po.getCategoryId());
+        model.put("lastArticle",nearList);
         super.success(model, po);
         return new ModelAndView(VIEW_DETAILS);
     }

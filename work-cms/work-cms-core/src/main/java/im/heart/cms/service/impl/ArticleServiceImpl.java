@@ -32,4 +32,10 @@ public class ArticleServiceImpl extends CommonServiceImpl<Article, BigInteger> i
 	public void addUpdateHitsTask(BigInteger id) {
 		this.updateHitsById(id);
 	}
+
+	@Override
+	public List<Article> findNearId(BigInteger id,BigInteger categoryId) {
+		return this.articleRepository.findNearId(id,categoryId);
+	}
+
 }

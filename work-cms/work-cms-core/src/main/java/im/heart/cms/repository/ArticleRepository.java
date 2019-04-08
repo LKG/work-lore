@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.math.BigInteger;
+import java.util.List;
 
 /**
  *
@@ -35,6 +36,6 @@ public interface ArticleRepository extends JpaRepository<Article, BigInteger>, J
      * @param categoryId
      * @return
      */
-    @Query("select id ,title from Article model where  ( model.id >:id  or model.id <:id ) and id <>:id and model.categoryId = :categoryId and model.isPub = true order by  model.id ")
-    public Page<Article> findNearId(@Param("id") BigInteger id, @Param("categoryId") BigInteger categoryId, Pageable pageable);
+    @Query(value = "select model.id ,model.title from cms_article model where  ( model.id >:id  or model.id <:id ) and id <>:id and model.category_id = :categoryId and model.is_pub = 1 order by  model.id limit 2",nativeQuery = true)
+    public List<Article> findNearId(@Param("id") BigInteger id, @Param("categoryId") BigInteger categoryId);
 }

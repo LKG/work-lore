@@ -49,7 +49,19 @@ public class DynamicPageRequest {
 		return list;
 	}
 
-	
+	public static <T> PageRequest buildPageRequest(int pageNumber, int pageSize,String sortField,Direction direction,final Class<T> entityClazz) {
+		String[] sortFieldNames = StringUtils.split(sortField, ",");
+		if(sortFieldNames!=null){
+			if(sortFieldNames.length>MAX_SORT_FIELDS){
+				throw new IllegalArgumentException(sortFieldNames + " is too more... ");
+			}
+			List<String> list = getSortFilterList(entityClazz,sortFieldNames);
+			if(list!=null&&!list.isEmpty()){
+				return PageRequest.of(pageNumber - 1, pageSize, new Sort(direction,list));
+			}
+		}
+		return PageRequest.of(pageNumber - 1, pageSize);
+	}
 	/**
 	 * 
 	 * 创建分页请求
@@ -60,20 +72,14 @@ public class DynamicPageRequest {
 	 * @return
 	 */
 	public static <T> PageRequest buildPageRequest(int pageNumber, int pageSize,String sortField,String order,final Class<T> entityClazz) {
-		String[] sortFieldNames = StringUtils.split(sortField, ",");
-		if(sortFieldNames!=null){
-			if(sortFieldNames.length>MAX_SORT_FIELDS){
-				throw new IllegalArgumentException(sortFieldNames + " is too more... ");
-			}
-			List<String> list = getSortFilterList(entityClazz,sortFieldNames);
-			if(list!=null&&!list.isEmpty()){
-				Direction direction=Direction.fromString(order);
-				if(direction==null){
-					direction=Sort.DEFAULT_DIRECTION;
-				}
-				return PageRequest.of(pageNumber - 1, pageSize, new Sort(direction,list));
+		Direction direction=Sort.DEFAULT_DIRECTION;
+		if(StringUtils.isNotBlank(order)){
+			direction=Direction.fromString(order);
+			if(direction==null){
+				direction=Sort.DEFAULT_DIRECTION;
 			}
 		}
-		return PageRequest.of(pageNumber - 1, pageSize);
+
+		return buildPageRequest(pageNumber,pageSize,sortField,direction,entityClazz);
 	}
 }

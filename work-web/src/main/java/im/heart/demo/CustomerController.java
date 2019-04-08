@@ -1,12 +1,12 @@
 package im.heart.demo;
 
+import im.heart.core.plugins.persistence.DynamicPageRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequestMapping("/index/customer")
 public class CustomerController {
@@ -206,12 +207,9 @@ public class CustomerController {
      */
     @RequestMapping("/findAllProjections")
     public void findAllProjections(){
-        Collection<CustomerProjection> projections = repository.findAllProjectedBy();
-        System.out.println(projections);
-        System.out.println(projections.size());
-        for (CustomerProjection projection:projections){
-            System.out.println("FirstName:"+projection.getFirstName());
-            System.out.println("LastName:"+projection.getLastName());
+        Collection<CustomerDTO> projections = repository.findAllProjectedBy();
+        for (CustomerDTO projection:projections){
+            log.info("FirstName:{},LastName:{},projection:{}",projection.getFirstName(),projection.getLastName());
         }
     }
     /**
@@ -219,11 +217,10 @@ public class CustomerController {
      */
     @RequestMapping("/findAllProjectionsPage")
     public void findAllProjectionsPage(){
-        Pageable pageable = new PageRequest(0,1, Sort.Direction.DESC,"id");
+        Pageable pageable =  DynamicPageRequest.buildPageRequest(0,1,"id",Sort.Direction.DESC,Customer.class);
         Page<CustomerProjection> projections = repository.findAllProjectedBy(pageable);
         for (CustomerProjection projection:projections.getContent()){
-            System.out.println("FirstName:"+projection.getFirstName());
-            System.out.println("LastName:"+projection.getLastName());
+            log.info("FirstName:{},LastName:{},projection:{}",projection.getFirstName(),projection.getLastName(),projection.getFullName());
         }
     }
 }

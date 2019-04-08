@@ -9,14 +9,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import javax.persistence.QueryHint;
 import java.util.Collection;
 import java.util.List;
 
 import static org.hibernate.jpa.QueryHints.HINT_COMMENT;
 
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
+public interface CustomerRepository extends JpaRepository<Customer, Long>,QuerydslPredicateExecutor<Customer> {
     /**
      * 根据lastName查询结果
      * @param lastName
@@ -112,9 +112,9 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     @Query("select c from Customer c where c.firstName=:name or c.lastName=:name")
     Page<Customer> findByName(@Param("name") String name2,Pageable pageable);
     @QueryHints(forCounting = false)
-    @Query("SELECT c.firstName as firstName,c.lastName as lastName from Customer  c")
+    @Query(value = "SELECT c.firstName as firstName,c.lastName as lastName from Customer  c ")
     Page<CustomerProjection>  findAllProjectedBy(Pageable pageable);
 
-    @Query("SELECT c.firstName as firstName,c.lastName as lastName from Customer  c")
-    Collection<CustomerProjection> findAllProjectedBy();
+    @Query(value ="SELECT c.first_name as firstName,c.last_name as lastName from customer  c limit 1",nativeQuery = true)
+    List<CustomerDTO> findAllProjectedBy();
 }
