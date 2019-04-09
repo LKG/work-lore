@@ -29,6 +29,7 @@
         <module>work-shop</module>
         <module>work-rpt</module>
         <module>work-admin</module>
+        <module>work-pay</module>
     </modules>
     <properties>
         <docker.image.prefix>spring-boot</docker.image.prefix>

@@ -124,12 +124,11 @@ jodconverter:
 alipay:
   appId: 2016091200495262
   #服务器异步通知页面路径
-  notify_url: http://test.api.zhifuzi.com/notify/alipay
+  notify_url: http://test.gongwk.com/notify/alipay
   #页面跳转同步通知页面路径
-  return_url: http://test.api.zhifuzi.com/zfzpay/zfzpay/paySuccess.html
+  return_url: http://test.gongwk.com/zfzpay/paySuccess.html
   #请求网关地址
   URL: https://openapi.alipaydev.com/gateway.do
-
 qcloud:
   sms:
     appId: 1400197686

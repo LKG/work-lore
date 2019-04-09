@@ -113,9 +113,10 @@ public interface CustomerRepository extends JpaRepository<Customer, Long>{
     @QueryHints(forCounting = false)
     @Query(value = "SELECT c.id AS id ,c.firstName as firstName,c.lastName as lastName from Customer  c ")
     Page<CustomerProjection>  findAllProjectedBy(Pageable pageable);
-
+    @QueryHints(value = { @QueryHint(name = HINT_COMMENT, value = "a query for pageable")})
     @Query(value ="SELECT c.id AS id ,c.first_name AS firstName,c.last_name AS lastName FROM customer  c LIMIT 1",nativeQuery = true)
     List<CustomerProjection> findAllProjectedBy();
+    @QueryHints(value = { @QueryHint(name = HINT_COMMENT, value = "a query for 222222")})
     @Query(value ="SELECT c.first_name AS firstName,c.last_name AS lastName FROM customer  c LIMIT 1",nativeQuery = true)
     List<CustomerDTO> findAllProjectedBy2();
 }
