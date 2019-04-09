@@ -1,5 +1,6 @@
 package im.heart.front.web;
 
+import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.entity.Article;
 import im.heart.cms.service.ArticleService;
 import im.heart.core.CommonConst;
@@ -45,7 +46,9 @@ public class ArticleController extends AbstractController {
             ModelMap model) {
         this.updateHitsById(id);
         Article po = this.articleService.findById(id);
-        List<Article> nearList=this.articleService.findNearId(po.getId(),po.getCategoryId());
+        System.out.println(po.getCategoryId());
+        System.out.println(po.getId());
+        List<ArticleDTO> nearList=this.articleService.queryNearById(po.getId(),po.getCategoryId());
         model.put("lastArticle",nearList);
         super.success(model, po);
         return new ModelAndView(VIEW_DETAILS);

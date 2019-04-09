@@ -31,7 +31,7 @@ public interface PeriodicalCategoryRepository extends JpaRepository<PeriodicalCa
 	 * @param parentId
 	 * @return
 	 */
-	@Query("select new PeriodicalCategory(model.categoryId, model.categoryCode, model.categoryName,model.parentId , model.level, model.status) from PeriodicalCategory model where model.parentId = :parentId")
+	@Query("SELECT new PeriodicalCategory(model.categoryId, model.categoryCode, model.categoryName,model.parentId , model.level, model.status) from PeriodicalCategory model where model.parentId = :parentId")
 	public List<PeriodicalCategory> findByParentId(@Param("parentId") BigInteger parentId);
 	
 }

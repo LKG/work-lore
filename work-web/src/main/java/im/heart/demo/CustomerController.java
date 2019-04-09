@@ -1,18 +1,20 @@
 package im.heart.demo;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import im.heart.cms.dto.ArticleDTO;
+import im.heart.cms.service.ArticleService;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.query.AbstractJpaQuery;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Slf4j
@@ -21,22 +23,6 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     private CustomerRepository repository;
-    @Autowired
-    JPAQueryFactory queryFactory;
-    /**
-     * 初始化数据
-     */
-    @RequestMapping("/index")
-    public void index() {
-        // save a couple of customers
-        repository.save(new Customer("Jack", "Bauer"));
-        repository.save(new Customer("Chloe", "O'Brian"));
-        repository.save(new Customer("Kim", "Bauer"));
-        repository.save(new Customer("David", "Palmer"));
-        repository.save(new Customer("Michelle", "Dessler"));
-        repository.save(new Customer("Bauer", "Dessler"));
-    }
-
 
     /**
      * 查询lastName为指定用户昵称
@@ -190,8 +176,8 @@ public class CustomerController {
     @RequestMapping("/pageable")
     public void pageable(){
         //Pageable是接口，PageRequest是接口实现
-        //PageRequest的对象构造函数有多个，page是页数，初始值是0，size是查询结果的条数，后两个参数参考Sort对象的构造方法
-        Pageable pageable = new PageRequest(0,3, Sort.Direction.DESC,"id");
+        //PageRequest的对象构造函数有多个，page是页数，初始值是1，size是查询结果的条数，后两个参数参考Sort对象的构造方法
+        Pageable pageable =  DynamicPageRequest.buildPageRequest(1,3,"id",Sort.Direction.DESC,Customer.class);
         Page<Customer> page = repository.findByName("bauer",pageable);
         //查询结果总行数
         System.out.println(page.getTotalElements());
@@ -203,15 +189,20 @@ public class CustomerController {
         }
         System.out.println("-------------------------------------------");
     }
-
+    @Autowired
+    ArticleService articleService;
     /**
      * find by projections
      */
     @RequestMapping("/findAllProjections")
     public void findAllProjections(){
-        Collection<CustomerDTO> projections = repository.findAllProjectedBy();
-        for (CustomerDTO projection:projections){
-            log.info("FirstName:{},LastName:{},projection:{}",projection.getFirstName(),projection.getLastName());
+//        List<ArticleDTO> projections=articleService.queryNearById(new BigInteger("1000"),new BigInteger("0"));
+//        for (ArticleDTO projection:projections){
+//            log.info("@@@@@title:{},LastName:{},projection:{}",projection.getTitle());
+//        }
+        List<CustomerDTO>  projections2 = repository.findAllProjectedBy2();
+        for (CustomerDTO projection:projections2){
+            log.info("projectionprojectionprojectionprojection:{},LastName:{},projection:{}",projection.getFirstName(),projection.getLastName());
         }
     }
     /**
@@ -219,8 +210,10 @@ public class CustomerController {
      */
     @RequestMapping("/findAllProjectionsPage")
     public void findAllProjectionsPage(){
-        Pageable pageable =  DynamicPageRequest.buildPageRequest(0,1,"id",Sort.Direction.DESC,Customer.class);
+        Pageable pageable =  DynamicPageRequest.buildPageRequest(1,1,"id",Sort.Direction.DESC,Customer.class);
         Page<CustomerProjection> projections = repository.findAllProjectedBy(pageable);
+
+
         for (CustomerProjection projection:projections.getContent()){
             log.info("FirstName:{},LastName:{},projection:{}",projection.getFirstName(),projection.getLastName(),projection.getFullName());
         }

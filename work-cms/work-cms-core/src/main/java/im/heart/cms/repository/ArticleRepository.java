@@ -1,8 +1,7 @@
 package im.heart.cms.repository;
 
+import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.entity.Article;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -27,7 +26,7 @@ public interface ArticleRepository extends JpaRepository<Article, BigInteger>, J
      */
     @Modifying
     @Transactional(rollbackOn = Exception.class)
-    @Query("update Article model set hits=hits+1 WHERE model.id = :id")
+    @Query("UPDATE Article model SET hits=hits+1 WHERE model.id = :id")
     public void updateHitsById(@Param("id") BigInteger id);
 
     /**
@@ -36,6 +35,7 @@ public interface ArticleRepository extends JpaRepository<Article, BigInteger>, J
      * @param categoryId
      * @return
      */
-    @Query(value = "select model.id ,model.title from cms_article model where  ( model.id >:id  or model.id <:id ) and id <>:id and model.category_id = :categoryId and model.is_pub = 1 order by  model.id limit 2",nativeQuery = true)
-    public List<Article> findNearId(@Param("id") BigInteger id, @Param("categoryId") BigInteger categoryId);
+    @Query(nativeQuery = true,value = "SELECT model.id AS id ,model.title AS title FROM #{#entityName} model WHERE  ( model.id >:id  or model.id <:id ) AND model.id <>:id AND model.category_id = :categoryId AND model.is_pub = 1 ORDER BY  model.id LIMIT 2")
+    public List<ArticleDTO> queryNearById(@Param("id") BigInteger id, @Param("categoryId") BigInteger categoryId);
+
 }

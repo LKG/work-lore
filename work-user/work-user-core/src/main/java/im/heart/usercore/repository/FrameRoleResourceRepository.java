@@ -27,6 +27,11 @@ public interface FrameRoleResourceRepository extends JpaRepository<FrameRoleReso
 	public List<FrameRoleResource> findByRoleCodeIn(Iterable<String> roleCodes);
 
 	public List<FrameRoleResource> findByRoleCodeIn(String... roleCodes);
+
+	/**
+	 * 根据角色Id 删除角色关联资源
+	 * @param roleId
+	 */
 	@Modifying
 	@Transactional(rollbackOn = Exception.class)
 	@Query("DELETE FROM FrameRoleResource model WHERE model.roleId = :roleId")

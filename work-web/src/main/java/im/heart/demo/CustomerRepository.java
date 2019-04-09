@@ -111,9 +111,11 @@ public interface CustomerRepository extends JpaRepository<Customer, Long>{
     @Query("select c from Customer c where c.firstName=:name or c.lastName=:name")
     Page<Customer> findByName(@Param("name") String name2,Pageable pageable);
     @QueryHints(forCounting = false)
-    @Query(value = "SELECT c.firstName as firstName,c.lastName as lastName from Customer  c ")
+    @Query(value = "SELECT c.id AS id ,c.firstName as firstName,c.lastName as lastName from Customer  c ")
     Page<CustomerProjection>  findAllProjectedBy(Pageable pageable);
 
-    @Query(value ="SELECT c.first_name as firstName,c.last_name as lastName from customer  c limit 1",nativeQuery = true)
-    List<CustomerDTO> findAllProjectedBy();
+    @Query(value ="SELECT c.id AS id ,c.first_name AS firstName,c.last_name AS lastName FROM customer  c LIMIT 1",nativeQuery = true)
+    List<CustomerProjection> findAllProjectedBy();
+    @Query(value ="SELECT c.first_name AS firstName,c.last_name AS lastName FROM customer  c LIMIT 1",nativeQuery = true)
+    List<CustomerDTO> findAllProjectedBy2();
 }

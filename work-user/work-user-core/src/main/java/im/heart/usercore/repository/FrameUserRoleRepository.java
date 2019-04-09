@@ -26,9 +26,12 @@ public interface FrameUserRoleRepository extends JpaRepository<FrameUserRole, Bi
 	 * @return
 	 */
 	public List<FrameUserRole> findByUserId(BigInteger userId);
-	
 
-	
+
+	/**
+	 * 根据用户id,删除用户拥有角色记录
+	 * @param userId
+	 */
 	@Modifying
 	@Transactional
 	@Query("DELETE FROM FrameUserRole model WHERE model.userId = :userId")

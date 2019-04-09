@@ -1,5 +1,6 @@
 package im.heart.cms.service;
 
+import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.entity.Article;
 import im.heart.core.service.CommonService;
 
@@ -23,7 +24,7 @@ public interface   ArticleService extends CommonService<Article, BigInteger>{
 	 */
 	public List<Article>  saveAll(Iterable<Article> entities);
 
-	public List<Article> findNearId(BigInteger id,BigInteger categoryId);
+	public List<ArticleDTO> queryNearById(BigInteger id, BigInteger categoryId);
 
 	public void addUpdateHitsTask(BigInteger id);
 
