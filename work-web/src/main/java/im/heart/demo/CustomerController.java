@@ -1,5 +1,6 @@
 package im.heart.demo;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,8 @@ import java.util.List;
 public class CustomerController {
     @Autowired
     private CustomerRepository repository;
-
+    @Autowired
+    JPAQueryFactory queryFactory;
     /**
      * 初始化数据
      */

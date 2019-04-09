@@ -9,14 +9,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+
 import javax.persistence.QueryHint;
-import java.util.Collection;
 import java.util.List;
 
 import static org.hibernate.jpa.QueryHints.HINT_COMMENT;
 
-public interface CustomerRepository extends JpaRepository<Customer, Long>,QuerydslPredicateExecutor<Customer> {
+public interface CustomerRepository extends JpaRepository<Customer, Long>{
     /**
      * 根据lastName查询结果
      * @param lastName
