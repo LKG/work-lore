@@ -15,8 +15,8 @@
         'jquery.pin': '${appHost}/modules/jquery.pin',
 	  },
 	  alias: {
-		'$': 'jquery/1.8.2/jquery.min.js',
-		'jquery': 'jquery/1.8.2/jquery.min.js',
+		'$': 'jquery/jquery-1.12.4.min.js',
+		'jquery': 'jquery/jquery-1.12.4.min.js',
 	    'store': 'store/1.3.7/store.js',
 	    'editor.md': 'editor.md/editormd.min.js',
 	    'link-dialog': 'editor.md/plugins/link-dialog/link-dialog.js',
