@@ -18,6 +18,11 @@
         </dependency>
         <dependency>
             <groupId>im.heart</groupId>
+            <artifactId>work-conf</artifactId>
+            <version>0.1.7-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>im.heart</groupId>
             <artifactId>work-cms-domain</artifactId>
             <version>0.1.7-SNAPSHOT</version>
         </dependency>

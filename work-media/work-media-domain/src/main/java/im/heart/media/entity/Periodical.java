@@ -66,7 +66,7 @@ public class Periodical implements AbstractEntity<BigInteger> {
      *
      */
     private static final long serialVersionUID = 4316965064793331760L;
-
+    private static final Integer MAX_TITLE_LENGTH = 20;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 32, name = "ID", nullable = false, unique = true, updatable = false)
@@ -242,8 +242,8 @@ public class Periodical implements AbstractEntity<BigInteger> {
     }
     @Transient
     public String getShortTitle() {
-        if (!StringUtils.isBlank(periodicalName) && (periodicalName.length() > 14)) {
-            return periodicalName.substring(0, 14) + "...";
+        if (!StringUtils.isBlank(periodicalName) && (periodicalName.length() > MAX_TITLE_LENGTH)) {
+            return periodicalName.substring(0, MAX_TITLE_LENGTH) + "...";
         }
         return periodicalName;
     }

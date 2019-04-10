@@ -12,7 +12,7 @@
                              <ul>
                               <#if docs??&&docs.content??>
                                   <#list docs.content as model>
-                                     <li><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                     <li><i class="fa fa-${model.fileHeader!''}" style="margin-right: 10px;"></i> <a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                   </#list>
                               </#if>
                              </ul>
@@ -34,7 +34,7 @@
                              <ul>
                               <#if docs??&&docs.content??>
                                   <#list docs.content as model>
-                                     <li><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                     <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i> <a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                   </#list>
                               </#if>
                              </ul>
@@ -68,8 +68,8 @@
                             <#if freeDocs??&&freeDocs.content??>
                                 <div class="mc">
                                     <ul>
-                                        <#list freeDocs.content as freeDoc>
-                                            <li><a href="${appHost}/doc/${freeDoc.id!''}.jhtml" >${freeDoc.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${freeDoc.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                        <#list freeDocs.content as model>
+                                            <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i> <a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                         </#list>
                                     </ul>
                                  </div>
@@ -81,7 +81,7 @@
                                     <ul>
                                      <#if docs??&&docs.content??>
                                         <#list docs.content as model>
-                                            <li><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                            <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                         </#list>
                                     </#if>
                                     </ul>
@@ -108,7 +108,7 @@
                             <ul>
                                 <#if docs??&&docs.content??>
                                     <#list docs.content as model>
-                                        <li><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                        <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                     </#list>
                                 </#if>
                             </ul>
@@ -129,7 +129,7 @@
                             <ul>
                                 <#if docs??&&docs.content??>
                                     <#list docs.content as model>
-                                        <li><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                        <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                     </#list>
                                 </#if>
                             </ul>
@@ -150,7 +150,7 @@
                             <ul>
                                 <#if docs??&&docs.content??>
                                     <#list docs.content as model>
-                                        <li><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                        <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                     </#list>
                                 </#if>
                             </ul>
