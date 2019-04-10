@@ -196,13 +196,9 @@ public class CustomerController {
      */
     @RequestMapping("/findAllProjections")
     public void findAllProjections(){
-//        List<ArticleDTO> projections=articleService.queryNearById(new BigInteger("1000"),new BigInteger("0"));
-//        for (ArticleDTO projection:projections){
-//            log.info("@@@@@title:{},LastName:{},projection:{}",projection.getTitle());
-//        }
-        List<CustomerDTO>  projections2 = repository.findAllProjectedBy2();
-        for (CustomerDTO projection:projections2){
-            log.info("projectionprojectionprojectionprojection:{},LastName:{},projection:{}",projection.getFirstName(),projection.getLastName());
+        List<ArticleDTO> projections=articleService.queryNearById(new BigInteger("1000"),new BigInteger("0"));
+        for (ArticleDTO projection:projections){
+            log.info("@@@@@title:{},LastName:{},projection:{}",projection.getTitle());
         }
     }
     /**
@@ -212,8 +208,6 @@ public class CustomerController {
     public void findAllProjectionsPage(){
         Pageable pageable =  DynamicPageRequest.buildPageRequest(1,1,"id",Sort.Direction.DESC,Customer.class);
         Page<CustomerProjection> projections = repository.findAllProjectedBy(pageable);
-
-
         for (CustomerProjection projection:projections.getContent()){
             log.info("FirstName:{},LastName:{},projection:{}",projection.getFirstName(),projection.getLastName(),projection.getFullName());
         }

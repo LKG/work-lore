@@ -3,7 +3,7 @@ define(function (require, exports, moudles) {
 	var jQuery = require('jquery');
 	var pin = require('jquery.pin');
     var template = require('arttemplate');
-    var lazyload = require('../../modules/lazyload/lazyload.min.js');
+    var lazyload = require('lazyload');
 	var $msg= require('/js/common/alerts.js');
 	var $baseRoot=$("#baseRoot");
 	var baseRoot=$baseRoot.attr("href");

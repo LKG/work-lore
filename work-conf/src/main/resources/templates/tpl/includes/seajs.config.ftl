@@ -5,7 +5,6 @@
 	  base: '${appHost}/',
 	 // 设置路径，方便跨目录调用
 	  paths: {
-		'jquery': '${appHost}/modules/jquery',
 		'store': '${appHost}/modules/store',
 		'editor.md': '${appHost}/modules/editor.md',
 		'select2': '${appHost}/modules/select2',
@@ -15,8 +14,8 @@
         'jquery.pin': '${appHost}/modules/jquery.pin',
 	  },
 	  alias: {
-		'$': 'jquery/jquery-1.12.4.min.js',
-		'jquery': 'jquery/jquery-1.12.4.min.js',
+		'$': '${appHost}/js/common/jquery.js',
+		'jquery': '${appHost}/js/common/jquery.js',
 	    'store': 'store/1.3.7/store.js',
 	    'editor.md': 'editor.md/editormd.min.js',
 	    'link-dialog': 'editor.md/plugins/link-dialog/link-dialog.js',

@@ -35,7 +35,7 @@ public interface ArticleRepository extends JpaRepository<Article, BigInteger>, J
      * @param categoryId
      * @return
      */
-    @Query(nativeQuery = true,value = "SELECT model.id AS id ,model.title AS title FROM #{#entityName} model WHERE  ( model.id >:id  or model.id <:id ) AND model.id <>:id AND model.category_id = :categoryId AND model.is_pub = 1 ORDER BY  model.id LIMIT 2")
+    @Query(nativeQuery = true,value = "SELECT model.id AS id ,model.title AS title FROM #{#tableName} model WHERE  ( model.id >:id  or model.id <:id ) AND model.id <>:id AND model.category_id = :categoryId AND model.is_pub = 1 ORDER BY  model.id LIMIT 2")
     public List<ArticleDTO> queryNearById(@Param("id") BigInteger id, @Param("categoryId") BigInteger categoryId);
 
 }

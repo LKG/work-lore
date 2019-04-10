@@ -13,10 +13,6 @@
     <artifactId>work-web</artifactId>
     <dependencies>
         <dependency>
-            <groupId>com.alipay.sdk</groupId>
-            <artifactId>alipay-sdk-java</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-mp</artifactId>
         </dependency>
@@ -46,6 +42,11 @@
       <dependency>
             <groupId>im.heart</groupId>
             <artifactId>work-admin</artifactId>
+            <version>0.1.5-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>im.heart</groupId>
+            <artifactId>work-pay</artifactId>
             <version>0.1.5-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -111,6 +112,10 @@
                         <include>
                             <groupId>im.heart</groupId>
                             <artifactId>work-conf</artifactId>
+                        </include>
+                        <include>
+                            <groupId>im.heart</groupId>
+                            <artifactId>work-pay</artifactId>
                         </include>
                         <include>
                             <groupId>im.heart</groupId>

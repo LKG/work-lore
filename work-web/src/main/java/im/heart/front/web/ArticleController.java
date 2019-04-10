@@ -48,8 +48,8 @@ public class ArticleController extends AbstractController {
         Article po = this.articleService.findById(id);
         System.out.println(po.getCategoryId());
         System.out.println(po.getId());
-        List<ArticleDTO> nearList=this.articleService.queryNearById(po.getId(),po.getCategoryId());
-        model.put("lastArticle",nearList);
+//        List<ArticleDTO> nearList=this.articleService.queryNearById(po.getId(),po.getCategoryId());
+//        model.put("lastArticle",nearList);
         super.success(model, po);
         return new ModelAndView(VIEW_DETAILS);
     }

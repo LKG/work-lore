@@ -95,81 +95,6 @@
                     <#--经济-->
                     <#--</a>-->
                     <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-politics"  data-key="politics"  >-->
-                    <#--政治-->
-                    <#--</a>-->
-                    <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-tj"  data-key="tj"  >-->
-                    <#--图解-->
-                    <#--</a>-->
-                    <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-history"  data-key="history"  >-->
-                    <#--历史-->
-                    <#--</a>-->
-                    <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-keji"  data-key="keji"  >-->
-                    <#--科技-->
-                    <#--</a>-->
-                    <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-law"  data-key="law"  >-->
-                    <#--法律-->
-                    <#--</a>-->
-                    <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-ll"  data-key="ll"  >-->
-                    <#--理论-->
-                    <#--</a>-->
-                    <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-nationaldefense"  data-key="nationaldefense"  >-->
-                    <#--国防-->
-                    <#--</a>-->
-                    <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-kejiao"  data-key="kejiao"  >-->
-                    <#--科教-->
-                    <#--</a>-->
-                    <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-jiaoyu"  data-key="jiaoyu"  >-->
-                    <#--教育-->
-                    <#--</a>-->
-                    <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-international"  data-key="international"  >-->
-                    <#--国际-->
-                    <#--</a>-->
-                    <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-culture"  data-key="culture"  >-->
-                    <#--文化-->
-                    <#--</a>-->
-                    <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-dangjian"  data-key="dangjian"  >-->
-                    <#--党建-->
-                    <#--</a>-->
-                    <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-community"  data-key="community"  >-->
-                    <#--社会-->
-                    <#--</a>-->
-                    <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-ecology"  data-key="ecology"  >-->
-                    <#--生态-->
-                    <#--</a>-->
-                    <#--</li>-->
-                    <#--<li role="presentation" style="cursor:pointer" class="" >-->
-                    <#--<a id="my-tab-other"  data-key="other"  >-->
-                    <#--其他-->
-                    <#--</a>-->
-                    <#--</li>-->
                 </ul>
             </div>
             <div class="panel-body">
@@ -186,10 +111,8 @@
                                     </a>
                                     <div class="caption">
                                         <h3>
-                                            <a href="/p/buttons/" title=" ${model.periodicalName!''}" target="_blank" >
-                                                ${model.shortTitle!''}
-                                                <br>
-                                            </a>
+                                            ${model.shortTitle!''}
+                                            <br>
                                         </h3>
                                     </div>
                                 </div>

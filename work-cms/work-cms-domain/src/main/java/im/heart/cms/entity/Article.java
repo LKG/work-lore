@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
  * @author lkg
  * @Desc 文章实体类
  */
-@Entity
+@Entity()
 @Table(name = "cms_article")
 @DynamicUpdate()
 @DynamicInsert()
