@@ -11,7 +11,6 @@
 		'galleria': '${appHost}/modules/galleria',
 		'swiper': '${appHost}/modules/swiper',
 		'printThis': '${appHost}/modules/printThis',
-        'jquery.pin': '${appHost}/modules/jquery.pin',
 	  },
 	  alias: {
 		'$': '${appHost}/js/common/jquery.js',
@@ -38,7 +37,7 @@
 	    'lrz': '${appHost}/modules/localResizeIMG/dist/lrz.all.bundle.js',
 	    'select2': 'select2/4.0.3/js/select2.full.min.js',
         'printThis': 'printThis/printThis.js',
-        'jquery.pin': 'jquery.pin/jquery.pin.js',
+        'pin': '${appHost}/js/common/jquery.pin.js',
 	    'galleria': 'galleria/dist/galleria.js',
 	    'swiper': 'swiper/js/swiper.jquery.umd.min.js',
 	  },
