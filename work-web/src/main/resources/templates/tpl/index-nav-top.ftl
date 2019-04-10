@@ -12,7 +12,7 @@
             <li><a href="${appHost}/docs.jhtml">免费资料</a></li>
             <li><a href="${appHost}/made.jhtml"> 定制</a></li>
             <li><a href="${appHost}/topic.jhtml">专题</a></li>
-            <li><a href="${appHost}/group.jhtml"><i class="fa fa-fire text-danger"></i>信息交流</a></li>
+            <li><a href="${appHost}/group.jhtml"><i class="fa fa-fire text-danger"></i>QQ群交流</a></li>
         </ul>
     </div>
     <div class="dd-inner" >

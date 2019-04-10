@@ -63,7 +63,9 @@
                 <#list result.content as model>
                     <div class="col-sm-4 col-md-3">
                             <div class="thumbnail">
-                                <img src="${model.imgUrl!''}" style="width: 200px;" alt="...">
+                                <a href="${model.shareShortUrl!''}" target="_blank">
+                                      <img src="${model.imgUrl!''}" style="width: 200px;" alt="...">
+                                </a>
                                 <div class="caption">
                                     <p>群号：<code>${model.qqNum!''}</code></p>
                                     <p>名称：${model.name!''} <code>lv${model.qqLevel!'1'}</code></p>
