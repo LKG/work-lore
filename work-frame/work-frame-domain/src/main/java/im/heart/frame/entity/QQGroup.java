@@ -53,6 +53,9 @@ public class QQGroup implements AbstractEntity<BigInteger> {
 	@Column(name = "IMG_URL",length = 512)
 	private String imgUrl;
 
+	@Column(name = "SHARE_SHORT_URL",length = 512)
+	private String shareShortUrl;
+
 	@JSONField (format="yyyy-MM-dd HH:mm:ss" )
 	@DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	@Column(nullable=false, name = "CREATE_TIME" ,updatable = false)

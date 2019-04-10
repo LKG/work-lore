@@ -7,17 +7,22 @@
                 <i class="tab-ico"></i><em class="tab-text">购物车</em>
             </div>
             <div data-type="bar" class="J-trigger jdm-toolbar-tab jdm-tbar-tab-follow" data-name="follow" data-login="true">
-                <i class="tab-ico"></i> <em class="tab-text">我的关注</em>
+                <a href="${appHost}/userinfo/follows.jhtml" target="_blank">
+                    <i class="tab-ico"></i> <em class="tab-text">我的关注</em>
+                </a>
             </div>
             <div data-type="bar"  class="J-trigger jdm-toolbar-tab jdm-tbar-tab-history hide" data-name="history" data-login="true">
                 <i class="tab-ico"></i><em class="tab-text">我的足迹</em>
             </div>
-            <div class="J-trigger jdm-toolbar-tab jdm-tbar-tab-message hide" data-name="message"><a target="_blank" href="#">
+            <div class="J-trigger jdm-toolbar-tab jdm-tbar-tab-message hide" data-name="message">
+            <a target="_blank" href="#">
                 <i class="tab-ico"></i><em class="tab-text">我的消息</em>
             </a>
             </div>
             <div data-type="bar" class="J-trigger jdm-toolbar-tab jdm-tbar-tab-jimi" data-name="jimi"  >
-                <i class="tab-ico"></i><em class="tab-text">咨询</em>
+                <a href="tencent://message/?uin=790944904&amp;site=q${appHost}&amp;menu=yes">
+                     <i class="tab-ico"></i><em class="tab-text">咨询QQ:790944904</em>
+                </a>
             </div>
         </div>
         <div class="jdm-toolbar-footer">
