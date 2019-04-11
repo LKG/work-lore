@@ -85,7 +85,9 @@ define(function (require, exports, moudles) {
             }
         });
     });
-    $(".pin").pin({
-        containerSelector: ".container"
-    })
+    setTimeout(function() {
+        $(".pin").pin({
+            containerSelector: ".container"
+        });
+	},100);
 });
