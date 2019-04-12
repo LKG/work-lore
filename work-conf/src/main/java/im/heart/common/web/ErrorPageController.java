@@ -1,5 +1,6 @@
 package im.heart.common.web;
 
+import im.heart.core.CommonConst;
 import im.heart.core.web.AbstractController;
 import im.heart.core.web.ResponseError;
 import im.heart.core.web.enums.WebError;
@@ -19,7 +20,7 @@ public class ErrorPageController extends AbstractController implements ErrorCont
     public ModelAndView error(HttpServletRequest request, HttpServletResponse response,
                                 ModelMap model){
         super.error(model,new ResponseError(WebError.REQUEST_EXCEPTION));
-        return  new ModelAndView("/errors/404");
+        return new ModelAndView(CommonConst.RequestResult.PAGE_ERROR);
     }
 
     @Override
