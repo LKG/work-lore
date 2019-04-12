@@ -129,6 +129,10 @@ alipay:
   return_url: http://test.gongwk.com/zfzpay/paySuccess.html
   #请求网关地址
   URL: https://openapi.alipaydev.com/gateway.do
+dingtalk:
+  appId: dingoaqzoeij0scglcaclb
+  appSecret: vgufnnRTDY-jnwQTl348uy4MJHdyqu0ZbBkmKkqyge9sd8OYeVyu2mz0xQM1wo04
+  cllbackUri: http://
 qcloud:
   sms:
     appId: 1400197686

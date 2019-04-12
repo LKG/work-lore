@@ -27,6 +27,12 @@
         .artinfo{
             padding-left: 2px;
         }
+        .article-content p {
+            margin-bottom: 5px;
+            text-indent: 2em;
+            color: #333333;
+            line-height: 2;
+        }
         #row-main{
             padding-bottom: 15px;padding-top: 15px;border: 1px solid #ddd;box-shadow: 0 1px 5px rgba(4,0,0,.1);
         }
