@@ -39,7 +39,6 @@ public class LoginController extends AbstractController {
 	protected static final String loginFrom="login";
 	
 	protected static final String loginDialogFrom="pages/login-in";
-	protected static final String appLoginFrom="app/login-in";
 
 	private static int MAX_LOGIN_TIMES=2;
 
@@ -50,10 +49,10 @@ public class LoginController extends AbstractController {
 		String userAgent = request.getHeader(HttpHeaders.USER_AGENT);
 		if(userAgent.indexOf("Android") != -1){
 		    //安卓
-			return new ModelAndView(appLoginFrom, model);
+			return new ModelAndView(loginDialogFrom, model);
 		}else if(userAgent.indexOf("iPhone") != -1 || userAgent.indexOf("iPad") != -1){
 		   //苹果
-			return new ModelAndView(appLoginFrom, model);
+			return new ModelAndView(loginDialogFrom, model);
 		}
 		if(BaseUtils.isAjaxRequest(request)){
 			return new ModelAndView(loginDialogFrom, model);
