@@ -17,15 +17,15 @@
                         <!---  --->
                         <div class="cate_part_col1">
                             <div class="cate_channel">
-                                <a href="#" class="cate_channel_lk"  target="_blank">领导讲话<i class="fa fa-angle-right"></i></a>
-                                <a href="#" class="cate_channel_lk"  target="_blank">民政工作<i class="fa fa-angle-right"></i></a>
-                                <a href="#" class="cate_channel_lk"  target="_blank">统战工作<i class="fa fa-angle-right"></i></a>
-                                <a href="#" class="cate_channel_lk"  target="_blank">统计工作<i class="fa fa-angle-right"></i></a>
+                                <a href="#" class="cate_channel_lk"  target="_blank">领导讲话<i class="fa fa-angle-right"></i></a>
+                                <a href="#" class="cate_channel_lk"  target="_blank">民政工作<i class="fa fa-angle-right"></i></a>
+                                <a href="#" class="cate_channel_lk"  target="_blank">统战工作<i class="fa fa-angle-right"></i></a>
+                                <a href="#" class="cate_channel_lk"  target="_blank">统计工作<i class="fa fa-angle-right"></i></a>
                             </div>
                             <div class="cate_detail">
                                 <dl class="cate_detail_item cate_detail_item1">
                                     <dt class="cate_detail_tit" >
-                                        <a href="#" class="cate_detail_tit_lk" target="_blank">民政工作<i class="fa fa-angle-right"></i></a>
+                                        <a href="#" class="cate_detail_tit_lk" target="_blank">民政工作<i class="fa fa-angle-right"></i></a>
                                     </dt>
                                     <dd class="cate_detail_con" >
                                         <a href="#" class="cate_detail_con_lk" target="_blank">民政工作</a>
