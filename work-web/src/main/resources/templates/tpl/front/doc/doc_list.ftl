@@ -105,7 +105,7 @@
                     <#else>
                         <#list result.content as model>
                             <div class="col-sm-6 col-md-4 col-lg-3 doc-col">
-                                <div class="thumbnail" style="">
+                                <div class="thumbnail" >
                                     <a href="${appHost}/doc/${model.id!''}.jhtml" title="${model.periodicalName!''}" target="_blank" >
                                         <img class="lazy" src=""  data-original="${model.coverImgUrl!''}"  width="300" height="150" data-src="" alt="">
                                     </a>

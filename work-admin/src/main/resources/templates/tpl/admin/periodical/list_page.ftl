@@ -80,6 +80,9 @@
 				<button id="publish" class="btn btn-danger">
 					<i class="fa fa-key"></i> 发布
 				</button>
+                <button id="parse" class="btn btn-danger" >
+                    <i class="fa fa-repeat"></i> 重新生成
+                </button>
 				<button id="lock" class="btn btn-danger" >
 					<i class="fa fa-lock"></i> 下架
 				</button>
@@ -160,6 +163,7 @@
 							</#if>
 							<a   href="${appHost}/admin/periodical/${model.id}.jhtml"   title="修改" > <i id="edit-${model.id}" title="修改"  data="${model.id}" class="btn-edit fa fa-edit"></i></a>
 							<i id="view-${model.id}}"   title="查看日志" data="${model.id}" class="btn-view fa fa-eye"></i>
+                            <i id="parse-${model.id}}"   title="重新生成" data="${model.id}" class="btn-parse fa fa-repeat"></i>
 							<i id="remove-${model.id}"  title="删除" data="${model.id}" class="btn-remove fa fa-trash-o"></i>
 						</td>
 					</tr>
@@ -221,7 +225,9 @@
 			 <i id="lock-{{model.id}}" title="下架"  data="{{model.id}}" class="btn-lock fa fa-lock"></i>
 			 {{/if}}
 			 <a   href="${appHost}/admin/periodical/{{model.id}}.jhtml"   title="修改" > <i id="edit-{{model.id}}" title="修改"  data="{{model.id}}" class="btn-edit fa fa-edit"></i></a>
+
 			 <i id="view-{{model.id}}"   title="查看日志" data="{{model.id}}" class="btn-view fa fa-eye"></i>
+             <i id="parse-{{model.id}}" title="下架"  data="{{model.id}}" class="btn-parse fa fa-repeat"></i>
 			 <i id="remove-{{model.id}}"  title="删除" data="{{model.id}}" class="btn-remove fa fa-trash-o"></i>
 		 </td>
 	 </tr>

@@ -108,6 +108,16 @@ _display: none;
 	padding-left: 20px;
 	height: 24px;
 }
+.cate_channel_lk {
+    *cursor: pointer;
+    float: left;
+    margin-right: 10px;
+    padding: 0 10px;
+    height: 24px;
+    background-color: #333;
+    line-height: 24px;
+    color: #fff;
+}
 .cate_detail{
 	overflow: hidden;
 	*zoom: 1;
@@ -421,10 +431,9 @@ _display: block;
 	transition: top .25s ease;
 }
 /*轮播图*/
-#lunbo{clear:both;position:absolute;top:0px;left:191px;width:600px;}
-#one{width:601px;overflow:hidden;height:457px;}
+#lunbo{clear:both;position:absolute;top:0px;left:191px;width:710px;}
+#one{overflow:hidden;height:457px;}
 #one li{float:left;width:0;}
-#one .on{width:600px;}
 #two .on{background:red;}
 #two{position:absolute;right:295px;bottom:10px}
 #two li{float:left;padding:1px  6px;border:1px solid #fff;margin-left:10px;background:#666;border-radius:20px;color:#fff;cursor: pointer;text-align:center;}
@@ -435,25 +444,13 @@ _display: block;
 #right{position:absolute;right:0px;top:215px;}
 #lunbo:hover .slider-page{display:block;}
 /*轮播图右边快报  服务栏*/
-.m1{border:1px solid #e4e4e4;position:absolute; height: 457px;right: 240px;top:0px;padding: 0px 0px;box-shadow: 0 1px 5px rgba(4,0,0,.1);}
-.m{width: 232px;font-size: 12px;border:1px solid #e4e4e4;height: 457px;position:absolute;right:0;top:0px;padding: 10px 2px;box-shadow: 0 1px 5px rgba(4,0,0,.1);}
+.m{width: 302px;font-size: 12px;border:1px solid #e4e4e4;height: 457px;position:absolute;right:0;top:0px;padding: 10px 2px;box-shadow: 0 1px 5px rgba(4,0,0,.1);}
 .mt{padding: 0px 10px 0px 20px ;border-bottom: 1px dotted #E8E8E7;height: 43px;line-height: 43px;}
 .mt h3{float:left;}
 .mt .extra{float:right;font: 400 9px/43px consolas;}
 .mc li{padding:8px 0 0 5px;}
 
 .mc li span{font-weight:700;margin-right:5px;}
-
-.rec {
-    width: 175px;
-}
-.rec_item, .rec_lk {
-    width: 175px;
-    height: 150px;
-}
-.rec_item {
-    margin-top: 3px;
-}
 
 .fa-xlxs:before ,.fa-xls:before{
 	content: "\f1c3";

@@ -101,7 +101,7 @@ public class UploadPeriodicalController extends AbstractController {
                     periodical.setUserId(user.getUserId());
                     periodical.setCategoryId(categoryId);
                     periodical.setCategoryCode(categoryCode);
-//                    periodical.setCityId(cityId);
+                    periodical.setCityId("0");
 //                    periodical.setCityName(cityName);
                     periodical.setPeriodicalName(StringUtils.substringBeforeLast(filename,"."));
                     periodical.setPeriodicalCode(periodicalCode);

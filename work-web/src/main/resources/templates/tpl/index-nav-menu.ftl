@@ -17,6 +17,7 @@
                         <!---  --->
                         <div class="cate_part_col1">
                             <div class="cate_channel">
+                                <a href="#" class="cate_channel_lk"  target="_blank">领导讲话<i class="fa fa-angle-right"></i></a>
                                 <a href="#" class="cate_channel_lk"  target="_blank">民政工作<i class="fa fa-angle-right"></i></a>
                                 <a href="#" class="cate_channel_lk"  target="_blank">统战工作<i class="fa fa-angle-right"></i></a>
                                 <a href="#" class="cate_channel_lk"  target="_blank">统计工作<i class="fa fa-angle-right"></i></a>

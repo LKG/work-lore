@@ -4,9 +4,12 @@ import im.heart.core.CommonConst;
 import im.heart.core.enums.Status;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
+import im.heart.core.utils.FileUtilsEx;
 import im.heart.core.web.AbstractController;
 import im.heart.media.entity.Periodical;
+import im.heart.media.parser.PeriodicalParser;
 import im.heart.media.service.PeriodicalService;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,6 +24,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.FileInputStream;
 import java.math.BigInteger;
 
 @Controller
@@ -31,6 +36,8 @@ public class AdminPeriodicalController extends AbstractController {
 	protected static final String VIEW_DETAILS="admin/periodical/details";
 	@Autowired
 	private PeriodicalService periodicalService;
+	@Autowired
+	private PeriodicalParser periodicalParser;
 
 	/**
 	 * 
@@ -80,6 +87,26 @@ public class AdminPeriodicalController extends AbstractController {
 			ModelMap model) {
 		for(BigInteger id:ids){
 			this.periodicalService.deleteById(id);
+		}
+		super.success(model);
+		return new ModelAndView(VIEW_SUCCESS);
+	}
+	@RequestMapping(value = apiVer+"/{ids}/parse",method = RequestMethod.POST)
+	protected ModelAndView parse(
+			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN , required = false) String token,
+			@PathVariable BigInteger[] ids,
+			HttpServletRequest request,
+			ModelMap model) {
+		for(BigInteger periodicalId:ids){
+			Periodical periodical=this.periodicalService.findById(periodicalId);
+			FileInputStream inputStream=null;
+			try {
+				inputStream=FileUtilsEx.openInputStream(new File(periodical.getRealFilePath()));
+				this.periodicalParser.addParserTask(periodical,inputStream);
+			}catch (Exception e){
+				logger.error(e.getStackTrace()[0].getMethodName(), e);
+				IOUtils.closeQuietly(inputStream);
+			}
 		}
 		super.success(model);
 		return new ModelAndView(VIEW_SUCCESS);

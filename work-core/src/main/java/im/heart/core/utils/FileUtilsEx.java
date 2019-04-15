@@ -146,7 +146,7 @@ public class FileUtilsEx extends FileUtils {
 	}
 
 	/**
-	 * 
+	 *
 	 * gzip解压
 	 * @param b
 	 * @return

@@ -22,63 +22,11 @@
         }
     </style>
     <style type="text/css">
-        .counter{
-            padding: 20px 0;
-            text-align: center;
-            position: relative;
-        }
-        .counter .counter-content{
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: #fff;
-            z-index: 1;
-            position: relative;
-            transition: all 0.3s ease 0s;
-        }
-        .counter .counter-content:before{
-            content: "";
-            width: 122%;
-            height: 122%;
-            border-radius: 50%;
-            border: 15px solid #f19f48;
-            border-bottom: 20px solid transparent;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-        }
-        .counter .counter-value{
-            font-size: 16px;
-            font-weight: 700;
-            color: rgba(0,0,0,0.7);
-            line-height: 80px;
-        }
         .m-container{
             width: 1210px;
             margin-top: 10px;
             padding: 10px 2px;
         }
-        .counter.red .counter-content:before{
-            border-color: #ef5f61;
-            border-bottom-color: transparent;
-        }
-        .counter.red .counter-content:after{ border-top-color: #ef5f61; }
-        .counter.red .counter-icon{ color: #ef5f61; }
-        .counter.red .title{ background: #ef5f61; }
-        .counter.blue .counter-content:before{
-            border-color: #4d9fcf;
-            border-bottom-color: transparent;
-        }
-        .counter.blue .counter-content:after{ border-top-color: #4d9fcf; }
-        .counter.blue .counter-icon{ color: #4d9fcf; }
-        .counter.blue .title{ background: #4d9fcf; }
-        .counter.purple .counter-content:before{
-            border-color: #a98ceb;
-            border-bottom-color: transparent;
-        }
-        .counter.purple .counter-content:after{ border-top-color: #a98ceb; }
-        .counter.purple .counter-icon{ color: #a98ceb; }
         .counter.purple .title{ background: #a98ceb; }
         .dd-inner{
             display: block;

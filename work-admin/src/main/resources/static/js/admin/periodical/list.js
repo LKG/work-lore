@@ -119,6 +119,47 @@ define(function(require, exports, moudles) {
         }).showModal();
 
     });
+    var $parse=$("#parse");
+    $parse.on("click", function() {
+        var $this=$(this);
+        var dataIds =getCheckedBox();
+        if(dataIds.length==0 ){
+            $msg.alert($this,"请选择要的重新生成的数据");
+            return;
+        }
+        if(dataIds.length>15 ){
+            $msg.alert($this,"最多一次重新生成的15期");
+            return;
+        }
+        var id = $this.attr("id");
+        var d = dialog({
+            id:id,
+            title : '消息',
+            content : '是否要重新生成选中的数据？',
+            okValue : '确 定',
+            ok : function() {
+                var that = this;
+                that.title('提交中..');
+                $.httpUtil.curl({
+                    url : url.api+"/" +dataIds + "/parse.json",
+                    type : "post",
+                    loading : true,
+                    dataType : "json",
+                    data : null,
+                    success :function(data) {
+                        $msg.alert($this,"任务提交成功");
+                        $("#page").val(1);
+                        $this.removeAttr("disabled");
+                        search(false);
+                    },
+                });
+                return true;
+            },
+            cancelValue : '取消',
+            cancel : function() {
+            }
+        }).showModal();
+    });
     var $lock=$("#lock");
     $lock.on("click", function() {
         var $this=$(this);
@@ -177,7 +218,7 @@ define(function(require, exports, moudles) {
         var d = dialog({
             id:id,
             title : '消息',
-            content : '是否要发布该扫描件？',
+            content : '是否要发布该扫文档？',
             okValue : '确 定',
             ok : function() {
                 var that = this;
@@ -190,6 +231,36 @@ define(function(require, exports, moudles) {
                     data : null,//修改
                     success : function(data) {
 						$msg.alert($this,"更新成功");
+                        search(false);
+                    },
+                });
+                return true;
+            },
+            cancelValue : '取消',
+            cancel : function() {
+            }
+        }).showModal();
+    });
+    $tbody.on("click", ".operate .btn-parse", function() {
+        var $this=$(this);
+        var id = $(this).attr("id");
+        var dataId = $this.attr("data");
+        var d = dialog({
+            id:id,
+            title : '消息',
+            content : '是否要重新生成？',
+            okValue : '确 定',
+            ok : function() {
+                var that = this;
+                that.title('提交中..');
+                $.httpUtil.curl({
+                    url : url.api+"/" +dataId + "/parse.json",
+                    type : "post",
+                    loading : true,
+                    dataType : "json",
+                    data : null,//修改
+                    success :function(data) {
+                        $msg.alert($this,"更新成功");
                         search(false);
                     },
                 });
