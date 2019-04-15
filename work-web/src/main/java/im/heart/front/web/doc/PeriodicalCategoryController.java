@@ -1,4 +1,4 @@
-package im.heart.front.web;
+package im.heart.front.web.doc;
 
 import im.heart.core.CommonConst;
 import im.heart.core.CommonConst.RequestResult;

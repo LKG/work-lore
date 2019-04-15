@@ -1,4 +1,4 @@
-package im.heart.front.web;
+package im.heart.front.web.doc;
 
 import com.google.common.collect.Lists;
 import im.heart.core.CommonConst;
