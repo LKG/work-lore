@@ -103,7 +103,46 @@ border-radius: 3px 0 0 3px;
 transition: left .3s ease-in-out .1s;
 _display: none;
 }
-
+.cate_channel {
+	overflow: hidden;
+	padding-left: 20px;
+	height: 24px;
+}
+.cate_detail{
+	overflow: hidden;
+	*zoom: 1;
+	padding: 10px 0 0 20px;
+}
+.cate_detail_item {
+	position: relative;
+	padding-left: 80px;
+}
+.cate_detail_tit {
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: 6px;
+	width: 70px;
+	text-align: right;
+	font-weight: 700;
+	white-space: nowrap;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+}
+.cate_detail_con_lk {
+	float: left;
+	margin: 3px 0;
+	padding: 0 10px;
+	height: 16px;
+	border-left: 1px solid #e0e0e0;
+	line-height: 16px;
+	white-space: nowrap;
+}
+.cate_detail_con {
+	overflow: hidden;
+	*zoom: 1;
+	padding: 5px 0;
+}
 
 .jdm-toolbar-footer {
 position: absolute;

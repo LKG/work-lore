@@ -84,6 +84,7 @@
             display: block;
         }
     </style>
+  <#assign template="index"/>
 </head>
 <body id="top">
 <!-- toolbar begin-->
@@ -119,7 +120,6 @@
 <script>
     seajs.use("js/search.js?v="+Math.random());
 </script>
-<#include "/includes/jquery.ftl" />
 <script src="js/index.js?v=${ver!'1'}"></script>
 <#include "/includes/baidu-zn.ftl" />
 </html>
