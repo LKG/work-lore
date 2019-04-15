@@ -67,7 +67,7 @@ define(function(require, exports, moudles) {
 
 	$("#orgBtnSelectAll").on("change",function() {
 		var $checkBox = $orgTbody.find("input[name='id']:not(:disabled)");
-		if ($(this).attr("checked")) {
+		if ($(this).is(':checked')) {
 			$checkBox.attr("checked",'true');// 全选
 	    } else {
 			$checkBox.removeAttr("checked");// 反选
@@ -186,7 +186,7 @@ define(function(require, exports, moudles) {
 	var $relatedOrgTbody = $("#related-org-tbody");
 	$("#relatedOrgBtnSelectAll").on("change",function() {
 		var $checkBox = $relatedOrgTbody.find("input[name='id']:not(:disabled)");
-		if ($(this).attr("checked")) {
+		if ($(this).is(':checked')) {
 			$("#related-remove-btn").removeAttr("disabled");
 			$checkBox.attr("checked",'true');// 全选
 	    } else {

@@ -289,7 +289,7 @@ define(function(require, exports, moudles) {
 							// 全选事件
 							$("#btSelectAll").on("change",function() {
 								var $checkBox = $tbody.find("input[type='checkbox']:not(:disabled)");
-								if ($(this).attr("checked")) {
+								if ($(this).is(':checked')) {
 									$checkBox.attr("checked",'true');// 全选
 								//	$("#generate,#disabled,#publish").removeAttr("disabled");
 							    } else {

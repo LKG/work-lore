@@ -15,7 +15,7 @@ define(function (require, exports, moudles) {
 	$roleResourcebody.find("input[name='resourceId']:not(:disabled)").on("change", function() {
 		var val=$(this).val();
 		var $checkBox = $roleResourcebody.find("input[name=permissionIds_"+val+"]:not(:disabled)");
-		if ($(this).attr("checked")) {
+		if ($(this).is(':checked')) {
 			$checkBox.attr("checked",'true');// 全选
 	    } else {
 			$checkBox.removeAttr("checked");// 反选

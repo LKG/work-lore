@@ -26,10 +26,10 @@
         <div class="col-sm-3 col-md-4">
             <div class="panel panel-default" style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
                 <div class="panel-heading" style="border-left: 3px solid #FF970D;">
-                    精选文章
+                    工作总结
                 </div>
                 <div class="panel-body">
-                     <@media.periodical categoryCode="010" >
+                     <@media.periodical categoryCode="018001" >
                          <div class="mc">
                              <ul>
                               <#if docs??&&docs.content??>

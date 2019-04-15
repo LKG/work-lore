@@ -75,7 +75,7 @@ define(function(require, exports, moudles) {
 	});
     $("#btSelectAll").on("change",function() {
         var $checkBox = $tbody.find("input[name='id']:not(:disabled)");
-        if ($(this).attr("checked")) {
+        if ($(this).is(':checked')) {
             $checkBox.attr("checked",'true');// 全选
         } else {
             $checkBox.removeAttr("checked");// 反选
