@@ -59,8 +59,9 @@ public class FileUtilsEx extends FileUtils {
 	}
 
 	private static String getHumanReadableFileSize(long fileSize, long unit, String unitName) {
-		if(fileSize == 0) return "0";
-
+		if(fileSize == 0){
+			return "0";
+		}
 		if(fileSize / unit >= 1) {
 			double value = fileSize / (double)unit;
 			DecimalFormat df = new DecimalFormat("######.##"+unitName);

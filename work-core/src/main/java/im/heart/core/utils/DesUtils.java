@@ -9,13 +9,11 @@ import javax.crypto.spec.DESKeySpec;
 import java.security.SecureRandom;
 
 /**
- * 
- * @作者 LKG 
- * @版本 V 1.0 
- * @功能说明：加密解密工具类
+ *
+ * DES加密解密工具类
+ * @author gg
  */
 public class DesUtils {
-
 	/**
 	 * 
 	 * @功能说明：base64加密
