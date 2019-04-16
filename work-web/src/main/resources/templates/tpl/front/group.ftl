@@ -32,7 +32,7 @@
 <div class="container" style="margin-top: 35px" id="main-container">
     <div>
         <div class="alert alert-info" role="alert">
-            以下群为网站精心挑选优质公文写作交流群
+            以下群为本网站精心挑选优质信息交流群(部分群为收费群，请根据自身情况选择加群)
         </div>
     </div>
     <div class="panel panel-info">
@@ -43,11 +43,11 @@
                         全部
                     </a>
                 </li>
-                <li role="presentation" style="cursor:pointer" class="">
-                    <a id="my-tab-1" data-key="">
-                        党政
-                    </a>
-                </li>
+                <#--<li role="presentation" style="cursor:pointer" class="">-->
+                    <#--<a id="my-tab-1" data-key="">-->
+                        <#--党政-->
+                    <#--</a>-->
+                <#--</li>-->
                 <#--<form class="form-inline">-->
                     <#--<div class="form-group">-->
                         <#--<input type="text" class="form-control" id="qqS" name="qqS" placeholder="关键词">-->
