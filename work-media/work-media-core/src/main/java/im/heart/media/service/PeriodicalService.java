@@ -26,14 +26,46 @@ public interface PeriodicalService extends CommonService<Periodical, BigInteger>
 	public List<Periodical>  findAllById(Iterable<BigInteger> ids);
 	
 	public Page<Periodical> findInitPeriodicalByType(PeriodicalType type, Pageable pageable);
+
+	/**
+	 *  添加更新点击量异步线程
+	 * @param id
+	 */
 	public void addUpdateHitsTask(BigInteger id);
 
+	/**
+	 *  更新点击量
+	 * @param id
+	 */
 	public void updateHitsById(BigInteger id);
+
+	/**
+	 * 更新状态
+	 * @param periodicalId
+	 * @param status
+	 */
 	public  void updateStatusByPeriodicalId(BigInteger periodicalId, Status status);
 
+	/**
+	 * 更新评论次数
+	 * @param id
+	 */
 	public void updateRateTimesById(BigInteger id);
+	/**
+	 * 添加更新评论次数异步线程
+	 * @param id
+	 */
 	public  void addUpdateRateTimesTask(BigInteger id);
 
+	/**
+	 * 更新下载次数异步线程
+	 * @param id
+	 */
 	public void updateDownTimesById(BigInteger id);
+
+	/**
+	 * 添加更新下载次数异步线程
+	 * @param id
+	 */
 	public void addUpdateDownTimesTask(BigInteger id);
 }

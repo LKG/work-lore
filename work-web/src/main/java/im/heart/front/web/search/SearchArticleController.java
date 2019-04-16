@@ -26,30 +26,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Collection;
 
 @Controller
-public class SearchController  extends AbstractController {
+public class SearchArticleController  extends AbstractController {
     protected static final String apiVer = "/index";
-
-    enum SearchType{
-        topical(0,"topical","主题"),
-        keyword(1,"keyword","关键词"),
-        title(2,"title","篇名"),
-        fulltext(3,"fulltext","全文"),
-        author(4,"author","作者"),
-        organ(5,"organ","单位"),
-        summary(7,"summary","摘要"),
-        cited(8,"cited","被引文献"),
-        source(9,"source","文献来源"),
-        ;
-        public String code;
-        public int value;
-        public final String info;
-        SearchType(int value, String code, String info) {
-            this.code = code;
-            this.value = value;
-            this.info = info;
-        }
-    }
-
     @Autowired
     ArticleService articleService;
     @RequestMapping(value={"/q",apiVer+"/q"}  ,method = RequestMethod.GET)
@@ -75,30 +53,39 @@ public class SearchController  extends AbstractController {
         filters.add(new SearchFilter("isDeleted", SearchFilter.Operator.EQ,Boolean.FALSE));
         switch (qt){
             case 0:
+                //主题
                 break;
             case 1:
+                //关键词
                 filters.add(new SearchFilter("seoKeywords", SearchFilter.Operator.LIKE,q));
                 break;
             case 2:
+                //篇名
                 filters.add(new SearchFilter("title", SearchFilter.Operator.LIKE,q));
                 break;
             case 3:
+                //全文
                 filters.add(new SearchFilter("content", SearchFilter.Operator.LIKE,q));
                 break;
             case 4:
+                //作者
                 filters.add(new SearchFilter("author", SearchFilter.Operator.LIKE,q));
                 break;
             case 5:
+                //单位
                 break;
             case 6:
-                filters.add(new SearchFilter("author", SearchFilter.Operator.LIKE,q));
-                break;
-            case 7:
+                //摘要
                 filters.add(new SearchFilter("summary", SearchFilter.Operator.LIKE,q));
                 break;
+            case 7:
+                //被引文献
+                break;
             case 8:
+                //中图分类号
                 break;
             case 9:
+                //文献来源
                 filters.add(new SearchFilter("source", SearchFilter.Operator.LIKE,q));
                 break;
             default:
