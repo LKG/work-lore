@@ -42,7 +42,26 @@
                 <div id="submenu-snub-nosed" class="popover" >
                     <h3 class="popover-title">写作素材</h3>
                     <div class="popover-content">
-
+                        <!---  --->
+                        <div class="cate_part_col1">
+                            <div class="cate_channel">
+                                <a href="#" class="cate_channel_lk"  target="_blank">写作素材<i class="fa fa-angle-right"></i></a>
+                                <a href="#" class="cate_channel_lk"  target="_blank">工作报告<i class="fa fa-angle-right"></i></a>
+                                <a href="#" class="cate_channel_lk"  target="_blank">工作总结<i class="fa fa-angle-right"></i></a>
+                            </div>
+                            <div class="cate_detail">
+                                <dl class="cate_detail_item cate_detail_item1">
+                                    <dt class="cate_detail_tit" >
+                                        <a href="#" class="cate_detail_tit_lk" target="_blank">写作素材<i class="fa fa-angle-right"></i></a>
+                                    </dt>
+                                    <dd class="cate_detail_con" >
+                                        <a href="#" class="cate_detail_con_lk" target="_blank">工作报告</a>
+                                        <a href="#" class="cate_detail_con_lk" target="_blank">工作总结</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <!---  --->
                     </div>
                 </div>
             </li>

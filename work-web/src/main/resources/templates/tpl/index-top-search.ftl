@@ -13,8 +13,8 @@
         </a>
     </div>
     <!-- --->
-    <div class="search" style="height: 26px;">
-        <form  id="search-form" action="http://zhannei.baidu.com/cse/site" style="margin-left: 370px;">
+    <div class="search">
+        <form  id="search-form" action="http://zhannei.baidu.com/cse/site" style="margin-left: 260px;">
             <div class="row">
                 <div class="col-lg-7">
                     <div class="input-group" >

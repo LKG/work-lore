@@ -4,10 +4,10 @@
         <div class="col-sm-3 col-md-4">
             <div class="panel panel-default" style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
                 <div class="panel-heading" style="border-left: 3px solid #FF970D;">
-                        精选文章
+                    工作总结
                 </div>
                 <div class="panel-body">
-                     <@media.periodical categoryCode="010" >
+                     <@media.periodical categoryCode="013003" >
                          <div class="mc">
                              <ul>
                               <#if docs??&&docs.content??>
@@ -26,7 +26,7 @@
         <div class="col-sm-3 col-md-4">
             <div class="panel panel-default" style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
                 <div class="panel-heading" style="border-left: 3px solid #FF970D;">
-                    工作总结
+                    工作报告
                 </div>
                 <div class="panel-body">
                      <@media.periodical categoryCode="018001" >
@@ -50,12 +50,12 @@
                 <div class="panel-heading"  style="padding: 0px 2px 0px 0px">
                     <ul id="my-tab-rule" class="myNavTab nav nav-tabs" role="tablist">
                         <li role="presentation" style="cursor:pointer" class="active">
-                            <a id="my-tab-free" data-key="my-tab-free">
+                            <a id="my-tab-free" data-key="tab-pane-free">
                                 免费榜
                             </a>
                         </li>
                         <li role="presentation" style="cursor:pointer" class="">
-                            <a id="my-tab-hot" data-key="">
+                            <a id="my-tab-hot" data-key="tab-pane-hot">
                                 畅销榜
                             </a>
                         </li>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active" id="free">
+                        <div role="tabpanel" class="tab-pane active" id="tab-pane-free">
 
                             <#if freeDocs??&&freeDocs.content??>
                                 <div class="mc">
@@ -75,7 +75,7 @@
                                  </div>
                             </#if>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="hot">
+                        <div role="tabpanel" class="tab-pane" id="tab-pane-hot">
                             <@media.periodical >
                                 <div class="mc">
                                     <ul>

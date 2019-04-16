@@ -78,6 +78,9 @@
 </div>
 <div class="container" >
     <div class="row">
+        <div class="alert alert-info" role="alert">
+            为您找到 ${result.totalElements}条结果
+        </div>
         <div class="panel panel-default">
             <div class="">
                 <ul id="my-tab-rule" class="myNavTab nav nav-tabs" role="tablist">
