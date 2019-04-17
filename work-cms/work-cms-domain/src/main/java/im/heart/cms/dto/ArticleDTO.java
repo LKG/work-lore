@@ -1,8 +1,11 @@
 package im.heart.cms.dto;
 
-import java.math.BigInteger;
+import lombok.Data;
 
-public interface ArticleDTO{
-    BigInteger getId();
-    String getTitle();
+import java.math.BigInteger;
+@Data
+public class ArticleDTO {
+    BigInteger id;
+
+    String title;
 }

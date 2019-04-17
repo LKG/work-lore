@@ -1,6 +1,6 @@
 package im.heart.cms.repository;
 
-import im.heart.cms.dto.ArticleDTO;
+import im.heart.cms.dto.ArticleProjection;
 import im.heart.cms.entity.Article;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -35,7 +35,7 @@ public interface ArticleRepository extends JpaRepository<Article, BigInteger>, J
      * @param categoryId
      * @return
      */
-    @Query(nativeQuery = true,value = "SELECT model.id AS id ,model.title AS title FROM #{#tableName} model WHERE  ( model.id >:id  or model.id <:id ) AND model.id <>:id AND model.category_id = :categoryId AND model.is_pub = 1 ORDER BY  model.id LIMIT 2")
-    public List<ArticleDTO> queryNearById(@Param("id") BigInteger id, @Param("categoryId") BigInteger categoryId);
+    @Query(nativeQuery = true,value = "SELECT model.id AS id ,model.title AS title FROM cms_article model WHERE  ( model.id >:id  or model.id <:id ) AND model.id <>:id AND model.category_id = :categoryId AND model.is_pub = 1 ORDER BY  model.id LIMIT 2")
+    public List<ArticleProjection> queryNearById(@Param("id") BigInteger id, @Param("categoryId") BigInteger categoryId);
 
 }

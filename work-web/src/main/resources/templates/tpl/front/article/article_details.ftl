@@ -127,6 +127,21 @@
         </div>
         <!---文章end--->
     </div>
+    <#if near??>
+        <nav aria-label="...">
+            <ul class="pager">
+                <#list near as page>
+                    <#if page_index==0>
+                        <li class="previous"><a href="${appHost}/article/${page.id!''}.jhtml"><span aria-hidden="true">上一篇：</span> ${page.title}</a></li>
+                    </#if>
+                    <#if page_index==1>
+                        <li class="next"><a  href="${appHost}/article/${page.id!''}.jhtml"><span aria-hidden="true">下一篇：</span>${page.title}</a></li>
+                    </#if>
+                </#list>
+            </ul>
+        </nav>
+    </#if>
+
 </div>
 <!------footer信息 begin----->
 <#include "/includes/footer.ftl" />
