@@ -41,7 +41,7 @@ public class QqGroupTag extends BaseDirective {
 	@Override
 	public void render(Environment env, Map<?, ?> params, TemplateDirectiveBody body)
 			throws IOException, TemplateException {
-		System.out.println("###########################################");
+
 		String type=super.getParam(params, "type");
 		List<FrameDictItemVO> itemVOs=Lists.newArrayList();
 		QQGroupService qqGroupService = (QQGroupService) ContextManager.getBean(QQGroupService.BEAN_NAME);
@@ -49,7 +49,7 @@ public class QqGroupTag extends BaseDirective {
 		int page =  Integer.valueOf(getParam(params,"page","1"));
 		int size =  Integer.valueOf(getParam(params,"size","10"));
 		String sort =  getParam(params,"sort","qqTotal");
-		String order =  getParam(params,"order");
+		String order =  getParam(params,"order",CommonConst.Page.ORDER_DESC);
 		if(StringUtilsEx.isNotBlank(type)){
 			filters.add(new SearchFilter("qqType", SearchFilter.Operator.EQ,type));
 		}
@@ -57,7 +57,6 @@ public class QqGroupTag extends BaseDirective {
 		Specification<QQGroup> spec= DynamicSpecifications.bySearchFilter(filters, QQGroup.class);
 		PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order,QQGroup.class);
 		Page<QQGroup> pag = qqGroupService.findAll(spec, pageRequest);
-		System.out.println("##############################pag#############"+ JSON.toJSONString(pag));
 		setVariable(CommonConst.RequestResult.RESULT,pag,env);
 		super.renderBody(env,body);
 	}

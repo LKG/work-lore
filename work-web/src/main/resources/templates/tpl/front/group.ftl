@@ -64,7 +64,7 @@
         </div>
         <div class="panel-body">
         <div class="row">
-              <@dic.qqGroup type="free" >
+              <@dic.qqGroup type="free" size="500" >
                   <#list result.content as model>
                       <div class="col-sm-4 col-md-3">
                           <div class="thumbnail">
