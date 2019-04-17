@@ -7,11 +7,12 @@ import freemarker.template.SimpleHash;
 import org.springframework.stereotype.Component;
 
 @Component
-public class DictItemTag extends SimpleHash {
+public class DictTag extends SimpleHash {
 
 
-	public DictItemTag() {
+	public DictTag() {
 		super(new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_28).build());
 		put("dict", new FrameDictItemTag());
+		put("qqGroup", new QqGroupTag());
 	}
 }

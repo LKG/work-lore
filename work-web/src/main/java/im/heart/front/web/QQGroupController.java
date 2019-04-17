@@ -31,9 +31,6 @@ import java.util.Collection;
 public class QQGroupController extends AbstractController {
 	protected static final String apiVer = "/index";
 
-	@Autowired
-	QQGroupService qqGroupService;
-
 	/**
 	 *  QQ群推广信息
 	 * @param request
@@ -48,12 +45,6 @@ public class QQGroupController extends AbstractController {
 							   @RequestParam(value = "order", required = false,defaultValue = CommonConst.Page.ORDER_DESC) String order,
 							   @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
 							   ModelMap model) {
-		final Collection<SearchFilter> filters= DynamicSpecifications.buildSearchFilters(request);
-		filters.add(new SearchFilter("isPub", SearchFilter.Operator.EQ,Boolean.TRUE));
-		Specification<QQGroup> spec= DynamicSpecifications.bySearchFilter(filters, QQGroup.class);
-		PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order,QQGroup.class);
-		Page<QQGroup> pag = this.qqGroupService.findAll(spec, pageRequest);
-		super.success(model,pag);
 		return new ModelAndView("front/group");
 	}
 

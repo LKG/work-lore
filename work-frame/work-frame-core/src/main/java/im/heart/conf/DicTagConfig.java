@@ -2,7 +2,7 @@ package im.heart.conf;
 
 import freemarker.template.Configuration;
 import freemarker.template.TemplateModelException;
-import im.heart.frame.tags.DictItemTag;
+import im.heart.frame.tags.DictTag;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -23,10 +23,10 @@ public class DicTagConfig implements InitializingBean {
 	@Autowired
 	private FreeMarkerViewResolver resolver;
 	@Autowired
-	private DictItemTag dictItemTag;
+	private DictTag dictTag;
 	@PostConstruct
 	public void setSharedVariable() throws TemplateModelException {
-		configuration.setSharedVariable("dic", dictItemTag);
+		configuration.setSharedVariable("dic", dictTag);
 	}
 	@Override
 	public void afterPropertiesSet() throws Exception {

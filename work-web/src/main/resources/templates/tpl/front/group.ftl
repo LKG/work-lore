@@ -33,6 +33,7 @@
     <div>
         <div class="alert alert-info" role="alert">
             以下群为本网站精心挑选优质信息交流群(部分群为收费群，请根据自身情况选择加群)
+
         </div>
     </div>
     <div class="panel panel-info">
@@ -43,11 +44,16 @@
                         全部
                     </a>
                 </li>
-                <#--<li role="presentation" style="cursor:pointer" class="">-->
-                    <#--<a id="my-tab-1" data-key="">-->
-                        <#--党政-->
-                    <#--</a>-->
-                <#--</li>-->
+                <li role="presentation" style="cursor:pointer" class="">
+                    <a id="my-tab-free" data-key="free">
+                        免费
+                    </a>
+                </li>
+                <li role="presentation" style="cursor:pointer" class="">
+                    <a id="my-tab-hot" data-key="hot">
+                        高质量
+                    </a>
+                </li>
                 <#--<form class="form-inline">-->
                     <#--<div class="form-group">-->
                         <#--<input type="text" class="form-control" id="qqS" name="qqS" placeholder="关键词">-->
@@ -58,23 +64,22 @@
         </div>
         <div class="panel-body">
         <div class="row">
-            <#if (result.content?size<=0) >
-            <#else>
-                <#list result.content as model>
-                    <div class="col-sm-4 col-md-3">
-                            <div class="thumbnail">
-                                <a href="${model.shareShortUrl!''}" target="_blank">
-                                      <img src="${model.imgUrl!''}" style="width: 200px;" alt="...">
-                                </a>
-                                <div class="caption">
-                                    <p>群号：<code>${model.qqNum!''}</code></p>
-                                    <p>名称：${model.name!''} <code>lv${model.qqLevel!'1'}</code></p>
-                                    <p>（<i class="fa fa-group"> </i> ${model.peopleTotal!'200'} / ${model.qqTotal!'1'}）</p>
-                                </div>
-                            </div>
-                    </div>
-                </#list >
-            </#if>
+              <@dic.qqGroup type="free" >
+                  <#list result.content as model>
+                      <div class="col-sm-4 col-md-3">
+                          <div class="thumbnail">
+                          <a href="${model.shareShortUrl!''}" target="_blank">
+                          <img src="${model.imgUrl!''}" style="width: 200px;" alt="...">
+                          </a>
+                          <div class="caption">
+                          <p>群号：<code>${model.qqNum!''}</code></p>
+                          <p>名称：${model.name!''} <code>lv${model.qqLevel!'1'}</code></p>
+                          <p>（<i class="fa fa-group"> </i> ${model.peopleTotal!'200'} / ${model.qqTotal!'1'}）</p>
+                          </div>
+                        </div>
+                      </div>
+                  </#list>
+              </@dic.qqGroup>
           </div>
         </div>
     </div>
