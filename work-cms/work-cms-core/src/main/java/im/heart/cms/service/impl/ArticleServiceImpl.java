@@ -34,8 +34,18 @@ public class ArticleServiceImpl extends CommonServiceImpl<Article, BigInteger> i
 
 	@Override
 	public Page<Article> findAll(Specification<Article> spec, Pageable pageable){
+
+
 		return this.articleRepository.findAll(spec,pageable);
 	}
+	@Override
+	public Page<ArticleDTO> findAllProjection(Specification<Article> spec, Pageable pageable){
+
+		this.articleRepository.findAllProjection(spec,pageable);
+		return null;
+	}
+
+
 	@Override
 	public void updateHitsById(BigInteger id) {
 		this.articleRepository.updateHitsById(id);

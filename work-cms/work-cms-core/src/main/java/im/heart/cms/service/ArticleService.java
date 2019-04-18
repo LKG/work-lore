@@ -3,6 +3,9 @@ package im.heart.cms.service;
 import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.entity.Article;
 import im.heart.core.service.CommonService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -23,6 +26,8 @@ public interface   ArticleService extends CommonService<Article, BigInteger>{
 	 * @return
 	 */
 	public List<Article>  saveAll(Iterable<Article> entities);
+
+	public Page<ArticleDTO> findAllProjection(Specification<Article> spec, Pageable pageable);
 
 	public List<ArticleDTO> queryNearById(BigInteger id, BigInteger categoryId);
 

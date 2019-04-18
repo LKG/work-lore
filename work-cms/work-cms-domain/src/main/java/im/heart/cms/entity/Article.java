@@ -92,7 +92,7 @@ public class Article implements AbstractEntity<BigInteger>{
 	@Column(name = "CONTENT", nullable = false)
 	private String content;
 
-	@Column(name = "summary")
+	@Column(name = "SUMMARY")
 	private String summary;
 
 	/** 页面标题. */

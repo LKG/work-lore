@@ -46,8 +46,6 @@ public class ArticleController extends AbstractController {
             ModelMap model) {
         this.updateHitsById(id);
         Article po = this.articleService.findById(id);
-        System.out.println(po.getCategoryId());
-        System.out.println(po.getId());
         List<ArticleDTO> nearList=this.articleService.queryNearById(po.getId(),po.getCategoryId());
         model.put("near",nearList);
         super.success(model, po);
