@@ -11,12 +11,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.math.BigInteger;
 import java.util.List;
@@ -40,8 +42,22 @@ public class ArticleServiceImpl extends CommonServiceImpl<Article, BigInteger> i
 	}
 	@Override
 	public Page<ArticleDTO> findAllProjection(Specification<Article> spec, Pageable pageable){
-
-		this.articleRepository.findAllProjection(spec,pageable);
+		Page<ArticleProjection> pag=this.articleRepository.findAllProjection(spec,pageable);
+		if(pag!=null&&pag.hasContent()){
+			List<ArticleDTO> vos = Lists.newArrayList();
+			for(ArticleProjection po:pag.getContent()){
+				ArticleDTO vo=new ArticleDTO();
+				vo.setId(po.getId());
+				vo.setTitle(po.getTitle());
+				vo.setPushTime(po.getPushTime());
+				vo.setType(po.getType());
+				vo.setHits(po.getHits());
+				vo.setAllowComment(po.getAllowComment());
+				vos.add(vo);
+			}
+			Page<ArticleDTO> pagvos =new PageImpl<ArticleDTO>(vos,pageable,pag.getTotalElements());
+			return pagvos;
+		}
 		return null;
 	}
 
@@ -59,10 +75,15 @@ public class ArticleServiceImpl extends CommonServiceImpl<Article, BigInteger> i
 	public List<ArticleDTO> queryNearById(BigInteger id, BigInteger categoryId) {
 		List<ArticleProjection> projections=this.articleRepository.queryNearById(id,categoryId);
 		List<ArticleDTO> list= Lists.newArrayList();
-		for (ArticleProjection projection:projections){
+		for (ArticleProjection po:projections){
 			ArticleDTO vo=new ArticleDTO();
-			vo.setId(projection.getId());
-			vo.setTitle(projection.getTitle());
+			vo.setId(po.getId());
+			vo.setTitle(po.getTitle());
+			vo.setId(po.getId());
+			vo.setTitle(po.getTitle());
+			vo.setPushTime(po.getPushTime());
+			vo.setType(po.getType());
+			vo.setHits(po.getHits());
 			list.add(vo);
 		}
 		return list;

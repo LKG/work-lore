@@ -5,6 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.Transient;
 import java.math.BigInteger;
+import java.util.Date;
+
 @Data
 public class ArticleDTO {
     private BigInteger id;
@@ -12,6 +14,7 @@ public class ArticleDTO {
     private String author;
     private String source;
     private String type;
+    private Date pushTime;
     private String summary;
     private Boolean allowComment=Boolean.FALSE;
     private BigInteger rateTimes=BigInteger.ZERO;

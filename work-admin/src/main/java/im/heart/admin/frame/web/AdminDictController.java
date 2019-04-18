@@ -83,7 +83,7 @@ public class AdminDictController extends AbstractController {
             return new ModelAndView(RESULT_PAGE);
         }
         boolean exists = this.frameDictService.exists(dictCode);
-        if (exists) {// 已存在
+        if (exists) {
             super.fail(model,false);
             return new ModelAndView(RESULT_PAGE);
         }

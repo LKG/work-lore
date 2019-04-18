@@ -2,6 +2,7 @@ package im.heart.front.web;
 
 
 import com.google.common.collect.Lists;
+import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.entity.Article;
 import im.heart.cms.service.ArticleService;
 import im.heart.cms.vo.ArticleVO;
@@ -55,15 +56,8 @@ public class IndexController extends AbstractController {
 		filters.add(new SearchFilter("isPub", SearchFilter.Operator.EQ,Boolean.TRUE));
 		Specification<Article> spec= DynamicSpecifications.bySearchFilter(filters, Article.class);
 		PageRequest pageRequest= DynamicPageRequest.buildPageRequest(1,13, "pushTime", CommonConst.Page.ORDER_DESC, Article.class);
-		Page<Article> pag = this.articleService.findAll(spec, pageRequest);
-		if(pag!=null&&pag.hasContent()){
-			List<ArticleVO> vos = Lists.newArrayList();
-			for(Article po:pag.getContent()){
-				vos.add(new ArticleVO(po));
-			}
-			Page<ArticleVO> docVos  =new PageImpl<ArticleVO>(vos,pageRequest,pag.getTotalElements());
-			model.put("articles",docVos);
-		}
+		Page<ArticleDTO> docVos = this.articleService.findAllProjection(spec, pageRequest);
+		model.put("articles",docVos);
 	}
 
 	public void docsFree10(HttpServletRequest request,ModelMap model){

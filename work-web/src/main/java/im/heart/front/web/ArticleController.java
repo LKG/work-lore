@@ -65,7 +65,7 @@ public class ArticleController extends AbstractController {
         filters.add(new SearchFilter("isDeleted", SearchFilter.Operator.EQ,Boolean.FALSE));
         Specification<Article> spec= DynamicSpecifications.bySearchFilter(filters, Article.class);
         PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order, Article.class);
-        Page<Article> pag = this.articleService.findAll(spec, pageRequest);
+        Page<ArticleDTO> pag = this.articleService.findAllProjection(spec, pageRequest);
         super.success(model,pag);
         return new ModelAndView(VIEW_LIST);
     }

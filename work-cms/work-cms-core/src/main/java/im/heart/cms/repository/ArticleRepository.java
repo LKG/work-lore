@@ -39,7 +39,7 @@ public interface ArticleRepository extends JpaRepository<Article, BigInteger>, J
      * @param pageable
      * @return
      */
-    @Query("SELECT  model.id AS id ,model.title AS title ,model.source AS source ,model.type AS type ,model.summary AS summary ,model.hits AS hits,model.rateTimes AS rateTimes ,model.pushTime AS pushTime FROM Article model")
+    @Query("SELECT  model.id AS id ,model.title AS title ,model.source AS source ,model.type AS type ,model.summary AS summary ,model.hits AS hits,model.rateTimes AS rateTimes ,model.pushTime AS pushTime ,model.allowComment AS allowComment   FROM Article model")
     Page<ArticleProjection> findAllProjection(@Nullable Specification<Article> spec, Pageable pageable);
     /**
      * 查询上一篇下一篇
