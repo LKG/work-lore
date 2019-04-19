@@ -106,6 +106,7 @@ public class SearchDocController extends AbstractController {
         PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order, Periodical.class);
         Page<Periodical> pag = this.periodicalService.findAll(spec,pageRequest);
         model.put("q",q);
+        model.put("qu","pq");
         model.put("qt",qt);
         super.success(model,pag);
         return new ModelAndView("front/search/search_doc_list");

@@ -8,7 +8,7 @@
          <div class="caption" >
              <#if result.seoKeywords??>
                  <#list result.seoKeywords?split(",") as keyword>
-                     <a href="${appHost}/q?v=${ver!'1'}&q=${keyword!''}&qt=1" title="${keyword!''}" target="_blank">${keyword!''}</a>
+                     <a href="${appHost}/pq?v=${ver!'1'}&q=${keyword!''}&qt=1" title="${keyword!''}" target="_blank">${keyword!''}</a>
                  </#list>
              </#if>
          </div>

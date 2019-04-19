@@ -94,6 +94,7 @@ public class SearchArticleController  extends AbstractController {
         PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order,Article.class);
         Page<Article> pag = this.articleService.findAll(spec, pageRequest);
         model.put("q",q);
+        model.put("qu","q");
         model.put("qt",qt);
         super.success(model,pag);
         return new ModelAndView("front/search/search_list");
