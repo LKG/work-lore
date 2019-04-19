@@ -8,10 +8,10 @@ define(function (require, exports, moudles) {
     var $httpUtil = require('/js/common/httpUtil.js');
     var $msg= require('/js/common/alerts.js');
     $("#qt").val($("#qt").attr("data-val"));
-    var qu= $("#qu").val();
-
+    $("#qu").val($("#qu").attr("data-val"));
     $("#btn-search").on("click",function () {
         var param = $("#search-form").serialize();
+        var qu= $("#search-form #qu").val();
         var q=$("#search-form #q").val();
         var qt=$("#qt").val();
         if(!q||""==q){
