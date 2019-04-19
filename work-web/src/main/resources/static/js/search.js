@@ -8,6 +8,8 @@ define(function (require, exports, moudles) {
     var $httpUtil = require('/js/common/httpUtil.js');
     var $msg= require('/js/common/alerts.js');
     $("#qt").val($("#qt").attr("data-val"));
+    var qu= $("#qu").val();
+
     $("#btn-search").on("click",function () {
         var param = $("#search-form").serialize();
         var q=$("#search-form #q").val();
@@ -17,6 +19,6 @@ define(function (require, exports, moudles) {
             return
         }
         $msg.alert(q,"<i class='fa fa-spinner fa-pulse fa-spin text-success'></i> 搜索中...",true,true);
-        window.location.href="/q?v=1&"+param;
+        window.location.href="/"+qu+"?v=1&"+param;
     });
 });

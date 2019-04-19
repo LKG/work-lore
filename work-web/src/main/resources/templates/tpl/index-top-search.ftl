@@ -19,11 +19,17 @@
                 <div class="col-lg-7">
                     <div class="input-group" >
                         <input name="cc" value="${appHost}" type="hidden"/>
+                        <div class="input-group-btn">
+                            <select class="form-control" id="qu" data-val="${qu!'q'}"  name="qp" style="width: 80px;padding:6px 10px;">
+                                <option value="pq"  selected >文档</option>
+                                <option value="q" >文章</option>
+                            </select>
+                        </div>
                         <input type="text" class="form-control" id="q"  name="q"  value="${q!''}" aria-label="请输入搜索关键词">
                         <div class="input-group-btn">
                             <select class="form-control" id="qt" data-val="${qt!'1'}"  name="qt" style="width: 110px;padding:6px; 10px;">
                                 <#--<option value="0" >主题</option>-->
-                                <option value="1" selected>关键词</option>
+                                <option value="1" >关键词</option>
                                 <option value="2"  >篇名</option>
                                 <option value="3" >全文</option>
                                 <option value="4" >作者</option>

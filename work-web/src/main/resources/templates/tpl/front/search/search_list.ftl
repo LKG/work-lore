@@ -196,24 +196,6 @@
                                   </#list >
                               </#if>
                         </ul>
-                            <script id="tr-template-js"  type="text/html">
-                                {{if (content.length>0) }}
-                                {{each content as article}}
-                                    <li class="list-group-item">
-                                        <span class="item-type" style="padding-right: 50px;">[{{article.type}}]</span>
-                                        <a class="item-href"  href="${appHost}/article/{{article.id}}.jhtml"
-                                           target="_blank" >{{article.title}}</a>
-                                        <span class="">阅读量：<code>{{article.hits}}</code></span>
-<#--                                        <span class="">点赞数：<code>{{article.rateTimes}}</code></span>-->
-                                        <span class="pull-right">{{article.pushTime}}</span>
-                                    </li>
-                                {{/each}}
-                                {{else}}
-                                <tr id="ext_{{$index}}" class="text-center" >
-                                    <td colspan="6"><@spring.message  code="label.default.empty" /></td>
-                                </tr>
-                                {{/if}}
-                            </script>
                     </div>
                     <!-----分页-begin---->
                     <div  id="table-pagination" data-totalPages="${result.totalPages}" data-number="${result.number}" style="margin-top: -15px;"  class="clearfix"></div>

@@ -75,7 +75,7 @@ public class SearchDocController extends AbstractController {
                 break;
             case 2:
                 //篇名
-                filters.add(new SearchFilter("title", SearchFilter.Operator.LIKE,q));
+                filters.add(new SearchFilter("periodicalName", SearchFilter.Operator.LIKE,q));
                 break;
             case 3:
                 //全文
@@ -108,6 +108,6 @@ public class SearchDocController extends AbstractController {
         model.put("q",q);
         model.put("qt",qt);
         super.success(model,pag);
-        return new ModelAndView("front/search/search_list");
+        return new ModelAndView("front/search/search_doc_list");
     }
 }
