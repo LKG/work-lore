@@ -20,7 +20,7 @@
                     <div class="input-group" >
                         <input name="cc" value="${appHost}" type="hidden"/>
                         <div class="input-group-btn">
-                            <select class="form-control" id="qu" data-val="${qu!'q'}"  name="qp" style="width: 80px;padding:6px 10px;">
+                            <select class="form-control" id="qu" data-val="${qu!'pq'}"  name="qp" style="width: 80px;padding:6px 10px;">
                                 <option value="pq"  selected >文档</option>
                                 <option value="q" >文章</option>
                             </select>
