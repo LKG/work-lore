@@ -23,8 +23,8 @@ import java.util.Map;
  */
 @Configuration
 public class UrlRewriteFilterConfig  extends UrlRewriteFilter {
-    private static final String URL_REWRITE = "classpath:/urlrewrite.xml";
-    @Value(URL_REWRITE)
+    public static final String DEFAULT_WEB_CONF_PATH = "classpath:/urlrewrite.xml";
+    @Value(DEFAULT_WEB_CONF_PATH)
     private Resource resource;
     @Order(-2)
     @Bean
@@ -33,7 +33,7 @@ public class UrlRewriteFilterConfig  extends UrlRewriteFilter {
         FilterRegistrationBean<UrlRewriteFilter> registration = new FilterRegistrationBean<UrlRewriteFilter>(rewriteFilter);
         registration.setUrlPatterns(Collections.singleton("/*"));
         Map<String, String> initParam= Maps.newHashMap();
-        initParam.put("confPath",URL_REWRITE);
+        initParam.put("confPath",DEFAULT_WEB_CONF_PATH);
         initParam.put("infoLevel","INFO");
         registration.setInitParameters(initParam);
         return  registration;
@@ -46,7 +46,7 @@ public class UrlRewriteFilterConfig  extends UrlRewriteFilter {
                     "@@traceability@@");
             checkConf(conf);
         } catch (IOException ex) {
-            throw new ServletException("Unable to load URL rewrite configuration file from " + URL_REWRITE, ex);
+            throw new ServletException("Unable to load URL rewrite configuration file from " + DEFAULT_WEB_CONF_PATH, ex);
         }
     }
 

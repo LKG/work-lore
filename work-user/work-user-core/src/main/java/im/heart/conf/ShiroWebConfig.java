@@ -20,6 +20,8 @@ import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.annotation.Order;
+
 /**
  *
  * @author gg
@@ -96,6 +98,7 @@ public class ShiroWebConfig extends ShiroWebAutoConfiguration{
 	 * 网络请求的权限过滤, 拦截外部请求
 	 */
 	@Bean
+	@Order(-1)
 	@Override
 	public ShiroFilterChainDefinition shiroFilterChainDefinition() {
 		DefaultShiroFilterChainDefinition chain = new DefaultShiroFilterChainDefinition();
@@ -121,8 +124,10 @@ public class ShiroWebConfig extends ShiroWebAutoConfiguration{
 		chain.addPathDefinition("/index/**", "anon");
 		chain.addPathDefinition("/docs**", "anon");
 		chain.addPathDefinition("/docs/**", "anon");
+		chain.addPathDefinition("/vip/**", "anon");
 		chain.addPathDefinition("/group**", "anon");
 		chain.addPathDefinition("/q**", "anon");
+		chain.addPathDefinition("/pq**", "anon");
 		chain.addPathDefinition("/article**", "anon");
 		chain.addPathDefinition("/articles/**", "anon");
 		chain.addPathDefinition("/article/**", "anon");

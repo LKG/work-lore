@@ -39,7 +39,7 @@
             text-decoration: line-through;
         }
     </style>
-<#assign template="project"/>
+<#assign template="docs"/>
 </head>
 <body class="page-header-fixed">
 <!-- toolbar begin-->

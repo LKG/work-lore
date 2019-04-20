@@ -14,7 +14,7 @@
     </div>
     <!-- --->
     <div class="search">
-        <form  id="search-form" action="http://zhannei.baidu.com/cse/site" style="margin-left: 260px;">
+        <form  id="search-form"  style="margin-left: 260px;">
             <div class="row">
                 <div class="col-lg-7">
                     <div class="input-group" >

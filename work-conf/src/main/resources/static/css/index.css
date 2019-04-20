@@ -81,7 +81,11 @@ background-image: url(../images/toolbar.png);
 _background-image: url(../images/toolbar-png8.png);
 background-repeat: no-repeat;
 }
-
+.m-container {
+	width: 1210px;
+	margin-top: 10px;
+	padding: 10px 2px;
+}
 
 .jdm-toolbar-tab .tab-text {
 width: 62px;
