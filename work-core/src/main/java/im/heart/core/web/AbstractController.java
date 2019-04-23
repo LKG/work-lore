@@ -1,13 +1,14 @@
 package im.heart.core.web;
 
+import com.google.common.collect.Lists;
 import im.heart.core.CommonConst.RequestResult;
 import im.heart.core.support.BigDecimalEditorSupport;
 import im.heart.core.support.DateEditorSupport;
 import im.heart.core.support.StringEscapeEditorSupport;
 import im.heart.core.utils.BaseUtils;
-import im.heart.core.utils.FileUtilsEx;
 import im.heart.core.validator.ValidatorUtils;
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -119,7 +120,7 @@ public abstract  class AbstractController {
      * @return
      */
     protected List<MultipartFile> getFileList(HttpServletRequest request) {
-        List<MultipartFile> fileList = new ArrayList<MultipartFile>();
+        List<MultipartFile> fileList = Lists.newArrayList();
         if (request instanceof MultipartHttpServletRequest) {
             MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
             for (Iterator<String> it = multipartRequest.getFileNames(); it.hasNext();) {
@@ -208,15 +209,15 @@ public abstract  class AbstractController {
             if(StringUtils.isBlank(fileName) ){
                 fileName = file.getOriginalFilename();
                 boolean isCN = ValidatorUtils.isContainsChinese(fileName);
+                //获取文件后缀
+                String suffixes = StringUtils.substringAfterLast(fileName, ".");
                 if(isCN&&isBase){
                     //获取文件名称
                     String oldFileName = StringUtils.substringBeforeLast(fileName, ".");
-                    //获取文件后缀
-                    String suffixes = StringUtils.substringAfterLast(fileName, ".");
-                    fileName=Base64.encodeBase64URLSafeString(oldFileName.getBytes())+"."+suffixes;
+                    fileName=""+Base64.decodeInteger(oldFileName.getBytes());
                 }
+                fileName = System.nanoTime()+ "_"+fileName+"."+suffixes;
             }
-            fileName = System.nanoTime()+ "_"+fileName;
             String filePath = path + File.separator + fileName;
             out = new FileOutputStream(filePath);
             out.write(file.getBytes());
@@ -224,9 +225,7 @@ public abstract  class AbstractController {
         } catch (Exception e) {
             throw e;
         } finally {
-            if (out != null) {
-                out.close();
-            }
+            IOUtils.closeQuietly(out);
         }
     }
     /**
