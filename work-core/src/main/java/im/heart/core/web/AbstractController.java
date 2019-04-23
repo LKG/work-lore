@@ -5,6 +5,7 @@ import im.heart.core.support.BigDecimalEditorSupport;
 import im.heart.core.support.DateEditorSupport;
 import im.heart.core.support.StringEscapeEditorSupport;
 import im.heart.core.utils.BaseUtils;
+import im.heart.core.utils.FileUtilsEx;
 import im.heart.core.validator.ValidatorUtils;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
@@ -185,6 +186,9 @@ public abstract  class AbstractController {
         binder.registerCustomEditor(String.class, new StringEscapeEditorSupport());
         //  注册共用校验器
     }
+    protected String uploadFile(MultipartFile file, String path,String fileName) throws Exception {
+        return  uploadFile(file,path,fileName,Boolean.FALSE);
+    }
     /**
      *
      * 文件上传
@@ -193,17 +197,18 @@ public abstract  class AbstractController {
      * @return
      * @throws Exception
      */
-    protected String uploadFile(MultipartFile file, String path,String fileName) throws Exception {
+    protected String uploadFile(MultipartFile file, String path,String fileName,Boolean isBase) throws Exception {
         FileOutputStream out = null;
         try {
             File folder = new File(path);
             if (!folder.exists()) {
                 folder.mkdirs();
             }
+
             if(StringUtils.isBlank(fileName) ){
                 fileName = file.getOriginalFilename();
                 boolean isCN = ValidatorUtils.isContainsChinese(fileName);
-                if(isCN){
+                if(isCN&&isBase){
                     //获取文件名称
                     String oldFileName = StringUtils.substringBeforeLast(fileName, ".");
                     //获取文件后缀

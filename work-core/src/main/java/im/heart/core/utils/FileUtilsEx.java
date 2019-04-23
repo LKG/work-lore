@@ -115,15 +115,13 @@ public class FileUtilsEx extends FileUtils {
 			throws IOException {
 		InputStream is = new ByteArrayInputStream(data);
 		ImageInputStream iis = ImageIO.createImageInputStream(is);
-		Iterator<ImageReader> iter = ImageIO.getImageReaders(iis);
-		if (!iter.hasNext()) {
+		Iterator<ImageReader> it = ImageIO.getImageReaders(iis);
+		if (!it.hasNext()) {
 			return null;
 		}
-
-		ImageReader reader = iter.next();
+		ImageReader reader = it.next();
 		iis.close();
 		String fileName = reader.getFormatName();
-
 		return fileName;
 	}
 
