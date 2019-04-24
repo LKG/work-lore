@@ -43,6 +43,10 @@
         <to>/docs.jhtml?page=$1</to>
     </rule>
     <rule>
+        <from>^/docs/c-([0-9]+).?(.*)$</from>
+        <to>/docs.jhtml?categoryCode_LIKES=$1</to>
+    </rule>
+    <rule>
         <from>^/made.?(.*)$</from>
         <to>/index/made.jhtml</to>
     </rule>

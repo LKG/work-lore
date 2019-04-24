@@ -78,8 +78,13 @@
 </div>
 <div class="container" >
     <div class="row">
-        <div class="alert alert-info" role="alert">
-            为您找到 ${result.totalElements}条结果
+        <div class="panel panel-default">
+            <div class="alert alert-info" role="alert">
+                为您找到 ${result.totalElements}条结果
+            </div>
+            <div class="panel-body main-search">
+
+            </div>
         </div>
         <div class="panel panel-default">
             <div class="">

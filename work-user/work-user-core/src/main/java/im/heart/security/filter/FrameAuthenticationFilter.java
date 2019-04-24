@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import im.heart.common.utils.LogLoginUtils;
 import im.heart.core.CommonConst;
 import im.heart.core.utils.BaseUtils;
+import im.heart.core.web.utils.WebUtilsEx;
 import im.heart.security.AccountToken;
 import im.heart.security.utils.ShiroLoginHelper;
 import org.apache.commons.lang3.StringUtils;
@@ -160,43 +161,40 @@ public class FrameAuthenticationFilter extends FormAuthenticationFilter {
 			ServletResponse response) {
 		String requestURI = getPathWithinApplication(request);
 		requestURI=StringUtils.substringBefore(requestURI, ".");
-		String loginUrlstr = getLoginUrl();
-		loginUrlstr=StringUtils.substringBefore(loginUrlstr, ".");
-		return super.pathsMatch(loginUrlstr, requestURI);
+		String loginUrl = getLoginUrl();
+		loginUrl=StringUtils.substringBefore(loginUrl, ".");
+		return super.pathsMatch(loginUrl, requestURI);
 	}
 
 	@Override
 	protected boolean onAccessDenied(ServletRequest request,
 			ServletResponse response) throws Exception {
-		logger.info("onAccessDenied ......subject:");
+		logger.info("onAccessDenied ......subject:,{}", WebUtilsEx.getParametersJson(WebUtils.toHttp(request)));
 		if (isLoginRequest(request, response)) {
 			if (isLoginSubmission(request, response)) {
 				if (logger.isTraceEnabled()) {
 					logger.trace("Login submission detected.  Attempting to execute login.");
 				}
 				return executeLogin(request, response);
-			} else {
-				if (logger.isTraceEnabled()) {
-					logger.trace("Login page view.");
-				}
-				HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
-				HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
-				if (BaseUtils.isAjaxRequest(httpServletRequest)) {
-					logger.info("httpServletResponse:{}", httpServletResponse);
-					// httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-				}
-				// allow them to see the login page ;)
-				return true;
 			}
-		} else {
 			if (logger.isTraceEnabled()) {
-				logger.trace("Attempting to access a path which requires authentication.  Forwarding to the "
-						+ "Authentication url [" + getLoginUrl() + "]");
+					logger.trace("Login page view.");
 			}
-
-			saveRequestAndRedirectToLogin(request, response);
-			return false;
+			HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
+			HttpServletResponse httpServletResponse = WebUtils.toHttp(response);
+			if (BaseUtils.isAjaxRequest(httpServletRequest)) {
+				logger.info("httpServletResponse:{}", httpServletResponse);
+				httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+			}
+			// allow them to see the login page ;)
+				return true;
 		}
+		if (logger.isTraceEnabled()) {
+			logger.trace("Attempting to access a path which requires authentication.  Forwarding to the "
+					+ "Authentication url [" + getLoginUrl() + "]");
+		}
+		saveRequestAndRedirectToLogin(request, response);
+		return false;
 	}
 
 	@Override

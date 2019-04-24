@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,7 +26,6 @@ import java.beans.PropertyEditorSupport;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -188,7 +188,7 @@ public abstract  class AbstractController {
         //  注册共用校验器
     }
     protected String uploadFile(MultipartFile file, String path,String fileName) throws Exception {
-        return  uploadFile(file,path,fileName,Boolean.FALSE);
+        return  uploadFile(file,path,fileName,Boolean.TRUE);
     }
     /**
      *
@@ -205,7 +205,6 @@ public abstract  class AbstractController {
             if (!folder.exists()) {
                 folder.mkdirs();
             }
-
             if(StringUtils.isBlank(fileName) ){
                 fileName = file.getOriginalFilename();
                 boolean isCN = ValidatorUtils.isContainsChinese(fileName);
@@ -214,7 +213,7 @@ public abstract  class AbstractController {
                 if(isCN&&isBase){
                     //获取文件名称
                     String oldFileName = StringUtils.substringBeforeLast(fileName, ".");
-                    fileName=""+Base64.decodeInteger(oldFileName.getBytes());
+                    fileName=""+Base64.encodeBase64String(oldFileName.getBytes());
                 }
                 fileName = System.nanoTime()+ "_"+fileName+"."+suffixes;
             }
