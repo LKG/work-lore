@@ -89,7 +89,7 @@ public class DownloadController extends AbstractController {
             this.periodicalService.addUpdateDownTimesTask(id);
             BaseUtils.setFileDownloadHeader(request,response,filename);
             //文件的真实路径
-            response.addHeader("X-Accel-Redirect","/var/www/uploads/media/2.xls");
+            response.addHeader("X-Accel-Redirect",po.getRealFilePath());
             logger.info("X-Accel-Redirect:"+po.getRealFilePath());
             response.addHeader(HttpHeaders.CONTENT_TYPE,"application/octet-stream; charset=utf-8");
 
