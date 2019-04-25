@@ -12,20 +12,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 /**
  *
+ * @author gg
+ * @desc 专题
  */
 @Controller
 public class TopicController extends AbstractController {
 	protected static final String apiVer = "/index";
 
 
-	/**
-	 *  QQ群推广信息
-	 * @param request
-	 * @return
-	 */
 	@RequestMapping(value={"/topic",apiVer+"/topic"}  ,method = RequestMethod.GET)
 	public ModelAndView groups(HttpServletRequest request, HttpServletResponse response,
 							   @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,

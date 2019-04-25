@@ -16,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 /**
- * 
- * @作者： LKG
- * @功能说明：第三方登录
+ *
+ * @author gg
+ * @desc 第三方登录
  */
 @Controller
 public class ThirdLoginController extends AbstractController {

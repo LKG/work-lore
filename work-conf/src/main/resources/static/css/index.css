@@ -845,6 +845,9 @@ text-align: right;
 }
 @media (min-width: 1200px) {
 	.header-box{width:1210px;}
+	.container {
+		width: 1210px;
+	}
 	.aa{width:1210px;}
 	.w {width:1210px;}
 	.w .logo{width:360px;}
