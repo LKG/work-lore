@@ -6,8 +6,8 @@
 <!-- BEGIN HEAD -->
 <head>
 <title>常见问题 - <@spring.message  code="label.system.name" /></title>
-  <link rel="stylesheet" type="text/css" href="${appHost}/css/style.css?v=${ver!'1'}" />
   <#include "/includes/head.ftl" />
+    <link rel="stylesheet" type="text/css" href="${appHost}/css/style.css?v=${ver!'1'}" />
   <style>
   .m-faq{
   	padding-left:20px;

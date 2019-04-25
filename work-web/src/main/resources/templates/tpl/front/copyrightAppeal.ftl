@@ -5,7 +5,7 @@
 <!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
 <!-- BEGIN HEAD -->
 <head>
-<title>文章定制- <@spring.message  code="label.system.name" /></title>
+<title>版权申诉 - <@spring.message  code="label.system.name" /></title>
   <#include "/includes/head.ftl" />
     <link rel="stylesheet" type="text/css" href="${appHost}/css/style.css?v=${ver!'1'}" />
 <#assign template="contact"/>
@@ -29,37 +29,26 @@
 <div class="clear"></div>
 <!--轮播图上方导航栏  一栏-->
 <div class="clearfix" ></div>
-<div class="container" style="margin-top: 30px;">
-    <ol class="breadcrumb">
-        <li><a href="${appHost}/"><@spring.message  code="label.system.index" /></a></li>
-        <li class="active">文章定制</li>
-    </ol>
-</div>
 <div class="container" style="margin-top: 35px" id="main-container">
-
     <div class="panel panel-info">
-        <div class="">
-            <ul id="my-tab-rule" class="myNavTab nav nav-tabs" role="tablist">
-                <li role="presentation" style="cursor:pointer" class="active">
-                    <a id="my-tab-all" data-key="">
-                        全部
-                    </a>
-                </li>
-                <li role="presentation" style="cursor:pointer" class="">
-                    <a id="my-tab-1" data-key="">
-                        党政
-                    </a>
-                </li>
-                <#--<form class="form-inline">-->
-                    <#--<div class="form-group">-->
-                        <#--<input type="text" class="form-control" id="qqS" name="qqS" placeholder="关键词">-->
-                    <#--</div>-->
-                    <#--<button type="button" class="btn btn-default">搜索</button>-->
-                <#--</form>-->
-            </ul>
-        </div>
         <div class="panel-body">
-
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">申诉资源信息：</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">版权申诉理由：</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputFile">申诉证据文件：</label>
+                    <input type="file" id="exampleInputFile">
+                    <p class="help-block">Example block-level help text here.</p>
+                </div>
+                <button type="submit" class="btn btn-default"><@spring.message  code="label.default.button.confirm" /></button>
+                <button type="submit" class="btn btn-default"><@spring.message  code="label.default.button.cancel" /></button>
+            </form>
         </div>
     </div>
 </div>

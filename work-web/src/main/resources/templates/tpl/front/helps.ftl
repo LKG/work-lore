@@ -6,8 +6,8 @@
 <!-- BEGIN HEAD -->
 <head>
 <title>新手帮助 - <@spring.message  code="label.system.name" /></title>
-  <link rel="stylesheet" type="text/css" href="${appHost}/css/style.css?v=${ver!'1'}" />
   <#include "/includes/head.ftl" />
+    <link rel="stylesheet" type="text/css" href="${appHost}/css/style.css?v=${ver!'1'}" />
 <#assign template="helps"/>
 </head> 
 <body class="page-header-fixed">
