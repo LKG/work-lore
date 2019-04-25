@@ -215,7 +215,7 @@
                     <div class="list___2n8rw">
                         <div class="clearfix">
                            <#list ["doc","ppt","pdf","图片"] as model>
-                               <a href="#">${model}</a>
+                               <a href="#">${model!''}</a>
                            </#list>
                         </div>
                     </div>
@@ -227,7 +227,7 @@
                     <div class="list___2n8rw">
                         <div class="clearfix">
                             <#list ["三天内","一周内","一个月内","最近半年","最近一年","最近三年"] as model>
-                                <a href="#">${model}</a>
+                                <a href="#">${model!''}</a>
                             </#list>
                         </div>
                     </div>

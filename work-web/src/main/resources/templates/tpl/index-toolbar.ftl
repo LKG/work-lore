@@ -20,7 +20,7 @@
             </a>
             </div>
             <div data-type="bar" class="J-trigger jdm-toolbar-tab jdm-tbar-tab-jimi" data-name="jimi"  >
-                <a href="tencent://message/?uin=790944904&amp;site=q${appHost}&amp;menu=yes">
+                <a href="tencent://message/?uin=790944904&site=${appHost}&menu=yes">
                      <i class="tab-ico"></i><em class="tab-text">咨询QQ:790944904</em>
                 </a>
             </div>
