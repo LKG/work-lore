@@ -27,6 +27,12 @@
             margin-top: 10px;
             padding: 10px 2px;
         }
+        .hot-list{
+            height: 285px;
+        }
+        .hot-list .thumbnail{
+            height: 220px;
+        }
         .counter.purple .title{ background: #a98ceb; }
         .dd-inner{
             display: block;
