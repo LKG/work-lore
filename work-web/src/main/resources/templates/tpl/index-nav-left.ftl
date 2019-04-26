@@ -2,8 +2,8 @@
 <!------------------------------------轮播图------------------------------------>
 <div id="lunbo">
     <ul id="one">
-        <li><a href=""><img src="https://bootcdn.xuexi.cn/dyxx_5a1d70322da1335610ea6a87/1554087679765/813de94528bd886188e9b98795ab2361.jpg?x-oss-process=image/resize,w_1000,h_560"></a></li>
-        <li><a href=""><img src="https://bootcdn.xuexi.cn/dyxx_5a1d70322da1335610ea6a87/1554173622285/fe9db44f3e08ff9e5a65e7bb4ee7d052.jpg?x-oss-process=image/resize,w_1000,h_560" alt="一带一路”建设的成就与挑战"></a></li>
+        <li><a href=""><img src="https://static.gongwk.com/images/20190426005.jpg" alt="加入会员" ></a></li>
+        <li><a href=""><img src="https://static.gongwk.com/images/20190426006.jpg" alt="" ></a></li>
     </ul>
     <ul id="two">
         <#list [1,2] as img>

@@ -11,7 +11,7 @@
                         <div class="col-md-3 hot-list">
                                 <div class="thumbnail">
                                     <a href="#" target="_blank" alt="工作总结专区">
-                                        <img src="http://www.biganzijiayuan.com/Uploads/Picture/2018-12-17/5c17bcef06b0f.png" alt="党建工作、办公室工作、专项工作、行政工作等总结范文。">
+                                        <img src="https://static.gongwk.com/images/20190426001.png" alt="党建工作、办公室工作、专项工作、行政工作等总结范文。">
                                     </a>
                                     <div class="caption">
                                         <h4><a href="/index.php?s=/Home/Hot/goods/id/1.html" target="_blank" alt="工作总结专区">工作总结专区</a></h4>
@@ -22,7 +22,7 @@
                         <div class="col-md-3 hot-list">
                             <div class="thumbnail">
                                 <a href="#" target="_blank" alt="述职报告范文">
-                                    <img src="http://www.biganzijiayuan.com/Uploads/Picture/2018-12-17/5c17bcd6d0b13.png" alt="各个岗位年终述职、述廉、述责、述学等报告及相关范文合集。">
+                                    <img src="https://static.gongwk.com/images/20190426002.png" alt="各个岗位年终述职、述廉、述责、述学等报告及相关范文合集。">
                                 </a>
                                 <div class="caption">
                                     <h4><a href="/index.php?s=/Home/Hot/goods/id/2.html" target="_blank" alt="述职报告范文">述职报告范文</a></h4>
@@ -33,7 +33,7 @@
                         <div class="col-md-3 hot-list">
                             <div class="thumbnail">
                                 <a href="#" target="_blank" alt="2019两会专区">
-                                    <img src="http://www.biganzijiayuan.com/Uploads/Picture/2019-03-27/5c9b7e418d42f.jpg" alt="2019年两会精神传达提纲、展板、学习资料等">
+                                    <img src="https://static.gongwk.com/images/20190426003.jpg" alt="2019年两会精神传达提纲、展板、学习资料等">
                                 </a>
                                 <div class="caption">
                                     <h4><a href="/index.php?s=/Home/Hot/goods/id/3.html" target="_blank" alt="2019两会专区">2019两会专区</a></h4>
@@ -44,7 +44,7 @@
                         <div class="col-md-3 hot-list">
                             <div class="thumbnail">
                                 <a href="#" target="_blank" alt="党建文秘素材">
-                                    <img src="http://www.biganzijiayuan.com/Uploads/Picture/2018-12-17/5c17c097405b6.png" alt="范文、表格、模板、PPT等资料。">
+                                    <img src="https://static.gongwk.com/images/20190426004.png" alt="范文、表格、模板、PPT等资料。">
                                 </a>
                                 <div class="caption">
                                     <h4><a href="/index.php?s=/Home/Hot/goods/id/4.html" target="_blank" alt="党建文秘素材">党建文秘素材</a></h4>

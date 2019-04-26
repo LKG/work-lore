@@ -13,8 +13,8 @@
 
 </div>
 <div class="alert alert-info" role="alert">
-    <a type="button" class="btn btn-danger" href="${appHost}/order/getOrderInfo.jhtml?id=${result.id!''}" ><i class="fa  fa-exclamation">举报</i></a>
-    <a type="button" class="btn btn-danger" href="${appHost}/order/getOrderInfo.jhtml?id=${result.id!''}" ><i class="fa  fa-exclamation-triangle">版权申诉</i></a>
+    <a type="button" class="btn btn-danger" href="${appHost}/copyrightAppeal.jhtml?bid=${result.id!''}" ><i class="fa  fa-exclamation">举报</i></a>
+    <a type="button" class="btn btn-danger" href="${appHost}/copyrightAppeal.jhtml?bid=${result.id!''}" ><i class="fa  fa-exclamation-triangle">版权申诉</i></a>
     <a href="#" class="alert-link">word格式文档无特别注明外均可编辑修改；预览文档经过压缩，下载后原文更清晰！ </a>
     <a type="button" class="btn btn-danger pull-right" href="${appHost}/order/getOrderInfo.jhtml?id=${result.id!''}" ><i class="fa  fa-cloud-download">立即下载</i></a>
 </div>
