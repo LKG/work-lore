@@ -263,12 +263,12 @@
                     <ul id="my-tab-work" class="myNavTab nav nav-tabs" role="tablist">
                         <li role="presentation" style="cursor:pointer"  class="active">
                             <a id="my-tab-010006" data-key="tab-pane-010006">
-                                五四演讲
+                                五四表彰
                             </a>
                         </li>
                         <li role="presentation" style="cursor:pointer" class="">
-                            <a id="my-tab-010007" data-key="tab-pane-010007">
-                                五四表彰
+                            <a id="my-tab-001007" data-key="tab-pane-001007">
+                                五四演讲
                             </a>
                         </li>
                         <li role="presentation" style="cursor:pointer" class="">
@@ -296,8 +296,8 @@
                         </div>
                         <!--- end -->
                         <!--- begin -->
-                        <div role="tabpanel" class="tab-pane active" id="tab-pane-010007">
-                            <@media.periodical categoryCode="010007" >
+                        <div role="tabpanel" class="tab-pane" id="tab-pane-001007">
+                            <@media.periodical categoryCode="001007" >
                                 <div class="mc">
                                     <ul>
                                         <#if docs??&&docs.content??>
@@ -311,7 +311,7 @@
                         </div>
                         <!--- end -->
                         <!--- begin -->
-                        <div role="tabpanel" class="tab-pane active" id="tab-pane-010008">
+                        <div role="tabpanel" class="tab-pane" id="tab-pane-010008">
                             <@media.periodical categoryCode="010008" >
                                 <div class="mc">
                                     <ul>
