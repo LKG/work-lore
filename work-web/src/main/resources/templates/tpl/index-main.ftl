@@ -311,8 +311,8 @@
                         </div>
                         <!--- end -->
                         <!--- begin -->
-                        <div role="tabpanel" class="tab-pane" id="tab-pane-010008">
-                            <@media.periodical categoryCode="010008" >
+                        <div role="tabpanel" class="tab-pane" id="tab-pane-001008">
+                            <@media.periodical categoryCode="001008" >
                                 <div class="mc">
                                     <ul>
                                         <#if docs??&&docs.content??>
