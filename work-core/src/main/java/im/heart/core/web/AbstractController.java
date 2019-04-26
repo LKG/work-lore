@@ -38,6 +38,7 @@ import java.util.List;
 public abstract  class AbstractController {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
     protected static final String RESULT_PAGE = RequestResult.PAGE;
+    protected static final String ERROR_PAGE = RequestResult.PAGE_ERROR;
     protected static final String VIEW_SUCCESS = RequestResult.PAGE_SUCCESS;
     private String viewPrefix;
     static final String HTTP_PREFIX = "http";

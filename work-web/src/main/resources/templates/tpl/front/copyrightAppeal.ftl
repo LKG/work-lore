@@ -91,8 +91,8 @@
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">申诉资源信息：</label>
                     <div class="col-sm-10">
-                        <p class="form-control-static">标题：@@@@@@@@</p>
-                        <p class="form-control-static"> 网址：${appHost}/doc/1309.jhtml</p>
+                        <p class="form-control-static">标题：${result.periodicalName!''}</p>
+                        <p class="form-control-static"> 网址：${appHost}/doc/${result.id!''}.jhtml</p>
                     </div>
                 </div>
                <div class="form-group">
