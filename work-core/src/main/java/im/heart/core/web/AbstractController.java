@@ -214,9 +214,12 @@ public abstract  class AbstractController {
                 if(isCN&&isBase){
                     //获取文件名称
                     String oldFileName = StringUtils.substringBeforeLast(fileName, ".");
-                    fileName=""+Base64.encodeBase64String(oldFileName.getBytes());
+                    fileName=Base64.encodeBase64String(oldFileName.getBytes());
+                    fileName = System.nanoTime()+ "_"+fileName+"."+suffixes;
+                }else{
+                    fileName = System.nanoTime()+ "."+suffixes;
                 }
-                fileName = System.nanoTime()+ "_"+fileName+"."+suffixes;
+
             }
             String filePath = path + File.separator + fileName;
             out = new FileOutputStream(filePath);

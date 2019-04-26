@@ -48,12 +48,6 @@ public class PeriodicalImg  implements AbstractEntity<BigInteger> {
 	private String pathUrl;
 	@Column(name = "IMG_URL", nullable = false,length=256)
 	private String imgUrl;
-	
-	@Column(name = "CITY_ID", nullable = false,length=64)
-	private String cityId;
-	
-	@Formula(value = "(select model.area_name from dic_frame_area model where model.area_code = city_id)")
-	private String cityName;
 
 	@Column(name = "CHECK_STATUS", nullable = false)
 	@Enumerated(EnumType.STRING)

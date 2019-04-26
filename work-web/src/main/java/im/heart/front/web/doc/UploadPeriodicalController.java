@@ -62,7 +62,7 @@ public class UploadPeriodicalController extends AbstractController {
      */
     @Override
     protected String uploadFile(MultipartFile file, String path) throws Exception {
-        return super.uploadFile(file,path,null);
+        return super.uploadFile(file,path,null,Boolean.FALSE);
     }
 
     @RequestMapping(apiVer + "/material")

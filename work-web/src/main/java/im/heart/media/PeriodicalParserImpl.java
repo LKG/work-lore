@@ -121,7 +121,7 @@ public class PeriodicalParserImpl implements PeriodicalParser {
             String periodicalCode=periodical.getPeriodicalCode();
             String periodicalType=periodical.getPeriodicalType();
             String cityId=periodical.getCityId();
-            String imgFilePathPrefix = dstImgFolder+File.separator+periodicalCode+File.separator+periodicalId+File.separator;
+            String imgFilePathPrefix = dstImgFolder+File.separator+periodicalId+File.separator;
             for (int i = 0; i < pages; i++) {
                 int page=i+1;
                 String fileNameKey=periodicalId+"_"+page+".png";
@@ -132,7 +132,6 @@ public class PeriodicalParserImpl implements PeriodicalParser {
                 BufferedImage image = renderer.renderImageWithDPI(i, dpi);
                 ImageIO.write(image, "png", dstFile);
                 PeriodicalImg materialPeriodicalImg=new PeriodicalImg();
-                materialPeriodicalImg.setCityId(cityId);
                 materialPeriodicalImg.setPageNum(page);
                 materialPeriodicalImg.setPeriodicalCode(periodicalCode);
                 materialPeriodicalImg.setPeriodicalType(periodicalType);
