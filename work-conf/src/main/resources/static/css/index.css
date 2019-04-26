@@ -856,3 +856,68 @@ text-align: right;
 		margin-left: 370px;
 	}
 }
+/**cate-search begin****/
+.box-cate {
+	position: relative;
+	z-index: 9;
+	background: #fff;
+	margin-bottom: 10px;
+	-webkit-box-shadow: 0px 1px 5px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0px 1px 5px 0 rgba(0, 0, 0, 0.15);
+	border: 1px solid #e5e5e5;
+	border-bottom: none;
+}
+.line-cate {
+	position: relative;
+	line-height: 36px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.key-cate {
+	display: table-cell;
+	vertical-align: middle;
+	width: 125px;
+	min-width: 125px;
+	padding: 6px 0 6px 18px;
+	white-space: nowrap;
+	overflow: hidden;
+	color: #333;
+	border-right: 1px solid #e5e5e5;
+}
+.value-cate {
+	position: relative;
+	display: table-cell;
+	width: 100%;
+	vertical-align: top;
+	background-color: #fff;
+}
+.list-cate:first-child {
+	border-top: none;
+}
+.list-cate {
+	position: relative;
+	padding: 8px 70px 8px 0;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+	height: 32px;
+	overflow: hidden;
+	border-top: 1px solid #e5e5e5;
+}
+.listLabel-cate {
+	float: left;
+	margin: 5px 5px 5px 20px;
+	height: 22px;
+	line-height: 22px;
+}
+.listTm-cate a {
+	margin-right: 5px;
+}
+.listCnt-cate {
+	overflow: hidden;
+}
+.list-cate a {
+	float: left;
+	margin: 5px 40px 5px 20px;
+	height: 22px;
+	line-height: 22px;
+}
+/**cate-search end****/

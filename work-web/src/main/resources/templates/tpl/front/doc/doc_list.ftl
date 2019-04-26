@@ -71,10 +71,7 @@
 <!-- 搜索框 end-->
 <!--轮播图上方导航栏  一栏-->
 <#include "/index-nav-top.ftl" />
-<div style="border-bottom: 1px solid #ddd;margin-top: 5px;">
-
-</div>
-<div class="container" style="margin-top: 30px;">
+<div class="container" style="margin-top: 15px;">
     <ol class="breadcrumb">
         <li><a href="${appHost}/"><@spring.message  code="label.system.index" /></a></li>
         <li class="active">文库列表</li>
@@ -82,6 +79,10 @@
 </div>
 <div class="container" >
     <div class="row">
+        <div class="alert alert-info" style="margin-bottom: 10px;margin-top: -10px;" role="alert">
+            为您找到 ${result.totalElements}条结果
+        </div>
+        <#include "/front/doc/doc_cate.ftl" />
         <div class="panel panel-default">
             <div class="">
                 <ul id="my-tab-rule" class="myNavTab nav nav-tabs" role="tablist">
