@@ -87,12 +87,14 @@ $(function(){
     $menu.menuAim({
         activate: activateSubmenu,
         deactivate: deactivateSubmenu,
-        enter: function() {
-
-        },
-        exit: function() {
-        },
+        exitMenu: hideSubmenu ,
     });
+
+    function hideSubmenu() {
+        $(".popover").css("display", "none");
+        $("a.maintainHover").removeClass("maintainHover");
+    }
+
     function activateSubmenu(row) {
         var $row = $(row),
             submenuId = $row.data("submenuId"),
@@ -122,8 +124,7 @@ $(function(){
         e.stopPropagation();
     });
     $(document).click(function() {
-        $(".popover").css("display", "none");
-        $("a.maintainHover").removeClass("maintainHover");
+        hideSubmenu();
     });
 });
 
