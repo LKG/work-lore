@@ -74,7 +74,6 @@ public class IndexController extends AbstractController {
 			}
 			Page<PeriodicalVO> docVos  =new PageImpl<PeriodicalVO>(vos,pageRequest,pag.getTotalElements());
 			model.put("freeDocs",docVos);
-			System.out.println(pag.getTotalElements());
 		}
 	}
 

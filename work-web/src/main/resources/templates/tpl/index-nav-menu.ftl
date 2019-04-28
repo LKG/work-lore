@@ -12,7 +12,6 @@
             <li data-submenu-id="submenu-patas" >
                 <a href="#">领导讲话</a>
                 <div id="submenu-patas" class="popover" >
-                    <h3 class="popover-title">领导讲话</h3>
                     <div class="popover-content">
                         <!---  --->
                         <div class="cate_part_col1">
@@ -40,7 +39,6 @@
             <li data-submenu-id="submenu-snub-nosed">
                 <a href="#">写作素材</a>
                 <div id="submenu-snub-nosed" class="popover" >
-                    <h3 class="popover-title">写作素材</h3>
                     <div class="popover-content">
                         <!---  --->
                         <div class="cate_part_col1">
@@ -68,7 +66,6 @@
             <li data-submenu-id="submenu-duoc-langur">
                 <a href="#">PPT模板</a>
                 <div id="submenu-duoc-langur" class="popover" >
-                    <h3 class="popover-title">PPT模板</h3>
                     <div class="popover-content">
 
                     </div>

@@ -114,7 +114,6 @@ public class ApiNoticeController extends AbstractController {
 	}
 	@RequestMapping(value=apiVer+"/create", method=RequestMethod.POST)
 	public ModelAndView  create(@Valid Notice notice) {
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22");
 		return new ModelAndView(VIEW_CREATE);
 	}
 }
