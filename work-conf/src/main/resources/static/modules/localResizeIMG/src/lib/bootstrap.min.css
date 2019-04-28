@@ -6530,9 +6530,6 @@ button.close {
     border-width: 0 5px 5px;
     border-bottom-color: #000000
 }
-.dropdown-menu > li > a.maintainHover {
-    color: white; background-color: #0081C2;
-}
 .popover {
     position: absolute;
     top: 0;
