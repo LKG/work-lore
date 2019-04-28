@@ -12,7 +12,7 @@
   <!--背景图片begin--> 
   <div class="lg_bg"> 
    <div class="lg_bg_in" id="lg_bg"  > 
-    <img class="on" style="display:none;"  src="http://old.bz55.com/uploads/allimg/150714/139-150G4120254.jpg" /> 
+    <img class="on" style="display:none;"  src="https://static.gongwk.com/images/bg01.jpg" />
    </div> 
   </div> 
   <!--背景图片end-->
