@@ -83,21 +83,15 @@ $(function(){
     });
  });
 ;$(function(){
-    $('.counter-value').each(function(){
-        $(this).prop('Counter',0).animate({
-            Counter: $(this).text()
-        },{
-            duration: 3500,
-            easing: 'swing',
-            step: function (now){
-                $(this).text(Math.ceil(now));
-            }
-        });
-    });
     var $menu = $(".dropdown-menu");
     $menu.menuAim({
         activate: activateSubmenu,
-        deactivate: deactivateSubmenu
+        deactivate: deactivateSubmenu,
+        enter: function() {
+
+        },
+        exit: function() {
+        },
     });
     function activateSubmenu(row) {
         var $row = $(row),
