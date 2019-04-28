@@ -19,7 +19,7 @@
 			<!-- 按天回滚 daily -->
 			<fileNamePattern>${LOG_HOME}/runtime_info-%d{yyyy-MM-dd}.log</fileNamePattern>
 			<!-- 日志最大的历史 -->
-			<maxHistory>30</maxHistory>
+			<maxHistory>15</maxHistory>
 		</rollingPolicy>
 		<!-- 定义归档 -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">

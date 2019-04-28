@@ -77,7 +77,7 @@
         <li class="active">文库列表</li>
     </ol>
 </div>
-<div class="container" >
+<div class="container" style="margin-top: -10px;">
     <div class="row">
         <#include "/front/doc/doc_cate.ftl" />
         <div class="panel panel-default">
