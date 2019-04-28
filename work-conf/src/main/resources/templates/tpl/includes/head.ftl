@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=1100, maximum-scale=1.0, user-scalable=yes" />
 <link rel="shortcut icon" href="//www.gongwk.com/favicon.ico" type="image/x-icon" />
 <base href="${appHost}" id="baseRoot"/>
-<title><@spring.message  code="label.system.name" /></title>
 <link rel="stylesheet" href="${appHost}/modules/bootstrap/3.3.5/css/bootstrap.min.css?v=${ver!'1'}">
 <link rel="stylesheet" type="text/css" href="${appHost}/modules/fontawesome/4.7.0/css/font-awesome.min.css?v=${ver!'1'}" />
 <link rel="stylesheet" type="text/css" href="${appHost}/modules/nprogress/nprogress.css?v=${ver!'1'}" />
