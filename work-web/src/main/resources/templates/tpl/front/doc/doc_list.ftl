@@ -79,9 +79,6 @@
 </div>
 <div class="container" >
     <div class="row">
-        <div class="alert alert-info" style="margin-bottom: 10px;margin-top: -10px;" role="alert">
-            为您找到 ${result.totalElements}条结果
-        </div>
         <#include "/front/doc/doc_cate.ftl" />
         <div class="panel panel-default">
             <div class="">
