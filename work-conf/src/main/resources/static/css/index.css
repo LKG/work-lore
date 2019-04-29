@@ -350,7 +350,9 @@ _display: block;
 	0%,100%{transform: scale(1);}
 	50%{transform: scale(1.1);}
 }
-
+.dropdown-menu > li > a.maintainHover {
+	color: white; background-color: #0081C2;
+}
 .dorpdown-layer{width:308px;height:60px;border:1px solid #ccc;position:absolute;top:34px;left:-185px;text-align:center;display:none;}
 .right:hover{border-bottom:none;}
 .right:hover .dorpdown-layer{display:block;background:#fff;}
