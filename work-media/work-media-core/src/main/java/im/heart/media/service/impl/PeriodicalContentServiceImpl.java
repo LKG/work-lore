@@ -41,26 +41,9 @@ public class PeriodicalContentServiceImpl extends CommonServiceImpl<PeriodicalCo
 	public List<PeriodicalContent> saveAll(Iterable<PeriodicalContent> entities) {
 		return this.periodicalContentRepository.saveAll(entities);
 	}
-
 	@Override
-	public boolean exit(String periodicalCode, Integer pageNum, String cityId) {
-		final Collection<SearchFilter> filters  = Sets.newHashSet();
-		filters.add(new SearchFilter("pageNum", Operator.EQ, pageNum));
-		filters.add(new SearchFilter("cityId", Operator.EQ, cityId));
-		filters.add(new SearchFilter("periodicalCode", Operator.EQ, periodicalCode));
-		Specification<PeriodicalContent> spec = DynamicSpecifications.bySearchFilter(filters, PeriodicalContent.class);
-		long countSign = this.periodicalContentRepository.count(spec);
-		return countSign <= 0;
-	}
-
-	@Override
-	public List<PeriodicalContent> findByCityIdAndPeriodicalCode(
-			String cityId, String periodicalCode) {
-		final Collection<SearchFilter> filters = Sets.newHashSet();
-		filters.add(new SearchFilter("cityId", Operator.EQ, cityId));
-		filters.add(new SearchFilter("periodicalCode", Operator.EQ, periodicalCode));
-		Specification<PeriodicalContent> spec = DynamicSpecifications.bySearchFilter(filters, PeriodicalContent.class);
-		return this.periodicalContentRepository.findAll(spec);
+	public List<PeriodicalContent> findByPeriodicalId(BigInteger periodicalId) {
+		return this.periodicalContentRepository.findByPeriodicalId(periodicalId);
 	}
 
 	@Override

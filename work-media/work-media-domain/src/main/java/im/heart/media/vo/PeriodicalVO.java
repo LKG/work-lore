@@ -4,10 +4,13 @@ import com.alibaba.fastjson.annotation.JSONField;
 import im.heart.core.CommonConst;
 import im.heart.core.enums.Status;
 import im.heart.media.entity.Periodical;
+import im.heart.media.entity.PeriodicalContent;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
+import javax.persistence.Column;
 import java.util.Date;
+import java.util.List;
 
 @Data
 public class PeriodicalVO  extends Periodical {
@@ -44,6 +47,8 @@ public class PeriodicalVO  extends Periodical {
 
     @JSONField (serialize = false)
     private String realFilePath;
+
+    private List<PeriodicalContent> contents;
 
     public PeriodicalVO(Periodical po){
         this(po,true);

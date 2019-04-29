@@ -8,6 +8,8 @@ import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.web.AbstractController;
 import im.heart.media.entity.Periodical;
+import im.heart.media.entity.PeriodicalContent;
+import im.heart.media.service.PeriodicalContentService;
 import im.heart.media.service.PeriodicalImgService;
 import im.heart.media.service.PeriodicalService;
 import im.heart.media.vo.PeriodicalVO;
@@ -46,6 +48,9 @@ public class DocController extends AbstractController {
     private PeriodicalService periodicalService;
 
     @Autowired
+    private PeriodicalContentService periodicalContentService;
+
+    @Autowired
     private FrameUserFollowService frameUserFollowService;
 
     @RequestMapping(value = apiVer+"/{id}")
@@ -57,7 +62,9 @@ public class DocController extends AbstractController {
             ModelMap model) {
         this.updateHitsById(id);
         Periodical po = this.periodicalService.findById(id);
+        List<PeriodicalContent> contents=this.periodicalContentService.findByPeriodicalId(id);
         PeriodicalVO vo=new PeriodicalVO(po);
+        vo.setContents(contents);
         FrameUser user= SecurityUtilsHelper.getCurrentUser();
         if(user!=null){
             Optional<FrameUserFollow> optional= this.frameUserFollowService.findByUserIdAndRelateIdAndType(user.getUserId(),po.getId(),po.getPeriodicalType());

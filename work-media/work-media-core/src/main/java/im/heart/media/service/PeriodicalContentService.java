@@ -32,21 +32,12 @@ public interface PeriodicalContentService extends CommonService<PeriodicalConten
 	public List<PeriodicalContent>  saveAll(Iterable<PeriodicalContent> entities);
 
 	/**
-	 * 扫描件是否存在
-	 * @param periodicalCode
-	 * @param pageNum
-	 * @param cityId
-	 * @return
-	 */
-	public boolean exit(String periodicalCode, Integer pageNum, String cityId);
-	/**
 	 * 
-	 * 查看所以扫描件
-	 * @param cityId
-	 * @param periodicalCode
+	 * 内容
+	 * @param periodicalId
 	 * @return
 	 */
-	public List<PeriodicalContent> findByCityIdAndPeriodicalCode(String cityId, String periodicalCode);
+	public List<PeriodicalContent> findByPeriodicalId(BigInteger periodicalId);
 
 	/**
 	 * 条件查询
