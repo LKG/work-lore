@@ -21,3 +21,10 @@
 <div class="alert alert-warning" role="alert">
    <i class="fa  fa-exclamation-triangle"></i> <a href="#" class="alert-link">本站所有资源均是用户自行上传分享，仅供网友学习交流，未经上传用户书面授权，请勿作他用。 </a>
 </div>
+<div class="hide" id="doc-contents" >
+    <#if result.contents??>
+        <#list result.contents as model >
+            ${model.content}
+        </#list>
+    </#if>
+</div>
