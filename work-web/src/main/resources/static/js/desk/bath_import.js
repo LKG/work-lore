@@ -16,8 +16,8 @@ define(function(require, exports, moudles) {
          },
          thumbnails: {
              placeholders: {
-                 waitingPath: baseRoot+'/imgs/placeholders/waiting-generic.png',
-                 notAvailablePath: baseRoot+'/imgs/placeholders/not_available-generic.png'
+                 waitingPath: 'https://static.gongwk.com/images/placeholders/waiting-generic.png',
+                 notAvailablePath: 'https://static.gongwk.com/images/placeholders/not_available-generic.png'
              }
          },
          validation: {
