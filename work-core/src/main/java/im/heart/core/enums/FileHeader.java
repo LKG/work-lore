@@ -1,5 +1,10 @@
 package im.heart.core.enums;
 
+/**
+ *
+ * @author gg
+ * @desc 常用文件头格式
+ */
 public enum FileHeader {
 	AVI("avi", "41564920","avi格式"),
 	BAT("bat", "406563686f206f66660d","avi格式"),

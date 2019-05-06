@@ -62,7 +62,7 @@
 <!--轮播图上方导航栏  一栏-->
 <div class="clearfix" ></div>
 <!------页面header信息 end----->
-<div class="full-container "" id="main-container" style="height: 531px;">
+<div class="full-container " id="main-container" style="height: 531px;">
 <div class="alert alert-warning" style="padding: 5px;margin-bottom: 0px;"  role="alert">
     <p class="form-control-static">
         1、请勿上传已设置加密或只读的资源，不支持此类资源在线阅读。
