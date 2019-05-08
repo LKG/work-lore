@@ -1,4 +1,5 @@
 package im.heart.front.web.search;
+
 /**
  *
  * @author gg
@@ -32,4 +33,14 @@ public enum SearchType {
         this.intValue = value;
         this.info = info;
     }
+    public static SearchType findByIntValue(int intValue) {
+        for (SearchType searchType : SearchType.values()) {
+            if (searchType.intValue == intValue) {
+                return searchType;
+            }
+        }
+        return SearchType.keyword;
+    }
+
+
 }

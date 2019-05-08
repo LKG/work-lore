@@ -51,40 +51,41 @@ public class SearchArticleController  extends AbstractController {
         final Collection<SearchFilter> filters= DynamicSpecifications.buildSearchFilters(request);
         filters.add(new SearchFilter("isPub", SearchFilter.Operator.EQ,Boolean.TRUE));
         filters.add(new SearchFilter("isDeleted", SearchFilter.Operator.EQ,Boolean.FALSE));
-        switch (qt){
-            case 0:
+        SearchType searchType=SearchType.findByIntValue(qt);
+        switch (searchType){
+            case topical:
                 //主题
                 break;
-            case 1:
+            case keyword:
                 //关键词
                 filters.add(new SearchFilter("seoKeywords", SearchFilter.Operator.LIKE,q));
                 break;
-            case 2:
+            case title:
                 //篇名
                 filters.add(new SearchFilter("title", SearchFilter.Operator.LIKE,q));
                 break;
-            case 3:
+            case fulltext:
                 //全文
                 filters.add(new SearchFilter("content", SearchFilter.Operator.LIKE,q));
                 break;
-            case 4:
+            case author:
                 //作者
                 filters.add(new SearchFilter("author", SearchFilter.Operator.LIKE,q));
                 break;
-            case 5:
+            case organ:
                 //单位
                 break;
-            case 6:
+            case summary:
                 //摘要
                 filters.add(new SearchFilter("summary", SearchFilter.Operator.LIKE,q));
                 break;
-            case 7:
+            case cited:
                 //被引文献
                 break;
-            case 8:
+            case clc:
                 //中图分类号
                 break;
-            case 9:
+            case source:
                 //文献来源
                 filters.add(new SearchFilter("source", SearchFilter.Operator.LIKE,q));
                 break;
