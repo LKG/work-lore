@@ -6,7 +6,7 @@
    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel">
      <div class="panel-body">
          <div class="caption" >
-             <img style="width: 221px;" class="img-responsive" src="${appHost}/qq/790944904.JPG"/>
+             <img style="width: 221px;" class="img-responsive" src="https://static.gongwk.com/images/qq/790944904.JPG"/>
          </div>
      </div>
    </div>
