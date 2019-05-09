@@ -46,7 +46,7 @@ button[data-color=maleskine].active,button[data-color=maleskine]:active {
 
 li{list-style-type: none;}
 .login-box {width: 317px;overflow: hidden;margin: 0px 0px;border-top: 2px solid #ff4200;}
-.login-box.loading {height: 272px;background: #FFF url(../imgs/loading.gif) no-repeat 50% 50%;}
+.login-box.loading {height: 272px;background: #FFF url(../images/loading.gif) no-repeat 50% 50%;}
 .login-box.loading .bd {display: none;}
 .login-box .field {position: relative;z-index: 1;padding-bottom: 5px;}
 .login-box .field label {display: block;font-weight: 700;padding-bottom: 3px;	color: #666;}
@@ -137,11 +137,11 @@ li{list-style-type: none;}
 	top: 0;
 	right: -1px;
 	z-index: 2;
-	background: url(../imgs/switcher-pc.png) no-repeat 0 0;
+	background: url(../images/switcher-pc.png) no-repeat 0 0;
 }
 .btn-2login:hover,.btn-2qrcode:hover {text-decoration: none;}
 .btn-2login:focus,.btn-2qrcode:focus {outline: 0;}
-.btn-2qrcode {background-image: url(../imgs/switcher-qr.png);}
+.btn-2qrcode {background-image: url(../images/switcher-qr.png);}
 .login-box-switch{
 	position: absolute;
 	width: 317px;;
