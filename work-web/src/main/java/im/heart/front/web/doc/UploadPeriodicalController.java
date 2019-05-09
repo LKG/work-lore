@@ -110,7 +110,7 @@ public class UploadPeriodicalController extends AbstractController {
                     periodical.setDataSize(file.getSize());
                     periodical.setStatus(CommonConst.FlowStatus.initial);
                     String url = StringUtilsEx.replace(path + realFileName, File.separator, "/");
-                    String pathUrl="/"+FILE_ROOT_PATH+"/"+url;
+                    String pathUrl="/"+FILE_ROOT_PATH+url;
                     periodical.setPathUrl(pathUrl);
                     this.periodicalService.save(periodical);
                     this.periodicalParser.addParserTask(periodical,file.getInputStream());
