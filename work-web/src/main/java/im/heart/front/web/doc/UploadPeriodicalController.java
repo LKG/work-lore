@@ -85,7 +85,7 @@ public class UploadPeriodicalController extends AbstractController {
         List<MultipartFile> uploadFileList = super.getFileList(request);
         if (uploadFileList != null && !uploadFileList.isEmpty()) {
             for (MultipartFile file : uploadFileList) {
-                String path = File.separator+periodicalFilePath+File.separator + DateTime.now().toString("yyyyMMdd") + File.separator;
+                String path = File.separator+periodicalFilePath+File.separator +periodicalCode+File.separator + DateTime.now().toString("yyyyMMdd") + File.separator;
                 try {
                     String realPath = uploadFilePath+path;
                     String realFileName = this.uploadFile(file, realPath);
