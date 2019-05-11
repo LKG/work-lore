@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.math.BigInteger;
 
 @Repository
-public interface OrderItemRepository extends JpaRepository<OrderItem, BigInteger>,JpaSpecificationExecutor<OrderItem> {
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long>,JpaSpecificationExecutor<OrderItem> {
 
 }

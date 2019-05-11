@@ -24,21 +24,21 @@ import java.util.Date;
 @DynamicInsert()
 @Data
 @SequenceGenerator(name = "shopOrderItemSequenceGenerator", sequenceName = "shop_order_item_sequence")
-public class OrderItem implements AbstractEntity<BigInteger> {
+public class OrderItem implements AbstractEntity<Long> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(length = 32, name = "ITEM_ID", nullable = false, unique = true, updatable = false)
-	private BigInteger itemId;
+	private Long itemId;
 	/**
 	 * 订单号
 	 */
 	@Column(length = 32, name = "ORDER_ID", nullable = false, updatable = false)
-	private BigInteger orderId;
+	private Long orderId;
 	/**
 	 * 商品货号
 	 */
 	@Column(length = 32, name = "PROD_ID", nullable = false, updatable = false)
-	private BigInteger prodId;
+	private Long prodId;
 	/**
 	 * 商品名称
 	 */

@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.math.BigInteger;
 
 @Repository
-public interface CartRepository extends JpaRepository<Cart, BigInteger>,JpaSpecificationExecutor<Cart> {
+public interface CartRepository extends JpaRepository<Cart, Long>,JpaSpecificationExecutor<Cart> {
 
 }

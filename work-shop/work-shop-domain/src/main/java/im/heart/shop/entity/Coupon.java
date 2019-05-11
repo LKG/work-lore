@@ -9,11 +9,11 @@ import java.math.BigInteger;
  * @功能说明：优惠券实体类
  * @作者 LKG
  */
-public class Coupon  implements AbstractEntity<BigInteger> {
+public class Coupon  implements AbstractEntity<Long> {
 	/**
 	 * // 优惠券编号
 	 */
-	private String couponId;
+	private Long couponId;
 	/**
 	 * 用户Id
 	 */

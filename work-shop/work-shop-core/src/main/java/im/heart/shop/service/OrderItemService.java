@@ -6,6 +6,6 @@ import im.heart.shop.entity.OrderItem;
 import java.math.BigInteger;
 
 
-public interface OrderItemService extends CommonService<OrderItem, BigInteger> {
+public interface OrderItemService extends CommonService<OrderItem, Long> {
 	public static final String BEAN_NAME = "orderItemService";
 }

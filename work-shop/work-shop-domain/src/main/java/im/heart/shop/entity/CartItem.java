@@ -39,18 +39,18 @@ import java.math.BigInteger;
 @DynamicInsert()
 @Data
 @SequenceGenerator(name = "shopCartItemSequenceGenerator", sequenceName = "shop_cart_item_sequence")
-public class CartItem   implements AbstractEntity<BigInteger> {
+public class CartItem   implements AbstractEntity<Long> {
 	/**
 	 * //购物车子项ID
 	 */
 	@Id
 	@Column(length = 32, name = "ITEM_ID", nullable = false, unique = true, updatable = false)
-	private BigInteger 	itemId;
+	private Long 	itemId;
 	/**
 	 * //购物车Id
 	 */
 	@Column(length = 32, name = "CART_ID", nullable = false, unique = true, updatable = false)
-	private BigInteger 	cartId;
+	private Long 	cartId;
 	/** 最大数量 */
 	public static final Integer MAX_QUANTITY = 1000000;
 

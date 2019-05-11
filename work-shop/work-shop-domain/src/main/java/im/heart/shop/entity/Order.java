@@ -26,7 +26,7 @@ import java.util.List;
 @DynamicInsert()
 @Data
 @SequenceGenerator(name = "shopOrderSequenceGenerator", sequenceName = "shop_order_sequence")
-public class Order implements AbstractEntity<BigInteger> {
+public class Order implements AbstractEntity<Long> {
 
 	/**
 	 * 订单状态（未处理、已处理、已完成、已作废）
@@ -60,7 +60,7 @@ public class Order implements AbstractEntity<BigInteger> {
 	 */
 	@Id
 	@Column(length = 32, name = "ORDER_ID", nullable = false, unique = true, updatable = false)
-	private BigInteger orderId;
+	private Long orderId;
 
 	/**
 	 *  订单状态

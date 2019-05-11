@@ -59,7 +59,7 @@ public class OrderController extends AbstractController {
     @RequestMapping(value={apiVer+"/confirmOrderInfo"} ,method = RequestMethod.GET)
     public ModelAndView confirmOrderInfo(HttpServletRequest request,
                                          @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN , required = false) String token,
-                                         ModelMap model, BigInteger orderId) {
+                                         ModelMap model, Long orderId) {
         Order po=this.orderService.findById(orderId);
         super.success(model, po);
         return new ModelAndView(CONFIRM_PAGE);

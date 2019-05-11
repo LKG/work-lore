@@ -25,7 +25,7 @@ import java.util.Map;
 
 @Service(value = OrderService.BEAN_NAME)
 @Transactional(propagation = Propagation.SUPPORTS,rollbackFor=Exception.class)
-public class OrderServiceImpl extends CommonServiceImpl<Order, BigInteger> implements OrderService {
+public class OrderServiceImpl extends CommonServiceImpl<Order, Long> implements OrderService {
 
 	@Autowired
 	private OrderRepository orderRepository;
@@ -33,6 +33,15 @@ public class OrderServiceImpl extends CommonServiceImpl<Order, BigInteger> imple
 	private PeriodicalService periodicalService;
 	@Autowired
 	private OrderItemRepository orderItemRepository;
+    @Override
+    public List<Order> queryUnpaid(){
+        return null;
+    }
+    @Override
+    public List<Order> findUnconfirmOrder(){
+        return null;
+    }
+
 
 	@Override
 	public Order  create(OrderDto orderDto) {
@@ -44,15 +53,15 @@ public class OrderServiceImpl extends CommonServiceImpl<Order, BigInteger> imple
         }
         Order order=new Order();
         BeanUtils.copyProperties(orderDto,order);
-        order.setOrderId(new BigInteger(OrderHelper.generateOrderNum()));
+        order.setOrderId(Long.parseLong(OrderHelper.generateOrderNum()));
         order.setItems(null);
         this.orderRepository.save(order);
-        BigInteger orderId=order.getOrderId();
+        Long orderId=order.getOrderId();
         List<Periodical> list= this.periodicalService.findAllById(itemDtos.keySet());
         List<OrderItem> orderItems= Lists.newArrayList();
         for(Periodical prod:list){
             OrderItem orderItem=new OrderItem();
-            orderItem.setProdId(prod.getId());
+            orderItem.setProdId(prod.getId().longValue());
             orderItem.setOrderId(orderId);
             orderItem.setProdQuantity(itemDtos.get(prod.getId()).getProdQuantity());
             orderItem.setProdUrl(prod.getCoverImgUrl());

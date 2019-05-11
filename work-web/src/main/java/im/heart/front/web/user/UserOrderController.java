@@ -77,7 +77,7 @@ public class UserOrderController extends AbstractController {
     protected ModelAndView cancelOrder(
             @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
             @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN , required = false) String token,
-            @PathVariable BigInteger orderId,
+            @PathVariable Long orderId,
             HttpServletRequest request,
             ModelMap model) {
         super.success(model,true);

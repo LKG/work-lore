@@ -6,6 +6,6 @@ import im.heart.shop.entity.Cart;
 import java.math.BigInteger;
 
 
-public interface CartService extends CommonService<Cart, BigInteger> {
+public interface CartService extends CommonService<Cart, Long> {
 	public static final String BEAN_NAME = "cartService";
 }

@@ -9,11 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigInteger;
-
 @Service(value = OrderItemService.BEAN_NAME)
 @Transactional(propagation = Propagation.SUPPORTS)
-public class OrderItemServiceImpl extends CommonServiceImpl<OrderItem, BigInteger> implements OrderItemService {
+public class OrderItemServiceImpl extends CommonServiceImpl<OrderItem, Long> implements OrderItemService {
 
 	@Autowired
 	private OrderItemRepository orderItemRepository;

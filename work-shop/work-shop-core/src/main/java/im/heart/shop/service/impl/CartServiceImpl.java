@@ -13,7 +13,7 @@ import java.math.BigInteger;
 
 @Service(value = CartService.BEAN_NAME)
 @Transactional(propagation = Propagation.SUPPORTS)
-public class CartServiceImpl extends CommonServiceImpl<Cart, BigInteger> implements CartService {
+public class CartServiceImpl extends CommonServiceImpl<Cart, Long> implements CartService {
 
 	@Autowired
 	private CartRepository cartRepository;

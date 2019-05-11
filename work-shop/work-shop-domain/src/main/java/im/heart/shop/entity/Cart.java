@@ -20,17 +20,20 @@ import java.math.BigInteger;
 @DynamicInsert()
 @Data
 @SequenceGenerator(name = "shopCartSequenceGenerator", sequenceName = "shop_cart_sequence")
-public class Cart  implements AbstractEntity<BigInteger> {
+public class Cart  implements AbstractEntity<Long> {
 	@Id
 	@Column(length = 32, name = "CART_ID", nullable = false, unique = true, updatable = false)
-	private BigInteger 	cartId;
+	private Long 	cartId;
 	private BigInteger userId;
 	private String userName;
 	/**
 	 * 是否逻辑删除 N:否 Y:是
 	 */
 	private Boolean isDeleted;
-	private String 	couponIds;//优惠券编号列表
+	/**
+	 * 优惠券编号列表
+	 */
+	private String 	couponIds;
 	private String 	itemIds;
 }
 
