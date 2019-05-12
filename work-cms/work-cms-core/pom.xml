@@ -5,7 +5,7 @@
     <parent>
         <artifactId>work-cms</artifactId>
         <groupId>im.heart</groupId>
-        <version>0.1.24-SNAPSHOT</version>
+        <version>0.1.25-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,17 +14,17 @@
         <dependency>
             <groupId>im.heart</groupId>
             <artifactId>work-core</artifactId>
-            <version>0.1.24-SNAPSHOT</version>
+            <version>0.1.25-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>im.heart</groupId>
             <artifactId>work-conf</artifactId>
-            <version>0.1.24-SNAPSHOT</version>
+            <version>0.1.25-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>im.heart</groupId>
             <artifactId>work-cms-domain</artifactId>
-            <version>0.1.24-SNAPSHOT</version>
+            <version>0.1.25-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
