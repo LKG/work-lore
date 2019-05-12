@@ -58,12 +58,16 @@
 <!--轮播图上方导航栏  一栏-->
 <#include "/index-nav-top.ftl" />
 <div class="clearfix"></div>
-<div class="container m-container" style="margin-top: 15px;" >
+<div class="jumbotron" style="position: relative;height: 380px;padding-top: 0px;margin-top: 7px;background-image: url('https://static.gongwk.com/images/det-com-bg.png')">
+    <div class="container">
+
+    </div>
+</div>
+<div class="container m-container" style="margin-top: 0px;" >
     <div class="row"  id="row-main">
         <div class="panel panel-default">
             <div class="panel-heading" id="doc-nav-top" >
                 <h4>加入VIP</h4>
-
             </div>
             <div class="panel-body">
                 <!---文档左侧begin--->
@@ -103,7 +107,7 @@
 
 </script>
 <script>
-    seajs.use(["js/doc/init.js?v="+Math.random(),"js/search.js?v="+Math.random()]);
+    seajs.use(["js/search.js?v="+Math.random()]);
 </script>
 </body>
 </html>
