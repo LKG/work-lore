@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigInteger;
 
 @Service(value = CartItemService.BEAN_NAME)
-@Transactional(propagation = Propagation.SUPPORTS)
-public class CartItemServiceImpl extends CommonServiceImpl<CartItem, BigInteger> implements CartItemService {
+@Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
+public class CartItemServiceImpl extends CommonServiceImpl<CartItem, Long> implements CartItemService {
 
     @Autowired
     private CartItemRepository cartItemRepository;

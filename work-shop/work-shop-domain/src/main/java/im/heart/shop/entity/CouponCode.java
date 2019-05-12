@@ -38,9 +38,9 @@ import javax.persistence.Table;
  * @author Hengtiansoft Team
  * @version 1.0_beta
  */
-@Entity
-@Table(name = "ecp_coupon_code")
-@SequenceGenerator(name = "shopCouponCodeSequenceGenerator", sequenceName = "shop_coupon_code_sequence")
+//@Entity
+//@Table(name = "ecp_coupon_code")
+//@SequenceGenerator(name = "shopCouponCodeSequenceGenerator", sequenceName = "shop_coupon_code_sequence")
 public class CouponCode implements AbstractEntity<Long> {
 
 	/** 号码 */
