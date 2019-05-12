@@ -33,11 +33,6 @@ public class OrderJob {
     @Transactional(rollbackFor = Exception.class)
     public void checkOrderUnpaid() {
         logger.info("系统开启任务检查订单是否已经超期自动取消订单");
-        List<Order> orderList = null;
-        for (Order order : orderList) {
-            // 设置订单已取消状态
-            logger.info("订单 ID= {} 已经超期自动取消订单",order.getOrderId());
-        }
     }
 
     /**
@@ -52,12 +47,6 @@ public class OrderJob {
     @Scheduled(cron = "0 0 3 * * ?")
     public void checkOrderUnconfirm() {
         logger.info("系统开启任务检查订单是否已经超期自动确认收货");
-
-        List<Order> orderList = null;
-        for (Order order : orderList) {
-
-            // 设置订单已取消状态
-        }
     }
 
     /**
@@ -72,11 +61,5 @@ public class OrderJob {
     @Scheduled(cron = "0 0 4 * * ?")
     public void checkOrderComment() {
         logger.info("系统开启任务检查订单是否已经超期未评价");
-
-        LocalDateTime now = LocalDateTime.now();
-        List<Order> orderList = null;
-        for (Order order : orderList) {
-
-        }
     }
 }
