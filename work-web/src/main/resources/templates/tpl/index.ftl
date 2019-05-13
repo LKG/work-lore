@@ -31,7 +31,7 @@
             height: 285px;
         }
         .hot-list .thumbnail{
-            height: 220px;
+            height: 265px;
         }
         .counter.purple .title{ background: #a98ceb; }
         .dd-inner{

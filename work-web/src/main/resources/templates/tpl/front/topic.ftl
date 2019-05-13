@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="${appHost}/css/style.css?v=${ver!'1'}" />
     <style>
         .hot-list .thumbnail {
-            height: 220px;
+            height: 265px;
         }
     </style>
 <#assign template="topic"/>
