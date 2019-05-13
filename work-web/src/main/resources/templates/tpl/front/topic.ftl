@@ -95,7 +95,7 @@
         </div>
     </div>
 </div>
-
+<div class="clearfix" ></div>
 <div class="container m-container"  >
     <div class="row">
         <div class="col-md-12">
