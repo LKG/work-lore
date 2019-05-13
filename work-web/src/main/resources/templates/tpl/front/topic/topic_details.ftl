@@ -100,7 +100,7 @@
                         <#include "/front/doc/template/doc-hot-keywords.ftl" />
                         <!---面板end--->
                         <!---面板begin--->
-                        <#include "/pages/customer.ftl" />
+                          <#include "/pages/customer.ftl" />
                         <!---面板end--->
                 </div>
                 <!---文档右侧end--->
