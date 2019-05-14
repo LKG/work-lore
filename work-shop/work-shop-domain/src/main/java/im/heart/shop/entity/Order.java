@@ -144,9 +144,11 @@ public class Order implements AbstractEntity<Long> {
 	 */
 	@Column(precision = 15, scale = 5, name = "PAID_AMOUNT", columnDefinition="0.00")
 	private BigDecimal paidAmount;
-
+/**
+ *  商品重量
+ */
 //	@Column(precision = 15, scale = 5, name = "PROD_WEIGHT" , columnDefinition="0.00")
-//	private BigDecimal prodWeight;// 商品重量
+//	private BigDecimal prodWeight;
 
 	/**
 	 *  商品总数
@@ -185,9 +187,6 @@ public class Order implements AbstractEntity<Long> {
 	 */
 	@Column(name = "INVOICE_FLAG" , nullable = false)
 	private Boolean invoiceFlag;
-//
-//	@Column(length = 32, name = "INVOICE_TITLE")
-//	private String invoiceTitle;//发票抬头
 
 	/**
 	 * 订单明细
