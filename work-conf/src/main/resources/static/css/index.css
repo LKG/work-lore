@@ -77,8 +77,8 @@ _display: block;
 }
 .jdm-tbar-panel-header .close-panel, .jdm-tbar-panel-header i, .jdm-toolbar-tab .tab-ico, .jdm-toolbar-tab .tab-tip, .jdm-toolbar-tabs .tabs-tip .ico {
 display: inline-block;
-background-image: url(../images/toolbar.png);
-_background-image: url(../images/toolbar-png8.png);
+background-image: url(https://static.gongwk.com/images/toolbar.png);
+_background-image: url(https://static.gongwk.com/images/toolbar-png8.png);
 background-repeat: no-repeat;
 }
 .m-container {

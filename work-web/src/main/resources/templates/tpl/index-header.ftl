@@ -48,7 +48,7 @@
                 </i>
                 <div class="my1">
                     <div class="my2">
-                        <img src="${appHost}/images/no-img_mid_.jpg">
+                        <img src="https://static.gongwk.com/images/no-img_mid_.jpg">
                         <div class="my3">
                             <@shiro.guest>  <h3 class="neirong2"><a href="${appHost}/login.jhtml">您好，请登录</a></h3>  </@shiro.guest>
                             <p class="neirong2"><a href="">优惠卷 丨 消息</a></p>
