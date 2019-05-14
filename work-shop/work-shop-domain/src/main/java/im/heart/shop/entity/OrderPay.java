@@ -20,8 +20,8 @@ import java.util.List;
  * @作者： LKG
  * @功能说明：商品订单实体类
  */
-@Entity
-@Table(name = "shop_order_pay")
+//@Entity
+//@Table(name = "shop_order_pay")
 @DynamicUpdate()
 @DynamicInsert()
 @Data
