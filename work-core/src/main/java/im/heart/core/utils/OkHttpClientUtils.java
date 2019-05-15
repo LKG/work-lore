@@ -20,6 +20,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -75,21 +76,31 @@ public class OkHttpClientUtils {
 	}
 
 	public static Response fetchResponse(String url, Map<String, Object> params) throws IOException {
+		return fetchResponse(url,params,null);
+	}
+	public static Response fetchResponse(String url, Map<String, Object> params,Map<String, String> headers) throws IOException {
 		OkHttpClient copy = mOkHttpClient.newBuilder().readTimeout(500, TimeUnit.MILLISECONDS).build();
 		Builder builder = new Builder().url(url);
 		Request request = null;
+		if(headers!=null&& !headers.isEmpty()){
+			Iterator<Map.Entry<String, String>> it=headers.entrySet().iterator();
+			while (it.hasNext()){
+				Map.Entry<String, String> entry = (Map.Entry<String, String>)it.next();
+				builder.addHeader(entry.getKey(),entry.getValue());
+			}
+		}
 		if (params == null) {
 			request = builder.build();
 		} else {
 			request = builder.post(builderFormBody(params)).build();
 		}
+
 		Response response = copy.newCall(request).execute();
 		if (!response.isSuccessful()) {
 			throw new IOException("Unexpected code " + response);
 		}
 		return response;
 	}
-
 	public static String encodingUrl(String url, Map<String, Object> params, String encoding) throws IOException {
 		String httpParam = "";
 		if (params != null) {
@@ -108,10 +119,12 @@ public class OkHttpClientUtils {
 	public static FormBody builderFormBody(Map<String, Object> params) throws IOException {
 		FormBody.Builder formBodyBuilder = new FormBody.Builder();
 		if (params != null && !params.isEmpty()) {
-			Set<String> keys = params.keySet();
-			for (String key : keys) {
-				Object value = params.get(key);
+			Iterator it=params.entrySet().iterator();
+			while (it.hasNext()){
+				Map.Entry<String, Object> entry = (Map.Entry<String, Object>)it.next();
+				Object value = entry.getValue();
 				if (value != null) {
+					String key = (String)entry.getKey();
 					formBodyBuilder.add(key, value.toString());
 				}
 			}
