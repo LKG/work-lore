@@ -22,7 +22,6 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -32,7 +31,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class OkHttpClientUtils {
 	protected static final Logger logger = LoggerFactory.getLogger(OkHttpClientUtils.class);
-	public static final String DEFAULT_ENCODING = "UTF-8";
 
 	private final static OkHttpClient mOkHttpClient = new OkHttpClient();
 	public static class UnSafeTrustManager implements X509TrustManager {
@@ -65,16 +63,16 @@ public class OkHttpClientUtils {
 		}
 		return null;
 	}
-	public static String fetchEntityString(String url, Map<String, Object> params) throws IOException {
-		return fetchEntityString(url, params, DEFAULT_ENCODING);
-	}
 	public static String fetchEntityString(String url) throws IOException {
-		return fetchEntityString(url, null, DEFAULT_ENCODING);
+		return fetchEntityString(url, null);
 	}
-	public static String fetchEntityString(String url, Map<String, Object> params, String encoding) throws IOException {
+	public static String fetchEntityString(String url, Map<String, Object> params) throws IOException {
 		return fetchResponse(url, params).body().string();
 	}
 
+	public static String fetchEntityString(String url, Map<String, Object> params,Map<String, String> headers) throws IOException {
+		return fetchResponse(url,params,headers).body().string();
+	}
 	public static Response fetchResponse(String url, Map<String, Object> params) throws IOException {
 		return fetchResponse(url,params,null);
 	}
@@ -85,7 +83,7 @@ public class OkHttpClientUtils {
 		if(headers!=null&& !headers.isEmpty()){
 			Iterator<Map.Entry<String, String>> it=headers.entrySet().iterator();
 			while (it.hasNext()){
-				Map.Entry<String, String> entry = (Map.Entry<String, String>)it.next();
+				Map.Entry<String, String> entry = it.next();
 				builder.addHeader(entry.getKey(),entry.getValue());
 			}
 		}
@@ -119,12 +117,12 @@ public class OkHttpClientUtils {
 	public static FormBody builderFormBody(Map<String, Object> params) throws IOException {
 		FormBody.Builder formBodyBuilder = new FormBody.Builder();
 		if (params != null && !params.isEmpty()) {
-			Iterator it=params.entrySet().iterator();
+			Iterator<Map.Entry<String, Object>> it=params.entrySet().iterator();
 			while (it.hasNext()){
-				Map.Entry<String, Object> entry = (Map.Entry<String, Object>)it.next();
+				Map.Entry<String, Object> entry = it.next();
 				Object value = entry.getValue();
 				if (value != null) {
-					String key = (String)entry.getKey();
+					String key = entry.getKey();
 					formBodyBuilder.add(key, value.toString());
 				}
 			}
