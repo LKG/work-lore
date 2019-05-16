@@ -51,7 +51,6 @@ public class RestExceptionHandler{
 		return new ModelAndView(RequestResult.PAGE_ERROR, errorMap);
 	}
 
-	@ResponseStatus(HttpStatus.OK)
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public ModelAndView handleException(HttpServletRequest request, DataIntegrityViolationException e) {
 		logger.error("操作数据库出现异常：字段重复、有外键关联等:", e);
