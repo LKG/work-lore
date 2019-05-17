@@ -11,5 +11,6 @@ public class CmsTags extends SimpleHash {
 	public CmsTags() {
         super(new DefaultObjectWrapperBuilder(Configuration.VERSION_2_3_28).build());
         put("article", new ArticleTag());
+        put("articleCategory", new ArticleCategoryTag());
     }
 }

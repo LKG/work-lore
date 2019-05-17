@@ -29,7 +29,8 @@ import java.util.List;
 @Controller
 public class ArticleController extends AbstractController {
     protected static final String apiVer = "/article";
-    protected static final String VIEW_LIST="front/article/article_list";
+    protected static final String VIEW_HOME="front/article/article_list";
+    protected static final String VIEW_LIST="front/article/article_list_page";
     protected static final String VIEW_DETAILS="front/article/article_details";
     @Autowired
     private ArticleService articleService;
@@ -69,6 +70,15 @@ public class ArticleController extends AbstractController {
         super.success(model,pag);
         return new ModelAndView(VIEW_LIST);
     }
+
+    @GetMapping(apiVer+"")
+    public ModelAndView home(HttpServletRequest request, HttpServletResponse response,
+                             @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
+                             @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
+                             ModelMap model) {
+        return new ModelAndView(VIEW_HOME);
+    }
+
     public void updateHitsById(BigInteger id){
         this.articleService.addUpdateHitsTask(id);
     }

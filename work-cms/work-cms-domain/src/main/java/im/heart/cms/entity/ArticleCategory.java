@@ -12,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
 import java.util.Date;
 
@@ -26,7 +27,7 @@ import java.util.Date;
 @DynamicInsert()
 @Data
 @SequenceGenerator(name = "cmsArticleCategorySequenceGenerator", sequenceName = "cms_article_category_sequence")
-public class ArticleCategory implements TreeEntity<BigInteger>{
+public class ArticleCategory implements TreeEntity<Long>{
 
 	/**
 	 * 
@@ -39,7 +40,7 @@ public class ArticleCategory implements TreeEntity<BigInteger>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(length = 20, name = "ID", nullable = false, unique = true, updatable = false)
-	private BigInteger id;
+	private Long id;
 	
 	/** 名称 */
 	@NotEmpty
@@ -55,6 +56,11 @@ public class ArticleCategory implements TreeEntity<BigInteger>{
 	@Length(max = 200)
 	@Column(name = "SEO_KEYWORDS", nullable = false)
 	private String seoKeywords;
+
+	@Length(max = 200)
+	@Column(name = "image_url", nullable = false)
+	private String imageUrl;
+
 
 	/** 页面描述 . */
 	@Length(max = 200)
@@ -76,6 +82,13 @@ public class ArticleCategory implements TreeEntity<BigInteger>{
 	@JSONField (serialize=false)
 	@Column(name = "LEVEL", nullable = false)
 	private Integer level;
+
+	/**
+	 * //父类节点ID
+	 */
+	@NotNull
+	@Column(name = "PARENT_ID",length=32,nullable = false)
+	private BigInteger parentId=BigInteger.ZERO;
 
 	@Formula(value = "( exists(select 1 from cms_article_category model where model.parent_id = id) )")
 	private boolean hasChildren;
@@ -102,10 +115,6 @@ public class ArticleCategory implements TreeEntity<BigInteger>{
 		return null;
 	}
 
-	public BigInteger getParentId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	@Override
 	public boolean isHasChildren() {
 		// TODO Auto-generated method stub

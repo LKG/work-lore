@@ -13,7 +13,7 @@ import java.math.BigInteger;
  * @desc 文章分类接口
  */
 @Repository
-public interface ArticleCategoryRepository extends JpaRepository<ArticleCategory, BigInteger> ,JpaSpecificationExecutor<ArticleCategory> {
+public interface ArticleCategoryRepository extends JpaRepository<ArticleCategory, Long> ,JpaSpecificationExecutor<ArticleCategory> {
 
 
 }

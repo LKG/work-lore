@@ -33,7 +33,7 @@ public class AdminArticleCategoryController extends AbstractController {
 	@RequestMapping(value = apiVer+"/{id}")
 	protected ModelAndView findById(
 			@RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
-			@PathVariable BigInteger id,
+			@PathVariable Long id,
 			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
 			HttpServletRequest request,
 			ModelMap model) {

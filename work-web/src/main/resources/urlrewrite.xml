@@ -39,6 +39,10 @@
         <to>/articles.jhtml?page=$1</to>
     </rule>
     <rule>
+        <from>^/articles/c-([0-9]+).?(.*)$</from>
+        <to>/articles.jhtml?categoryId=$1</to>
+    </rule>
+    <rule>
         <from>^/docs/p-([0-9]+).?(.*)$</from>
         <to>/docs.jhtml?page=$1</to>
     </rule>

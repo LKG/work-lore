@@ -11,6 +11,6 @@ import java.math.BigInteger;
 
 @Service(value = ArticleCategoryService.BEAN_NAME)
 @Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
-public class ArticleCategoryServiceImpl extends CommonServiceImpl<ArticleCategory, BigInteger> implements ArticleCategoryService {
+public class ArticleCategoryServiceImpl extends CommonServiceImpl<ArticleCategory, Long> implements ArticleCategoryService {
 
 }

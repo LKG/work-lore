@@ -10,7 +10,7 @@ import java.math.BigInteger;
  * @功能说明：文章分类操作接口
  * @作者 LKG
  */
-public interface   ArticleCategoryService extends CommonService<ArticleCategory, BigInteger>{
+public interface   ArticleCategoryService extends CommonService<ArticleCategory, Long>{
 	
 	public static final String BEAN_NAME = "articleCategoryService";
 
