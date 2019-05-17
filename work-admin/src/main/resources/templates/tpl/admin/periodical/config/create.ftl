@@ -171,7 +171,8 @@
 								zNodes.push({code:parentCode, parentId:pid, name: name});
 							});
 						}
-						var treeObj =$.fn.zTree.init($("#areaTree"), setting, zNodes);
+						var $areaTree=$("#areaTree");
+						var treeObj =$.fn.zTree.init($areaTree, setting, zNodes);
 					}
 				});
 			});
