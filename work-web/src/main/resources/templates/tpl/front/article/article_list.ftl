@@ -49,7 +49,7 @@
 
                                  <div class="col-md-3 hot-list">
                                      <div class="thumbnail">
-                                         <a href="${appHost}/topic.jhtml" target="_blank" alt="专家专栏-${model.name!''}">
+                                         <a href="${appHost}/articles/c-${model.id!''}.jhtml" target="_blank" alt="专家专栏-${model.name!''}">
                                              <img src="${model.imageUrl!''}" alt="专家专栏-${model.name!''}">
                                          </a>
                                          <div class="caption">
