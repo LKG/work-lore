@@ -77,7 +77,6 @@
 	</div>
 </div>
 <#include "/includes/jquery.ftl" />
-
 <#include "/includes/zTree-js.ftl" />
 <script>
 		$(document).ready(function(){
@@ -135,7 +134,9 @@
 				}
 				return listurl;
 			}
-			var treeObj=$.fn.zTree.init($("#areaTree"), setting);
+            var $aredTree=$("#areaTree");
+		 	alert($aredTree):
+			var treeObj=$.fn.zTree.init($aredTree, setting);
 			var flag=0;
 			function onAsyncSuccess(event, treeId, treeNode, msg) {
 				$(".loading").hide();

@@ -3,7 +3,7 @@
 	 <div class="panel-heading"> </div>
 	  <div class="panel-body">
 	   <div class="loading"> <@spring.message  code="label.default.data.loading" /></div>
-	    <ul id="areaTree" class="ztree">
+	    <ul id="resourceTree" class="ztree">
 	   	
 	    </ul>
 	  </div>
@@ -72,7 +72,7 @@
 			}
 			return url;
 		}
-		var treeObj=$.fn.zTree.init($("#areaTree"), setting);
+		var treeObj=$.fn.zTree.init($("#resourceTree"), setting);
 		var flag=0;
 		function onAsyncSuccess(event, treeId, treeNode, msg) {
 			$(".loading").hide();
@@ -87,7 +87,7 @@
 			$("#main-body").removeClass("loading").load("${appHost}/admin/resource/"+treeNode.code+".jhtml");
 		};
 		function onAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
-			var zTree = $.fn.zTree.getZTreeObj("areaTree");
+			var zTree = $.fn.zTree.getZTreeObj("resourceTree");
 			alert("异步获取数据出现异常。");
 			treeNode.icon = "";
 			zTree.updateNode(treeNode);
