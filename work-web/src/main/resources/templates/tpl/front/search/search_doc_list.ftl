@@ -75,11 +75,9 @@
 </div>
 <div class="container" >
     <div class="row">
-        <div class="alert alert-info" style="margin-bottom: 10px;margin-top: -10px;" role="alert">
-            为您找到 ${result.totalElements}条结果
-        </div>
         <#include "/front/doc/doc_cate.ftl" />
-        <div class="panel panel-default">
+        <div class="col-md-9  col-xs-9" style="padding: 0px 0px;">
+            <div class="panel panel-default">
             <div class="">
                 <ul id="my-tab-rule" class="myNavTab nav nav-tabs" role="tablist">
                     <li role="presentation" style="cursor:pointer" class="active">
@@ -91,12 +89,9 @@
             </div>
             <div class="panel-body">
                 <!---文档begin--->
-                <div class="col-md-12  col-xs-12">
-                    <div class="row">
-                        <form class="form-search form-inline" id="search_form">
-                            <input type="hidden" name="page" id="page" value="1">
-                        </form>
-                    </div>
+                <form class="form-search form-inline" id="search_form">
+                    <input type="hidden" name="page" id="page" value="1">
+                </form>
                     <div  class="bs-table-tbody"  >
                         <ul class="list-group" id="table-tbody"   >
                               <#if (result.content?size<=0) >
@@ -117,10 +112,12 @@
                     <!-----分页-begin---->
                     <div  id="table-pagination" data-totalPages="${result.totalPages}" data-number="${result.number}" style="margin-top: -15px;"  class="clearfix"></div>
                     <!-----分页-end---->
-
-                </div>
                 <!---文档end--->
             </div>
+        </div>
+        </div>
+        <div class="col-md-3  col-xs-3" style="padding: 0px 0px 0px 10px;">
+            <#include "/pages/customer.ftl" />
         </div>
     </div>
 </div>
