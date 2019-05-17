@@ -128,9 +128,13 @@ public class FrameUser implements AbstractEntity<BigInteger> {
 	@Column(name = "IS_VIP", nullable = false)
 	private Boolean isVip = Boolean.FALSE;
 
+	@Transient
+	private Boolean isExpiry;
 
-	public  Boolean isExpiry(){
+	public  Boolean getIsExpiry(){
 		if(Boolean.TRUE.equals(isVip)&&expiryTime!=null){
+			System.out.println("@@@@@@@@@@@@@@@2");
+			System.out.println("@@@@@@@@@@@@@@@2"+expiryTime);
 			return new DateTime(expiryTime).isAfterNow();
 		}
 		return Boolean.FALSE;

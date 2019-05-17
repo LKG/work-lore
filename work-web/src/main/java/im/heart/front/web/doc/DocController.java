@@ -71,7 +71,7 @@ public class DocController extends AbstractController {
             if(optional.isPresent()){
                 vo.setIsCollect(Boolean.TRUE);
             }
-            if(BigDecimal.ZERO.compareTo(po.getFinalPrice())==0||user.isExpiry()){
+            if(BigDecimal.ZERO.compareTo(po.getFinalPrice())==0||user.getIsExpiry()){
                 vo.setAllowDown(Boolean.TRUE);
             }
         }

@@ -2,7 +2,7 @@
 <!-- List group begin-->
 <div class="list-group text-center user-menu" style="min-height: 368px;">
 	 <a href="${appHost}/userinfo.jhtml" class="list-group-item <#if template=='userinfo'>active</#if>">
-	 	<i class="fa fa-credit-card"></i>  我的资料
+	 	<i class="fa fa-credit-card"></i>   账号主页
 	 </a>
 	  <a href="${appHost}/userinfo/safe.jhtml" class="list-group-item <#if template=='safe'>active</#if>">
 		 <i class="fa fa-bullhorn"></i>   账户安全

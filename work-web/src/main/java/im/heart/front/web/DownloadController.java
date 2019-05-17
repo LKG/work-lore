@@ -82,7 +82,7 @@ public class DownloadController extends AbstractController {
         }
         //校验用户是否有权限
         boolean isFree=(BigDecimal.ZERO.compareTo(po.getFinalPrice())==0);
-        if(isFree||user.isExpiry()){
+        if(isFree||user.getIsExpiry()){
             if(StringUtils.isBlank(filename)){
                 filename=po.getPeriodicalName().concat(".").concat(po.getFileHeader());
             }
@@ -90,9 +90,7 @@ public class DownloadController extends AbstractController {
             BaseUtils.setFileDownloadHeader(request,response,filename);
             //文件的真实路径
             response.addHeader("X-Accel-Redirect",po.getRealFilePath());
-            logger.info("X-Accel-Redirect:"+po.getRealFilePath());
             response.addHeader(HttpHeaders.CONTENT_TYPE,"application/octet-stream; charset=utf-8");
-
             return  new ModelAndView(RESULT_PAGE);
         }
         super.fail(model,new ResponseError(WebError.ACCESS_DENIED));
