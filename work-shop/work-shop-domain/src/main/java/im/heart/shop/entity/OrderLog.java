@@ -1,18 +1,27 @@
 package im.heart.shop.entity;
 
+import im.heart.core.entity.AbstractEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  * 订单操作记录
  */
-@Builder
+//@Entity
+//@Table(name = "shop_order_log")
+@DynamicUpdate()
+@DynamicInsert()
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class OrderLog {
+@SequenceGenerator(name = "shopOrderSequenceGenerator", sequenceName = "shop_order_sequence")
+public class OrderLog implements AbstractEntity<Long> {
      /**
       * 类型
       */

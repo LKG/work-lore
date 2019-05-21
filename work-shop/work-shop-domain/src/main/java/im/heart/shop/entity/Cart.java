@@ -27,6 +27,14 @@ public class Cart  implements AbstractEntity<Long> {
 	private BigInteger userId;
 	private String userName;
 	/**
+	 * productId
+	 */
+	private Long productId;
+	/**
+	 * skuId
+	 */
+	private Long productSkuId;
+	/**
 	 * 是否逻辑删除 N:否 Y:是
 	 */
 	private Boolean isDeleted;
