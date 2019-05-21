@@ -1,5 +1,6 @@
 package im.heart.front.web;
 
+import com.alibaba.fastjson.JSON;
 import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.entity.Article;
 import im.heart.cms.service.ArticleService;
@@ -7,7 +8,9 @@ import im.heart.core.CommonConst;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
+import im.heart.core.utils.BaseUtils;
 import im.heart.core.web.AbstractController;
+import im.heart.core.web.utils.WebUtilsEx;
 import im.heart.usercore.service.FrameUserFollowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -62,8 +65,10 @@ public class ArticleController extends AbstractController {
                              @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
                              ModelMap model) {
         final Collection<SearchFilter> filters= DynamicSpecifications.buildSearchFilters(request);
+        System.out.println(WebUtilsEx.getParametersJson(request));
         filters.add(new SearchFilter("isPub", SearchFilter.Operator.EQ,Boolean.TRUE));
         filters.add(new SearchFilter("isDeleted", SearchFilter.Operator.EQ,Boolean.FALSE));
+        System.out.println(JSON.toJSON(filters));
         Specification<Article> spec= DynamicSpecifications.bySearchFilter(filters, Article.class);
         PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order, Article.class);
         Page<ArticleDTO> pag = this.articleService.findAllProjection(spec, pageRequest);
