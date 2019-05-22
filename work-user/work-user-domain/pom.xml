@@ -37,5 +37,10 @@
             <artifactId>fastjson</artifactId>
         </dependency>
         <!-- JSON end -->
+        <dependency>
+            <groupId>com.querydsl</groupId>
+            <artifactId>querydsl-apt</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

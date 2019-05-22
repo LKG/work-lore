@@ -13,7 +13,11 @@ public interface Regular {
 	public final static Pattern emailer = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
 	
 	public final static Pattern number = Pattern.compile("^[0-9]*$");
-	
+
+	/**
+	 * 从字符串中匹配出省份，地市信息
+	 */
+	public final static Pattern addrser = Pattern.compile("(?<province>[^省]+自治区|.*?省|.*?行政区|.*?市|上海|北京|天津|重庆)(?<city>[^市]+自治州|.*?地区|.*?行政单位|.+盟|市辖区|.*?市|.*?县)(?<county>[^县]+县|.+区|.+市|.+旗|.+镇|.+局|.+海域|.+岛)?(?<town>[^区]+区|.+镇)?(?<village>.*)");
 	/**
 	 * url
 	 */
