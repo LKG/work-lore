@@ -1,5 +1,8 @@
 package im.heart.core.plugins.persistence;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import im.heart.core.plugins.persistence.SearchFilter.Operator;
 import im.heart.core.utils.DateUtilsEx;
 import im.heart.core.utils.ReflectUtils;
@@ -74,7 +77,7 @@ public class DynamicSpecifications {
 	 */
 	public static Collection<SearchFilter> buildSearchFilters(HttpServletRequest request) {
 		Map<String, SearchFilter> maps = buildSearchFilterMap(request);
-		Collection<SearchFilter> filters = new HashSet<SearchFilter>();
+		Collection<SearchFilter> filters = Sets.newHashSet();
 		filters.addAll(maps.values());
 		return filters;
 	}
@@ -97,12 +100,87 @@ public class DynamicSpecifications {
 	 * @return
 	 */
 	public static <T> Map<String, String> getDeclaredFieldsMap(final Class<T> entityClazz) {
-		Map<String, String> fieldMap = new HashMap<String, String>();
+		Map<String, String> fieldMap = Maps.newHashMap();
 		Field[] fields = entityClazz.getDeclaredFields();
 		for (Field field : fields) {
 			fieldMap.put(field.getName(), field.getName());
 		}
 		return fieldMap;
+	}
+
+	/**
+	 * 处理日期
+	 * @param val
+	 * @param operator
+	 * @return
+	 */
+	private static Object processDate(Object val,Operator operator) {
+		logger.debug("val is not Date");
+		try {
+			String dataTime=val.toString();
+			if (Operator.LT.equals(operator) || Operator.LTE.equals(operator)) {
+				if (DateUtilsEx.isValidDate(dataTime)) {
+					dataTime = dataTime+ " 23:59:59";
+				}
+			}
+			val=DateUtilsEx.parseDateStrictly(dataTime,
+					"yyyy-MM-dd HH:mm:ss","yyyy-MM-dd HH:mm","yyyy-MM-dd HH","yyyy-MM-dd","yyyy-MM","yyyy");
+		} catch (ParseException e) {
+			logger.error(e.getMessage(), e);
+		}
+		return  val;
+	}
+
+	/**
+	 * 处理枚举类型
+	 * @param val
+	 * @param classz
+	 * @return
+	 */
+	private static Object processEnum(Object val,Class classz) {
+		logger.debug("枚举类型......");
+		if (StringUtilsEx.isNumeric(val.toString())) {
+			Method method = ReflectUtils.getMethod(classz, true, false, "findByIntValue", int.class);
+			if(method!=null){
+				try {
+					Integer intVal = Integer.valueOf(val.toString());
+					val=method.invoke(Integer.class,intVal);
+				} catch (Exception e) {
+					logger.warn(e.getMessage(), e);
+				}
+			}
+		}else{
+			val = EnumUtils.getEnum(classz, val.toString());
+		}
+		return  val;
+	}
+
+	/**
+	 * 处理数据
+	 * @param val
+	 * @param operator
+	 * @param classz
+	 * @return
+	 */
+	private static Object processExpression(Object val,Operator operator,Class classz){
+		if (Date.class.equals(classz)) {
+			if (!(val instanceof Date)) {
+				val=processDate(val,operator);
+			}
+		}
+		if (classz.isEnum()) {
+			val=processEnum(val,classz);
+		}
+		if (String.class.equals(classz)) {
+			if(val!=null){
+				val=StringUtilsEx.trim(val.toString());
+			}
+		}
+		if (Boolean.class.equals(classz)) {
+			logger.debug("Boolean类型......");
+			val=StringToBooleanUtils.convert(val.toString());
+		}
+		return  val;
 	}
 
 	/**
@@ -119,7 +197,7 @@ public class DynamicSpecifications {
 			@Override
 			public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder builder) {
 				if (!filters.isEmpty()) {
-					List<Predicate> predicates = new ArrayList<Predicate>();
+					List<Predicate> predicates = Lists.newArrayList();
 					for (SearchFilter filter : filters) {
 						String[] names = StringUtils.split(filter.fieldName, ".");
 						if (!fieldMap.containsKey(names[0])) {
@@ -127,110 +205,50 @@ public class DynamicSpecifications {
 							logger.debug(filter.fieldName + " is not entity field " + entityClazz);
 							continue;
 						}
-						// nested path translate, 如Task的名为"user.name"的filedName,
-						// 转换为Task.user.name属性
+						// nested path translate, 如Task的名为"user.name"的filedName, 转换为Task.user.name属性
 						Path<Object> expression = root.get(names[0]);
 						for (int i = 1; i < names.length; i++) {
 							expression = expression.get(names[i]);
 						}
-						// 处理查询条件
-						// 判断数据类型，进行类型转换
+						// 处理查询条件 判断数据类型，进行类型转换
 						Class classz = expression.type().getJavaType();
 						Object val = filter.value;
 						Operator operator = filter.operator;
-						if (classz.equals(Date.class)) {
-							if (!(val instanceof Date)) {
-								logger.debug("val is not Date");
-								try {
-									String dataTime=val.toString();
-									if (Operator.LT.equals(operator) || Operator.LTE.equals(operator)) {
-										if (DateUtilsEx.isValidDate(dataTime)) {
-											dataTime = dataTime+ " 23:59:59";
-										}
-									}
-									 val=DateUtilsEx.parseDateStrictly(dataTime, 
-											 "yyyy-MM-dd HH:mm:ss","yyyy-MM-dd HH:mm","yyyy-MM-dd HH","yyyy-MM-dd","yyyy-MM","yyyy");
-								} catch (ParseException e) {
-									logger.error(e.getMessage(), e);
-								}
-							}
-						}
-						// 枚举类型转换
-						if (classz.isEnum()) {
-							logger.debug("枚举类型......");
-							if (StringUtilsEx.isNumeric(val.toString())) {
-								Method method = ReflectUtils.getMethod(classz, true, false, "findByIntValue", int.class);
-								if(method!=null){
-									try {
-										Integer intVal = Integer.valueOf(val.toString());
-										val=method.invoke(Integer.class,intVal);
-									} catch (Exception e) {
-										logger.warn(e.getMessage(), e);
-										continue;
-									}
-								}
-							}else{
-								val = EnumUtils.getEnum(classz, val.toString());
-							}
-						}
-						if (classz.equals(String.class)) {
-							if(val!=null){
-								val=StringUtilsEx.trim(val.toString());
-							}
-						}
-						if (classz.equals(Boolean.class)) {
-							logger.debug("Boolean类型......");
-							val=StringToBooleanUtils.convert(val.toString());
-						}
+						val=processExpression(val,operator,classz);
 						switch (operator) {
-						case EQ:
-							predicates.add(builder.equal(expression, val));
-							break;
-						case NOTEQ:
-							predicates.add(builder.notEqual(expression, val));
-							break;
-						case LIKEP:
-							predicates.add(builder.like((Expression)expression, "%" + val));
-							break;
-						case NOTLIKEP:
-							predicates.add(builder.notLike((Expression)expression, "%" + val));
-							break;
-						case LIKES:
-							predicates.add(builder.like((Expression)expression, val + "%"));
-							break;
-						case NOTLIKES:
-							predicates.add(builder.notLike((Expression)expression, val + "%"));
-							break;
-						case LIKE:
-							predicates.add(builder.like((Expression)expression, "%" + val + "%"));
-							break;
-						case NOTLIKE:
-							predicates.add(builder.notLike((Expression)expression, "%" + val + "%"));
-							break;
-						case GT:
-							predicates.add(builder.greaterThan((Expression)expression, (Comparable) val));
-							break;
-						case LT:
-							predicates.add(builder.lessThan((Expression)expression, (Comparable) val));
-							break;
-						case GTE:
-							predicates.add(builder.greaterThanOrEqualTo((Expression)expression, (Comparable) val));
-							break;
-						case LTE:
-							predicates.add(builder.lessThanOrEqualTo((Expression)expression, (Comparable) val));
-							break;
-						case ISNULL:
-							predicates.add(builder.isNull(expression));
-							break;
-						case ISNOTNULL:
-							predicates.add(builder.isNotNull(expression));
-							break;
-						default:
-							break;
+							case EQ:
+								predicates.add(builder.equal(expression, val));break;
+							case NOTEQ:
+								predicates.add(builder.notEqual(expression, val));break;
+							case LIKEP:
+								predicates.add(builder.like((Expression)expression, "%" + val));break;
+							case NOTLIKEP:
+								predicates.add(builder.notLike((Expression)expression, "%" + val));break;
+							case LIKES:
+								predicates.add(builder.like((Expression)expression, val + "%"));break;
+							case NOTLIKES:
+								predicates.add(builder.notLike((Expression)expression, val + "%"));break;
+							case LIKE:
+								predicates.add(builder.like((Expression)expression, "%" + val + "%"));break;
+							case NOTLIKE:
+								predicates.add(builder.notLike((Expression)expression, "%" + val + "%"));break;
+							case GT:
+								predicates.add(builder.greaterThan((Expression)expression, (Comparable) val));break;
+							case LT:
+								predicates.add(builder.lessThan((Expression)expression, (Comparable) val));	break;
+							case GTE:
+								predicates.add(builder.greaterThanOrEqualTo((Expression)expression, (Comparable) val));break;
+							case LTE:
+								predicates.add(builder.lessThanOrEqualTo((Expression)expression, (Comparable) val));break;
+							case ISNULL:
+								predicates.add(builder.isNull(expression));		break;
+							case ISNOTNULL:
+								predicates.add(builder.isNotNull(expression));break;
+							default:break;
 						}
 					}
-					// 将所有条件用 and 联合起来
 					if (!predicates.isEmpty()) {
+						// 将所有条件用 and 联合起来
 						return builder.and(predicates.toArray(new Predicate[predicates.size()]));
 					}
 				}
