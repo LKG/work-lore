@@ -2,6 +2,7 @@ package im.heart.core.web.utils;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +38,7 @@ public class WebUtilsEx extends WebUtils {
     public static Map<String, List<String>> getHeaderMaps(
             HttpServletRequest request) {
         Validate.notNull(request, "Request must not be null");
-        Map<String, List<String>> headers =  new HashMap<String, List<String>>();
+        Map<String, List<String>> headers = Maps.newHashMap();
         Enumeration<?> namesEnumeration = request.getHeaderNames();
         while (namesEnumeration.hasMoreElements()) {
             String name = (String) namesEnumeration.nextElement();
@@ -114,8 +115,6 @@ public class WebUtilsEx extends WebUtils {
         return getParameters(request, false);
     }
 
-    ;
-
     public static Map<String, Object> getParameters(HttpServletRequest request, boolean decode) {
         if (decode) {
             return getParametersStartingWithEx(request, null);
@@ -133,8 +132,6 @@ public class WebUtilsEx extends WebUtils {
     public static String getParametersJson(HttpServletRequest request) {
         return getParametersJsonStartingWith(request, null);
     }
-
-    ;
 
     /**
      * @param request

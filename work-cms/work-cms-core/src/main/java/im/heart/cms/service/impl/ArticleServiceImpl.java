@@ -2,9 +2,14 @@ package im.heart.cms.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
+import com.querydsl.core.types.ExpressionUtils;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.core.types.Projections;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.dto.ArticleProjection;
 import im.heart.cms.entity.Article;
+import im.heart.cms.entity.QArticle;
 import im.heart.cms.repository.ArticleRepository;
 import im.heart.cms.service.ArticleService;
 import im.heart.core.service.impl.CommonServiceImpl;
@@ -37,28 +42,23 @@ public class ArticleServiceImpl extends CommonServiceImpl<Article, BigInteger> i
 		return this.articleRepository.saveAll(entities);
 	}
 
+	@Autowired
+	private JPAQueryFactory jpaQueryFactory;
 	@Override
 	public Page<Article> findAll(Specification<Article> spec, Pageable pageable){
 		return this.articleRepository.findAll(spec,pageable);
 	}
 	@Override
-	public Page<ArticleDTO> findAllProjection(Specification<Article> spec, Pageable pageable){
-		log.info(JSON.toJSONString(spec));
-		Page<ArticleProjection> pag=this.articleRepository.findAllProjection(spec,pageable);
-		if(pag!=null&&pag.hasContent()){
-			List<ArticleDTO> vos = Lists.newArrayList();
-			for(ArticleProjection po:pag.getContent()){
-				ArticleDTO vo=build(po);
-				vos.add(vo);
-			}
-			Page<ArticleDTO> pagvos =new PageImpl<ArticleDTO>(vos,pageable,pag.getTotalElements());
-			return pagvos;
-		}
+	public Page<ArticleDTO> findAll(Predicate predicate, Pageable pageable){
+		QArticle qArticle=QArticle.article;
+		this.jpaQueryFactory.select(Projections.bean(ArticleDTO.class,qArticle.id,qArticle.allowComment));
+		Page<Article> pag=this.articleRepository.findAll(predicate,pageable);
+		System.out.println("@@@@@@@@@@@@@@"+JSON.toJSONString(pag));
 		return null;
 	}
 
   private  ArticleDTO build(ArticleProjection po){
-	  ArticleDTO vo=new ArticleDTO();
+	  ArticleDTO vo=ArticleDTO.builder().build();
 	  vo.setId(po.getId());
 	  vo.setTitle(po.getTitle());
 	  vo.setPushTime(po.getPushTime());

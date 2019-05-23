@@ -2,8 +2,11 @@ package im.heart.front.web;
 
 
 import com.google.common.collect.Lists;
+import com.querydsl.core.types.ExpressionUtils;
+import com.querydsl.core.types.Predicate;
 import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.entity.Article;
+import im.heart.cms.entity.QArticle;
 import im.heart.cms.service.ArticleService;
 import im.heart.core.CommonConst;
 import im.heart.core.enums.Status;
@@ -51,12 +54,12 @@ public class IndexController extends AbstractController {
 		return new ModelAndView("index");
 	}
 	public void articlesTop(HttpServletRequest request,ModelMap model){
-		final Collection<SearchFilter> filters= DynamicSpecifications.buildSearchFilters(request);
-		filters.add(new SearchFilter("isPub", SearchFilter.Operator.EQ,Boolean.TRUE));
-		Specification<Article> spec= DynamicSpecifications.bySearchFilter(filters, Article.class);
 		PageRequest pageRequest= DynamicPageRequest.buildPageRequest(1,13, "pushTime", CommonConst.Page.ORDER_DESC, Article.class);
-		Page<ArticleDTO> docVos = this.articleService.findAllProjection(spec, pageRequest);
-		model.put("articles",docVos);
+		QArticle qArticle=QArticle.article;
+		Predicate predicate= qArticle.isPub.eq(Boolean.TRUE);;
+		predicate=ExpressionUtils.and(predicate,qArticle.isDeleted.eq(Boolean.FALSE));
+		Page<ArticleDTO> pag = this.articleService.findAll(predicate, pageRequest);
+		model.put("articles",pag);
 	}
 
 	public void docsFree10(HttpServletRequest request,ModelMap model){

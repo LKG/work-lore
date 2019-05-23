@@ -1,8 +1,10 @@
 package im.heart.front.web;
 
 import com.alibaba.fastjson.JSON;
+import com.querydsl.core.types.Predicate;
 import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.entity.Article;
+import im.heart.cms.entity.QArticle;
 import im.heart.cms.service.ArticleService;
 import im.heart.core.CommonConst;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
@@ -64,14 +66,10 @@ public class ArticleController extends AbstractController {
                              @RequestParam(value = "order", required = false,defaultValue = CommonConst.Page.ORDER_DESC) String order,
                              @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
                              ModelMap model) {
-        final Collection<SearchFilter> filters= DynamicSpecifications.buildSearchFilters(request);
         System.out.println(WebUtilsEx.getParametersJson(request));
-        filters.add(new SearchFilter("isPub", SearchFilter.Operator.EQ,Boolean.TRUE));
-        filters.add(new SearchFilter("isDeleted", SearchFilter.Operator.EQ,Boolean.FALSE));
-        System.out.println(JSON.toJSON(filters));
-        Specification<Article> spec= DynamicSpecifications.bySearchFilter(filters, Article.class);
         PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order, Article.class);
-        Page<ArticleDTO> pag = this.articleService.findAllProjection(spec, pageRequest);
+        Predicate predicate= QArticle.article.isNotNull().eq(QArticle.article.isPub).ne(QArticle.article.isDeleted);
+        Page<ArticleDTO> pag = this.articleService.findAll(predicate, pageRequest);
         super.success(model,pag);
         return new ModelAndView(VIEW_LIST);
     }

@@ -1,5 +1,6 @@
 package im.heart.cms.dto;
 
+import lombok.Builder;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
@@ -8,6 +9,7 @@ import java.math.BigInteger;
 import java.util.Date;
 
 @Data
+@Builder
 public class ArticleDTO {
     private BigInteger id;
     private String title;
