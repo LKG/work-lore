@@ -35,14 +35,6 @@ public interface ArticleRepository extends QuerydslPredicateExecutor<Article>,  
     public void updateHitsById(@Param("id") BigInteger id);
 
     /**
-     * 列表查询
-     * @param spec
-     * @param pageable
-     * @return
-     */
-    @Query("SELECT  model.id AS id ,model.title AS title ,model.source AS source ,model.type AS type ,model.summary AS summary ,model.hits AS hits,model.rateTimes AS rateTimes ,model.pushTime AS pushTime ,model.allowComment AS allowComment   FROM Article model")
-    Page<ArticleProjection> findAllProjection(@Nullable Specification<Article> spec, Pageable pageable);
-    /**
      * 查询上一篇下一篇
      * @param id
      * @param categoryId
