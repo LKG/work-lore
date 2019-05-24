@@ -51,10 +51,9 @@ public class ArticleServiceImpl extends CommonServiceImpl<Article, BigInteger> i
 	@Override
 	public Page<ArticleDTO> findAll(Predicate predicate, Pageable pageable){
 		QArticle qArticle=QArticle.article;
-		this.jpaQueryFactory.select(Projections.bean(ArticleDTO.class,qArticle.id,qArticle.allowComment));
-		Page<Article> pag=this.articleRepository.findAll(predicate,pageable);
-		System.out.println("@@@@@@@@@@@@@@"+JSON.toJSONString(pag));
-		return null;
+		this.jpaQueryFactory.select(Projections.bean(ArticleDTO.class,qArticle.id,qArticle.allowComment)).fetch();
+		Page<ArticleDTO> pag=this.articleRepository.findAll(predicate,pageable);
+		return pag;
 	}
 
   private  ArticleDTO build(ArticleProjection po){

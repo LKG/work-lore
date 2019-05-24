@@ -1,5 +1,6 @@
 package im.heart.cms.repository;
 
+import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.dto.ArticleProjection;
 import im.heart.cms.entity.Article;
 import org.springframework.data.domain.Page;
@@ -23,7 +24,7 @@ import java.util.List;
  * @desc 文章接口
  */
 @Repository
-public interface ArticleRepository extends QuerydslPredicateExecutor<Article>,  JpaRepository<Article, BigInteger>, JpaSpecificationExecutor<Article> {
+public interface ArticleRepository extends QuerydslPredicateExecutor<ArticleDTO>,  JpaRepository<Article, BigInteger>, JpaSpecificationExecutor<Article> {
     /**
      * 更新点击次数
      * @param id
