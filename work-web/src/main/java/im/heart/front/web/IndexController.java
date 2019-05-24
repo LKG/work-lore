@@ -3,6 +3,7 @@ package im.heart.front.web;
 
 import com.google.common.collect.Lists;
 import com.querydsl.core.types.ExpressionUtils;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.entity.Article;
@@ -15,6 +16,7 @@ import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.web.AbstractController;
 import im.heart.media.entity.Periodical;
+import im.heart.media.entity.QPeriodical;
 import im.heart.media.service.PeriodicalService;
 import im.heart.media.vo.PeriodicalVO;
 import lombok.extern.slf4j.Slf4j;
@@ -54,29 +56,20 @@ public class IndexController extends AbstractController {
 		return new ModelAndView("index");
 	}
 	public void articlesTop(HttpServletRequest request,ModelMap model){
-		PageRequest pageRequest= DynamicPageRequest.buildPageRequest(1,13, "pushTime", CommonConst.Page.ORDER_DESC, Article.class);
 		QArticle qArticle=QArticle.article;
-		Predicate predicate= qArticle.isPub.eq(Boolean.TRUE);;
+		Predicate predicate= qArticle.isPub.eq(Boolean.TRUE);
 		predicate=ExpressionUtils.and(predicate,qArticle.isDeleted.eq(Boolean.FALSE));
-		Page<ArticleDTO> pag = this.articleService.findAll(predicate, pageRequest);
+		List<ArticleDTO> pag = this.articleService.findAll(predicate, 13);
 		model.put("articles",pag);
 	}
 
 	public void docsFree10(HttpServletRequest request,ModelMap model){
-		final Collection<SearchFilter> filters= DynamicSpecifications.buildSearchFilters(request);
-		filters.add(new SearchFilter("checkStatus", SearchFilter.Operator.EQ, Status.enabled));
-		filters.add(new SearchFilter("finalPrice", SearchFilter.Operator.EQ, new BigDecimal(0)));
-		Specification<Periodical> spec= DynamicSpecifications.bySearchFilter(filters, Periodical.class);
-		PageRequest pageRequest= DynamicPageRequest.buildPageRequest(1,10, "downTimes", CommonConst.Page.ORDER_DESC,Periodical.class);
-		Page<Periodical> pag = this.periodicalService.findAll(spec, pageRequest);
-		if(pag!=null&&pag.hasContent()){
-			List<PeriodicalVO> vos = Lists.newArrayList();
-			for(Periodical po:pag.getContent()){
-				vos.add(new PeriodicalVO(po));
-			}
-			Page<PeriodicalVO> docVos  =new PageImpl<PeriodicalVO>(vos,pageRequest,pag.getTotalElements());
-			model.put("freeDocs",docVos);
-		}
+		QPeriodical qPeriodical= QPeriodical.periodical;
+		Predicate predicate= qPeriodical.checkStatus.eq(Status.enabled);
+		predicate=ExpressionUtils.and(predicate,qPeriodical.finalPrice.eq(new BigDecimal(0)));
+		OrderSpecifier<Long> sortOrder = qPeriodical.downTimes.desc();
+		List<Periodical> list = this.periodicalService.findAll(predicate, 10,sortOrder);
+		model.put("freeDocs",list);
 	}
 
 }

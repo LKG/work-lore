@@ -78,10 +78,10 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="tab-pane-free">
 
-                            <#if freeDocs??&&freeDocs.content??>
+                            <#if freeDocs??&&freeDocs??>
                                 <div class="mc">
                                     <ul>
-                                        <#list freeDocs.content as model>
+                                        <#list freeDocs as model>
                                             <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i> <a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                         </#list>
                                     </ul>
@@ -92,8 +92,8 @@
                             <@media.periodical >
                                 <div class="mc">
                                     <ul>
-                                     <#if docs??&&docs.content??>
-                                        <#list docs.content as model>
+                                     <#if docs??>
+                                        <#list docs as model>
                                             <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                         </#list>
                                     </#if>
@@ -143,8 +143,8 @@
                             <@media.periodical categoryCode="010001" >
                                 <div class="mc">
                                     <ul>
-                                        <#if docs??&&docs.content??>
-                                            <#list docs.content as model>
+                                        <#if docs??>
+                                            <#list docs as model>
                                                 <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                             </#list>
                                         </#if>
@@ -158,8 +158,8 @@
                         <@media.periodical categoryCode="010002">
                             <div class="mc">
                                 <ul>
-                                    <#if docs??&&docs.content??>
-                                        <#list docs.content as model>
+                                    <#if docs??>
+                                        <#list docs as model>
                                             <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                         </#list>
                                     </#if>
@@ -173,8 +173,8 @@
                             <@media.periodical categoryCode="010003">
                                 <div class="mc">
                                     <ul>
-                                        <#if docs??&&docs.content??>
-                                            <#list docs.content as model>
+                                        <#if docs??>
+                                            <#list docs as model>
                                                 <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                             </#list>
                                         </#if>
@@ -188,8 +188,8 @@
                             <@media.periodical categoryCode="010004">
                                 <div class="mc">
                                     <ul>
-                                        <#if docs??&&docs.content??>
-                                            <#list docs.content as model>
+                                        <#if docs??>
+                                            <#list docs as model>
                                                 <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                             </#list>
                                         </#if>
@@ -228,8 +228,8 @@
                             <@media.periodical categoryCode="013003" >
                                 <div class="mc">
                                     <ul>
-                                        <#if docs??&&docs.content??>
-                                            <#list docs.content as model>
+                                        <#if docs??>
+                                            <#list docs as model>
                                                 <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                             </#list>
                                         </#if>
@@ -243,8 +243,8 @@
                             <@media.periodical categoryCode="018001" >
                                 <div class="mc">
                                     <ul>
-                                        <#if docs??&&docs.content??>
-                                            <#list docs.content as model>
+                                        <#if docs??>
+                                            <#list docs as model>
                                                 <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                             </#list>
                                         </#if>
@@ -285,8 +285,8 @@
                             <@media.periodical categoryCode="010006" >
                                 <div class="mc">
                                     <ul>
-                                        <#if docs??&&docs.content??>
-                                            <#list docs.content as model>
+                                        <#if docs??>
+                                            <#list docs as model>
                                                 <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                             </#list>
                                         </#if>
@@ -300,8 +300,8 @@
                             <@media.periodical categoryCode="001007" >
                                 <div class="mc">
                                     <ul>
-                                        <#if docs??&&docs.content??>
-                                            <#list docs.content as model>
+                                        <#if docs??>
+                                            <#list docs as model>
                                                 <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                             </#list>
                                         </#if>
@@ -315,8 +315,8 @@
                             <@media.periodical categoryCode="001008" >
                                 <div class="mc">
                                     <ul>
-                                        <#if docs??&&docs.content??>
-                                            <#list docs.content as model>
+                                        <#if docs??>
+                                            <#list docs as model>
                                                 <li><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
                                             </#list>
                                         </#if>

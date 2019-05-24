@@ -30,6 +30,8 @@ public interface   ArticleService extends CommonService<Article, BigInteger>{
 
 	public Page<ArticleDTO> findAll(Predicate predicate, Pageable pageable);
 
+	public List<ArticleDTO> findAll(Predicate predicate,long limit);
+
 	public List<ArticleDTO> queryNearById(BigInteger id, BigInteger categoryId);
 
 	public void addUpdateHitsTask(BigInteger id);

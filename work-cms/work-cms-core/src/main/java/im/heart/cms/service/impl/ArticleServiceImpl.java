@@ -2,9 +2,13 @@ package im.heart.cms.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
+import com.querydsl.core.QueryResults;
+import com.querydsl.core.Tuple;
+import com.querydsl.core.types.ConstructorExpression;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.dto.ArticleProjection;
@@ -27,7 +31,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
 import java.math.BigInteger;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -37,23 +44,52 @@ public class ArticleServiceImpl extends CommonServiceImpl<Article, BigInteger> i
 	protected static final Logger logger = LoggerFactory.getLogger(ArticleServiceImpl.class);
 	@Autowired
 	private ArticleRepository articleRepository;
+	@Autowired
+	private JPAQueryFactory jpaQueryFactory;
 	@Override
 	public List<Article> saveAll(Iterable<Article> entities) {
 		return this.articleRepository.saveAll(entities);
 	}
 
-	@Autowired
-	private JPAQueryFactory jpaQueryFactory;
+
 	@Override
 	public Page<Article> findAll(Specification<Article> spec, Pageable pageable){
 		return this.articleRepository.findAll(spec,pageable);
 	}
 	@Override
+	public List<ArticleDTO> findAll(Predicate predicate,long limit){
+		QArticle qArticle=QArticle.article;
+		ConstructorExpression<ArticleDTO> constructorExpression=bulidConstructor(qArticle);
+		JPAQuery<ArticleDTO> jpaQuery = this.jpaQueryFactory.select(constructorExpression)
+				.from(qArticle).where(predicate)
+				.limit(limit);
+		return jpaQuery.fetch();
+	}
+
+	private ConstructorExpression<ArticleDTO> bulidConstructor(QArticle qArticle){
+		return Projections.constructor(ArticleDTO.class,
+				qArticle.id,
+				qArticle.title,
+				qArticle.author,
+				qArticle.source,
+				qArticle.type,
+				qArticle.pushTime,
+				qArticle.summary,
+				qArticle.allowComment,
+				qArticle.rateTimes,
+				qArticle.hits
+		);
+	}
+
+	@Override
 	public Page<ArticleDTO> findAll(Predicate predicate, Pageable pageable){
 		QArticle qArticle=QArticle.article;
-		this.jpaQueryFactory.select(Projections.bean(ArticleDTO.class,qArticle.id,qArticle.allowComment)).fetch();
-		Page<ArticleDTO> pag=this.articleRepository.findAll(predicate,pageable);
-		return pag;
+		ConstructorExpression<ArticleDTO> constructorExpression=bulidConstructor(qArticle);
+		QueryResults<ArticleDTO> queryResults = this.jpaQueryFactory.select(constructorExpression)
+				.from(qArticle).where(predicate)
+				.offset(pageable.getOffset()).limit(pageable.getPageSize()).fetchResults();
+		Page<ArticleDTO> pageVos =new PageImpl<ArticleDTO>(queryResults.getResults(),pageable,queryResults.getTotal());
+		return pageVos	;
 	}
 
   private  ArticleDTO build(ArticleProjection po){

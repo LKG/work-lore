@@ -5,14 +5,22 @@ import java.util.Collection;
 import java.util.List;
 
 import com.google.common.collect.Sets;
+import com.querydsl.core.Tuple;
+import com.querydsl.core.types.ConstructorExpression;
+import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.Predicate;
+import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import im.heart.core.CommonConst;
 import im.heart.core.enums.Status;
 import im.heart.core.service.impl.CommonServiceImpl;
+import im.heart.media.entity.QPeriodical;
 import im.heart.media.repository.PeriodicalImgRepository;
 import im.heart.media.service.PeriodicalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -32,7 +40,8 @@ import im.heart.core.plugins.persistence.SearchFilter.Operator;
 public class PeriodicalServiceImpl   extends CommonServiceImpl<Periodical, BigInteger> implements PeriodicalService {
 	@Autowired
 	private PeriodicalRepository periodicalRepository;
-
+	@Autowired
+	private JPAQueryFactory jpaQueryFactory;
 	@Autowired
 	private PeriodicalImgRepository periodicalImgRepository;
 
@@ -41,6 +50,22 @@ public class PeriodicalServiceImpl   extends CommonServiceImpl<Periodical, BigIn
 		return this.periodicalRepository.findAllById(ids);
 	}
 
+	@Override
+	public List<Periodical> findAll(Predicate predicate, long limit){
+		QPeriodical qArticle= QPeriodical.periodical;
+		JPAQuery<Periodical> jpaQuery = this.jpaQueryFactory.select(qArticle)
+				.from(qArticle).where(predicate)
+				.limit(limit);
+		return jpaQuery.fetch();
+	}
+	@Override
+	public List<Periodical> findAll(Predicate predicate,long limit, OrderSpecifier<?>... orders){
+		QPeriodical qArticle= QPeriodical.periodical;
+		JPAQuery<Periodical> jpaQuery = this.jpaQueryFactory.select(qArticle)
+				.from(qArticle).where(predicate).orderBy(orders)
+				.limit(limit);
+		return jpaQuery.fetch();
+	}
 	@Override
 	public void deleteById(BigInteger id)  throws ServiceException{
 		this.periodicalRepository.deleteById(id);

@@ -1,5 +1,7 @@
 package im.heart.media.service;
 
+import com.querydsl.core.types.OrderSpecifier;
+import com.querydsl.core.types.Predicate;
 import im.heart.core.enums.Status;
 import im.heart.media.entity.Periodical.PeriodicalType;
 import im.heart.media.entity.Periodical;
@@ -10,6 +12,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
 
 /**
@@ -24,7 +27,10 @@ public interface PeriodicalService extends CommonService<Periodical, BigInteger>
 	public List<Periodical>  findByStatusAndType(Status status, PeriodicalType type);
 
 	public List<Periodical>  findAllById(Iterable<BigInteger> ids);
-	
+	public List<Periodical> findAll(Predicate predicate, long limit);
+
+	public List<Periodical> findAll(Predicate predicate, long limit, OrderSpecifier<?>... orders);
+
 	public Page<Periodical> findInitPeriodicalByType(PeriodicalType type, Pageable pageable);
 
 	/**

@@ -23,10 +23,10 @@
         <h3>天天快报</h3>
         <div class="extra"><a href="${appHost}/article.jhtml">更多 ></a></div>
     </div>
-    <#if articles??&&articles.content??>
+    <#if articles??&&articles??>
         <div class="mc">
         <ul>
-        <#list articles.content as article>
+        <#list articles as article>
               <li><a href="${appHost}/article/${article.id}.jhtml" ><span>[${article.type}]</span>${article.shortTitle}</a></li>
         </#list>
         </ul>

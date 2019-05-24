@@ -1,6 +1,5 @@
 package im.heart.cms.repository;
 
-import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.dto.ArticleProjection;
 import im.heart.cms.entity.Article;
 import org.springframework.data.domain.Page;
@@ -10,10 +9,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Repository;
-import org.springframework.data.querydsl.QuerydslPredicateExecutor;
+
 import javax.transaction.Transactional;
 import java.math.BigInteger;
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.List;
  * @desc 文章接口
  */
 @Repository
-public interface ArticleRepository extends QuerydslPredicateExecutor<ArticleDTO>,  JpaRepository<Article, BigInteger>, JpaSpecificationExecutor<Article> {
+public interface ArticleRepository extends QuerydslPredicateExecutor<Article>,  JpaRepository<Article, BigInteger>, JpaSpecificationExecutor<Article> {
     /**
      * 更新点击次数
      * @param id

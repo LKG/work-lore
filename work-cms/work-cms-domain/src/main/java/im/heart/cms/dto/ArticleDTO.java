@@ -1,7 +1,6 @@
 package im.heart.cms.dto;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.Transient;
@@ -10,6 +9,7 @@ import java.util.Date;
 
 @Data
 @Builder
+@AllArgsConstructor
 public class ArticleDTO {
     private BigInteger id;
     private String title;
@@ -20,7 +20,10 @@ public class ArticleDTO {
     private String summary;
     private Boolean allowComment=Boolean.FALSE;
     private BigInteger rateTimes=BigInteger.ZERO;
-    Long hits;
+    private Long hits;
+   public ArticleDTO(BigInteger id){
+        this.id=id;
+    }
     @Transient
     public String getShortTitle() {
         if (!StringUtils.isBlank(title) && (title.length() > 14)) {

@@ -1,6 +1,7 @@
 package im.heart.front.web;
 
 import com.alibaba.fastjson.JSON;
+import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Predicate;
 import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.entity.Article;
@@ -63,12 +64,17 @@ public class ArticleController extends AbstractController {
                              @RequestParam(value = "page", required = false, defaultValue = CommonConst.Page.DEFAULT_PAGE+"") Integer page,
                              @RequestParam(value = "size", required = false, defaultValue = CommonConst.Page.DEFAULT_SIZE+"") Integer size,
                              @RequestParam(value = "sort", required = false,defaultValue = "") String sort,
+                             @RequestParam(value = "categoryId", required = false,defaultValue = "") BigInteger categoryId,
                              @RequestParam(value = "order", required = false,defaultValue = CommonConst.Page.ORDER_DESC) String order,
                              @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
                              ModelMap model) {
-        System.out.println(WebUtilsEx.getParametersJson(request));
         PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order, Article.class);
-        Predicate predicate= QArticle.article.isNotNull().eq(QArticle.article.isPub).ne(QArticle.article.isDeleted);
+        QArticle qArticle=QArticle.article;
+        Predicate predicate= qArticle.isPub.eq(Boolean.TRUE);
+        predicate= ExpressionUtils.and(predicate,qArticle.isDeleted.eq(Boolean.FALSE));
+        if(categoryId!=null){
+            predicate= ExpressionUtils.and(predicate,qArticle.categoryId.eq(categoryId));
+        }
         Page<ArticleDTO> pag = this.articleService.findAll(predicate, pageRequest);
         super.success(model,pag);
         return new ModelAndView(VIEW_LIST);
