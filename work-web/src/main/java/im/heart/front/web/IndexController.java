@@ -35,6 +35,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -59,7 +60,8 @@ public class IndexController extends AbstractController {
 		QArticle qArticle=QArticle.article;
 		Predicate predicate= qArticle.isPub.eq(Boolean.TRUE);
 		predicate=ExpressionUtils.and(predicate,qArticle.isDeleted.eq(Boolean.FALSE));
-		List<ArticleDTO> pag = this.articleService.findAll(predicate, 13);
+		OrderSpecifier<Date> sortOrder = qArticle.pushTime.desc();
+		List<ArticleDTO> pag = this.articleService.findAll(predicate, 13,sortOrder);
 		model.put("articles",pag);
 	}
 

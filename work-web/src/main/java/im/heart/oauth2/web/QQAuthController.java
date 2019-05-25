@@ -1,6 +1,6 @@
 package im.heart.oauth2.web;
 
-import com.alibaba.fastjson.JSONObject;
+import im.heart.core.web.AbstractController;
 import im.heart.oauth2.QQAuthService;
 import im.heart.usercore.entity.FrameUser;
 import im.heart.usercore.service.FrameUserService;
@@ -10,13 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Controller
-public class QQAuthController {
+@RequestMapping("/oauth2")
+public class QQAuthController  extends AbstractController {
     private Logger logger = LoggerFactory.getLogger(QQAuthController.class);
     @Autowired
     private QQAuthService qqAuthService;
@@ -29,9 +31,9 @@ public class QQAuthController {
      * @throws Exception
      */
     @RequestMapping(value = "/qqLoginPage",method = RequestMethod.GET)
-    public JSONObject qqLogin() throws Exception {
+    public ModelAndView qqLogin() throws Exception {
         String uri = this.qqAuthService.getAuthorizationUrl();
-        return null;
+        return new ModelAndView(redirectToUrl(uri));
     }
     /**
      * qq授权后会回调此方法，并将code传过来

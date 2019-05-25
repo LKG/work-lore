@@ -49,6 +49,10 @@
         .laypage_main{
             clear: none !important;
         }
+        #table-pagination{
+            margin-top: -15px;
+            height: 32px;
+        }
     </style>
 <#assign template="docs"/>
 </head>
@@ -192,7 +196,7 @@
                         </ul>
                     </div>
                     <!-----分页-begin---->
-                    <div  id="table-pagination" data-totalPages="${result.totalPages}" data-number="${result.number}" style="margin-top: -15px;"  class="clearfix"></div>
+                    <div  id="table-pagination" data-totalPages="${result.totalPages}" data-number="${result.number}"  class="clearfix"></div>
                     <!-----分页-end---->
 
                 </div>

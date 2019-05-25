@@ -15,7 +15,9 @@ import java.util.Map;
 @Service
 public class QQAuthServiceImpl extends DefaultAuthServiceImpl implements QQAuthService {
     private Logger logger = LoggerFactory.getLogger(QQAuthServiceImpl.class);
-    //QQ 登陆页面的URL
+    /**
+     * QQ 登陆页面的URL
+     */
     private final static String AUTHORIZATION_URL =
             "https://graph.qq.com/oauth2.0/authorize?response_type=code&client_id=%s&redirect_uri=%s&scope=%s";
     //获取token的URL
@@ -24,14 +26,29 @@ public class QQAuthServiceImpl extends DefaultAuthServiceImpl implements QQAuthS
     // 获取用户 openid 的 URL
     private static final String OPEN_ID_URL = "https://graph.qq.com/oauth2.0/me?access_token=%s";
 
-    // 获取用户信息的 URL，oauth_consumer_key 为 apiKey
+    //
+    /**
+     * 获取用户信息的 URL，oauth_consumer_key 为 apiKey
+     */
     private static final String USER_INFO_URL = "https://graph.qq.com/user/get_user_info?access_token=%s&oauth_consumer_key=%s&openid=%s";
 
     // 下面的属性可以通过配置读取
-    private  static final String CALLBACK_URL = "http://XXX/XX/XX"; // QQ 在登陆成功后回调的 URL，这个 URL 必须在 QQ 互联里填写过
-    private  static final String API_KEY  = "xxxxxx";                                      // QQ 互联应用管理中心的 APP ID
-    private  static final String API_SECRET = "xxxxxx";               // QQ 互联应用管理中心的 APP Key
-    private  static final String SCOPE       = "get_user_info";                                  // QQ 互联的 API 接口，访问用户资料
+    /**
+     * // QQ 在登陆成功后回调的 URL，这个 URL 必须在 QQ 互联里填写过
+     */
+    private  static final String CALLBACK_URL = "http://XXX/XX/XX";
+    /**
+     *   // QQ 互联应用管理中心的 APP ID
+     */
+    private  static final String API_KEY  = "1108201287";
+    /**
+     *    // QQ 互联应用管理中心的 APP Key
+     */
+    private  static final String API_SECRET = "0mGm81G7HlUjTjDt";
+    /**
+     * // QQ 互联的 API 接口，访问用户资料
+     */
+    private  static final String SCOPE       = "get_user_info";
 
     /**
      * @return QQ 登陆页面的 URL
@@ -47,9 +64,8 @@ public class QQAuthServiceImpl extends DefaultAuthServiceImpl implements QQAuthS
         String url = String.format(ACCESS_TOKEN_URL,API_KEY,API_SECRET,code, CALLBACK_URL);
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(url);
         URI uri = builder.build().encode().toUri();
-
         String resp = getRestTemplate().getForObject(uri, String.class);
-        logger.error("getAccessToken resp = "+resp);
+        logger.error("getAccessToken resp {} ",resp);
         if(resp.contains("access_token")){
             Map<String,String> map = getParam(resp);
             String access_token = map.get("access_token");
@@ -58,7 +74,12 @@ public class QQAuthServiceImpl extends DefaultAuthServiceImpl implements QQAuthS
             throw new ServiceException(resp);
         }
     }
-    //由于QQ的几个接口返回类型不一样，此处是获取key-value类型的参数
+
+    /**
+     * 由于QQ的几个接口返回类型不一样，此处是获取key-value类型的参数
+     * @param string
+     * @return
+     */
     private Map<String,String> getParam(String string){
         Map<String,String> map = Maps.newHashMap();
         String[] kvArray = string.split("&");

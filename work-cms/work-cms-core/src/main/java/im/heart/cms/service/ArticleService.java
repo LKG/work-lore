@@ -1,5 +1,6 @@
 package im.heart.cms.service;
 
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import im.heart.cms.dto.ArticleDTO;
 import im.heart.cms.entity.Article;
@@ -31,6 +32,8 @@ public interface   ArticleService extends CommonService<Article, BigInteger>{
 	public Page<ArticleDTO> findAll(Predicate predicate, Pageable pageable);
 
 	public List<ArticleDTO> findAll(Predicate predicate,long limit);
+
+	public List<ArticleDTO> findAll(Predicate predicate, long limit, OrderSpecifier<?>... orders);
 
 	public List<ArticleDTO> queryNearById(BigInteger id, BigInteger categoryId);
 

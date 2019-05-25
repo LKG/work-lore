@@ -5,6 +5,7 @@
             <div class="panel panel-default hot-article" id="hot-article" style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
                 <div class="panel-heading" style="border-left: 3px solid #FF970D;">
                     <i class="fa fa-th" style="margin-right: 10px"></i> 热门专栏
+                    <a href="${appHost}/topic.jhtml" class="pull-right" >更多<i class="fa fa-angle-double-right"></i></a>
                 </div>
                 <div class="panel-body">
                     <div class="row">

@@ -30,6 +30,14 @@
                                         <a href="#" class="cate_detail_con_lk" target="_blank">民政工作</a>
                                     </dd>
                                 </dl>
+                                <dl class="cate_detail_item cate_detail_item1">
+                                    <dt class="cate_detail_tit" >
+                                        <a href="#" class="cate_detail_tit_lk" target="_blank">党委党建<i class="fa fa-angle-right"></i></a>
+                                    </dt>
+                                    <dd class="cate_detail_con" >
+                                        <a href="#" class="cate_detail_con_lk" target="_blank">党委党建</a>
+                                    </dd>
+                                </dl>
                             </div>
                         </div>
                         <!---  --->

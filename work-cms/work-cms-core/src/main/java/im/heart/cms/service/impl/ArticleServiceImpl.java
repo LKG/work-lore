@@ -3,6 +3,7 @@ package im.heart.cms.service.impl;
 import com.google.common.collect.Lists;
 import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.ConstructorExpression;
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
@@ -58,7 +59,15 @@ public class ArticleServiceImpl extends CommonServiceImpl<Article, BigInteger> i
 				.limit(limit);
 		return jpaQuery.fetch();
 	}
-
+	@Override
+	public List<ArticleDTO> findAll(Predicate predicate, long limit, OrderSpecifier... orders){
+		QArticle qArticle=QArticle.article;
+		ConstructorExpression<ArticleDTO> constructorExpression=bulidConstructor(qArticle);
+		JPAQuery<ArticleDTO> jpaQuery = this.jpaQueryFactory.select(constructorExpression)
+				.from(qArticle).where(predicate).orderBy(orders)
+				.limit(limit);
+		return jpaQuery.fetch();
+	}
 	private ConstructorExpression<ArticleDTO> bulidConstructor(QArticle qArticle){
 		return Projections.constructor(ArticleDTO.class,
 				qArticle.id,
