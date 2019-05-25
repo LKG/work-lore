@@ -18,7 +18,8 @@ define(function (require, exports, moudles) {
     });
     $("#refresh,#seach-btn").on("click", function() {
         $("#page").val(1);
-        window.location.href=url.api+"s/p-1.jhtml";
+        var categoryId=$("#main-container").attr("data-categoryId");
+        window.location.href=url.api+"s/c-"+categoryId+"-1.jhtml";
     });
     var $pagination=$("#table-pagination");
     laypage({
@@ -32,7 +33,8 @@ define(function (require, exports, moudles) {
             if (!first) {
                 var curr = obj.curr;
                 $("#page").val(obj.curr);
-                window.location.href=url.api+"s/p-"+obj.curr+".jhtml";
+                var categoryId=$("#main-container").attr("data-categoryId");
+                window.location.href=url.api+"s/c-"+categoryId+"-"+obj.curr+".jhtml";
             }
         }
     });

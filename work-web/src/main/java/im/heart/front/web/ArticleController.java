@@ -74,9 +74,8 @@ public class ArticleController extends AbstractController {
         predicate= ExpressionUtils.and(predicate,qArticle.isDeleted.eq(Boolean.FALSE));
         if(categoryId!=null){
             predicate= ExpressionUtils.and(predicate,qArticle.categoryId.eq(categoryId));
+            model.put("categoryId",categoryId);
         }
-        System.out.println(page);
-        System.out.println(JSON.toJSON(pageRequest));
         Page<ArticleDTO> pag = this.articleService.findAll(predicate, pageRequest);
         super.success(model,pag);
         return new ModelAndView(VIEW_LIST);

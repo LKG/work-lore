@@ -73,7 +73,7 @@
         <li class="active">文章列表</li>
     </ol>
 </div>
-<div class="container"  style="margin-top: -10px;" >
+<div class="container" id="main-container" data-categoryId="${categoryId!''}" style="margin-top: -10px;" >
     <div class="row">
         <div class="panel panel-default">
             <div class="">
