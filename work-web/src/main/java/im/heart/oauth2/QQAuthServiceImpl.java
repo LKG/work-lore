@@ -26,7 +26,7 @@ public class QQAuthServiceImpl  implements AuthService {
     void init(){
         OAuth20Service service = new ServiceBuilder(API_KEY)
                 .apiSecret(API_SECRET)
-                .callback("http://www.example.com/oauth_callback/")
+                .callback(CALLBACK_URL)
 //                .httpClientConfig(OkHttpHttpClientConfig.defaultConfig())
                 .build(QQAuthApi.instance());
     }
