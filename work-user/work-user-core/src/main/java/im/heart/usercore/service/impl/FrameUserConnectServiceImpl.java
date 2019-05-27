@@ -5,6 +5,7 @@ import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.service.impl.CommonServiceImpl;
 import im.heart.usercore.entity.FrameUserConnect;
+import im.heart.usercore.enums.IdentityType;
 import im.heart.usercore.repository.FrameUserConnectRepository;
 import im.heart.usercore.service.FrameUserConnectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class FrameUserConnectServiceImpl extends CommonServiceImpl<FrameUserConn
     private FrameUserConnectRepository frameUserConnectRepository;
 
     @Override
-    public Optional<FrameUserConnect> findByOpenIdAndType(String openId, String identityType) {
+    public Optional<FrameUserConnect> findByOpenIdAndType(String openId, IdentityType identityType) {
         final Collection<SearchFilter> filters = Sets.newHashSet();
         filters.add(new SearchFilter("openId", SearchFilter.Operator.EQ, openId));
         filters.add(new SearchFilter("identityType", SearchFilter.Operator.EQ, identityType));
@@ -42,7 +43,7 @@ public class FrameUserConnectServiceImpl extends CommonServiceImpl<FrameUserConn
         return optional;
     }
     @Override
-    public Page<FrameUserConnect> findAllByUserIdAndType(BigInteger userId, String identityType, Pageable pageable) {
+    public Page<FrameUserConnect> findAllByUserIdAndType(BigInteger userId, IdentityType identityType, Pageable pageable) {
         final Collection<SearchFilter> filters = Sets.newHashSet();
         filters.add(new SearchFilter("userId", SearchFilter.Operator.EQ, userId));
         filters.add(new SearchFilter("identityType", SearchFilter.Operator.EQ, identityType));
@@ -50,7 +51,7 @@ public class FrameUserConnectServiceImpl extends CommonServiceImpl<FrameUserConn
         return this.frameUserConnectRepository.findAll(spec,pageable);
     }
     @Override
-    public List<FrameUserConnect> findAllByUserIdAndType(BigInteger userId, String identityType) {
+    public List<FrameUserConnect> findAllByUserIdAndType(BigInteger userId, IdentityType identityType) {
         final Collection<SearchFilter> filters = Sets.newHashSet();
         filters.add(new SearchFilter("userId", SearchFilter.Operator.EQ, userId));
         filters.add(new SearchFilter("identityType", SearchFilter.Operator.EQ, identityType));

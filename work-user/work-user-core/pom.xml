@@ -36,6 +36,11 @@
             <artifactId>shiro-spring-boot-web-starter</artifactId>
             <version>1.4.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.scribejava</groupId>
+            <artifactId>scribejava-core</artifactId>
+            <version>5.3.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
