@@ -9,6 +9,7 @@ import im.heart.core.web.enums.WebError;
 import im.heart.oauth2.WeChatAuthService;
 import im.heart.usercore.entity.FrameUser;
 import im.heart.usercore.entity.FrameUserConnect;
+import im.heart.usercore.enums.IdentityType;
 import im.heart.usercore.service.FrameUserConnectService;
 import im.heart.usercore.service.FrameUserService;
 import im.heart.usercore.service.PasswordService;
@@ -42,19 +43,14 @@ import java.net.URLEncoder;
 import java.util.Optional;
 
 @Slf4j
-public class WeChatMpController  extends AbstractController {
+public class WeChatMpController  extends AbstractAuthController {
     private Logger logger = LoggerFactory.getLogger(WeChatMpController.class);
     @Autowired
     private WeChatAuthService weChatAuthService;
 
     @Autowired
     private WxMpService wxMpService;
-    @Autowired
-    private FrameUserService frameUserService;
-    @Autowired
-    private FrameUserConnectService frameUserConnectService;
-    @Autowired
-    private PasswordService passwordService;
+
 
     @Value("${wechat.mp.cllbackUri}")
     private  String callbackUrl;
@@ -89,15 +85,14 @@ public class WeChatMpController  extends AbstractController {
             log.error("【微信网页授权】,wxMpOAuth2AccessToken:{},e:{}",JSON.toJSONString(wxMpOAuth2AccessToken), e);
         }
         String openId=wxMpOAuth2AccessToken.getOpenId();
-        String identityType="wechat";
-        Optional<FrameUserConnect> optional= this.frameUserConnectService.findByOpenIdAndType(openId,identityType);
+        Optional<FrameUserConnect> optional= this.userConnectService.findByOpenIdAndType(openId,IdentityType.wechat);
         FrameUserConnect userConnect=null;
         if(!optional.isPresent()){
             userConnect=new FrameUserConnect();
             BeanUtils.copyProperties(wxMpOAuth2AccessToken,userConnect);
-            userConnect.setIdentityType(identityType);
+            userConnect.setIdentityType(IdentityType.wechat);
             userConnect.setMessage(JSON.toJSONString(wxMpOAuth2AccessToken));
-            this.frameUserConnectService.save(userConnect);
+            this.userConnectService.save(userConnect);
             log.info("【微信网页授权】wxMpOAuth2AccessToken={}", JSON.toJSONString(wxMpOAuth2AccessToken));
             return new ModelAndView(redirectToUrl(returnUrl+"?openId="+openId));
         }
@@ -109,7 +104,7 @@ public class WeChatMpController  extends AbstractController {
         userConnect.setAccessToken(wxMpOAuth2AccessToken.getAccessToken());
         userConnect.setMessage(JSON.toJSONString(wxMpOAuth2AccessToken));
         userConnect.setRefreshToken(wxMpOAuth2AccessToken.getRefreshToken());
-        this.frameUserConnectService.save(userConnect);
+        this.userConnectService.save(userConnect);
         log.info("【微信网页授权】获取openid={},returnUrl={},wxMpOAuth2AccessToken={}",openId,returnUrl,JSON.toJSONString(wxMpOAuth2AccessToken));
         return new ModelAndView(redirectToUrl(returnUrl+"?openid="+openId));
 
@@ -129,17 +124,16 @@ public class WeChatMpController  extends AbstractController {
     }
     @GetMapping("/wechat/bind")
     public ModelAndView bindPage(@RequestParam(value = "openId" ,defaultValue="") String openId,
-                                 @RequestParam(value = "identityType" ,defaultValue="wechat") String identityType,
                                  HttpServletRequest request, HttpServletResponse response,
                                  ModelMap model) {
 
-        BigInteger userId=getBindUserId(openId,identityType);
+        BigInteger userId=getBindUserId(openId,IdentityType.wechat);
         if(userId==null|| BigInteger.ZERO.equals(userId)){
             //用户未绑定，返回到绑定页面
             success(model,"openId",openId);
             return  new ModelAndView("user_bind");
         }
-        FrameUser user=this.frameUserService.findById(userId);
+        FrameUser user=this.userService.findById(userId);
         if(user==null){
             //用户不存在或者用户状态不可用
             super.fail(model,new ResponseError(WebError.AUTH_ACCOUNT_UNKNOWN));
@@ -160,8 +154,8 @@ public class WeChatMpController  extends AbstractController {
      * @param identityType
      * @return
      */
-    public BigInteger getBindUserId(String openId,String identityType){
-        Optional<FrameUserConnect> optional=this.frameUserConnectService.findByOpenIdAndType(openId,identityType);
+    public BigInteger getBindUserId(String openId,IdentityType identityType){
+        Optional<FrameUserConnect> optional=this.userConnectService.findByOpenIdAndType(openId,identityType);
         if(optional.isPresent()){
             BigInteger userId=optional.get().getUserId();
             return userId;
@@ -184,7 +178,7 @@ public class WeChatMpController  extends AbstractController {
             super.fail(model,new ResponseError(WebError.REQUEST_AUTH_VERIFY));
             return  new ModelAndView(RESULT_PAGE);
         };
-        FrameUser user=this.frameUserService.findByUserPhone(userPhone);
+        FrameUser user=this.userService.findByUserPhone(userPhone);
         if(user==null){
             user=new FrameUser();
             user.setStatus(Status.enabled);
@@ -192,7 +186,7 @@ public class WeChatMpController  extends AbstractController {
             user.setUserPhone(userPhone);
             user.setUserName(userPhone);
             user.setPassWord("888888");
-            user= this.frameUserService.save(user);
+            user= this.userService.save(user);
             log.info("weichat auto register userId:{}"+user.getUserId());
         }
         if(!Status.enabled.equals(user.getStatus())){
@@ -200,7 +194,7 @@ public class WeChatMpController  extends AbstractController {
             return  new ModelAndView(RESULT_PAGE);
         }
         try {
-            bindUser(user,openId,identityType);
+            bindUser(user,openId,IdentityType.wechat);
             success(model);
             WebUtils.setSessionAttribute(request,"openId",openId);
             WebUtils.setSessionAttribute(request,"userId",user.getUserId());
@@ -213,8 +207,8 @@ public class WeChatMpController  extends AbstractController {
         return  new ModelAndView(RESULT_PAGE);
     }
 
-    private  void bindUser(FrameUser user, String openId, String identityType) throws WxErrorException{
-        Optional<FrameUserConnect> optional=this.frameUserConnectService.findByOpenIdAndType(openId,identityType);
+    private  void bindUser(FrameUser user, String openId, IdentityType identityType) throws WxErrorException{
+        Optional<FrameUserConnect> optional=this.userConnectService.findByOpenIdAndType(openId,identityType);
         if(!optional.isPresent()){
             //openId 异常直接抛出
             throw new WxErrorException(WxError.builder().errorMsg("未获取到openId"+openId+" 存储信息").build());
@@ -239,12 +233,12 @@ public class WeChatMpController  extends AbstractController {
             user.setSex(sex);
             user.setHeadImgUrl(headImgUrl);
             //更新用户信息
-            this.frameUserService.save(user);
+            this.userService.save(user);
             userConnect.setUserId(user.getUserId());
             if(StringUtils.isNotBlank(unionId)){
                 userConnect.setUnionId(unionId);
             }
-            this.frameUserConnectService.save(userConnect);
+            this.userConnectService.save(userConnect);
         }
     }
 
@@ -253,11 +247,10 @@ public class WeChatMpController  extends AbstractController {
             @RequestParam(value = "openId" ,defaultValue="") String openId,
             @RequestParam(value = "userName" ,defaultValue="") String userName,
             @RequestParam(value = "passWord" ,defaultValue="") String passWord,
-            @RequestParam(value = "identityType" ,defaultValue="wechat") String identityType,
             HttpServletRequest request, HttpServletResponse response,
             ModelMap model){
         log.info("开始绑定账号：{}。。。。",userName);
-        FrameUser user=this.frameUserService.findFrameUser(userName);
+        FrameUser user=this.userService.findFrameUser(userName);
         if(user==null){
             //用户不存在
             super.fail(model,new ResponseError(WebError.AUTH_ACCOUNT_UNKNOWN));
@@ -275,7 +268,7 @@ public class WeChatMpController  extends AbstractController {
             return  new ModelAndView(RESULT_PAGE);
         }
         try {
-            bindUser(user,openId,identityType);
+            bindUser(user,openId,IdentityType.wechat);
             log.info("账号：{}绑定 openId {} 成功",userName,openId);
             success(model);
             //设置session

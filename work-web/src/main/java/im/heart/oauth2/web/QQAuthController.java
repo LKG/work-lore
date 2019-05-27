@@ -3,6 +3,8 @@ package im.heart.oauth2.web;
 import im.heart.core.web.AbstractController;
 import im.heart.oauth2.QQAuthService;
 import im.heart.usercore.entity.FrameUser;
+import im.heart.usercore.entity.FrameUserConnect;
+import im.heart.usercore.service.FrameUserConnectService;
 import im.heart.usercore.service.FrameUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,13 +20,10 @@ import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/oauth2")
-public class QQAuthController  extends AbstractController {
+public class QQAuthController  extends AbstractAuthController {
     private Logger logger = LoggerFactory.getLogger(QQAuthController.class);
     @Autowired
     private QQAuthService qqAuthService;
-    @Autowired
-    private FrameUserService userService;
-
     /**
      * 访问登陆页面，然后会跳转到 QQ 的登陆页面
      * @return
@@ -43,25 +42,25 @@ public class QQAuthController  extends AbstractController {
      * @throws Exception
      */
     @RequestMapping("/qq")
-    public void getQQCode(String code, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public ModelAndView getQQCode(String code, HttpServletRequest request, HttpServletResponse response) throws Exception {
         //根据code获取token
-        String accessToken = qqAuthService.getAccessToken(code);
+        String accessToken = this.qqAuthService.getAccessToken(code);
         // 保存 accessToken 到 cookie，过期时间为 30 天，便于以后使用
         Cookie cookie = new Cookie("accessToken", accessToken);
         cookie.setMaxAge(60 * 24 * 30);
         response.addCookie(cookie);
-
         //本网站是将用户的唯一标识存在用户表中，大家也可以加一张表，存储用户和QQ的对应信息。
         //根据openId判断用户是否已经绑定过
         String openId = qqAuthService.getOpenId(accessToken);
         FrameUser user = new FrameUser();
-
+        String uri="";
         if (user == null) {
             //如果用户不存在，则跳转到绑定页面
-            response.sendRedirect(request.getContextPath() + "/student/html/index.min.html#/bind?type=");
+            uri=request.getContextPath() + "/student/html/index.min.html#/bind?type=";
         } else {
             //如果用户已存在，则直接登录
-            response.sendRedirect(request.getContextPath() + "/student/html/index.min.html#/app/home?open_id=" + openId);
+            uri=request.getContextPath() + "/student/html/index.min.html#/app/home?open_id=" + openId;
         }
+        return new ModelAndView(redirectToUrl(uri));
     }
 }

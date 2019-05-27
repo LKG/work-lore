@@ -1,6 +1,8 @@
 package im.heart.usercore.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import im.heart.core.entity.AbstractEntity;
+import im.heart.usercore.enums.IdentityType;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -21,7 +23,7 @@ import java.util.Date;
 @Data
 @DynamicInsert()
 @DynamicUpdate()
-public class FrameUserConnect implements Serializable {
+public class FrameUserConnect implements AbstractEntity<BigInteger> {
 	/**
      * 关联id编号
 	 */
@@ -52,7 +54,7 @@ public class FrameUserConnect implements Serializable {
 	 * 认证类型，wehcat ,qq ,weibo,
 	 */
 	@Column(length = 128, name = "IDENTITY_TYPE")
-	private String identityType;
+	private IdentityType identityType;
 
 	@Column( name = "MESSAGE")
 	private String message;

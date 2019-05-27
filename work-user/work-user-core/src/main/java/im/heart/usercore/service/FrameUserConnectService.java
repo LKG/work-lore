@@ -3,6 +3,7 @@ package im.heart.usercore.service;
 
 import im.heart.core.service.CommonService;
 import im.heart.usercore.entity.FrameUserConnect;
+import im.heart.usercore.enums.IdentityType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -25,14 +26,14 @@ public interface FrameUserConnectService extends CommonService<FrameUserConnect,
 	 * @param identityType
 	 * @return
 	 */
-	public Optional<FrameUserConnect> findByOpenIdAndType(String openId, String identityType);
+	public Optional<FrameUserConnect> findByOpenIdAndType(String openId, IdentityType identityType);
 	/**
 	 * 查询用户管理账户
 	 * @param userId
 	 * @param identityType
 	 * @return
 	 */
-	public Page<FrameUserConnect> findAllByUserIdAndType(BigInteger userId, String identityType, Pageable pageable);
+	public Page<FrameUserConnect> findAllByUserIdAndType(BigInteger userId, IdentityType identityType, Pageable pageable);
 
 	/**
 	 * 查询用户管理账户
@@ -40,5 +41,5 @@ public interface FrameUserConnectService extends CommonService<FrameUserConnect,
 	 * @param identityType
 	 * @return
 	 */
-	public List<FrameUserConnect> findAllByUserIdAndType(BigInteger userId, String identityType);
+	public List<FrameUserConnect> findAllByUserIdAndType(BigInteger userId, IdentityType identityType);
 }
