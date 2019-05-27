@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigInteger;
 
 @Service(value = FrameLogOperateService.BEAN_NAME)
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
 public class FrameLogOperateServiceImpl extends CommonServiceImpl<FrameLogOperate, BigInteger> implements FrameLogOperateService {
 
 	@Autowired
