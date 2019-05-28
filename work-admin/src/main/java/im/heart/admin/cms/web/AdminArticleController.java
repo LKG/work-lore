@@ -4,7 +4,7 @@ import im.heart.cms.entity.Article;
 import im.heart.cms.service.ArticleService;
 import im.heart.core.CommonConst;
 import im.heart.core.CommonConst.RequestResult;
-import im.heart.core.log.OptLog;
+import im.heart.core.plugins.log.OptLog;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.web.AbstractController;

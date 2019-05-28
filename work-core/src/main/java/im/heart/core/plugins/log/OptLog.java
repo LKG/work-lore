@@ -1,4 +1,4 @@
-package im.heart.core.log;
+package im.heart.core.plugins.log;
 
 import java.lang.annotation.*;
 

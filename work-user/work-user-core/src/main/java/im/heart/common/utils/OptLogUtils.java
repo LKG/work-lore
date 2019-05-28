@@ -1,7 +1,7 @@
 package im.heart.common.utils;
 
 import im.heart.common.context.ContextManager;
-import im.heart.core.log.OptLog;
+import im.heart.core.plugins.log.OptLog;
 import im.heart.core.utils.BaseUtils;
 import im.heart.core.web.utils.WebUtilsEx;
 import im.heart.log.entity.FrameLogOperate;

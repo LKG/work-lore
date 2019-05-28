@@ -3,7 +3,7 @@ package im.heart.admin.cms.web;
 import im.heart.cms.entity.Ad;
 import im.heart.cms.service.AdService;
 import im.heart.core.CommonConst;
-import im.heart.core.log.OptLog;
+import im.heart.core.plugins.log.OptLog;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.web.AbstractController;

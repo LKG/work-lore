@@ -1,6 +1,7 @@
 package im.heart.core.utils;
 
 
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,14 +62,7 @@ public class MacUtils {
 		} catch (IOException e) {
 			logger.error(e.getStackTrace()[0].getMethodName(), e);
 		} finally {
-			try {
-				if (bufferedReader != null) {
-					bufferedReader.close();
-				}
-			} catch (IOException e1) {
-				logger.error(e1.getStackTrace()[0].getMethodName(), e1);
-			}
-			bufferedReader = null;
+			IOUtils.closeQuietly(bufferedReader);
 			process = null;
 		}
 
@@ -89,8 +83,7 @@ public class MacUtils {
 			 * linux下的命令，一般取eth0作为本地主网卡 显示信息中包含有mac地址信息
 			 */
 			process = Runtime.getRuntime().exec("ifconfig eth0");
-			bufferedReader = new BufferedReader(new InputStreamReader(
-					process.getInputStream()));
+			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			String line = null;
 			int index = -1;
 			while ((line = bufferedReader.readLine()) != null) {
@@ -107,17 +100,11 @@ public class MacUtils {
 				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getStackTrace()[0].getMethodName(), e);
 		} finally {
-			try {
-				if (bufferedReader != null) {
-					bufferedReader.close();
-				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			bufferedReader = null;
+			IOUtils.closeQuietly(bufferedReader);
 			process = null;
+
 		}
 		
 		// 取不到，试下Unix取发
@@ -174,16 +161,9 @@ public class MacUtils {
 				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getStackTrace()[0].getMethodName(), e);
 		} finally {
-			try {
-				if (bufferedReader != null) {
-					bufferedReader.close();
-				}
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
-			bufferedReader = null;
+			IOUtils.closeQuietly(bufferedReader);
 			process = null;
 		}
 
