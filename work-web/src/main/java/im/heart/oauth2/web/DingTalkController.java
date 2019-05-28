@@ -1,11 +1,7 @@
 package im.heart.oauth2.web;
 
-import im.heart.core.web.AbstractController;
 import im.heart.oauth2.AuthService;
-import im.heart.oauth2.DingTalkAuthServiceImpl;
-import im.heart.oauth2.QQAuthServiceImpl;
-import im.heart.usercore.service.FrameUserConnectService;
-import im.heart.usercore.service.FrameUserService;
+import im.heart.oauth2.impl.DingTalkAuthServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

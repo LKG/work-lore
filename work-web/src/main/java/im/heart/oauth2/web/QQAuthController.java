@@ -1,7 +1,7 @@
 package im.heart.oauth2.web;
 
 import im.heart.oauth2.AuthService;
-import im.heart.oauth2.QQAuthServiceImpl;
+import im.heart.oauth2.impl.QQAuthServiceImpl;
 import im.heart.usercore.entity.FrameUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
