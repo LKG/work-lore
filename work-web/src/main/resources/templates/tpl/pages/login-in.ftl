@@ -84,9 +84,9 @@
 		 <ul class="login-sns"> 
 		   <li class="weibo"> <a target="_parent" href="${appHost}/oauth2/sinaLoginPage.jhtml" ><i class="fa fa-weibo"></i></a> </li>
 		   <li class="qq"> <a target="_parent" href="${appHost}/oauth2/qqLoginPage.jhtml" ><i class="fa fa-qq"></i></a> </li>
-		   <li class="weixin"> <a href="javascript:;"  ><i class="fa fa-weixin"></i></a> </li>  
-		   <li class="github"> <a href="javascript:;"><i class="fa fa-github"></i></a> </li>
-		   <li class="plus"> <a href="javascript:;"><i class="fa fa-plus"></i></a> </li>
+		   <li class="weixin"> <a href="${appHost}/oauth2/wechatLoginPage.jhtml"  ><i class="fa fa-weixin"></i></a> </li>
+		   <li class="github"> <a href="${appHost}/oauth2/githubLoginPage.jhtml" ><i class="fa fa-github"></i></a> </li>
+		   <li class="plus"> <a href="${appHost}/oauth2/dingTalkLoginPage.jhtml" ><i class="fa fa-plus"></i></a> </li>
 		 </ul>  
 		</div> 
 		<a href="javascript:;" class="btn-2qrcode" id="J_2QRCode"  >扫码安全登录</a>
