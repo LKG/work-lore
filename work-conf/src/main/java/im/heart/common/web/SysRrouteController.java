@@ -196,7 +196,7 @@ public class SysRrouteController extends AbstractController {
 							logger.info("outStream  commpres to byte  end...");
 						}
 						// 写入长度
-						outStream.write(StringUtilsEx.changebytelength(pack.length).getBytes());
+						outStream.write(StringUtilsEx.changeByteLength(pack.length).getBytes());
 						// 写入数据
 						outStream.write(pack);
 						long end = System.currentTimeMillis();
