@@ -20,7 +20,7 @@
 <!------------------------------------轮播图右侧一栏------------------------>
 <div class="m">
     <div class="mt" style="padding-top: 5px;">
-        <h3>天天快报</h3>
+        <h3></h3>
         <div class="extra"><a href="${appHost}/article.jhtml">更多 ></a></div>
     </div>
     <#if articles??&&articles??>
