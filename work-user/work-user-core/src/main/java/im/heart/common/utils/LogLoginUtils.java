@@ -22,7 +22,7 @@ public class LogLoginUtils{
 		FrameUserVO user = SecurityUtilsHelper.getCurrentUser();
 		entity.setUserName(user.getUserName());
 		entity.setUserId(user.getUserId());
-		logLoginService.loginlog(entity);
+		logLoginService.log(entity);
 	}
 	
 }

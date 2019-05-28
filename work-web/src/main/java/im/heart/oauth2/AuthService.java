@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import java.io.UnsupportedEncodingException;
 
 public interface  AuthService {
+
     default String getAccessToken(String code){
         return null;
     };
@@ -14,8 +15,9 @@ public interface  AuthService {
     default  String refreshToken(String code){
         return null;
     };
-    default String getAuthorizationUrl() throws UnsupportedEncodingException{
-        return null;
+
+    default String getAuthorizationUrl(String secretState) throws UnsupportedEncodingException{
+        return "";
     }
     default  JSONObject getUserInfo(String accessToken, String openId){
         return null;

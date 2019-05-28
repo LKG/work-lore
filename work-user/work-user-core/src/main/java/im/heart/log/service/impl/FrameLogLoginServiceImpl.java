@@ -25,7 +25,7 @@ public class FrameLogLoginServiceImpl extends CommonServiceImpl<FrameLogLogin, B
 	private IPParse ipParse;
 	@Async
 	@Override
-	public void loginlog(FrameLogLogin entity) {
+	public void log(FrameLogLogin entity) {
 //		String ipInfo=this.ipParse.getIpInfo(entity.getUserHost());
 //		entity.setUserIpInfo(ipInfo);
 		entity.setLogType(FrameLogLogin.LogType.login);

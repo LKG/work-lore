@@ -21,12 +21,12 @@ public class QQAuthServiceImpl  implements AuthService {
      *    // QQ 互联应用管理中心的 APP Key
      */
     private  static final String API_SECRET = "0mGm81G7HlUjTjDt";
-
+    OAuth20Service service;
     @PostConstruct
     void init(){
-        OAuth20Service service = new ServiceBuilder(API_KEY)
+       service = new ServiceBuilder(API_KEY)
                 .apiSecret(API_SECRET)
-                .callback("http://www.example.com/oauth_callback/")
+                .callback(CALLBACK_URL)
 //                .httpClientConfig(OkHttpHttpClientConfig.defaultConfig())
                 .build(QQAuthApi.instance());
     }
@@ -47,8 +47,8 @@ public class QQAuthServiceImpl  implements AuthService {
     }
 
     @Override
-    public String getAuthorizationUrl() throws UnsupportedEncodingException {
-        return null;
+    public String getAuthorizationUrl(String secretState) throws UnsupportedEncodingException {
+        return service.getAuthorizationUrl(secretState);
     }
 
     @Override

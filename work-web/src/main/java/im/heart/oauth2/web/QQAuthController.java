@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Random;
+
 @Controller
 @RequestMapping("/oauth2")
 public class QQAuthController  extends AbstractAuthController {
@@ -25,7 +27,8 @@ public class QQAuthController  extends AbstractAuthController {
      */
     @RequestMapping(value = "/qqLoginPage",method = RequestMethod.GET)
     public ModelAndView qqLogin() throws Exception {
-        String uri = this.qqAuthService.getAuthorizationUrl();
+        final String secretState = "secret" + new Random().nextInt(999_999);
+        String uri = this.qqAuthService.getAuthorizationUrl(secretState);
         return new ModelAndView(redirectToUrl(uri));
     }
 //    /**
