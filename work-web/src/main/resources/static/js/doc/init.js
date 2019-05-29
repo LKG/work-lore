@@ -57,7 +57,7 @@ define(function (require, exports, moudles) {
 		         success:function(data){
 					 $msg.alert($(this),"点赞成功！");
 		        	 $obj.removeAttr("disabled");
-		        	 $obj.find(".bs-smll-support-code").html(showNum(data.result));
+		        	// $obj.find(".bs-smll-support-code").html(showNum(data.result));
 		         }
 		    }); 
 	 });
@@ -70,18 +70,18 @@ define(function (require, exports, moudles) {
             dataType:"jsonp",
             jsonp:"jsoncallback",
             success:function(data){
-                if (data.result) {
+                if(data.httpstatus==403){
+                    window.location.href="/login.jhtml";
+                    return;
+                }
+                if (data.success) {
 					$msg.alert($(this),"收藏成功！");
                     $("#collect-txt").text("已收藏");
                 }else {
-                	if(data.httpstatus==403){
-						window.location.href="/login.jhtml";
-						return;
-					}
 					$msg.alert($(this),"已收藏！");
 				}
                 $obj.removeAttr("disabled");
-                $obj.find(".bs-smll-support-code").html(showNum(data.result));
+               // $obj.find(".bs-smll-support-code").html(showNum(data.result));
             }
         });
     });
