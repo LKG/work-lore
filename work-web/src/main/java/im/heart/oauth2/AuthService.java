@@ -19,6 +19,7 @@ public interface  AuthService {
     default String getAuthorizationUrl(String secretState) throws UnsupportedEncodingException{
         return "";
     }
+    
     default  JSONObject getUserInfo(String accessToken, String openId){
         return null;
     };

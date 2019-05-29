@@ -1,7 +1,16 @@
 package im.heart.core.utils;
 
+import com.hankcs.hanlp.algorithm.EditDistance;
+import com.hankcs.hanlp.dictionary.CoreSynonymDictionary;
+
 public class SimilarCalculateUtils {
-	public static int fun(String source,String target){  
+    public static double similarity(String str1, String str2) {
+        int ld = compute(str1,str2);
+//        System.out.println(ld);
+        return 1 - (double) ld / Math.max(str1.length(), str2.length());
+    }
+
+	public static int compute(String source,String target){
         int i,j;  
         int[][] d = new int[source.length()+1][target.length()+1];
         /*初始化临界值*/
@@ -35,12 +44,16 @@ public class SimilarCalculateUtils {
     
     
     public static void main(String[] args) {
-        System.out.println(SimilarCalculateUtils.fun("SNOWY", "SUNNY"));
-        System.out.println(SimilarCalculateUtils.fun("adb", "adbsss"));
-        System.out.println(SimilarCalculateUtils.fun("abdd", "aebdd"));
-        System.out.println(SimilarCalculateUtils.fun("travelling", "traveling"));
-        System.out.println(SimilarCalculateUtils.fun("平整场地", "场地"));
-        System.out.println(SimilarCalculateUtils.fun("平整场地 dd", "场地 dd 平整"));
-        System.out.println(SimilarCalculateUtils.fun("平整场地", "我爱我d场地"));
+        System.out.println(similarity("SNOWY", "SUNNY"));
+        System.out.println(similarity("adb", "adbsss"));
+        System.out.println(similarity("abdd", "aebdd"));
+        System.out.println(similarity("travelling", "traveling"));
+        System.out.println(similarity("平整场地", "场地"));
+        System.out.println(similarity("平整场地 dd", "场地 dd 平整"));
+        System.out.println(similarity("农夫山    ", "农夫山"));
+        System.out.println(similarity("平整场地", "平整场地"));
+
+        System.out.println( ""+EditDistance.compute("平整场地", "平整场地"));
+        System.out.println(CoreSynonymDictionary.similarity("平整场地", "平整场地"));
     }
 }

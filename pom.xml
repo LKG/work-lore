@@ -78,7 +78,7 @@
         <!-- 二维码begin -->
         <zxing.version>3.3.3</zxing.version>
         <!--HanLP是由一系列模型与算法组成的Java汉语言处理包-->
-        <hanlp.version>portable-1.7.0</hanlp.version>
+        <hanlp.version>portable-1.7.3</hanlp.version>
         <jersey-bundle.version>1.9.1</jersey-bundle.version>
         <querydsl.version>4.2.1</querydsl.version>
         <shiro.version>1.4.0</shiro.version>
@@ -92,9 +92,15 @@
         <spring-mobile-device.version>2.0.0.M3</spring-mobile-device.version>
         <alipay.version>3.7.4.ALL</alipay.version>
         <qcloudsms.version>1.0.6</qcloudsms.version>
+        <librec.version>2.0.0</librec.version>
     </properties>
     <dependencyManagement>
         <dependencies>
+<!--            <dependency>
+                <groupId>net.librec</groupId>
+                <artifactId>librec-core</artifactId>
+                <version>${librec.version}</version>
+            </dependency>-->
             <dependency>
                 <groupId>com.github.qcloudsms</groupId>
                 <artifactId>qcloudsms</artifactId>
