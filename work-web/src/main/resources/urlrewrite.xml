@@ -55,6 +55,10 @@
         <to>/docs.jhtml?categoryCode_LIKES=$1</to>
     </rule>
     <rule>
+        <from>^/docs/c-(\w+)-(\w+).?(.*)$</from>
+        <to>/docs.jhtml?categoryCode_LIKES=$1&amp;page=$2</to>
+    </rule>
+    <rule>
         <from>^/made.?(.*)$</from>
         <to>/index/made.jhtml</to>
     </rule>
