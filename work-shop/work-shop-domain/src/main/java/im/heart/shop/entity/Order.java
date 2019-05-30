@@ -82,11 +82,11 @@ public class Order implements AbstractEntity<Long> {
 	@Column(name = "SHIPPING_STATUS" , nullable = false)
 	private ShippingStatus shippingStatus;
 
-//	/**
-//	 * 优惠券id
-//	 */
-//	@Column(length = 32, name = "COUPON_ID")
-//	private BigInteger couponId;
+	/**
+	 * 优惠券id
+	 */
+/*	@Column(length = 32, name = "COUPON_ID")
+	private BigInteger couponId;*/
 	/**
 	 * 订单归属用户Id
 	 */

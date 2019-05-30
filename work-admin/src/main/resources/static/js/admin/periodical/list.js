@@ -331,7 +331,7 @@ define(function(require, exports, moudles) {
 					type : "post",
 					loading : true,
 					dataType : "json",
-					data : param,
+                    data : null,
 					success :function(data) {
 						message($this,"更新成功");
 						$("#page").val(1);

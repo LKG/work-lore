@@ -14,8 +14,11 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import im.heart.core.CommonConst;
 import im.heart.core.enums.Status;
 import im.heart.core.service.impl.CommonServiceImpl;
+import im.heart.media.entity.PeriodicalContent;
 import im.heart.media.entity.QPeriodical;
+import im.heart.media.repository.PeriodicalContentRepository;
 import im.heart.media.repository.PeriodicalImgRepository;
+import im.heart.media.repository.PeriodicalLogRepository;
 import im.heart.media.service.PeriodicalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,10 +43,17 @@ import im.heart.core.plugins.persistence.SearchFilter.Operator;
 public class PeriodicalServiceImpl   extends CommonServiceImpl<Periodical, BigInteger> implements PeriodicalService {
 	@Autowired
 	private PeriodicalRepository periodicalRepository;
+
+	@Autowired
+	private PeriodicalContentRepository periodicalContentRepository;
 	@Autowired
 	private JPAQueryFactory jpaQueryFactory;
 	@Autowired
 	private PeriodicalImgRepository periodicalImgRepository;
+	@Autowired
+	private PeriodicalLogRepository periodicalLogRepository;
+
+
 
 	@Override
 	public List<Periodical> findAllById(Iterable<BigInteger>  ids ) {
@@ -69,6 +79,8 @@ public class PeriodicalServiceImpl   extends CommonServiceImpl<Periodical, BigIn
 	@Override
 	public void deleteById(BigInteger id)  throws ServiceException{
 		this.periodicalRepository.deleteById(id);
+		this.periodicalLogRepository.deleteByPeriodicalId(id);
+		this.periodicalContentRepository.deleteByPeriodicalId(id);
 		this.periodicalImgRepository.deleteByPeriodicalId(id);
 	}
 	@Override

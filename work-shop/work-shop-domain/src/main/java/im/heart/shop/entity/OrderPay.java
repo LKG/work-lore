@@ -15,10 +15,10 @@ import java.math.BigInteger;
 import java.util.Date;
 import java.util.List;
 
-/**
- * 
- * @作者： LKG
- * @功能说明：商品订单实体类
+/***
+ *
+ * @author lkg
+ * @Desc 商品订单付款实体类
  */
 //@Entity
 //@Table(name = "shop_order_pay")

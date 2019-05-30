@@ -12,9 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * 检测订单状态
- */
+
 @Component
 public class OrderJob {
     protected static final Logger logger = LoggerFactory.getLogger(OrderJob.class);
@@ -45,7 +43,7 @@ public class OrderJob {
      * 注意，因为是相隔一天检查，因此导致订单真正超时时间是 [LITEMALL_ORDER_UNCONFIRM, 1 + LITEMALL_ORDER_UNCONFIRM]
      */
     @Scheduled(cron = "0 0 3 * * ?")
-    public void checkOrderUnconfirm() {
+    public void checkOrderUnConfirm() {
         logger.info("系统开启任务检查订单是否已经超期自动确认收货");
     }
 

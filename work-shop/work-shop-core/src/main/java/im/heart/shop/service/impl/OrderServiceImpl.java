@@ -15,6 +15,9 @@ import im.heart.shop.service.OrderService;
 import im.heart.shop.utils.OrderHelper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,14 +36,26 @@ public class OrderServiceImpl extends CommonServiceImpl<Order, Long> implements 
 	private PeriodicalService periodicalService;
 	@Autowired
 	private OrderItemRepository orderItemRepository;
-    @Override
-    public List<Order> queryUnpaid(){
-        return null;
-    }
-    @Override
-    public List<Order> findUnconfirmOrder(){
-        return null;
-    }
+
+    /**
+     * 查询所有未支付订单
+     * @param spec
+     * @param pageable
+     * @return
+     */
+    public Page<Order> findAllUnpaid(Specification<Order> spec, Pageable pageable){
+        return this.orderRepository.findAll(spec,pageable);
+    };
+
+    /**
+     * 查询所有未确认订单
+     * @param spec
+     * @param pageable
+     * @return
+     */
+    public Page<Order> findAllUnConfirm(Specification<Order> spec, Pageable pageable){
+        return this.orderRepository.findAll(spec,pageable);
+    };
 
 
 	@Override

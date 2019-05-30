@@ -93,6 +93,7 @@ public class UploadPeriodicalController extends AbstractController {
                         filename = file.getOriginalFilename();
                     }
                     Periodical periodical = new Periodical();
+                    realFileName= StringUtilsEx.replace(realFileName, File.separator, "/");
                     periodical.setRealFilePath(realPath+realFileName);
                     String suffixes = StringUtils.substringAfterLast(realFileName, ".");
                     periodical.setFileHeader(suffixes);
