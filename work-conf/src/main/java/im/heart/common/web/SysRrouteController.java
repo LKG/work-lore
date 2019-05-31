@@ -67,9 +67,9 @@ public class SysRrouteController extends AbstractController {
 			logger.info("解压key：{} " ,new String(key, "UTF-8"));
 			// 转换压缩文件流为普通流
 			byte[] unpack = FileUtilsEx.uncompressToStringback(body);
-			String signBoby = DesUtils.parseSignback(unpack, new String(key,"UTF-8"));
-			logger.info("解压signBoby ：{}" ,signBoby);
-			requestParameters = JSON.parseObject(signBoby, RequestParas.class);
+			String signBody = DesUtils.parseSignback(unpack, new String(key,"UTF-8"));
+			logger.info("解压signBody ：{}" ,signBody);
+			requestParameters = JSON.parseObject(signBody, RequestParas.class);
 		} catch (IOException e) {
 			logger.error(e.getStackTrace()[0].getMethodName(), e);
 		} catch (Exception e) {
@@ -84,7 +84,7 @@ public class SysRrouteController extends AbstractController {
 	 * @功能说明：提取公用参数
 	 * @return 
 	 */
-	protected Map<String, Object> pickCommonparams(RequestParas requestParameters){
+	protected Map<String, Object> pickCommonParams(RequestParas requestParameters){
 		Map<String, Object> params = Maps.newHashMap();
 		String cpImei = requestParameters.getCpImei();
 		String cpPhoneNum = requestParameters.getCpPhoneNum();
@@ -118,9 +118,17 @@ public class SysRrouteController extends AbstractController {
 		params.put("cpPubResPath", cpPubResPath);
 		params.put("cpLon", cpLon);
 		params.put("cpLat", cpLat);
+		logger.info(">>>>>>FLOW_UP|{}|{}|{}|{}|",cpImei,cpPhoneNum,cpPrt,cpUid);
 		return params;
 	}
-	
+
+	private String buildAction(HttpServletRequest request,String action){
+		StringBuffer strBuff = new StringBuffer();
+		strBuff.append("http://").append(request.getServerName()).append(":").append(request.getServerPort());
+		strBuff.append(request.getContextPath()).append("/" ).append(action);
+		return  strBuff.toString();
+	}
+
 	/**
 	 * @功能说明：手机端统一入口
 	 * @param request
@@ -129,91 +137,82 @@ public class SysRrouteController extends AbstractController {
 	@RequestMapping("/api/v1")
 	protected @ResponseBody  void  sysLoadService(HttpServletRequest request,
 			HttpServletResponse response) {
-		OutputStream outStream = null;
+		OutputStream outStream = null;InputStream input =null;
 		try {
-			// 用户请求ip
 			String ip = BaseUtils.getIpAddr(request);
+			logger.info("请求ip:----" + ip);
 			if(isRestrict(ip)){
-				//返回访问过于频繁，已限制访问
+				//返回访问过于频繁，限制访问
 				return ;
 			}
-			// --------------------
 			outStream = response.getOutputStream();
-			InputStream input = request.getInputStream();
-			logger.info("请求ip:----" + ip);
+			input = request.getInputStream();
 			RequestParas requestParameters = this.getRequestParameter(input);
-			if (requestParameters != null) {
-				long start = System.currentTimeMillis();
-				Map<String, Object> params = Maps.newHashMap();
-				params=this.pickCommonparams(requestParameters);
-				params.put("cpIp", ip);
-				// 共用参数 end
-				List<RequestBody> actions = requestParameters.getActions();
-				if (actions != null) {
-					for (RequestBody body : actions) {
-						String action = body.getAction();
-						String requuid = body.getRequuid();
-						String cpImei = (String) params.get("cpImei");
-						String cpPhoneNum = (String) params.get("cpPhoneNum");
-						String cpPrt = (String) params.get("cpPrt");
-						String cpUid = (String) params.get("cpUid");
-						logger.info(">>>>>>FLOW_UP|{}|{}|{}|{}|{}|",requuid,cpImei,cpPhoneNum,cpPrt,cpUid);
-						StringBuffer strBuff = new StringBuffer();
-						// 状态为可用状态
-						strBuff.append("http://");
-						strBuff.append(request.getServerName());
-						strBuff.append(":");
-						strBuff.append(request.getServerPort());
-						strBuff.append(request.getContextPath()+"/" + action);
-						// 参数处理
-						Map<String, String> paras = body.getParas();
-						if (paras != null) {
-							if (paras.containsKey("ps")) {
-								String value = paras.get("ps");
-								paras.remove("ps");
-								params.put("size", StringUtilsEx.isNotBlank(value) ? value : CommonConst.Page.DEFAULT_SIZE);
-							}
-							if (paras.containsKey("pn")) {
-								String value = paras.get("pn");
-								paras.remove("pn");
-								params.put("page", StringUtilsEx.isNotBlank(value) ? String.valueOf(Integer.valueOf(value) + 1): CommonConst.Page.DEFAULT_PAGE);
-							}
-							params.putAll(paras);
-						}
-						logger.info(">>>>>>|UUID:{}|IP:{}|REQ_ACTION:{}|REDIRECT_URL:{}|PARAMS:{}" , requuid,ip,
-								strBuff.toString(),cpPrt,JSON.toJSONString(params));
-						// 写入UUID
-						outStream.write(requuid.getBytes());
-						byte[] data = OkHttpClientUtils.fetchEntity(strBuff.toString(), params);
-						byte[] pack = null;
-						// //处理反馈结果,判断反馈结果是否为压缩流，不是压缩流对数据进行压缩后再返回给客户端
-						if (FileUtilsEx.isSpecFile(data, FileHeader.ZIP.getValue())) {
-							logger.info("outStream  is zip ...");
-							pack = data;
-						} else {
-							logger.info("outStream  is not zip  begin commpres to byte ...");
-							pack = FileUtilsEx.compressToByte(data);
-							logger.info("outStream  commpres to byte  end...");
-						}
-						// 写入长度
-						outStream.write(StringUtilsEx.changeByteLength(pack.length).getBytes());
-						// 写入数据
-						outStream.write(pack);
-						long end = System.currentTimeMillis();
-						long time = (end - start);
-						logger.info("====FLOW_DOWN,{},{},{},{},{},{}|",requuid,cpImei,cpPhoneNum, pack.length, cpPrt,time);
-						logger.info(">>>>>>请求 {} [{}]耗时[{}]ms",action,strBuff.toString(),time);
-						outStream.flush();
+			if(requestParameters==null){
+				logger.info("缺少请求参数" );
+				return ;
+			}
+			long start = System.currentTimeMillis();
+			Map<String, Object> params=this.pickCommonParams(requestParameters);
+			params.put("cpIp", ip);
+			List<RequestBody> actions = requestParameters.getActions();
+			if(actions==null||actions.isEmpty()){
+				logger.info("缺少请求参数" );
+				return ;
+			}
+			for (RequestBody body : actions) {
+				String action = body.getAction();
+				String requuid = body.getRequuid();
+				String cpImei = (String) params.get("cpImei");
+				String cpPhoneNum = (String) params.get("cpPhoneNum");
+				String cpPrt = (String) params.get("cpPrt");
+				logger.info(">>>>>>FLOW_UP|{}|{}|{}|{}|{}|",requuid,cpImei,cpPhoneNum,cpPrt);
+				String actionUrl = buildAction(request,action);
+				// 参数处理
+				Map<String, String> paras = body.getParas();
+				if (paras != null) {
+					if (paras.containsKey("ps")) {
+						String value = paras.get("ps");
+						paras.remove("ps");
+						params.put("size", StringUtilsEx.isNotBlank(value) ? value : CommonConst.Page.DEFAULT_SIZE);
 					}
+					if (paras.containsKey("pn")) {
+						String value = paras.get("pn");
+						paras.remove("pn");
+						params.put("page", StringUtilsEx.isNotBlank(value) ? String.valueOf(Integer.valueOf(value) + 1): CommonConst.Page.DEFAULT_PAGE);
+					}
+					params.putAll(paras);
 				}
+				logger.info(">>>>>>|UUID:{}|IP:{}|REQ_ACTION:{}|REDIRECT_URL:{}|PARAMS:{}" , requuid,ip,
+						actionUrl,cpPrt,JSON.toJSONString(params));
+				outStream.write(requuid.getBytes());
+				byte[] data = OkHttpClientUtils.fetchEntity(actionUrl, params);
+				byte[] pack = null;
+				// //处理反馈结果,判断反馈结果是否为压缩流，不是压缩流对数据进行压缩后再返回给客户端
+				if (FileUtilsEx.isSpecFile(data, FileHeader.ZIP.getValue())) {
+					logger.info("outStream  is zip ...");
+					pack = data;
+				} else {
+					logger.info("outStream  is not zip  begin compress to byte ...");
+					pack = FileUtilsEx.compressToByte(data);
+					logger.info("outStream  compress to byte  end...");
+				}
+				// 写入长度
+				outStream.write(StringUtilsEx.changeByteLength(pack.length).getBytes());
+				// 写入数据
+				outStream.write(pack);
+				long end = System.currentTimeMillis();
+				logger.info("====FLOW_DOWN,{},{},{},{},{}|",requuid,cpImei,cpPhoneNum, pack.length, cpPrt);
+				logger.info(">>>>>>请求[{}] 耗时[{}]ms",action,(end - start));
+				outStream.flush();
 			}
 		} catch (Exception e) {
 			logger.error(e.getStackTrace()[0].getMethodName(), e);
-			//处理出现异常统一返回错误信息给客户端
 			//	TODO 处理出现异常统一返回错误信息给客户端
 //			throw new Exception();
 		} finally {
 			IOUtils.closeQuietly(outStream);
+			IOUtils.closeQuietly(input);
 		}
 		return ;
 	}
