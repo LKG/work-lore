@@ -1,5 +1,5 @@
 <!---面板begin--->
-<div class="panel panel-default pin">
+<div class="panel panel-default">
     <div class="panel-heading" role="tab" >
         <h4><i class="fa fa-fire text-danger" > </i>  热搜</h4>
     </div>

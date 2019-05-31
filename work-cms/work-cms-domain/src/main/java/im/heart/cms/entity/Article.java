@@ -51,7 +51,7 @@ public class Article implements AbstractEntity<BigInteger>{
 	public static final String HITS_CACHE_NAME = "articleHits";
 	/** 点击数缓存更新间隔时间. */
 	public static final int HITS_CACHE_INTERVAL = 600000;
-
+	private static final Integer MAX_TITLE_LENGTH = 18;
 	/** 内容分页长度 . */
 	private static final int PAGE_CONTENT_LENGTH = 800;
 
@@ -330,8 +330,8 @@ public class Article implements AbstractEntity<BigInteger>{
 
 	@Transient
 	public String getShortTitle() {
-		if (!StringUtils.isBlank(title) && (title.length() > 14)) {
-			return title.substring(0, 14) + "...";
+		if (!StringUtils.isBlank(title) && (title.length() > MAX_TITLE_LENGTH)) {
+			return title.substring(0, MAX_TITLE_LENGTH) + "...";
 		}
 		return title;
 	}

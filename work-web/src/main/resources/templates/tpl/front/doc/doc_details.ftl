@@ -80,7 +80,7 @@
                 <button type="button" id="cart-btn" class="btn btn-primary pull-right hide" data-url="${appHost}/doc/${result.id!''}/praise.json" ><i class="fa fa-cart-plus">加入购物车</i></button>
 
             </div>
-            <div class="panel-body">
+            <div class="panel-body" style="padding: 8px 8px;">
                 <!---文档左侧begin--->
                 <div class="col-md-9  col-xs-9">
                     <div class="row">
@@ -89,7 +89,7 @@
                 </div>
                 <!---文档左侧end--->
                 <!---文档右侧begin--->
-                <div class="col-md-3 col-xs-3"  >
+                <div class="col-md-3 col-xs-3 pin"  style="padding-right: 0px;padding-left: 5px;"    >
                     <!---详情面板begin--->
                         <#include "/front/doc/template/doc-infos.ftl" />
                         <!---详情面板end--->
