@@ -66,7 +66,7 @@ public class Periodical implements AbstractEntity<BigInteger> {
      *
      */
     private static final long serialVersionUID = 4316965064793331760L;
-    private static final Integer MAX_TITLE_LENGTH = 20;
+    private static final Integer MAX_TITLE_LENGTH = 18;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 32, name = "ID", nullable = false, unique = true, updatable = false)

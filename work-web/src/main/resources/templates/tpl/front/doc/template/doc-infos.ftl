@@ -1,5 +1,5 @@
 <!---面板begin--->
-<div class="panel panel-default pin">
+<div class="panel panel-default">
    <div class="panel-heading" role="tab" id="headingOne">
       <h4> <i class="fa fa-book"> </i> 当前资源信息</h4>
    </div>

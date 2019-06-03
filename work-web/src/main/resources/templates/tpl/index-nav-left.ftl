@@ -27,7 +27,7 @@
         <div class="mc">
         <ul>
         <#list articles as article>
-              <li><a href="${appHost}/article/${article.id}.jhtml" ><span>[${article.type}]</span>${article.shortTitle}</a></li>
+              <li title="${article.title!''}"><a href="${appHost}/article/${article.id}.jhtml" ><span>[${article.type}]</span>${article.shortTitle}</a></li>
         </#list>
         </ul>
         </div>
