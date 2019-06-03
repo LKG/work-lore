@@ -32,6 +32,7 @@ import java.util.concurrent.TimeUnit;
 public class OkHttpClientUtils {
 	protected static final Logger logger = LoggerFactory.getLogger(OkHttpClientUtils.class);
 
+	private final static long TIME_OUT=500;
 	private final static OkHttpClient mOkHttpClient = new OkHttpClient();
 	public static class UnSafeTrustManager implements X509TrustManager {
 		@Override
@@ -77,7 +78,7 @@ public class OkHttpClientUtils {
 		return fetchResponse(url,params,null);
 	}
 	public static Response fetchResponse(String url, Map<String, Object> params,Map<String, String> headers) throws IOException {
-		OkHttpClient copy = mOkHttpClient.newBuilder().readTimeout(500, TimeUnit.MILLISECONDS).build();
+		OkHttpClient copy = mOkHttpClient.newBuilder().readTimeout(TIME_OUT, TimeUnit.MILLISECONDS).build();
 		Builder builder = new Builder().url(url);
 		Request request = null;
 		if(headers!=null&& !headers.isEmpty()){

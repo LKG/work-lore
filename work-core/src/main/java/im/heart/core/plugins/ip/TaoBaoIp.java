@@ -18,17 +18,16 @@ import java.util.Map;
  */
 @Component
 public class TaoBaoIp implements IpParse {
-	private static String API_URL = "https://ip.taobao.com/service/getIpInfo.php";
+	private static String API_URL = "http://ip.taobao.com/service/getIpInfo2.php?ip=";
 	protected static final Logger logger = LoggerFactory.getLogger(TaoBaoIp.class);
 	private static String CODE = "code";
 	private static String DATA = "data";
 	private static String SUCCESS_CODE = "0";
 	public static IpInfo getTaoBaoIp(String ip) throws Exception {
 		if (StringUtils.isNotBlank(ip)) {
-			Map<String, Object> params = Maps.newHashMap();
-			params.put("ip", ip);
-			String result = OkHttpClientUtils.fetchEntityString(API_URL,params);
+			String result = OkHttpClientUtils.fetchEntityString(API_URL+ip);
 			JSONObject json = JSON.parseObject(result);
+			System.out.println(json);
 			if (SUCCESS_CODE.equals(json.getString(CODE))) {
 				return JSON.parseObject(json.getString(DATA), IpInfo.class);
 			}
