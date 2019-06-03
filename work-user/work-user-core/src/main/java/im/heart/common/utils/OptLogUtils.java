@@ -14,6 +14,11 @@ import org.springframework.http.HttpHeaders;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ *
+ * @author gg
+ * @desc : 记录操作日志 依赖web 环境
+ */
 public class OptLogUtils{
 	protected static final Logger logger = LoggerFactory.getLogger(OptLogUtils.class);
 	public static  void optLog(HttpServletRequest request, OptLog optLog ){
@@ -35,7 +40,7 @@ public class OptLogUtils{
 		entity.setUserId(user.getUserId());
 		entity.setUserHost(userHost);
 		entity.setUserAgent(userAgent);
-		logLoginService.optlog(entity);
+		logLoginService.optLog(entity);
 	}
 }
 
