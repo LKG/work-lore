@@ -4,7 +4,7 @@
         <h4>相关资源</h4>
     </div>
    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel">
-     <div class="panel-body">
+     <div class="panel-body" style="padding: 0px 0px">
          <div class="caption" >
               <@media.periodical categoryCode="${result.categoryCode}" >
                   <div class="mc">
