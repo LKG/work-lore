@@ -9,7 +9,7 @@ import lombok.Data;
  * @desc IP model 类
  */
 @Data
-public class IPInfo {
+public class IpInfo {
 	private String country;
 	private String country_id;
 	private String area;

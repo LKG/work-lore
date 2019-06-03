@@ -1,12 +1,10 @@
 package im.heart.log.service.impl;
 
-import im.heart.core.plugins.ip.IPParse;
 import im.heart.core.service.impl.CommonServiceImpl;
 import im.heart.log.entity.FrameLogOperate;
 import im.heart.log.repository.FrameLogOperateRepository;
 import im.heart.log.service.FrameLogOperateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -20,13 +18,10 @@ public class FrameLogOperateServiceImpl extends CommonServiceImpl<FrameLogOperat
 
 	@Autowired
 	private FrameLogOperateRepository frameLogOperateRepository;
-	@Autowired
-	@Qualifier("taoBaoIP")
-	private IPParse ipParse;
 	
 	@Async
 	@Override
-	public void optlog(FrameLogOperate entity) {
+	public void optLog(FrameLogOperate entity) {
 		this.frameLogOperateRepository.save(entity);
 	}
 	

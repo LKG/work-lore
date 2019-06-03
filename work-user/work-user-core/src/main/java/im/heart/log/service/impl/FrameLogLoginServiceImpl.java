@@ -1,6 +1,6 @@
 package im.heart.log.service.impl;
 
-import im.heart.core.plugins.ip.IPParse;
+import im.heart.core.plugins.ip.IpParse;
 import im.heart.core.service.impl.CommonServiceImpl;
 import im.heart.log.entity.FrameLogLogin;
 import im.heart.log.repository.FrameLogLoginRepository;
@@ -21,13 +21,13 @@ public class FrameLogLoginServiceImpl extends CommonServiceImpl<FrameLogLogin, B
 	@Autowired
 	private FrameLogLoginRepository frameLogLoginRepository;
 	@Autowired
-	@Qualifier("taoBaoIP")
-	private IPParse ipParse;
+	@Qualifier("taoBaoIp")
+	private IpParse ipParse;
 	@Async
 	@Override
 	public void log(FrameLogLogin entity) {
-//		String ipInfo=this.ipParse.getIpInfo(entity.getUserHost());
-//		entity.setUserIpInfo(ipInfo);
+		String ipInfo=this.ipParse.getIpInfo(entity.getUserHost());
+		entity.setUserIpInfo(ipInfo);
 		entity.setLogType(FrameLogLogin.LogType.login);
 		this.frameLogLoginRepository.save(entity);
 	}
