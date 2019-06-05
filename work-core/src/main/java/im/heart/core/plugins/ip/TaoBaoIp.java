@@ -27,7 +27,6 @@ public class TaoBaoIp implements IpParse {
 		if (StringUtils.isNotBlank(ip)) {
 			String result = OkHttpClientUtils.fetchEntityString(API_URL+ip);
 			JSONObject json = JSON.parseObject(result);
-			System.out.println(json);
 			if (SUCCESS_CODE.equals(json.getString(CODE))) {
 				return JSON.parseObject(json.getString(DATA), IpInfo.class);
 			}
