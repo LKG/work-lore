@@ -1,6 +1,7 @@
 package im.heart.core.validator;
 
 import im.heart.core.utils.StringUtilsEx;
+import org.apache.commons.lang3.RandomUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,13 +22,13 @@ public class ValidatorUtils implements Regular {
 		if (StringUtilsEx.isBlank(email)){
 			return false;
 		}
-		return emailer.matcher(email).matches();
+		return EMAIL_ER.matcher(email).matches();
 	}
-	public static boolean isNumber(String numberstr) {
-		if (StringUtilsEx.isBlank(numberstr)){
+	public static boolean isNumber(String str) {
+		if (StringUtilsEx.isBlank(str)){
 			return false;
 		}
-		return number.matcher(numberstr).matches();
+		return NUMBER_ER.matcher(str).matches();
 	}
 	/**
 	 * 
@@ -39,7 +40,7 @@ public class ValidatorUtils implements Regular {
 		if (StringUtilsEx.isBlank(str)){
 			return false;
 		}
-		return chineser.matcher(str).find();
+		return CHINES_ER.matcher(str).find();
 	}
 	/**
 	 * 
@@ -51,7 +52,7 @@ public class ValidatorUtils implements Regular {
 		if (StringUtilsEx.isBlank(str)){
 			return false;
 		}
-		return datetimeer.matcher(str).matches();
+		return DATETIME_ER.matcher(str).matches();
 	}
 	
 	/**
@@ -64,7 +65,7 @@ public class ValidatorUtils implements Regular {
 		if (StringUtilsEx.isBlank(phone)){
 			return false;
 		}
-		return phoner.matcher(phone).matches();
+		return PHONE_ER.matcher(phone).matches();
 	}
 	/**
 	 * 判断是否为IP地址
@@ -75,7 +76,7 @@ public class ValidatorUtils implements Regular {
 		 if (StringUtilsEx.isBlank(ip)){
 				return false;
 		 }
-          return iper.matcher(ip).matches();
+          return IP_ER.matcher(ip).matches();
 	 }
 	 /**
 	  * 
@@ -87,7 +88,7 @@ public class ValidatorUtils implements Regular {
 		 if (StringUtilsEx.isBlank(url)){
 				return false;
 		 }
-          return iper.matcher(url).matches();
+          return URL_ER.matcher(url).matches();
 	 }
 	 
 	 /**
@@ -100,7 +101,11 @@ public class ValidatorUtils implements Regular {
 		 if (StringUtilsEx.isBlank(idCard)){
 				return false;
 		 }
-          return idCarder.matcher(idCard).matches();
+          return ID_CARD_ER.matcher(idCard).matches();
 	 }
-	
+
+	public static void main(String[] args) {
+		int index= RandomUtils.nextInt(0,5);
+		System.out.println(index);
+	}
 }

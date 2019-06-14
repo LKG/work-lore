@@ -1,5 +1,7 @@
 package im.heart.core.validator;
 
+import com.google.common.collect.Maps;
+
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -25,7 +27,7 @@ public class BeanValidationUtils {
 		Set<ConstraintViolation<T>> set = validator.validate(obj, Default.class);
 		if (set!=null&&!set.isEmpty()) {
 			result.setHasErrors(true);
-			Map<String, String> errorMsg = new HashMap<String, String>();
+			Map<String, String> errorMsg =  Maps.newHashMap();
 			for (ConstraintViolation<T> cv : set) {
 				errorMsg.put(cv.getPropertyPath().toString(), cv.getMessage());
 			}
@@ -44,7 +46,7 @@ public class BeanValidationUtils {
 		Set<ConstraintViolation<T>> set = validator.validateProperty(obj,propertyName, Default.class);
 		if (set!=null&&!set.isEmpty()) {
 			result.setHasErrors(true);
-			Map<String, String> errorMsg = new HashMap<String, String>();
+			Map<String, String> errorMsg = Maps.newHashMap();
 			for (ConstraintViolation<T> cv : set) {
 				errorMsg.put(propertyName, cv.getMessage());
 			}

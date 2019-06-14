@@ -43,6 +43,7 @@ public abstract  class AbstractController {
     private String viewPrefix;
     static final String HTTP_PREFIX = "http";
     static final String HTTPS_PREFIX = "https";
+    static final String URL_TOKEN =  "/";
     /**
      *
      *  当前模块 视图的前缀 默认 1、获取当前类头上的@RequestMapping中的value作为前缀
@@ -93,8 +94,8 @@ public abstract  class AbstractController {
         if (StringUtils.isBlank(backURL)) {
             backURL = getViewPrefix();
         }
-        if (!backURL.startsWith("/") && !backURL.startsWith(HTTP_PREFIX) && !backURL.startsWith(HTTPS_PREFIX)) {
-            backURL = "/" + backURL;
+        if (!backURL.startsWith(URL_TOKEN) && !backURL.startsWith(HTTP_PREFIX) && !backURL.startsWith(HTTPS_PREFIX)) {
+            backURL = URL_TOKEN + backURL;
         }
         return "redirect:" + backURL;
     }
