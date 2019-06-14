@@ -51,7 +51,7 @@ public abstract  class AbstractController {
      * @param viewPrefix
      */
     public void setViewPrefix(String viewPrefix) {
-        if (viewPrefix.startsWith("/")) {
+        if (viewPrefix.startsWith(URL_TOKEN)) {
             viewPrefix = viewPrefix.substring(1);
         }
         this.viewPrefix = viewPrefix;
