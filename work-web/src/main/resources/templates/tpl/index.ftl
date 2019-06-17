@@ -70,6 +70,9 @@
 <!------seajs.config   引用信息 end----->
 <div class="clearfix" ></div>
 <!------页面header信息 end----->
+<!-- button banner 广告 begin-->
+<#include "/index-button-banner.ftl" />
+<!-- button banner 广告 end-->
 </body>
 <script>
     seajs.use("js/search.js?v="+Math.random());

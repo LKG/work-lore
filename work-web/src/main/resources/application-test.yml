@@ -76,7 +76,7 @@ spring:
           required: true
       debug: true
   datasource:
-    url: jdbc:mysql://ss.itaobao.pub:3306/lore-test?Unicode=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://118.25.151.3:3306/test-lore?Unicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: omw@178.Im
     #配置监控统计拦截的filters，去掉后监控界面sql将无法统计,'wall'用于防火墙
@@ -124,9 +124,9 @@ jodconverter:
 alipay:
   appId: 2016091200495262
   #服务器异步通知页面路径
-  notify_url: http://test.gongwk.com/notify/alipay
+  notify_url: http://test.api.gongwk.com/notify/alipay
   #页面跳转同步通知页面路径
-  return_url: http://test.gongwk.com/alipay/paySuccess.html
+  return_url: http://test.api.gongwk.com/notify/paySuccess.html
   #请求网关地址
   URL: https://openapi.alipaydev.com/gateway.do
 dingtalk:

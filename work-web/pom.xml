@@ -108,7 +108,7 @@
                     <fork>true</fork>
                     <mainClass>im.heart.App</mainClass>
                    <layout>ZIP</layout>
-                    <includes>
+                     <includes>
                         <include>
                             <groupId>im.heart</groupId>
                             <artifactId>work-core</artifactId>

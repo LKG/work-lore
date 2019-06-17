@@ -11,7 +11,10 @@ public interface Regular {
 	 * 邮箱
 	 */
 	public final static Pattern EMAIL_ER = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
-	
+
+	/**
+	 * 数字
+	 */
 	public final static Pattern NUMBER_ER = Pattern.compile("^[0-9]*$");
 
 	/**
@@ -43,7 +46,9 @@ public interface Regular {
 	 * 身份证号码
 	 */
 	public static final Pattern ID_CARD_ER = Pattern.compile("^(\\d{6})(\\d{4})(\\d{2})(\\d{2})(\\d{3})([0-9]|X)$");
-	
+	/** 中国车牌号码 */
+	public final static Pattern PLATE_NUMB_ER = Pattern.compile("^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$");
+
 	/**
 	 * 用户名
 	 */
