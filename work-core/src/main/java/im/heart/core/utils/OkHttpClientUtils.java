@@ -27,12 +27,12 @@ import java.util.concurrent.TimeUnit;
 /**
  *
  * @author gg
- * @desc OkhttpClient 工具类
+ * @desc OkHttpClient 工具类
  */
 public class OkHttpClientUtils {
 	protected static final Logger logger = LoggerFactory.getLogger(OkHttpClientUtils.class);
 
-	private final static long TIME_OUT=500;
+	private final static long TIME_OUT=3000;
 	private final static OkHttpClient mOkHttpClient = new OkHttpClient();
 	public static class UnSafeTrustManager implements X509TrustManager {
 		@Override
