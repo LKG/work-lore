@@ -56,7 +56,7 @@
                     <i class="gw-count">0</i>
                     <a href="#">我的购物车</a>
                     <div class="dorpdown-layer">
-                        <img src="${appHost}/images/settleup-nogoods.png">
+                        <img src="https://static.gongwk.com/images/settleup-nogoods.png">
                         购物车中还没有商品，赶紧选购吧！
                     </div>
                 </div>

@@ -76,7 +76,7 @@ spring:
           required: true
       debug: true
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/prod-lore?Unicode=true&characterEncoding=UTF-8&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/test_lore?Unicode=true&characterEncoding=UTF-8&useSSL=false
     username: root
     password: omw@178.Im
     #配置监控统计拦截的filters，去掉后监控界面sql将无法统计,'wall'用于防火墙
