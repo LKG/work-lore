@@ -2,13 +2,16 @@ package im.heart.search.entity;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
- * 搜索相关商品品牌名称，分类名称及属性
+ *
+ * @author gg
+ * @desc  搜索相关商品品牌名称，分类名称及属性
  */
 @Data
-public class EsProductRelatedInfo {
+public class EsProductRelatedInfo  implements Serializable {
     private List<String> brandNames;
     private List<String> productCategoryNames;
     private List<ProductAttr>   productAttrs;

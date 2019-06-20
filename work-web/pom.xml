@@ -50,6 +50,11 @@
         </dependency>
         <dependency>
             <groupId>im.heart</groupId>
+            <artifactId>work-search</artifactId>
+            <version>0.1.27-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>im.heart</groupId>
             <artifactId>work-pay</artifactId>
             <version>0.1.27-SNAPSHOT</version>
         </dependency>
@@ -125,6 +130,10 @@
                             <groupId>im.heart</groupId>
                             <artifactId>work-admin</artifactId>
                         </include>
+                         <include>
+                             <groupId>im.heart</groupId>
+                             <artifactId>work-search</artifactId>
+                         </include>
                         <include>
                             <groupId>im.heart</groupId>
                             <artifactId>work-cms-core</artifactId>

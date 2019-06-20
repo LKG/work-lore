@@ -25,7 +25,6 @@ public class ResponseError {
     public ResponseError(WebError webError) {
         this(webError.getCode(),webError.getName(),webError.getDescription());
     }
-
     public ResponseError(String code, String name) {
         this.code = code;
         this.name = name;

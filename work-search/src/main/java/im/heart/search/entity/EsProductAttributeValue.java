@@ -5,10 +5,10 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.io.Serializable;
-
 /**
- * 搜索中的商品属性信息
- * Created by macro on 2018/6/27.
+ *
+ * @author gg
+ * @desc  商品属性表
  */
 @Data
 public class EsProductAttributeValue implements Serializable {

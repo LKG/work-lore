@@ -115,6 +115,19 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
         enable_lazy_load_no_trans: true
+####################elasticsearch####################
+  data:
+    elasticsearch:
+      cluster-nodes: 192.168.100.240:9300 # 配置IP及端口号11
+      cluster-name: elasticsearch # 配置集群名，默认为elasticsearch，
+      repositories:
+        enabled: true
+  elasticsearch:
+    rest:
+      uris: ["http://192.168.100.240:9200"]
+    jest:
+      uris: ["http://192.168.100.240:9200"]
+####################elasticsearch####################
 jodconverter:
   local:
     enabled: true

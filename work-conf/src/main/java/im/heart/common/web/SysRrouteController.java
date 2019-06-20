@@ -90,7 +90,7 @@ public class SysRrouteController extends AbstractController {
 		String cpPhoneNum = requestParameters.getCpPhoneNum();
 		String cpUid = requestParameters.getCpUid();
 		String cpPrt = requestParameters.getCpPrt();
-		String cpPltfm = requestParameters.getCpPltfm();
+		String cpPltFm = requestParameters.getCpPltfm();
 		String cpTouch = requestParameters.getCpTouch();
 		String cpCityId = requestParameters.getCpCityId();
 		String cpCh = requestParameters.getCpCh();
@@ -106,7 +106,7 @@ public class SysRrouteController extends AbstractController {
 		params.put("cpPhoneNum", cpPhoneNum);
 		params.put("cpUid", cpUid);
 		params.put("cpPrt", cpPrt);
-		params.put("cpPltfm", cpPltfm);
+		params.put("cpPltfm", cpPltFm);
 		params.put("cpTouch", cpTouch);
 		params.put("cpCityId", cpCityId);
 		params.put("cpCh", cpCh);
