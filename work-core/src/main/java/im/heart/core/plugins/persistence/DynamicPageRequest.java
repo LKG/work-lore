@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort.Direction;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * 
@@ -25,6 +26,12 @@ public class DynamicPageRequest {
 	 * 最多排序条件
 	 */
 	private static Integer MAX_SORT_FIELDS=20;
+
+	/**
+	 * 最大每页条数
+	 */
+	private static Integer MAX_PAGE_SIZE=500;
+
 	/**
 	 * 
 	 * 过滤无效排序条件
@@ -51,6 +58,9 @@ public class DynamicPageRequest {
 
 	public static <T> PageRequest buildPageRequest(int pageNumber, int pageSize,String sortField,Direction direction,final Class<T> entityClazz) {
 		String[] sortFieldNames = StringUtils.split(sortField, ",");
+		if(pageSize>MAX_SORT_FIELDS){
+			pageSize=MAX_SORT_FIELDS;
+		}
 		if(sortFieldNames!=null){
 			if(sortFieldNames.length>MAX_SORT_FIELDS){
 				throw new IllegalArgumentException(sortFieldNames + " is too more... ");
@@ -74,12 +84,11 @@ public class DynamicPageRequest {
 	public static <T> PageRequest buildPageRequest(int pageNumber, int pageSize,String sortField,String order,final Class<T> entityClazz) {
 		Direction direction=Sort.DEFAULT_DIRECTION;
 		if(StringUtils.isNotBlank(order)){
-			direction=Direction.fromString(order);
-			if(direction==null){
-				direction=Sort.DEFAULT_DIRECTION;
+			Optional<Direction> optional=Direction.fromOptionalString(order);
+			if(optional.isPresent()){
+				direction=optional.get();
 			}
 		}
-
 		return buildPageRequest(pageNumber,pageSize,sortField,direction,entityClazz);
 	}
 }
