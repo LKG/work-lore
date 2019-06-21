@@ -32,6 +32,7 @@ public class EsIndexController extends AbstractController {
         logger.info("......................................");
         Iterable list=this.productRepository.findAll();
         logger.info("...................list..................."+list);
+        success(model,list);
         return new ModelAndView("index");
     }
 
