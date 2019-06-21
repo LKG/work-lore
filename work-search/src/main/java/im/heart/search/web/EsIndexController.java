@@ -2,6 +2,7 @@ package im.heart.search.web;
 
 import im.heart.core.CommonConst;
 import im.heart.core.web.AbstractController;
+import im.heart.search.entity.EsProduct;
 import im.heart.search.repository.EsProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,7 @@ public class EsIndexController extends AbstractController {
     @Autowired
     EsProductRepository productRepository;
     @RequestMapping(value = "/test")
-    protected ModelAndView findById(
+    protected ModelAndView test(
             @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
             @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
             HttpServletRequest request,
@@ -31,6 +32,27 @@ public class EsIndexController extends AbstractController {
         logger.info("......................................");
         Iterable list=this.productRepository.findAll();
         logger.info("...................list..................."+list);
-        return new ModelAndView();
+        return new ModelAndView("index");
+    }
+
+    @RequestMapping(value = "/add")
+    protected ModelAndView add(
+            @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
+            @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
+            HttpServletRequest request,
+            ModelMap model) {
+        logger.info("......................................");
+
+        for(int i=0;i<100;i++){
+            EsProduct esProduct=EsProduct.builder().productCategoryId(Long.valueOf(i)).name("test"+i)
+                    .build();
+            this.productRepository.save(esProduct);
+        }
+        for(int i=0;i<1;i++){
+            EsProduct esProduct=EsProduct.builder().productCategoryId(Long.valueOf(i)).name("中国"+i)
+                    .build();
+            this.productRepository.save(esProduct);
+        }
+        return new ModelAndView("index");
     }
 }

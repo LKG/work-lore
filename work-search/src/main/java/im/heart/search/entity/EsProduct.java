@@ -1,6 +1,9 @@
 package im.heart.search.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -16,6 +19,9 @@ import java.util.List;
  */
 @Document(indexName = "shop", type = "product",shards = 1,replicas = 0,refreshInterval = "-1")
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class EsProduct implements Serializable {
     private static final long serialVersionUID = -1L;
     @Id
