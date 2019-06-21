@@ -116,7 +116,7 @@ public class FrameAuthenticationFilter extends FormAuthenticationFilter {
 
 	@Override
 	protected boolean onLoginSuccess(AuthenticationToken token,
-                                     Subject subject, ServletRequest request, ServletResponse response)
+            Subject subject, ServletRequest request, ServletResponse response)
 			throws Exception {
 		logger.debug(token + "onLoginSuccess ......subject:" + subject);
 		HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
