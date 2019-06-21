@@ -91,8 +91,7 @@ public class FrameAuthenticationFilter extends FormAuthenticationFilter {
 		boolean rememberMe = this.isRememberMe(request);
 		String host = BaseUtils.getIpAddr(WebUtils.toHttp(request));
 		String remoteHost = request.getRemoteHost();
-		logger.info("createToken... username:{},host:{},remoteHost:{}", username, host,
-				remoteHost);
+		logger.info("createToken... username:{},host:{},remoteHost:{}",username,host,remoteHost);
 		String captcha = this.getCaptchaParam(request);
 		return new AccountToken(username, password, rememberMe, host, captcha);
 	}
@@ -159,10 +158,8 @@ public class FrameAuthenticationFilter extends FormAuthenticationFilter {
 	@Override
 	protected boolean isLoginRequest(ServletRequest request,
 			ServletResponse response) {
-		String requestURI = getPathWithinApplication(request);
-		requestURI=StringUtils.substringBefore(requestURI, ".");
-		String loginUrl = getLoginUrl();
-		loginUrl=StringUtils.substringBefore(loginUrl, ".");
+		String requestURI = StringUtils.substringBefore(getPathWithinApplication(request), ".");
+		String loginUrl = StringUtils.substringBefore(getLoginUrl(), ".");
 		return super.pathsMatch(loginUrl, requestURI);
 	}
 
