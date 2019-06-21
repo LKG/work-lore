@@ -41,9 +41,9 @@ public abstract  class AbstractController {
     protected static final String ERROR_PAGE = RequestResult.PAGE_ERROR;
     protected static final String VIEW_SUCCESS = RequestResult.PAGE_SUCCESS;
     private String viewPrefix;
-    static final String HTTP_PREFIX = "http";
-    static final String HTTPS_PREFIX = "https";
-    static final String URL_TOKEN =  "/";
+    protected static final String HTTP_PREFIX = "http";
+    protected static final String HTTPS_PREFIX = "https";
+    protected static final String URL_TOKEN =  "/";
     /**
      *
      *  当前模块 视图的前缀 默认 1、获取当前类头上的@RequestMapping中的value作为前缀

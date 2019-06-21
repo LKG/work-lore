@@ -24,11 +24,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
+ * @author gg
+ * @desc : 统一路由
  */
 @Controller
-public class SysRrouteController extends AbstractController {
-	protected static final Logger logger = LoggerFactory.getLogger(SysRrouteController.class);
+public class SysRouteController extends AbstractController {
+	protected static final Logger logger = LoggerFactory.getLogger(SysRouteController.class);
 
 	/**
 	 * 
@@ -90,7 +91,7 @@ public class SysRrouteController extends AbstractController {
 		String cpPhoneNum = requestParameters.getCpPhoneNum();
 		String cpUid = requestParameters.getCpUid();
 		String cpPrt = requestParameters.getCpPrt();
-		String cpPltFm = requestParameters.getCpPltfm();
+		String cpPltFm = requestParameters.getCpPltFm();
 		String cpTouch = requestParameters.getCpTouch();
 		String cpCityId = requestParameters.getCpCityId();
 		String cpCh = requestParameters.getCpCh();
@@ -98,7 +99,7 @@ public class SysRrouteController extends AbstractController {
 		String cpRatio = requestParameters.getCpRatio();
 		String cpTpl = requestParameters.getCpTpl();
 		String cpVer = requestParameters.getCpVer();
-		String cpResver = requestParameters.getCpResver();
+		String cpResVer = requestParameters.getCpResVer();
 		String cpPubResPath = requestParameters.getCpPubResPath();
 		String cpLon = requestParameters.getCpLon();
 		String cpLat = requestParameters.getCpLat();
@@ -106,7 +107,7 @@ public class SysRrouteController extends AbstractController {
 		params.put("cpPhoneNum", cpPhoneNum);
 		params.put("cpUid", cpUid);
 		params.put("cpPrt", cpPrt);
-		params.put("cpPltfm", cpPltFm);
+		params.put("cpPltFm", cpPltFm);
 		params.put("cpTouch", cpTouch);
 		params.put("cpCityId", cpCityId);
 		params.put("cpCh", cpCh);
@@ -114,7 +115,7 @@ public class SysRrouteController extends AbstractController {
 		params.put("cpRatio", cpRatio);
 		params.put("cpTpl", cpTpl);
 		params.put("cpVer", cpVer);
-		params.put("cpResver", cpResver);
+		params.put("cpResVer", cpResVer);
 		params.put("cpPubResPath", cpPubResPath);
 		params.put("cpLon", cpLon);
 		params.put("cpLat", cpLat);
@@ -125,7 +126,7 @@ public class SysRrouteController extends AbstractController {
 	private String buildAction(HttpServletRequest request,String action){
 		StringBuffer strBuff = new StringBuffer();
 		strBuff.append("http://").append(request.getServerName()).append(":").append(request.getServerPort());
-		strBuff.append(request.getContextPath()).append("/" ).append(action);
+		strBuff.append(request.getContextPath()).append(URL_TOKEN).append(action);
 		return  strBuff.toString();
 	}
 

@@ -27,8 +27,8 @@ public class RequestParas {
 	 * 软件平台(标准字符串，参考接入产品列表，全部采用小写)
 	 *
 	 */
-	@JSONField(name="CP_PLTFM")
-	private String cpPltfm;
+	@JSONField(name="CP_PLT_FM")
+	private String cpPltFm;
 
 	/**
 	 * 是否触摸(1触摸0非触摸)
@@ -38,10 +38,10 @@ public class RequestParas {
 	/**
 	 * 城市编号(公司统一城市ID)
 	 */
-	@JSONField(name="CP_CITYID")
+	@JSONField(name="CP_CITY_ID")
 	private String cpCityId;
 	/**
-	 * 用户手机IMEI(最长不超过64位)
+	 * 手机IMEI信息(最长不超过64位)
 	 *
 	 */
 	@JSONField(name="CP_IMEI")
@@ -78,18 +78,18 @@ public class RequestParas {
 	/**
 	 * 资源版本号
 	 */
-	@JSONField(name="CP_RESVER")
-	private String cpResver;
+	@JSONField(name="CP_RES_VER")
+	private String cpResVer;
 
 	/**
 	 * 用户电话号码
 	 */
-	@JSONField(name="CP_PHONENUM")
+	@JSONField(name="CP_PHONE_NUM")
 	private String cpPhoneNum;
 	/**
 	 * 公共资源路径
 	 */
-	@JSONField(name="CP_PUBRESPATH")
+	@JSONField(name="CP_PUB_RES_PATH")
 	private String cpPubResPath;
 	/**
 	 * 经度
