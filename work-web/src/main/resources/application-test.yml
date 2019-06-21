@@ -116,6 +116,7 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
         enable_lazy_load_no_trans: true
 ####################elasticsearch####################
+  ##### 支持es 版本为6.8.0
   data:
     elasticsearch:
       cluster-nodes: 192.168.100.240:9300 # 配置IP及端口号11
