@@ -97,6 +97,7 @@ spring:
         login-password: #####
         allow:
         deny:
+      connect-properties:
   jpa:
     # Specify the DBMS
 #    database: MYSQL
