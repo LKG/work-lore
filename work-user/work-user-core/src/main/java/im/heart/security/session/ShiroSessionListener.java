@@ -13,24 +13,25 @@ public class ShiroSessionListener implements SessionListener {
 	protected static final Logger logger = LoggerFactory.getLogger(ShiroSessionListener.class);
 	
 	private static final AtomicInteger sessionCount = new AtomicInteger(0);
-
 	@Override
 	public void onStart(Session session) {
 		// TODO Auto-generated method stub
 		logger.info("创建会话=={}",sessionCount.get());
+		sessionCount.incrementAndGet();
 	}
 
 	@Override
 	public void onStop(Session session) {
-		// TODO Auto-generated method stub
-		logger.info("会话onStop=={}",sessionCount.get());
+		logger.info("会话onStop=={}");
+		sessionCount.decrementAndGet();
 	}
 
 	@Override
 	public void onExpiration(Session session) {
-		// TODO Auto-generated method stub
-		logger.info("登录过期== {}",sessionCount.get());
+		logger.info("登录过期==");
+		sessionCount.decrementAndGet();
 	}
+
 	public int getSessionCount() {
         return sessionCount.get();
     }
