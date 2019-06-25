@@ -96,11 +96,6 @@
     </properties>
     <dependencyManagement>
         <dependencies>
-<!--            <dependency>
-                <groupId>net.librec</groupId>
-                <artifactId>librec-core</artifactId>
-                <version>${librec.version}</version>
-            </dependency>-->
             <dependency>
                 <groupId>com.github.qcloudsms</groupId>
                 <artifactId>qcloudsms</artifactId>
@@ -270,7 +265,6 @@
                 <artifactId>commons-compress</artifactId>
                 <version>${commons-compress.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
