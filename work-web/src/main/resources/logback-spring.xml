@@ -2,10 +2,12 @@
 <configuration scan="true" scanPeriod="5 seconds">
 	<property name="LOG_HOME" value="/var/www/logs/lore" />
 	<include resource="org/springframework/boot/logging/logback/base.xml" />
+	<property name="log.colorPattern" value="%d{yyyy-MM-dd HH:mm:ss} | %highlight(%-5level) | %boldYellow(%thread) | %boldGreen(%logger) | %msg%n"/>
+	<property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n" />
 	<!-- 控制台日志配置 -->
 	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<Pattern>.%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n</Pattern>
+			<pattern>${log.colorPattern}</pattern>
 		</encoder>
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>TRACE</level>
@@ -34,7 +36,7 @@
 		</triggeringPolicy>
 		<!-- 格式化输出 -->
 		<encoder>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}[%thread]%-5level%logger{36}-%msg%n</pattern>
+			<pattern>${log.pattern}</pattern>
 		</encoder>
 		<!-- 过滤器 -->
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
@@ -66,7 +68,7 @@
 		</triggeringPolicy>
 		<!-- 格式化输出 -->
 		<encoder>
-			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread]%-5level%logger{36}-%msg%n</pattern>
+			<pattern>${log.pattern}</pattern>
 		</encoder>
 		<!-- 过滤器 -->
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
