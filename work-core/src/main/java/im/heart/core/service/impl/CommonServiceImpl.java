@@ -39,12 +39,11 @@ public class CommonServiceImpl<T, ID extends Serializable> implements 	CommonSer
 	public Long count(Specification<T> spec) {
 		return this.jpaSpecificationExecutor.count(spec);
 	}
-
 	@Override
 	public T findById(ID id) {
-		Optional<T> opt=this.jpaRepository.findById(id);
-		return opt.get();
+		return this.jpaRepository.findById(id).get();
 	}
+
 	@Override
 	public boolean existsById(ID id) {
 		return this.jpaRepository.existsById(id);
@@ -54,7 +53,10 @@ public class CommonServiceImpl<T, ID extends Serializable> implements 	CommonSer
 	public T  save(T entity) {
 		return this.jpaRepository.save(entity);
 	}
-
+	@Override
+	public List<T>  saveAll(Iterable<T> entities) {
+		return this.jpaRepository.saveAll(entities);
+	}
 	@Override
 	public void deleteById(ID id) {
 		this.jpaRepository.deleteById(id);

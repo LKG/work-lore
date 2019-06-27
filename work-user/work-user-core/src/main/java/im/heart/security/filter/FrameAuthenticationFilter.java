@@ -18,6 +18,7 @@ import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -199,6 +200,11 @@ public class FrameAuthenticationFilter extends FormAuthenticationFilter {
 			throws Exception {
 		if (isLoginRequest(request, response)) {
 			logger.info("@@@@@@@@@@@@@@@@@isLoginRequest@@@@@@@@@@@@@@@@@@@@@@@@");
+		}
+		//对于OPTION请求做拦截，不做校验
+		HttpServletRequest httpServletRequest = WebUtils.toHttp(request);
+	    if (RequestMethod.OPTIONS.name().equalsIgnoreCase(httpServletRequest.getMethod())){
+			return false;
 		}
 		if (SecurityUtils.getSubject().isAuthenticated()) {
 			// 已经登录过 继续过滤器链

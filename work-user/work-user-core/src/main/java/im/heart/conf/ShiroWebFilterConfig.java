@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
+import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import java.util.Map;
 
@@ -45,6 +46,10 @@ public class ShiroWebFilterConfig extends ShiroWebFilterConfiguration {
 	@Bean
 	public FilterRegistrationBean delegatingFilterProxy(){
 		FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+		filterRegistrationBean.addInitParameter("targetFilterLifecycle", "true");
+		filterRegistrationBean.setAsyncSupported(true);
+		filterRegistrationBean.setEnabled(true);
+		filterRegistrationBean.setDispatcherTypes(DispatcherType.REQUEST);
 		DelegatingFilterProxy proxy = new DelegatingFilterProxy();
 		proxy.setTargetFilterLifecycle(true);
 		proxy.setTargetBeanName("shiroFilter");

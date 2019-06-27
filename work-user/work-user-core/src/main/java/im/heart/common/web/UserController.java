@@ -35,7 +35,7 @@ public class UserController extends AbstractController {
 	private FrameUserOrgService frameUserOrgService;
 	
 	@RequestMapping(value={apiVer,apiVer+"/index",apiVer+"/"})
-	public ModelAndView userinfo(HttpServletRequest request, HttpServletResponse response,
+	public ModelAndView userInfo(HttpServletRequest request, HttpServletResponse response,
                                  ModelMap model) {
 		FrameUserVO vo= SecurityUtilsHelper.getCurrentUser();
 		if(vo!=null){

@@ -1,5 +1,6 @@
 package im.heart.usercore.service.impl;
 
+import com.google.common.collect.Sets;
 import im.heart.core.enums.Status;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
@@ -61,7 +62,7 @@ public class FrameUserServiceImpl extends CommonServiceImpl<FrameUser,BigInteger
 	}
 	@Override
 	public boolean existsUserName(String userName) {
-		final Collection<SearchFilter> filters = new HashSet<SearchFilter>();
+		final Collection<SearchFilter> filters = Sets.newHashSet();
 		filters.add(new SearchFilter("userName", Operator.EQ, userName.toLowerCase()));
 		Specification<FrameUser> spec = DynamicSpecifications.bySearchFilter(filters, FrameUser.class);
 		long count = this.frameUserRepository.count(spec);
@@ -69,7 +70,7 @@ public class FrameUserServiceImpl extends CommonServiceImpl<FrameUser,BigInteger
 	}
 	@Override
 	public boolean existsUserPhone(String userPhone) {
-		final Collection<SearchFilter> filters = new HashSet<SearchFilter>();
+		final Collection<SearchFilter> filters = Sets.newHashSet();
 		filters.add(new SearchFilter("userPhone", Operator.EQ, userPhone.toLowerCase()));
 		Specification<FrameUser> spec = DynamicSpecifications.bySearchFilter(filters, FrameUser.class);
 		long count = this.frameUserRepository.count(spec);
@@ -77,7 +78,7 @@ public class FrameUserServiceImpl extends CommonServiceImpl<FrameUser,BigInteger
 	}
 	@Override
 	public boolean existsUserEmail(String userEmail) {
-		final Collection<SearchFilter> filters = new HashSet<SearchFilter>();
+		final Collection<SearchFilter> filters = Sets.newHashSet();
 		filters.add(new SearchFilter("userEmail", Operator.EQ, userEmail.toLowerCase()));
 		Specification<FrameUser> spec = DynamicSpecifications.bySearchFilter(filters, FrameUser.class);
 		long count = this.frameUserRepository.count(spec);
@@ -126,7 +127,7 @@ public class FrameUserServiceImpl extends CommonServiceImpl<FrameUser,BigInteger
 	@Override
 	public Set<String> findRoleCodesByUserId(BigInteger userId) {
 		List<FrameUserRole> userRoles = this.frameUserRoleRepository.findByUserId(userId);
-		Set<String> roleCodes=new HashSet<String>();
+		Set<String> roleCodes=Sets.newHashSet();
 		if(userRoles!=null){
 			for(FrameUserRole userRole:userRoles){
 				roleCodes.add(userRole.getRoleCode());
@@ -199,7 +200,7 @@ public class FrameUserServiceImpl extends CommonServiceImpl<FrameUser,BigInteger
 	}
 	@Override
 	public FrameUser updateFrameUserImgUrl(BigInteger userId, String headImgUrl) {
-		FrameUser user=this.findById(userId);
+		FrameUser user=this.frameUserRepository.findById(userId).get();
 		user.setHeadImgUrl(headImgUrl);
 		return this.frameUserRepository.saveAndFlush(user);
 	}
