@@ -74,6 +74,9 @@ public class OkHttpClientUtils {
 	public static String fetchEntityString(String url, Map<String, Object> params,Map<String, String> headers) throws IOException {
 		return fetchResponse(url,params,headers).body().string();
 	}
+	public static Response fetchResponse(String url) throws IOException {
+		return fetchResponse(url,null,null);
+	}
 	public static Response fetchResponse(String url, Map<String, Object> params) throws IOException {
 		return fetchResponse(url,params,null);
 	}

@@ -224,9 +224,9 @@ public class BaseUtils {
 	 * @param request
 	 * @return
 	 */
-	public static boolean checkAccetptGzip(HttpServletRequest request) {
+	public static boolean checkAcceptGzip(HttpServletRequest request) {
 		// Http1.1 header
-		String acceptEncoding = request.getHeader("Accept-Encoding");
+		String acceptEncoding = request.getHeader(HttpHeaders.ACCEPT_ENCODING);
 		return StringUtils.contains(acceptEncoding, "gzip");
 	}
 	/**
@@ -235,8 +235,8 @@ public class BaseUtils {
 	 * @param response
 	 */
 	public static void setGzipHeader(HttpServletResponse response) {
-		response.setHeader("Content-Encoding", "gzip");
-		response.setHeader("Vary", "Accept-Encoding");
+		response.setHeader(HttpHeaders.CONTENT_ENCODING, "gzip");
+		response.setHeader(HttpHeaders.VARY, HttpHeaders.ACCEPT_ENCODING);
 	}
 	
 	/**
