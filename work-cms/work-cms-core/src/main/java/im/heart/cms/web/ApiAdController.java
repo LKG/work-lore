@@ -5,6 +5,7 @@ import im.heart.cms.service.AdService;
 import im.heart.core.CommonConst;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
+import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.web.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
+import java.util.Collection;
 
 /**
  *
@@ -32,8 +34,8 @@ public class ApiAdController extends AbstractController {
 	protected static final String apiVer = "/api/v1/ad";
 	@Autowired
 	private AdService adService;
-	protected static final String VIEW_LIST="admin/cms/ad_list";
-	protected static final String VIEW_DETAILS="admin/cms/ad_details";
+	protected static final String VIEW_LIST="cms/ad_list";
+	protected static final String VIEW_DETAILS="cms/ad_details";
 	
 	/**
 	 * @功能说明：分页查询
@@ -54,12 +56,14 @@ public class ApiAdController extends AbstractController {
 			@RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
 			@RequestParam(value = "page", required = false, defaultValue = CommonConst.Page.DEFAULT_PAGE+"") Integer page,
 			@RequestParam(value = "size", required = false, defaultValue = CommonConst.Page.DEFAULT_SIZE+"") Integer size,
-			@RequestParam(value = "sort", required = false) String sort,
+			@RequestParam(value = "sort", required = false ,defaultValue = "adSort") String sort,
 			@RequestParam(value = "order", required = false,defaultValue = CommonConst.Page.DEFAULT_ORDER) String order,
 			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model){
-		Specification<Ad> spec=DynamicSpecifications.bySearchFilter(request, Ad.class);
+		final Collection<SearchFilter> filters= DynamicSpecifications.buildSearchFilters(request);
+		filters.add(new SearchFilter("adState", SearchFilter.Operator.EQ,Ad.AdState.ACTIVE));
+		Specification<Ad> spec=DynamicSpecifications.bySearchFilter(filters, Ad.class);
 		PageRequest pageRequest=DynamicPageRequest.buildPageRequest(page,size,sort,order, Ad.class);
 		Page<Ad> pag = this.adService.findAll(spec, pageRequest);
 		super.success(model, pag);

@@ -47,28 +47,12 @@ public class Ad implements AbstractEntity<BigInteger>{
 
 	/**
 	 * 广告状态
-	 * 
-	 * @author hengchen
-	 */
-	public enum TypeOfAd {
-		/** 未上架 */
-		unactive,
-		/** 正上架 */
-		active,
-		/** 已下架 */
-		actived,
-		/** 强制下架 */
-		forceActiced,
-	}
-
-	/**
-	 * 广告状态
 	 *
 	 * @author hengchen
 	 */
 	public enum AdState {
-		UN_SUPPORT(-1, "未知类型"), UN_ACTIVE(0, "未上架"), ACTIVE(1, "正上架"), 
-		ACTIVED(2, "已下架"), FORCE_ACTIVED(3, "已下架");
+		UN_ACTIVE(0, "未上架"), ACTIVE(1, "已上架"),
+		ACTIVED(2, "已下架"), FORCE_ACTIVED(3, "强制下架 ");
 		public int intValue;
 		private final String desc;
 
@@ -95,7 +79,7 @@ public class Ad implements AbstractEntity<BigInteger>{
 					return adState;
 				}
 			}
-			return UN_SUPPORT;
+			return ACTIVED;
 		}
 	}
 
@@ -138,6 +122,10 @@ public class Ad implements AbstractEntity<BigInteger>{
 	private Integer adSort;
 
 
+	@NotNull
+	@Column(name = "AD_STATE", nullable = false)
+	private AdState adState;
+
 	/** 打开方式 */
 	@NotNull
 	@Column(name = "ad_target", nullable = false)
@@ -148,7 +136,11 @@ public class Ad implements AbstractEntity<BigInteger>{
 	@Column(name = "AD_CONTENT", nullable = false)
 	@Lob
 	private String content;
-
+	/**
+	 * 广告背景色
+	 */
+	@Column(name = "BG_COLOR", nullable = false)
+	private String bgColor;
 	/** 路径 */
 	@NotNull
 	@Column(name = "AD_PATH", nullable = false)
@@ -178,7 +170,7 @@ public class Ad implements AbstractEntity<BigInteger>{
 	@NotNull
 	@Column(name = "POSITION_ID", nullable = false, updatable = false)
 	private BigInteger positionId;
-	
+
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "CREATE_TIME", nullable = false, updatable = false)
