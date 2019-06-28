@@ -33,19 +33,26 @@ public class AdPosition implements AbstractEntity<BigInteger>{
 	@Column(length = 20, name = "ID", nullable = false, unique = true, updatable = false)
 	private BigInteger id;
 
-	/** 名称 */
+	/** 广告位名称 */
+	@Column(name = "name")
 	private String name;
 	/** 宽度 */
+	@Column(name = "width")
 	private Integer width;
 
 	/** 高度 */
+	@Column(name = "HEIGHT")
 	private Integer height;
 
 	/** 描述 */
+	@Column(name = "DESCRIPTION")
 	private String description;
 
 	/** 模板 */
+	@Column(name = "TEMPLATE")
 	private String template;
+
+	@Column(name = "CLIENT_TYPE")
 	private String clientType;
 
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")

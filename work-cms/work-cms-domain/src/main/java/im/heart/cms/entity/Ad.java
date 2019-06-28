@@ -132,6 +132,17 @@ public class Ad implements AbstractEntity<BigInteger>{
 	@Enumerated(EnumType.STRING)
 	private Type type;
 
+	/** 类型 */
+	@NotNull
+	@Column(name = "AD_SORT", nullable = false)
+	private Integer adSort;
+
+
+	/** 打开方式 */
+	@NotNull
+	@Column(name = "ad_target", nullable = false)
+	private String adTarget;
+
 	/** 内容 */
 	@NotNull
 	@Column(name = "AD_CONTENT", nullable = false)
@@ -165,10 +176,8 @@ public class Ad implements AbstractEntity<BigInteger>{
 
 	/** 广告位/关联的表为广告位表，其主键是id */
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(nullable = false,name="POSITION_ID")
-    @JSONField(serialzeFeatures={SerializerFeature.DisableCircularReferenceDetect})
-	private AdPosition adPosition;
+	@Column(name = "POSITION_ID", nullable = false, updatable = false)
+	private BigInteger positionId;
 	
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -176,6 +185,9 @@ public class Ad implements AbstractEntity<BigInteger>{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createTime;
 
+	/**
+	 * 修改时间
+	 */
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss", serialize = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "MODIFY_TIME")

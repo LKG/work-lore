@@ -36,9 +36,9 @@ public class JsonpView extends FastJsonJsonView {
 			throws Exception {
 		String jsonCallback = request.getParameter(RequestResult.JSON_CALLBACK);
 		SerializeFilter  filter =null;
-	/*	if(lazy){
-			filter = new FastJosnPropertyFilter();
-		}*/
+//	  if(lazy){
+//			filter = new FastJosnPropertyFilter();
+//		}
 		Object value = super.filterModel(model);
 		FastJsonConfig fastJsonConfig =super.getFastJsonConfig();
 		String text = JSON.toJSONString(value,filter, fastJsonConfig.getSerializerFeatures());
