@@ -1,4 +1,4 @@
-package im.heart.frame.web;
+package im.heart.api.frame.web;
 
 import im.heart.core.CommonConst;
 import im.heart.core.CommonConst.RequestResult;
@@ -56,12 +56,12 @@ public class ApiDictController extends AbstractController {
      */
     @RequestMapping(apiVer+"s")
     public ModelAndView list(HttpServletRequest request, HttpServletResponse response,
-                             @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
+                             @RequestParam(value = RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
                              @RequestParam(value = "page", required = false, defaultValue = CommonConst.Page.DEFAULT_PAGE+"") Integer page,
                              @RequestParam(value = "size", required = false, defaultValue = CommonConst.Page.DEFAULT_SIZE+"") Integer size,
                              @RequestParam(value = "sort", required = false ,defaultValue = "createTime") String sort,
                              @RequestParam(value = "order", required = false,defaultValue = CommonConst.Page.DEFAULT_ORDER) String order,
-                             @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
+                             @RequestParam(value = RequestResult.ACCESS_TOKEN, required = false) String token,
                              ModelMap model) {
         Specification<FrameDict> spec= DynamicSpecifications.bySearchFilter(request, FrameDict.class);
         PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order, FrameDict.class);
@@ -72,7 +72,7 @@ public class ApiDictController extends AbstractController {
 
     @RequestMapping(value = apiVer + "/checkCode")
     protected ModelAndView checkCode(
-            @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
+            @RequestParam(value = RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
             @RequestParam(value = "dictCode", required = false) String dictCode,
             HttpServletRequest request, HttpServletResponse response,
             ModelMap model) throws Exception {
@@ -91,7 +91,7 @@ public class ApiDictController extends AbstractController {
     @RequestMapping(value = apiVer+"/add")
     public ModelAndView createFrom(HttpServletRequest request, HttpServletResponse response,
            @ModelAttribute(RequestResult.RESULT) FrameDict frameDict,
-           @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
+           @RequestParam(value = RequestResult.ACCESS_TOKEN, required = false) String token,
            ModelMap model) {
         super.success(model, frameDict);
         return new ModelAndView(VIEW_CREATE);
@@ -109,8 +109,8 @@ public class ApiDictController extends AbstractController {
     }
     @RequestMapping(value = apiVer+"/{id}")
     protected ModelAndView findById(
-            @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
-            @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
+            @RequestParam(value = RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
+            @RequestParam(value = RequestResult.ACCESS_TOKEN, required = false) String token,
             @PathVariable BigInteger id,
             HttpServletRequest request,
             ModelMap model) {
@@ -121,7 +121,7 @@ public class ApiDictController extends AbstractController {
 
     @RequestMapping(value = apiVer+"/{ids}/delete",method = RequestMethod.POST)
     protected ModelAndView batchDelete(
-            @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN , required = false) String token,
+            @RequestParam(value = RequestResult.ACCESS_TOKEN , required = false) String token,
             @PathVariable BigInteger[] ids,
             HttpServletRequest request,
             ModelMap model) {

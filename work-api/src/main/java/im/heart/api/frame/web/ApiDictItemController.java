@@ -1,4 +1,4 @@
-package im.heart.frame.web;
+package im.heart.api.frame.web;
 
 import im.heart.core.CommonConst;
 import im.heart.core.CommonConst.RequestResult;

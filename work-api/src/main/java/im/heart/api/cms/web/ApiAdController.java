@@ -1,4 +1,4 @@
-package im.heart.cms.web;
+package im.heart.api.cms.web;
 
 import im.heart.cms.entity.Ad;
 import im.heart.cms.service.AdService;

@@ -31,6 +31,7 @@
         <module>work-admin</module>
         <module>work-pay</module>
         <module>work-search</module>
+        <module>work-api</module>
     </modules>
     <properties>
         <docker.image.prefix>spring-boot</docker.image.prefix>
