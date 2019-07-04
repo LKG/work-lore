@@ -40,7 +40,7 @@ public class BaseUtils {
 	public static String extractBackURL(HttpServletRequest request) {
 		String url = request.getParameter(CommonConst.RequestResult.BACK_URL);
 		if (StringUtils.isEmpty(url)) {
-			url = request.getHeader("Referer");
+			url = request.getHeader(HttpHeaders.REFERER);
 		}
 		boolean isHttp=!StringUtils.isEmpty(url) && (url.startsWith("http://") || url.startsWith("https://"));
 		if (isHttp) {
@@ -254,7 +254,7 @@ public class BaseUtils {
 	}
 	public static String getRefererHost(HttpServletRequest request) {
 		try {
-			String origin = request.getHeader("referer");
+			String origin = request.getHeader(HttpHeaders.REFERER);
 			URL url = new URL(origin);
 			if (url.getPort() > 0) {
 				return url.getProtocol() + "://" + url.getHost() + ":" + url.getPort();
