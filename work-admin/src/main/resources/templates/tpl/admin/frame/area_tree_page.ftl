@@ -68,9 +68,9 @@
                 {code:0,name:"中国",isParent:true,parentId:null,open:true}
             ];
             $(".loading").hide();
-            var $aredTree=$("#areaTree");
-            alert($aredTree):
-            var treeObj=$.fn.zTree.init($aredTree, setting,zNodes);
+            var $areaTree=$("#areaTree");
+            alert($areaTree):
+            var treeObj=$.fn.zTree.init($areaTree, setting,zNodes);
             function onAsyncSuccess(event, treeId, treeNode, msg) {
                 $(".loading").hide();
             }

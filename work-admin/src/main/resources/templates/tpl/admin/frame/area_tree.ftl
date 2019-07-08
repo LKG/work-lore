@@ -145,9 +145,8 @@
             }
             return listurl;
         }
-        var $aredTree=$("#areaTree");
-        alert($aredTree):
-        var treeObj=$.fn.zTree.init($aredTree, setting);
+        var $areaTree=$("#areaTree");
+        var treeObj=$.fn.zTree.init($areaTree, setting);
         var flag=0;
         function onAsyncSuccess(event, treeId, treeNode, msg) {
             $(".loading").hide();
