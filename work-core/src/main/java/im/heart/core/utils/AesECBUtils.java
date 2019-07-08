@@ -121,7 +121,7 @@ public class AesECBUtils {
      * AES加密
      *
      * @param content
-     * @param passwd
+     * @param passWord
      * @param ks
      *
      * @return
