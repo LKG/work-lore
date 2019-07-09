@@ -25,6 +25,7 @@
         <li  class="<#if template=='cms'>active open</#if>" > <a href="javascript:void(0);" class="dropdown-toggle"> <i class="fa fa-paint-brush"></i> <span class="menu-text">内容管理</span> <i class="fa fa-angle-down "></i> </a> 
    	  <ul class="submenu">
    	   <li class="<#if template=='cms'&&submenu=='notice'>active</#if>"> <a href="${appHost}/admin/notices.jhtml"> <i class="fa fa-bullhorn"></i>公告管理</a> </li>
+          <li class="<#if template=='cms'&&submenu=='adm'>active</#if>"> <a href="${appHost}/admin/adms.jhtml"> <i class="fa fa-fire"></i>广告位管理</a> </li>
    	   <li class="<#if template=='cms'&&submenu=='adm'>active</#if>"> <a href="${appHost}/admin/adms.jhtml"> <i class="fa fa-fire"></i>广告管理</a> </li>
    	   <li class="<#if template=='cms'&&submenu=='article'>active</#if>"> <a href="${appHost}/admin/articles.jhtml"> <i class="fa fa-bookmark"></i>文章管理</a> </li>
    	   <li class="<#if template=='cms'&&submenu=='friendlink'>active</#if>"> <a href="${appHost}/admin/friendlinks.jhtml"> <i class="fa fa-bookmark"></i>友链管理</a> </li>
