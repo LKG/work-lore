@@ -85,7 +85,96 @@
 <!------seajs.config 引用信息 begin----->
 <#include "/includes/seajs.config.ftl" />
 <#include "/includes/vue-js.ftl" />
-<!------seajs.config   引用信息 end----->
+<#include "/includes/jquery.ftl" />
+<#include "/includes/zTree-js.ftl" />
+<script type="text/javascript">
+    $(document).ready(function(){
+        var setting = {
+            async: {
+                enable: true,
+                dataFilter: filter,
+                autoParam:["code=parentId"],
+                otherParam:{"size":"500"},
+                url: getUrl
+            },
+            data: {
+                key: {
+                    title:"name"
+                },
+                simpleData: {
+                    enable: true,
+                    idKey: "code",
+                    pIdKey: "parentId",
+                    rootPId: 0,
+                }
+            },
+            callback: {
+                onAsyncSuccess: onAsyncSuccess,
+                onClick: onNodeClick,
+                onAsyncError: onAsyncError
+            }
+        };
+        var url = {
+            api : "${appHost}/admin/area",
+        };
+        var zNodes =[
+            {code:0,name:"中国",isParent:true,parentId:null,open:true}
+        ];
+        function filter(treeId, parentNode, data) {
+            var nodes = [];
+            if (data.success) {
+                if (data.result.totalElements==0) return null;
+                $.each(data.result.content,function(index,node){
+                    var name=node.name;
+                    var code=node.code;
+                    var isParent=false;
+                    if(node.hasChildren){
+                        isParent=true;
+                    }
+                    var parentId=node.parentId;
+                    var $node={code:code,name:name,isParent:isParent,parentId:parentId,open:true};
+                    nodes.push($node);
+                });
+            }
+            return nodes;
+        }
+
+        function getUrl(treeId, treeNode) {
+            var apiUrl=url.api+"s.json";
+            if(undefined===treeNode){
+                apiUrl+="?parentId=0";
+            }
+            return apiUrl;
+        }
+
+        var treeObj=$.fn.zTree.init($("#areaTree"), setting,zNodes);
+        $("#reset-btn").on("click",function () {
+            // window.location.reload();
+            treeObj.refresh();
+            $("#search_form").find("#parentId").val("");
+            $("#search_form").find("#seach-btn").click();
+        });
+        function onAsyncSuccess(event, treeId, treeNode, msg) {
+            $(".loading").hide();
+        }
+        function  onNodeClick(event, treeId, treeNode, clickFlag){
+            $("#search_form").find("#parentId").val(treeNode.code);
+            $("#search_form").find("#seach-btn").click();
+        };
+        function onAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
+            var zTree = $.fn.zTree.getZTreeObj("areaTree");
+            alert("异步获取数据出现异常。");
+            treeNode.icon = "";
+            zTree.updateNode(treeNode);
+        }
+        setTimeout(function(){
+            $(".loading").hide();
+            var nodes = treeObj.getNodes();
+            var node = treeObj.selectNode(nodes[0]);
+            onNodeClick(null,treeObj.setting.treeId,nodes[0]);
+        },200);//延迟加载
+    });
+</script>
 <script>
    	seajs.use(["js/left-menu.js?v=${ver!'1'}","/js/admin/frame/area_list.js?v="+Math.random(),"/js/app.js?v=${ver!'1'}"]);
 </script>

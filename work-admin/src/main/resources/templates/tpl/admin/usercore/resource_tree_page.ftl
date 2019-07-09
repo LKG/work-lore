@@ -66,11 +66,11 @@
 			return nodes;
 		}
 		function getUrl(treeId, treeNode) {
-			var url="${appHost}/admin/resources.json";
+			var apiUrl="${appHost}/admin/resources.json";
 			if(undefined===treeNode){
-				url+="?parentId=0";
+                apiUrl+="?parentId=0";
 			}
-			return url;
+			return apiUrl;
 		}
 		var treeObj=$.fn.zTree.init($("#resourceTree"), setting);
 		var flag=0;

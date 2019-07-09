@@ -3,7 +3,7 @@
 <html lang="zh">
 
  <body >
-<#include "admin/frame/area_form.ftl" />
+<#include "/admin/frame/area_form.ftl" />
 <!------seajs.config 引用信息 begin----->
 <#include "/includes/seajs.config.ftl" />
 

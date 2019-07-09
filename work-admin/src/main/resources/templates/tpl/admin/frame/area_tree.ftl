@@ -91,7 +91,6 @@
 <#include "/includes/zTree-js.ftl" />
 <script>
     $(document).ready(function(){
-        alert();
         var url = {
             api : "${appHost}/admin/area",
         };

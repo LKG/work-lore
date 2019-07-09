@@ -4,10 +4,10 @@
 		<#if result.code??>
 			<div class="input-group">
 			 <span class="input-group-addon">代号</span>
-			 <p class="form-control form-control-static"><code>${result.code}</code></p>
-			 <input type="hidden" class="form-control" id="custom_code"  value="${result.customCode}" name="customCode" >
- 			<input type="hidden" class="form-control" id="areaCode"  value="${result.code}" name="code" >
- 			<input type="hidden" class="form-control" id="level"  value="${result.level}" name="level" >
+			 <p class="form-control form-control-static"><code>${result.code!''}</code></p>
+			 <input type="hidden" class="form-control" id="custom_code"  value="${result.customCode!''}" name="customCode" >
+ 			<input type="hidden" class="form-control" id="areaCode"  value="${result.code!''}" name="code" >
+ 			<input type="hidden" class="form-control" id="level"  value="${result.level!''}" name="level" >
  			</div>
 		<#else>
 			<div class="input-group">
