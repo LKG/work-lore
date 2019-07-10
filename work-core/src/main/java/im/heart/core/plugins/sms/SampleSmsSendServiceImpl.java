@@ -25,29 +25,56 @@ import java.util.Map;
 public class SampleSmsSendServiceImpl implements SmsSendService {
 	protected static final Logger logger = LoggerFactory.getLogger(SampleSmsSendServiceImpl.class);
 
-	public static void main(String[] args) throws Exception{
-		int appId = 1400197686;
-		String[] phoneNumbers={"18668169331"};
-		String appKey = "f9f4cc6fd9ff57f332760650c5d1c755"; //sdkappid 对应的 appkey，需要业务方高度保密
-		String[] params = {"6666","公文库","15"};//数组具体的元素个数和模板中变量个数必须一致，例如事例中templateId:5678对应一个变量，参数数组中元素个数也必须是一个
-		int templateId = 370072;
-		SmsSingleSender ssender = new SmsSingleSender(appId, appKey);
-		SmsSingleSenderResult result = ssender.sendWithParam(null, phoneNumbers[0],
-				templateId, params, null,null,null);
-	}
-	@Override
+
+
+	/**
+	 * 根据发送短信，短信内容必须和模板中的一致
+	 *
+	 * @param smsContent
+	 * @param mobileTo
+	 * @return
+	 */
 	@Async
+	@Override
+	public ResponseError sendSms(String smsContent, String mobileTo) {
+		return sendSms(smsContent,mobileTo,"","","");
+	}
+
+	/**
+	 * 根据发送短信，短信内容必须和模板中的一致
+	 *
+	 * @param smsContent 短信内容必须和模板中的一致
+	 * @param mobileTo   不带国家码的手机号
+	 * @param nationCode 国家码，如 86 为中国
+	 * @param extend     扩展码，可填空
+	 * @param ext        服务端原样返回的参数，可填空
+	 * @return
+	 */
+	@Async
+	@Override
+	public ResponseError sendSms(String smsContent, String mobileTo, String nationCode, String extend, String ext) {
+		logger.info("模拟发送短信啦.smsContent:{},mobileTo:{}..............................",smsContent,JSON.toJSONString(mobileTo));
+		return null;
+	}
+	@Async
+	@Override
 	public ResponseError sendSms(Map<String, Object> model, String templateId,
 								 String[] mobileTo,String nationCode,String sign,String extend, String ext) {
 		logger.info("模拟发送短信啦.templateId:{}.model:{},mobileTo:{}..............................",templateId,JSON.toJSONString(model),JSON.toJSONString(mobileTo));
 		return null;
 	}
-	@Override
+
+	/**
+	 * 根据手机短信模板返送短信
+	 *
+	 * @param model
+	 * @param templateId
+	 * @param mobileTo
+	 * @return
+	 */
 	@Async
-	public ResponseError sendSms(Map<String, Object> model, String templateId,
-                                 String[] mobileTo) {
-		return sendSms(model,templateId,mobileTo,"","","","");
+	@Override
+	public ResponseError sendSms(Map<String, Object> model, String templateId, String[] mobileTo) {
+		return sendSms( model,templateId,mobileTo, "","","", "");
 	}
-
-
 }
