@@ -231,7 +231,7 @@ public class RegistController extends AbstractController {
 		if (StringUtilsEx.isNotBlank(userEmail)) {
 			Map<String, Object> modelTemp = Maps.newHashMap();
 			modelTemp.put(RequestResult.RESULT, newFrameUser);
-			this.sendEmailService.sendEmail(modelTemp, EmailTplEnum.REGISTER_SUCCESS.name,
+			this.sendEmailService.sendEmail(modelTemp, EmailTplEnum.REGISTER_SUCCESS.description,
 					EmailTplEnum.REGISTER_SUCCESS.templatePath,
 					new String[] { userEmail },
 					new String[] {});

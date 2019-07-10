@@ -287,8 +287,8 @@ public class FrameUserController extends AbstractController {
 			for(FrameUser po:pag.getContent()){
 				vos.add(new FrameUserVO(po));
 			}
-			Page<FrameUserVO> pagvos =new PageImpl<FrameUserVO>(vos,pageRequest,pag.getTotalElements());
-			super.success(model,pagvos);
+			Page<FrameUserVO> pageVos =new PageImpl<FrameUserVO>(vos,pageRequest,pag.getTotalElements());
+			super.success(model,pageVos);
 			return new ModelAndView(VIEW_LIST);
 		}
 		super.success(model,pag);

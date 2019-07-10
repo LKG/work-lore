@@ -5,26 +5,27 @@ package im.heart.common;
  * @desc 短信模板枚举
  */
 public enum SmsTplEnum {
-    REGISTER("SMS_01","register","用户注册", "register.ftl"),
+
+    REGISTER("SMS_01","370072","用户注册", "register.ftl"),
     FIND_PWD("SMS_02","findPwd","用户密码找回", "findPwd.ftl");
 
     public String templateId;
-    public String name;
+    public String code;
     public String description;
     /**
      * 模板路径
      */
     public String templatePath;
-    SmsTplEnum(String templateId, String name, String description, String templatePath) {
-        this.name = name;
+    SmsTplEnum(String templateId, String code, String description, String templatePath) {
+        this.code = code;
         this.templateId = templateId;
         this.templatePath = templatePath;
         this.description = description;
     }
 
-    public static SmsTplEnum fromName(String name){
+    public static SmsTplEnum fromCode(String code){
         for(SmsTplEnum refer : SmsTplEnum.values()) {
-            if (refer.name.equals(name)) {
+            if (refer.code.equals(code)) {
                 return refer;
             }
         }
