@@ -1,6 +1,7 @@
 package im.heart.common.web;
 
 import com.google.common.collect.Maps;
+import im.heart.common.EmailTplEnum;
 import im.heart.common.utils.UserCacheUtils;
 import im.heart.core.CommonConst;
 import im.heart.core.CommonConst.RequestResult;
@@ -152,7 +153,8 @@ public class RegistController extends AbstractController {
 	protected ModelAndView quickRegisterAjaxUser(
             @ModelAttribute(RequestResult.RESULT) FrameUser frameUser,
             HttpServletRequest request, ModelMap model,
-            @RequestParam(value = "format", required = false) String format,
+			@RequestParam(value = "userChannel", required = false ,defaultValue = "web") String userChannel,
+			@RequestParam(value = "format", required = false,defaultValue = "jhtml") String format,
             RedirectAttributes redirectAttributes) throws ServiceException {
 		String userPhone = frameUser.getUserPhone();
 		String phoneCode=frameUser.getPhoneCode();
@@ -168,13 +170,10 @@ public class RegistController extends AbstractController {
 		frameUser.setUserName("q_"+frameUser.getUserPhone());
 		frameUser.setNickName(frameUser.getUserPhone());
 		frameUser.setRemark("quickRegister user");
-		frameUser.setUserChannel("web");
+		frameUser.setUserChannel(userChannel);
 		frameUser.setStatus(Status.enabled);
 		FrameUser newFrameUser = this.frameUserService.save(frameUser);
 		redirectAttributes.addFlashAttribute(RequestResult.RESULT, newFrameUser);
-		if(StringUtils.isBlank(format)){
-			format="jhtml";
-		}
 		return new ModelAndView(redirectToUrl(apiVer + "/success."+format));
 	}
 
@@ -194,9 +193,10 @@ public class RegistController extends AbstractController {
 	@RequestMapping(value = apiVer + "/subGeneral", method = RequestMethod.POST)
 	public ModelAndView registerAjaxUser(
             @Valid @ModelAttribute(RequestResult.RESULT) FrameUser frameUser, BindingResult result,
-            @RequestParam(value = "format", required = false) String format,
+            @RequestParam(value = "format", required = false,defaultValue = "jhtml") String format,
             @RequestParam(value = "validateCode", required = false ) String validateCode,
             @RequestParam(value = "phoneCode", required = false ) String phoneCode,
+			@RequestParam(value = "userChannel", required = false ,defaultValue = "web") String userChannel,
             HttpServletRequest request,
             RedirectAttributes redirectAttributes,
             ModelMap model) throws ServiceException {
@@ -224,21 +224,17 @@ public class RegistController extends AbstractController {
 			UserCacheUtils.evictMobileCode(phone);
 			frameUser.setStatus(Status.enabled);
 		}
-		frameUser.setUserChannel("web");
 		frameUser.setRemark("web user");
+		frameUser.setUserChannel(userChannel);
 		FrameUser newFrameUser = this.frameUserService.save(frameUser);
 		String userEmail=newFrameUser.getUserEmail();
 		if (StringUtilsEx.isNotBlank(userEmail)) {
-			Map<String, Object> modeltemp = Maps.newHashMap();
-			modeltemp.put(RequestResult.RESULT, newFrameUser);
-			this.sendEmailService.sendEmail(modeltemp, "用户注册成功提示",
-					"register_sucess.ftl",
+			Map<String, Object> modelTemp = Maps.newHashMap();
+			modelTemp.put(RequestResult.RESULT, newFrameUser);
+			this.sendEmailService.sendEmail(modelTemp, EmailTplEnum.REGISTER_SUCCESS.name,
+					EmailTplEnum.REGISTER_SUCCESS.templatePath,
 					new String[] { userEmail },
 					new String[] {});
-		}
-
-		if(StringUtils.isBlank(format)){
-			format="jhtml";
 		}
 		redirectAttributes.addFlashAttribute(RequestResult.RESULT, newFrameUser);
 		return new ModelAndView(redirectToUrl(apiVer + "/success."+format));

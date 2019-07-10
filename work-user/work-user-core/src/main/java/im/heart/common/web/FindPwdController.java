@@ -92,8 +92,7 @@ public class FindPwdController extends AbstractController {
 	 */
 	@RequestMapping(value={apiVer,apiVer+"/",apiVer+"/index"},method = RequestMethod.GET)
 	public ModelAndView findPwdIndex(HttpServletRequest request, HttpServletResponse response,
-									 @RequestParam(value = "k", required = false) String key,
-              ModelMap model) {
+			@RequestParam(value = "k", required = false) String key, ModelMap model) {
 		model.put("k",key);
 		this.success(model);
 		return new ModelAndView("findpwd/index");
@@ -156,11 +155,11 @@ public class FindPwdController extends AbstractController {
 	 */
 	@RequestMapping(value=apiVer+"/subGeneral")
 	public ModelAndView subGeneral(HttpServletRequest request, HttpServletResponse response,
-                                          @RequestParam(value = "account", required = false ) String account,
-                                          @RequestParam(value = "k", required = false) String key,
-                                          @RequestParam(value = "format", required = false) String format,
-                                          @RequestParam(value = "validateCode", required = false ) String validateCode,
-                                          ModelMap model) {
+             @RequestParam(value = "account", required = false ) String account,
+             @RequestParam(value = "k", required = false) String key,
+			 @RequestParam(value = "format", required = false,defaultValue = "jhtml") String format,
+			 @RequestParam(value = "validateCode", required = false ) String validateCode,
+             ModelMap model) {
 		if(StringUtilsEx.isNotBlank(account)&& StringUtilsEx.isNotBlank(validateCode)){
 			String sessionId = request.getRequestedSessionId();
 			if(!this.imageCaptchaService.validateResponseForID(sessionId, validateCode).booleanValue()){
@@ -173,9 +172,6 @@ public class FindPwdController extends AbstractController {
 				this.success(model,user);
 				String uuid= StringUtilsEx.getUUID2();
 				CacheUtils.generatCache(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix,uuid, user);
-				if(StringUtilsEx.isBlank(format)){
-					format="jhtml";
-				}
 				return new ModelAndView(redirectToUrl(apiVer+"/findpwd."+format+"?k="+uuid));
 			}
 		}
@@ -197,10 +193,10 @@ public class FindPwdController extends AbstractController {
 	 */
 	@RequestMapping(value = apiVer + "/checkSuccess")
 	protected ModelAndView checkSuccess(@RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
-                                             HttpServletRequest request, HttpServletResponse response,
-                                             @RequestParam(value = "format", required = false) String format,
-                                             @RequestParam(value = "k2", required = false) String key,
-                                             ModelMap model){
+         HttpServletRequest request, HttpServletResponse response,
+		 @RequestParam(value = "format", required = false,defaultValue = "jhtml") String format,
+         @RequestParam(value = "k2", required = false) String key,
+         ModelMap model){
 		if(StringUtilsEx.isBlank(key)){
 			this.fail(model,new ResponseError(WebError.REQUEST_PARAMETER_MISSING));
 			return new ModelAndView(RESULT_PAGE);
@@ -226,11 +222,11 @@ public class FindPwdController extends AbstractController {
 	 * @return
 	 */
 	@RequestMapping(value = apiVer + "/sendEmailSuccess")
-	protected ModelAndView sendEmailSuccess(      @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
-												  HttpServletRequest request, HttpServletResponse response,
-												  @RequestParam(value = "format", required = false) String format,
-												  @RequestParam(value = "k", required = false) String key,
-												  ModelMap model){
+	protected ModelAndView sendEmailSuccess(@RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
+		HttpServletRequest request, HttpServletResponse response,
+		@RequestParam(value = "format", required = false,defaultValue = "jhtml") String format,
+		@RequestParam(value = "k", required = false) String key,
+		ModelMap model){
 		if(StringUtilsEx.isBlank(key)){
 			this.fail(model,new ResponseError(WebError.REQUEST_PARAMETER_MISSING));
 			return new ModelAndView(RESULT_PAGE);
@@ -267,7 +263,7 @@ public class FindPwdController extends AbstractController {
 	protected ModelAndView resetPwd(
 			@RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
             HttpServletRequest request, HttpServletResponse response,
-            @RequestParam(value = "format", required = false) String format,
+			@RequestParam(value = "format", required = false,defaultValue = "jhtml") String format,
             @RequestParam(value = "k2", required = false) String key,
             @RequestParam(value = "passWord", required = false) String passWord,
             @RequestParam(value = "retryPassWord", required = false) String retryPassWord,
@@ -283,9 +279,6 @@ public class FindPwdController extends AbstractController {
 			logger.info(WebUtilsEx.getParametersJson(request));
 			this.frameUserService.resetPassword(user.getUserId(), retryPassWord);
 			CacheUtils.evictCache(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
-			if(StringUtilsEx.isBlank(format)){
-				format="jhtml";
-			}
 			return new ModelAndView(redirectToUrl(apiVer+"/resetPwdSuccess."+format+"?k="+key));
 		}
 		this.fail(model,new ResponseError(WebError.INVALID_REQUEST));
@@ -295,7 +288,7 @@ public class FindPwdController extends AbstractController {
 	protected ModelAndView checkEmailCode(
 			@RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
 			HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value = "format", required = false) String format,
+			@RequestParam(value = "format", required = false,defaultValue = "jhtml") String format,
 			@RequestParam(value = "emailCode", required = false) String emailCode,
 			@RequestParam(value = "k", required = false) String key,
 			ModelMap model) throws Exception {
@@ -307,11 +300,7 @@ public class FindPwdController extends AbstractController {
 		if(obj!=null&&obj instanceof FrameUser) {
 			FrameUser user = (FrameUser) obj;
 			String userEmail=user.getUserEmail();
-			if (StringUtilsEx.isBlank(format)) {
-				format = "jhtml";
-			}
-			Boolean isResponseCorrect = Boolean.FALSE;
-			isResponseCorrect=UserCacheUtils.checkEmailCode(userEmail, emailCode);
+			Boolean isResponseCorrect = UserCacheUtils.checkEmailCode(userEmail, emailCode);
 			CacheUtils.evictCache(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 			if(isResponseCorrect){
 				String key2=generatCache(user);
@@ -350,7 +339,7 @@ public class FindPwdController extends AbstractController {
 	protected ModelAndView sendFindPwd(
 			@RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
             HttpServletRequest request, HttpServletResponse response,
-            @RequestParam(value = "format", required = false) String format,
+			@RequestParam(value = "format", required = false,defaultValue = "jhtml") String format,
             @RequestParam(value = "k", required = false) String key,
             @RequestParam(value = "phoneCode", required = false) String phoneCode,
             @RequestParam(value = "type", required = false) String type,
@@ -362,9 +351,6 @@ public class FindPwdController extends AbstractController {
 		Object obj= CacheUtils.getCacheObject(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 		if(obj!=null&&obj instanceof FrameUser){
 			FrameUser user =(FrameUser)obj;
-			if(StringUtilsEx.isBlank(format)){
-				format="jhtml";
-			}
 			if(StringUtilsEx.isNotBlank(type)&&type.equals(FindPwdTypeEnum.email.intVal+"")){
 				int emailCode = (int) ((Math.random() * 9 + 1) * 100000);
 				Map<String, Object> modelTemp = Maps.newHashMap();
@@ -417,8 +403,7 @@ public class FindPwdController extends AbstractController {
 			String mobile=user.getUserPhone();
 			logger.info("mobileCode-host:[{}],mobile:[{}] mobileCode:[{}] type:[{}]", BaseUtils.getIpAddr(request),mobile,mobileCode,type);
 			UserCacheUtils.generateMobileCache(mobile, mobileCode);
-			SmsTplEnum tpl= SmsTplEnum.FIND_PWD;
-			responseError=this.smsSendService.sendSms(modelTemp, tpl.templatePath, new String[]{mobile});
+			responseError=this.smsSendService.sendSms(modelTemp, SmsTplEnum.FIND_PWD.templatePath, new String[]{mobile});
 			if(responseError==null){
 				this.success(model);
 			}else{
@@ -438,11 +423,10 @@ public class FindPwdController extends AbstractController {
      * @return
      */
 	@RequestMapping(value = apiVer + "/checkMobileCode")
-	public ModelAndView checkMobileCode(HttpServletRequest request,
-                                           HttpServletResponse response,
-                                           @RequestParam(value = "k", required = false ) String key,
-                                           @RequestParam(value = "phoneCode", required = false) String phoneCode,
-                                           ModelMap model){
+	public ModelAndView checkMobileCode(HttpServletRequest request, HttpServletResponse response,
+           @RequestParam(value = "k", required = false ) String key,
+           @RequestParam(value = "phoneCode", required = false) String phoneCode,
+           ModelMap model){
 		if(StringUtilsEx.isBlank(key)){
 			this.fail(model,new ResponseError(WebError.REQUEST_PARAMETER_MISSING));
 			return new ModelAndView(RESULT_PAGE);
@@ -452,8 +436,7 @@ public class FindPwdController extends AbstractController {
 		if(obj!=null&&obj instanceof FrameUser){
 			FrameUser user =(FrameUser)obj;
 			String mobile=user.getUserPhone();
-			Boolean isResponseCorrect = Boolean.FALSE;
-			isResponseCorrect=UserCacheUtils.checkMobileCode(mobile, phoneCode);
+			Boolean isResponseCorrect = UserCacheUtils.checkMobileCode(mobile, phoneCode);
 			if(isResponseCorrect){
 				this.success(model);
 				return new ModelAndView(RESULT_PAGE);

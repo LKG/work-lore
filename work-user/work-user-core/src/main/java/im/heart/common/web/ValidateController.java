@@ -2,6 +2,7 @@ package im.heart.common.web;
 
 import com.google.common.collect.Maps;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import im.heart.common.SmsTplEnum;
 import im.heart.common.utils.UserCacheUtils;
 import im.heart.core.plugins.captcha.CaptchaServiceException;
 import im.heart.core.plugins.captcha.ImageCaptchaExService;
@@ -94,7 +95,7 @@ public class ValidateController extends AbstractController {
 	 * @param logo
 	 */
 	@RequestMapping(value = "/passQRcode")
-	public void generatQRcodeImage(HttpServletRequest request,
+	public void generatQRcode(HttpServletRequest request,
 			HttpServletResponse response,
 			@RequestParam(value = "text", required = false ) String contents,
 			@RequestParam(value = "bg", required = false ,defaultValue="ffffff") String background,
@@ -151,11 +152,11 @@ public class ValidateController extends AbstractController {
                                        @RequestParam(value = "mobile", required = false ) String mobile,
                                        @RequestParam(value = "type", required = false,defaultValue="1") String type, ModelMap model) {
 		int mobileCode = (int)((Math.random()*9+1)*10000);
-		Map<String,Object> modeltemp = Maps.newHashMap();
-		modeltemp.put("mobileCode", mobileCode);
-		logger.info("mobileCode:[{}],mobile:[{}], type:[{}],mobilecode-host:[{}]", BaseUtils.getIpAddr(request),mobile,mobileCode,type);
+		Map<String,Object> modelTemp = Maps.newHashMap();
+		modelTemp.put("mobileCode", mobileCode);
+		logger.info("mobileCode:[{}],mobile:[{}], type:[{}],mobileCode-host:[{}]", BaseUtils.getIpAddr(request),mobile,mobileCode,type);
 		UserCacheUtils.generateMobileCache(mobile, mobileCode);
-		ResponseError responseError=this.smsSendService.sendSms(modeltemp, "register.ftl", new String[]{mobile});
+		ResponseError responseError=this.smsSendService.sendSms(modelTemp, SmsTplEnum.REGISTER.templatePath, new String[]{mobile});
 		if(responseError==null){
 			this.success(model);
 			return new ModelAndView(RESULT_PAGE);
@@ -175,10 +176,10 @@ public class ValidateController extends AbstractController {
 	 */
 	@RequestMapping(value = "/checkMobileCode")
 	public ModelAndView checkMobileCode(HttpServletRequest request,
-                                           HttpServletResponse response,
-                                           @RequestParam(value = "userPhone", required = false ) String userPhone,
-                                           @RequestParam(value = "phoneCode", required = false) String phoneCode,
-                                           ModelMap model){
+              HttpServletResponse response,
+              @RequestParam(value = "userPhone", required = false ) String userPhone,
+              @RequestParam(value = "phoneCode", required = false) String phoneCode,
+              ModelMap model){
 		logger.debug("passcode-host:"+request.getLocalAddr());
 		Boolean isResponseCorrect= UserCacheUtils.checkMobileCode(userPhone, phoneCode);
 		if(isResponseCorrect){
@@ -199,9 +200,9 @@ public class ValidateController extends AbstractController {
 	 */
 	@RequestMapping(value = "/checkRandCode")
 	public ModelAndView checkRandCode(HttpServletRequest request,
-                                             HttpServletResponse response,
-                                             @RequestParam(value = "validateCode", required = false) String captchaValue,
-                                             ModelMap model){
+              HttpServletResponse response,
+              @RequestParam(value = "validateCode", required = false) String captchaValue,
+              ModelMap model){
 		logger.debug("passcode-host:"+request.getLocalAddr());
 		Boolean isResponseCorrect = Boolean.FALSE;
 		String sessionId = request.getRequestedSessionId();

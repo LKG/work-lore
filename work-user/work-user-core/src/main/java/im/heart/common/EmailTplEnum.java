@@ -6,6 +6,8 @@ package im.heart.common;
  * @desc 邮件模板枚举
  */
 public enum EmailTplEnum {
+
+    REGISTER_SUCCESS("EMAIL_01","register_success","用户注册成功", "register_success.ftl"),
     FIND_PWD("EMAIL_02","findPwd","用户密码找回", "findPwd.ftl");
     public String templateId;
     public String name;

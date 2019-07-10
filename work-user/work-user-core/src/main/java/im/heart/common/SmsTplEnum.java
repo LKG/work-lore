@@ -5,7 +5,9 @@ package im.heart.common;
  * @desc 短信模板枚举
  */
 public enum SmsTplEnum {
+    REGISTER("SMS_01","register","用户注册", "register.ftl"),
     FIND_PWD("SMS_02","findPwd","用户密码找回", "findPwd.ftl");
+
     public String templateId;
     public String name;
     public String description;
