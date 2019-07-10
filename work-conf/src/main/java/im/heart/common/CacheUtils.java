@@ -7,7 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cache.Cache;
 import org.springframework.cache.Cache.ValueWrapper;
 import org.springframework.cache.CacheManager;
-
+/**
+ * @author gg
+ * @desc : CacheUtils
+ */
 public  class CacheUtils {
 	protected static final Logger logger = LoggerFactory.getLogger(CacheUtils.class);
 	
@@ -64,7 +67,7 @@ public  class CacheUtils {
 	 * @param key
 	 * @param value
 	 */
-	public static void generatCache(String cacheName,String key,Object value){
+	public static void generateCache(String cacheName,String key,Object value){
 		logger.debug("cacheName:[{}] key:[{} ,value:[{}]",cacheName,key,value);
 		Cache cache = getCacheByName(cacheName);
 		cache.put(key, value);

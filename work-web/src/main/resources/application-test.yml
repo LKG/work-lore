@@ -153,8 +153,8 @@ oauth:
     appId: dingoaqzoeij0scglcaclb
     appSecret: vgufnnRTDY-jnwQTl348uy4MJHdyqu0ZbBkmKkqyge9sd8OYeVyu2mz0xQM1wo04
     cllbackUri: http://
-qcloud:
-  sms:
+sms:
+  qcloud:
     appId: 1400197686
     appKey: f9f4cc6fd9ff57f332760650c5d1c755
 prod:

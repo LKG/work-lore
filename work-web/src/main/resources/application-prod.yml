@@ -140,9 +140,8 @@ alipay:
   return_url: http://api.gongwk.com/notify/paySuccess.html
   #请求网关地址
   URL: https://openapi.alipaydev.com/gateway.do
-
-qcloud:
-  sms:
+sms:
+  qcloud:
     appId: 1400197686
     appKey: f9f4cc6fd9ff57f332760650c5d1c755
 prod:
