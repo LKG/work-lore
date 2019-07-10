@@ -10,9 +10,9 @@ import org.slf4j.LoggerFactory;
 public  class UserCacheUtils {
 	protected static final Logger logger = LoggerFactory.getLogger(UserCacheUtils.class);
 	public enum CacheConfig {
-		EMAIL_CODE("emailCode_cache", 30 * 60 * 1),
-		MOBILE_CODE("mobileCode_cache", 30 * 60 * 1),
-		FIND_PWD("findPwd_cache", 30 * 60 * 1);
+		EMAIL_CODE("emailCode_cache", 15 * 60 * 1),
+		MOBILE_CODE("mobileCode_cache", 15 * 60 * 1),
+		FIND_PWD("findPwd_cache", 15 * 60 * 1);
 		CacheConfig(String keyPrefix, long expiredTime) {
 			this.keyPrefix = keyPrefix;
 			this.expiredTime = expiredTime;
@@ -68,13 +68,12 @@ public  class UserCacheUtils {
 		}
 		return false;
 	}
-	public static void generatEmailCodeCache(String email,Object emailCode){
-		CacheUtils.generatCache(CacheConfig.EMAIL_CODE.keyPrefix,email, emailCode);
+	public static void generateEmailCodeCache(String email,Object emailCode){
+		CacheUtils.generateCache(CacheConfig.EMAIL_CODE.keyPrefix,email, emailCode);
 	}
-	
-	
+
 	public static void generateMobileCache(String phone,Object phoneCode){
-		CacheUtils.generatCache(CacheConfig.MOBILE_CODE.keyPrefix,phone, phoneCode);
+		CacheUtils.generateCache(CacheConfig.MOBILE_CODE.keyPrefix,phone, phoneCode);
 	}
 	public static void evictEmailCache(String email){
 		CacheUtils.evictCache(CacheConfig.EMAIL_CODE.keyPrefix,email);
@@ -87,13 +86,13 @@ public  class UserCacheUtils {
 	/**
 	 * @Desc：校验邮箱
 	 * @param userEmail
-	 * @param emailcode
+	 * @param emailCode
 	 * @return
 	 */
-	public static boolean checkEmailCode(String userEmail,String emailcode){
-		logger.debug("email:[{}] emailCode:[{}]",userEmail,emailcode);
-		if (StringUtilsEx.isNotBlank(emailcode)&& StringUtilsEx.isNotBlank(userEmail)&& ValidatorUtils.isEmail(userEmail)){
-			return CacheUtils.checkWrapper(CacheConfig.EMAIL_CODE.keyPrefix,userEmail,emailcode);
+	public static boolean checkEmailCode(String userEmail,String emailCode){
+		logger.debug("email:[{}] emailCode:[{}]",userEmail,emailCode);
+		if (StringUtilsEx.isNotBlank(emailCode)&& StringUtilsEx.isNotBlank(userEmail)&& ValidatorUtils.isEmail(userEmail)){
+			return CacheUtils.checkWrapper(CacheConfig.EMAIL_CODE.keyPrefix,userEmail,emailCode);
 		}
 		return false;
 	}

@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
@@ -44,9 +45,8 @@ public class FindPwdController extends AbstractController {
 	@Autowired
 	private FrameUserService frameUserService;
 
-	@Autowired
+	@Resource
 	private SmsSendService smsSendService;
-
 	@Autowired
 	private SendEmailService sendEmailService;
 
@@ -171,7 +171,7 @@ public class FindPwdController extends AbstractController {
 			if(user!=null){
 				this.success(model,user);
 				String uuid= StringUtilsEx.getUUID2();
-				CacheUtils.generatCache(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix,uuid, user);
+				CacheUtils.generateCache(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix,uuid, user);
 				return new ModelAndView(redirectToUrl(apiVer+"/findpwd."+format+"?k="+uuid));
 			}
 		}
@@ -303,7 +303,7 @@ public class FindPwdController extends AbstractController {
 			Boolean isResponseCorrect = UserCacheUtils.checkEmailCode(userEmail, emailCode);
 			CacheUtils.evictCache(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 			if(isResponseCorrect){
-				String key2=generatCache(user);
+				String key2=generateCache(user);
 				return new ModelAndView(redirectToUrl(apiVer+"/checkSuccess."+format+"?k2="+key2));
 			}
 		}
@@ -311,9 +311,9 @@ public class FindPwdController extends AbstractController {
 		return new ModelAndView(RESULT_PAGE);
 	}
 
-	private String generatCache(Object val){
+	private String generateCache(Object val){
 		String key= StringUtilsEx.getUUID2();
-		CacheUtils.generatCache(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix,key, val);
+		CacheUtils.generateCache(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix,key, val);
 		return  key;
 	}
 
@@ -355,7 +355,7 @@ public class FindPwdController extends AbstractController {
 				int emailCode = (int) ((Math.random() * 9 + 1) * 100000);
 				Map<String, Object> modelTemp = Maps.newHashMap();
 				String userEmail=user.getUserEmail();
-				UserCacheUtils.generatEmailCodeCache(userEmail,emailCode);
+				UserCacheUtils.generateEmailCodeCache(userEmail,emailCode);
 				modelTemp.put("k", key);
 				modelTemp.put("emailCode", emailCode);
 				modelTemp.put(RequestResult.RESULT, user);
@@ -371,7 +371,7 @@ public class FindPwdController extends AbstractController {
 			if(isResponseCorrect){
 				//移除key
 				CacheUtils.evictCache(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
-				String key2=generatCache(user);
+				String key2=generateCache(user);
 				return new ModelAndView(redirectToUrl(apiVer+"/checkSuccess."+format+"?k2="+key2));
 			}
 		}

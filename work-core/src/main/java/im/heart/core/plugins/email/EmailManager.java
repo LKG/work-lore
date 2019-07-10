@@ -5,7 +5,6 @@ import freemarker.template.Template;
 import im.heart.core.utils.FreeMarkerUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,6 +12,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.util.Map;
@@ -30,7 +30,7 @@ public class EmailManager {
 	@Value("${spring.mail.template-path:'classpath:/templates/email/'}")
 	private String mailTemplatePath="classpath:/templates/email/";
 
-	@Autowired
+	@Resource
 	private JavaMailSender javaMailSender;
 	/**
 	 * 
