@@ -11,24 +11,28 @@ import java.util.Map;
  */
 public interface SmsSendService {
 	public static final String BEAN_NAME = "smsSendService";
-	/**
-	 * 
-	 * @Desc：向指定号码发送短信
-	 * @param mobilePhone
-	 * @param content
-	 * @return
-	 */
-	public ResponseError sendSms(String mobilePhone, String content);
-	
 
 	/**
 	 * 
-	 * @Desc：根据手机短信模板返送短信
+	 * 根据手机短信模板返送短信
 	 * @param model
-	 * @param templatePath
+	 * @param templateId
 	 * @param mobileTo
 	 * @return
 	 */
-	public ResponseError sendSms(Map<String, Object> model, String templatePath, String[] mobileTo);
-	
+	public ResponseError sendSms(Map<String, Object> model, String templateId, String[] mobileTo);
+
+	/**
+	 *  根据手机短信模板返送短信
+	 * @param model 数据
+	 * @param templateId 模板id
+	 * @param mobileTo 不带国家码的手机号
+	 * @param nationCode 国家码，如 86 为中国
+	 * @param sign 签名
+	 * @param extend 扩展码，可填空
+	 * @param ext 服务端原样返回的参数，可填空
+	 * @return
+	 */
+	public ResponseError sendSms(Map<String, Object> model, String templateId,
+								 String[] mobileTo,String nationCode,String sign,String extend, String ext);
 }

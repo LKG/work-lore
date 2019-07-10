@@ -56,7 +56,7 @@ public  class UserCacheUtils {
 		CacheUtils.evictCache(CacheConfig.EMAIL_CODE.keyPrefix,emailCode);
 	}
 	/**
-	 * @Desc：验证短信码是否正确
+	 * 验证短信码是否正确
 	 * @param userPhone
 	 * @param phoneCode
 	 * @return
@@ -84,7 +84,7 @@ public  class UserCacheUtils {
 	}
 	
 	/**
-	 * @Desc：校验邮箱
+	 * 校验邮箱
 	 * @param userEmail
 	 * @param emailCode
 	 * @return

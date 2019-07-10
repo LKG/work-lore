@@ -95,7 +95,7 @@ public class  FrameUserOrgController extends AbstractController {
 	}
 	/**
 	 * 
-	 * @Desc：查询外修商，并包装
+	 * 查询外修商，并包装
 	 * @param request
 	 * @param response
 	 * @param jsoncallback
@@ -171,7 +171,7 @@ public class  FrameUserOrgController extends AbstractController {
 	}
 	/**
 	 * 
-	 * @Desc：查询机构信息，并包装
+	 * 查询机构信息，并包装
 	 * @param request
 	 * @param response
 	 * @param jsoncallback

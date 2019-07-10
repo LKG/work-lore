@@ -15,7 +15,7 @@ public class SecurityUtilsHelper extends SecurityUtils {
 
 	/**
 	 * 
-	 * @Desc：获取session 信息
+	 * 获取session 信息
 	 * @param create
 	 * @return
 	 */
@@ -25,7 +25,7 @@ public class SecurityUtilsHelper extends SecurityUtils {
 
 	/**
 	 * 
-	 * @Desc：获取session 信息
+	 * 获取session 信息
 	 * @return
 	 */
 	public static Session getSession() {
@@ -55,7 +55,7 @@ public class SecurityUtilsHelper extends SecurityUtils {
 
 	/**
 	 * 
-	 * @Desc：清除用户缓存
+	 * 清除用户缓存
 	 */
 	public static void clearCurrentUserCache() {
 		if (isAuthenticated()) {

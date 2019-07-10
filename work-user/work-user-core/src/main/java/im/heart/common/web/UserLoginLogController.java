@@ -41,7 +41,7 @@ public class UserLoginLogController extends AbstractController {
 	private FrameLogLoginService frameLogLoginService;
 	/**
 	 * 
-	 * @Desc：查询用户信息列表
+	 * 查询用户信息列表
 	 * @param request
 	 * @param response
 	 * @param sort

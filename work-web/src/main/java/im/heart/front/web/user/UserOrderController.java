@@ -65,7 +65,7 @@ public class UserOrderController extends AbstractController {
     }
     /**
      *
-     * @Desc：取消订单
+     * 取消订单
      * @param jsoncallback
      * @param token
      * @param orderId

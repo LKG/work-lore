@@ -30,7 +30,7 @@ public class FramePermissionController extends AbstractController {
 	
 	/**
 	 * 
-	 * @Desc：查询列表信息
+	 * 查询列表信息
 	 * @param request
 	 * @param response
 	 * @param page

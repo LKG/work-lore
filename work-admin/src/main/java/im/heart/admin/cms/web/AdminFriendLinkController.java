@@ -73,7 +73,7 @@ public class AdminFriendLinkController extends AbstractController {
 	}
 	
 	/**
-	 * @Desc：修改记录
+	 * 修改记录
 	 * @param friendLink
 	 * @param result
 	 * @param format

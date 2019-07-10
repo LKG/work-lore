@@ -112,7 +112,7 @@ public class FrameResourceController extends AbstractController {
 	}
 	/**
 	 * 
-	 * @Desc：查询所有
+	 * 查询所有
 	 * @param request
 	 * @param response
 	 * @param page

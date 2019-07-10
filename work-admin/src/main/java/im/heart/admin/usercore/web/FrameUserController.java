@@ -184,7 +184,7 @@ public class FrameUserController extends AbstractController {
 	}
 	/**
 	 * 
-	 * @Desc：激活用户
+	 * 激活用户
 	 * @param token
 	 * @param ids
 	 * @param request
@@ -231,7 +231,7 @@ public class FrameUserController extends AbstractController {
 	}
 	/**
 	 * 
-	 * @Desc：禁用用户
+	 * 禁用用户
 	 * @param jsoncallback
 	 * @param token
 	 * @param ids
@@ -258,7 +258,7 @@ public class FrameUserController extends AbstractController {
 	
 	/**
 	 * 
-	 * @Desc：查询用户信息列表
+	 * 查询用户信息列表
 	 * @param request
 	 * @param response
 	 * @param page

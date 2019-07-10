@@ -103,7 +103,7 @@ public class FrameUserRealm extends AuthorizingRealm {
 		return authorizationInfo;
 	}
 	/**
-	 *  @Desc：验证码校验
+	 *  验证码校验
 	 * @param accountToken
 	 */
 	protected void checkValidateCode(AccountToken accountToken){

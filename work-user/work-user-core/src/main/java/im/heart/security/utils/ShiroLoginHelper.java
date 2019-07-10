@@ -14,7 +14,7 @@ import org.apache.shiro.subject.Subject;
 public class ShiroLoginHelper {
 	/**
 	 * 
-	 * @Desc：获取登录尝试次数
+	 * 获取登录尝试次数
 	 * @return
 	 */
 	public static Integer getLoginTimes(){
@@ -24,7 +24,7 @@ public class ShiroLoginHelper {
 	
 	/**
 	 * 
-	 * @Desc：获取登录尝试次数
+	 * 获取登录尝试次数
 	 * @param session
 	 * @return
 	 */
@@ -41,7 +41,7 @@ public class ShiroLoginHelper {
 	
 	/**
 	 * 
-	 * @Desc：设置登录失败session
+	 * 设置登录失败session
 	 */
 	public static void setLoginFailureSession(){
 		Session session= SecurityUtils.getSubject().getSession();
@@ -51,7 +51,7 @@ public class ShiroLoginHelper {
 	}
 	/**
 	 * 
-	 * @Desc：设置登录成功session
+	 * 设置登录成功session
 	 */
 	public static void setLoginSuccessSession(){
 		Subject subject = SecurityUtils.getSubject();

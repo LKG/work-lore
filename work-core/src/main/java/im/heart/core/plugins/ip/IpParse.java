@@ -7,7 +7,7 @@ package im.heart.core.plugins.ip;
 public interface IpParse {
 	/**
 	 * 
-	 * @Desc： 根据Ip 获取IpInfo 对象
+	 *  根据Ip 获取IpInfo 对象
 	 * @param ip
 	 * @return
 	 * @throws IpParseException

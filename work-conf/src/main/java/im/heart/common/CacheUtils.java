@@ -37,7 +37,7 @@ public  class CacheUtils {
 	}
 	
 	/**
-	 * @Desc：检测输入字符串是否和缓存中的数据一致
+	 * 检测输入字符串是否和缓存中的数据一致
 	 * @param cacheName
 	 * @param key
 	 * @param value
@@ -51,7 +51,7 @@ public  class CacheUtils {
 		return false;
 	}
 	/**
-	 * @Desc：根据缓存名称获取缓存数据信息
+	 * 根据缓存名称获取缓存数据信息
 	 * @param cacheName
 	 * @return
 	 */
@@ -62,7 +62,7 @@ public  class CacheUtils {
 	}
 	/**
 	 * 
-	 * @Desc：设置缓存
+	 * 设置缓存
 	 * @param cacheName
 	 * @param key
 	 * @param value
@@ -73,7 +73,7 @@ public  class CacheUtils {
 		cache.put(key, value);
 	}
 	/**
-	 * @Desc：根据缓存名称和key 清空对应数据
+	 * 根据缓存名称和key 清空对应数据
 	 * @param cacheName
 	 * @param key
 	 */

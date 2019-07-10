@@ -88,7 +88,7 @@ public class  FrameOrgRelateController extends AbstractController {
 	}
 	/**
 	 * 
-	 * @Desc：查询所有
+	 * 查询所有
 	 * @param request
 	 * @param response
 	 * @param jsoncallback
@@ -120,7 +120,7 @@ public class  FrameOrgRelateController extends AbstractController {
 	}
 	/**
 	 * 
-	 * @Desc：查询关联结构并包装
+	 * 查询关联结构并包装
 	 * @param request
 	 * @param response
 	 * @param jsoncallback

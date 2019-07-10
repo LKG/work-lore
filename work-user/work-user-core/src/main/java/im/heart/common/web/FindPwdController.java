@@ -83,7 +83,7 @@ public class FindPwdController extends AbstractController {
 	}
 
 	/**
-	 * @Desc：忘记密码页面
+	 * 忘记密码页面
 	 * @param request
 	 * @param response
 	 * @param key
@@ -117,7 +117,7 @@ public class FindPwdController extends AbstractController {
 		return new ModelAndView(RESULT_PAGE);
 	}
 	/**
-	 * @Desc：检测帐号信息是否存在、（邮箱，电话号码。帐号 ）step_1
+	 * 检测帐号信息是否存在、（邮箱，电话号码。帐号 ）step_1
 	 * @param jsoncallback
 	 * @param account
 	 * @param request
@@ -143,7 +143,7 @@ public class FindPwdController extends AbstractController {
 		return new ModelAndView(RESULT_PAGE);
 	}
 	/**
-	 * @Desc：忘记密码页面  step_1 验证账号信息
+	 * 忘记密码页面  step_1 验证账号信息
 	 * @param request
 	 * @param response
 	 * @param account
@@ -182,7 +182,7 @@ public class FindPwdController extends AbstractController {
 
 	/**
 	 *
-	 * @Desc：通过手机号码校验成功
+	 * 通过手机号码校验成功
 	 * @param jsoncallback
 	 * @param request
 	 * @param response
@@ -212,7 +212,7 @@ public class FindPwdController extends AbstractController {
 	}
 	/**
 	 *
-	 * @Desc：邮件发送成功
+	 * 邮件发送成功
 	 * @param jsoncallback
 	 * @param request
 	 * @param response
@@ -318,7 +318,7 @@ public class FindPwdController extends AbstractController {
 	}
 
 	/**
-	 * @Desc：密码修改成功页面 step_4
+	 * 密码修改成功页面 step_4
 	 * @param jsoncallback
 	 * @param request
 	 * @param response
@@ -379,7 +379,7 @@ public class FindPwdController extends AbstractController {
 		return new ModelAndView(RESULT_PAGE);
 	}
 	/**
-	 * @Desc： 发送短信验证码
+	 *  发送短信验证码
 	 * @param request
 	 * @param response
 	 * @param model
@@ -414,7 +414,7 @@ public class FindPwdController extends AbstractController {
 	}
 
     /**
-     * @Desc：验证码校验接口
+     * 验证码校验接口
      * @param request
      * @param response
      * @param key

@@ -15,7 +15,7 @@ public interface FrameTplService extends CommonService<FrameTpl, BigInteger> {
 	public FrameTpl save(FrameTpl frameTpl);
 	
 	/**
-	 * @Desc：判断是否定义模板
+	 * 判断是否定义模板
 	 * @param tplCode
 	 * @return
 	 */

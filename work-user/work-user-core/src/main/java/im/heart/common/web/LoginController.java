@@ -115,7 +115,7 @@ public class LoginController extends AbstractController {
 	 *	IncorrectCaptchaException.class,
 	 *	AuthenticationException.class
 	 *  UnauthorizedException.class
-	 * @Desc：
+	 *
 	 * @param request
 	 * @return
 	 * @throws AuthenticationException

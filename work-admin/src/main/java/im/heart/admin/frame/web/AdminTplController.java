@@ -51,7 +51,7 @@ public class AdminTplController extends AbstractController {
 	private FreeMarkerConfigurer freeMarkerConfigurer;
 	/**
 	 * 
-	 * @Desc：查询所有
+	 * 查询所有
 	 * @param request
 	 * @param response
 	 * @param jsoncallback

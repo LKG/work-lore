@@ -35,7 +35,7 @@ public class FrameLogOperateController extends AbstractController {
 	private FrameLogOperateService frameLogOperateService;
 	/**
 	 * 
-	 * @Desc：查询用户操作日志信息列表
+	 * 查询用户操作日志信息列表
 	 * @param request
 	 * @param response
 	 * @param page

@@ -35,7 +35,7 @@ public class FrameLogLoginController extends AbstractController {
 	private FrameLogLoginService frameLogLoginService;
 	/**
 	 * 
-	 * @Desc：查询用户登录日志信息列表
+	 * 查询用户登录日志信息列表
 	 * @param request
 	 * @param response
 	 * @param page

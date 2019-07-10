@@ -46,7 +46,7 @@ public class ValidateController extends AbstractController {
 	private QRCodeService qRCodeService;
 
 	/**
-	 * @Desc： 生成验证码
+	 *  生成验证码
 	 * @param request
 	 * @param response
 	 * @param module
@@ -79,7 +79,7 @@ public class ValidateController extends AbstractController {
 	}
 
 	/**
-	 * @Desc： 生成二维码
+	 *  生成二维码
 	 * @param request
 	 * @param response
 	 * @param contents
@@ -141,7 +141,7 @@ public class ValidateController extends AbstractController {
 	}
 
 	/**
-	 * @Desc： 发送短信验证码
+	 *  发送短信验证码
 	 * @param request
 	 * @param response
 	 * @param model
@@ -166,7 +166,7 @@ public class ValidateController extends AbstractController {
 	}
 
 	/**
-	 * @Desc：验证码校验接口
+	 * 验证码校验接口
 	 * @param request
 	 * @param response
 	 * @param userPhone
@@ -191,7 +191,7 @@ public class ValidateController extends AbstractController {
 	}
 	/**
 	 *
-	 * @Desc：验证码预校验接口
+	 * 验证码预校验接口
 	 * @param request
 	 * @param response
 	 * @param captchaValue

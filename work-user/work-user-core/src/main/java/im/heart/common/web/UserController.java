@@ -87,7 +87,7 @@ public class UserController extends AbstractController {
 	}
 	/**
 	 * 
-	 * @Desc： 修改密码 页面
+	 *  修改密码 页面
 	 * @param request
 	 * @param response
 	 * @param model

@@ -1,7 +1,6 @@
 package im.heart.conf;
 
 
-import com.github.qcloudsms.SmsSingleSender;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +11,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ConfigurationProperties(prefix = "sms.qcloud")
-public class QcloudSmsConfig  {
+@Data
+public class QcloudSmsProperties  {
     private int appId;
     private String appKey;
+
 }

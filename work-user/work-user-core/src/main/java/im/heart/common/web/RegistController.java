@@ -182,7 +182,7 @@ public class RegistController extends AbstractController {
 
 	/**
 	 *
-	 * @Desc：用户注册
+	 * 用户注册
 	 * @param frameUser
 	 * @param result
 	 * @param model

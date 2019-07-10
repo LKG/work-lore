@@ -70,7 +70,7 @@ public class AdminAreaController extends AbstractController {
 	}
 	/**
 	 * 
-	 * @Desc：查询所有
+	 * 查询所有
 	 * @param request
 	 * @param response
 	 * @param jsoncallback
@@ -98,7 +98,7 @@ public class AdminAreaController extends AbstractController {
 		return new ModelAndView(VIEW_LIST);
 	}
 	/**
-	 * @Desc：根据Id 查询记录
+	 * 根据Id 查询记录
 	 * @param jsoncallback
 	 * @param id
 	 * @param token
@@ -124,7 +124,7 @@ public class AdminAreaController extends AbstractController {
 	}
 	
 	/**
-	 * @Desc：修改记录
+	 * 修改记录
 	 * @param frameArea
 	 * @param result
 	 * @param format
