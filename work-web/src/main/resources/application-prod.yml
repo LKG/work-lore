@@ -45,7 +45,7 @@ spring:
   freemarker:
     prefix:
     suffix: .ftl
-    templateLoaderPath: classpath:/templates/tpl/, classpath:/templates/sms/, classpath:/templates/email/, classpath:/templates/code/
+    templateLoaderPath: classpath:/templates/tpl/, classpath:/templates/email/, classpath:/templates/code/
     templateEncoding: UTF-8
     content-type: text/html
     prefer-file-system-access: false
