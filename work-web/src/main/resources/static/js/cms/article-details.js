@@ -7,8 +7,6 @@ define(function (require, exports, moudles) {
     var $httpUtil = require('/js/common/httpUtil.js');
     var $docSupportContainer=$("#doc-support-container");
     require('printThis');
-    alert(jQuery);
-    debugger;
     window.dialog = dialog;
     var baseRoot=$baseRoot.attr("href");
 
@@ -21,7 +19,11 @@ define(function (require, exports, moudles) {
         $("#top-banner").hide();
     });
     $("#btn-print").on("click", function() {
-        $("#article-row").printThis();
+        var $row=$('#article-row');
+        alert($row);
+        $('#article-row').printThis({
+            importCSS: true,
+        });
     });
     $(".artinfo .cgray").on("click", function() {
         var font=$(this).attr("data-font");
