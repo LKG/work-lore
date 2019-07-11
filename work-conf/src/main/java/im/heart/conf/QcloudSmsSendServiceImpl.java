@@ -25,7 +25,7 @@ import java.util.Map;
  * @author: gg
  *  腾讯云发送短信接口
  */
-@Profile("prod")
+@Profile("test")
 @Component
 @EnableConfigurationProperties(QcloudSmsProperties.class)
 public class QcloudSmsSendServiceImpl implements SmsSendService {
@@ -60,14 +60,11 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
             SmsSingleSenderResult result = sender.send(0, "", mobileTo,
                     smsContent, "", "");
         }catch (HTTPException e) {
-            // HTTP 响应码错误
-            e.printStackTrace();
+            logger.error(e.getStackTrace()[0].getMethodName(), e);
         } catch (JSONException e) {
-            // JSON 解析错误
-            e.printStackTrace();
+            logger.error(e.getStackTrace()[0].getMethodName(), e);
         } catch (IOException e) {
-            // 网络 IO 错误
-            e.printStackTrace();
+            logger.error(e.getStackTrace()[0].getMethodName(), e);
         }
 
         return null;
@@ -96,17 +93,13 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
     public ResponseError sendSms(Map<String, Object> model, String templateId, String[] mobileTo) {
         SmsMultiSender sender = new SmsMultiSender(this.properties.getAppId(), this.properties.getAppKey());
         try{
-           
             SmsMultiSenderResult result =sender.sendWithParam("",mobileTo,Integer.valueOf(templateId),mobileTo,"","","");
         }catch (HTTPException e) {
-            // HTTP 响应码错误
-            e.printStackTrace();
+            logger.error(e.getStackTrace()[0].getMethodName(), e);
         } catch (JSONException e) {
-            // JSON 解析错误
-            e.printStackTrace();
+            logger.error(e.getStackTrace()[0].getMethodName(), e);
         } catch (IOException e) {
-            // 网络 IO 错误
-            e.printStackTrace();
+            logger.error(e.getStackTrace()[0].getMethodName(), e);
         }
         return null;
     }

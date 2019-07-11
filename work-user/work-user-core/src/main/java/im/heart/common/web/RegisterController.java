@@ -43,8 +43,8 @@ import java.util.Map;
  * @desc 用户注册激活控制器
  */
 @Controller
-public class RegistController extends AbstractController {
-	protected static final Logger logger = LoggerFactory.getLogger(RegistController.class);
+public class RegisterController extends AbstractController {
+	protected static final Logger logger = LoggerFactory.getLogger(RegisterController.class);
 	protected static final String registerFrom = "register";
 	protected static final String registerDialogFrom = "pages/register-in";
 	protected static final String quickRegisterFrom = "pages/register-quick";
@@ -177,9 +177,6 @@ public class RegistController extends AbstractController {
 		return new ModelAndView(redirectToUrl(apiVer + "/success."+format));
 	}
 
-
-
-
 	/**
 	 *
 	 * 用户注册
@@ -197,10 +194,8 @@ public class RegistController extends AbstractController {
             @RequestParam(value = "validateCode", required = false ) String validateCode,
             @RequestParam(value = "phoneCode", required = false ) String phoneCode,
 			@RequestParam(value = "userChannel", required = false ,defaultValue = "web") String userChannel,
-            HttpServletRequest request,
-            RedirectAttributes redirectAttributes,
+            RedirectAttributes redirectAttributes,HttpServletRequest request,
             ModelMap model) throws ServiceException {
-
 		if (result.hasErrors()) {
 			// List<ObjectError> allerrors = result.getAllErrors();
 			// String aa = JSON.toJSONString(allerrors);
