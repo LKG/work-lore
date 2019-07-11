@@ -48,11 +48,11 @@
             <artifactId>work-admin</artifactId>
             <version>0.1.28-SNAPSHOT</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>im.heart</groupId>
             <artifactId>work-search</artifactId>
             <version>0.1.28-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>im.heart</groupId>
             <artifactId>work-pay</artifactId>
