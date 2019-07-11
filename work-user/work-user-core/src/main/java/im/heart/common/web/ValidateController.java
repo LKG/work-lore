@@ -160,7 +160,7 @@ public class ValidateController extends AbstractController {
 		modelTemp.put("mobileCode", mobileCode);
 		modelTemp.put("product", "公文库");
 		modelTemp.put("expiredTime", UserCacheUtils.CacheConfig.MOBILE_CODE.expiredTime/60);
-		logger.info("mobileCode:[{}],mobile:[{}], type:[{}],mobileCode-host:[{}]", BaseUtils.getIpAddr(request),mobile,mobileCode,type);
+		logger.info("mobile:[{}],mobileCode:[{}], type:[{}],mobileCode-host:[{}]", mobile,mobileCode,type,BaseUtils.getIpAddr(request));
 
 		Boolean isSuccess=this.smsSendService.sendSms(modelTemp, SmsTplEnum.REGISTER.templateId, new String[]{mobile});
 		if(isSuccess){

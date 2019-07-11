@@ -433,7 +433,7 @@ public class FindPwdController extends AbstractController {
 			this.fail(model,new ResponseError(WebError.REQUEST_PARAMETER_MISSING));
 			return new ModelAndView(RESULT_PAGE);
 		}
-		logger.info("passcode-host:"+request.getLocalAddr());
+		logger.info("passcode-host:{}",request.getLocalAddr());
 		Object obj= CacheUtils.getCacheObject(UserCacheUtils.CacheConfig.FIND_PWD.keyPrefix, key);
 		if(obj!=null&&obj instanceof FrameUser){
 			FrameUser user =(FrameUser)obj;

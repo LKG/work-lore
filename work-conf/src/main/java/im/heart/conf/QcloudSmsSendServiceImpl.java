@@ -6,8 +6,10 @@ import com.github.qcloudsms.SmsMultiSenderResult;
 import com.github.qcloudsms.SmsSingleSender;
 import com.github.qcloudsms.SmsSingleSenderResult;
 import com.github.qcloudsms.httpclient.HTTPException;
+import com.google.common.collect.Maps;
 import im.heart.core.plugins.sms.SmsSendException;
 import im.heart.core.plugins.sms.SmsSendService;
+import im.heart.core.utils.BaseUtils;
 import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +34,7 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
     @Resource
     private QcloudSmsProperties properties;
 
+
     /**
      * 根据发送短信，短信内容必须和模板中的一致
      *
@@ -44,16 +47,16 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
      */
     @Override
     public Boolean sendSms(String smsContent, String mobileTo, String nationCode, String extend, String ext) {
-        logger.info("发送短信.smsContent:{},mobileTo:{}..............................",smsContent, JSON.toJSONString(mobileTo));
+        logger.debug("发送短信.smsContent:{},mobileTo:{}..............................",smsContent, JSON.toJSONString(mobileTo));
         SmsSingleSender sender = new SmsSingleSender(this.properties.getAppId(), this.properties.getAppKey());
         try{
-            SmsSingleSenderResult result = sender.send(0, "", mobileTo,
+            SmsSingleSenderResult result = sender.send(0, null, mobileTo,
                     smsContent, "", "");
             if(result.result==0){
                 return Boolean.TRUE;
             }
             logger.error("发送短信.result:{}..............................",JSON.toJSONString(result));
-            throw new SmsSendException(JSON.toJSONString(result));
+            throw new SmsSendException(result.result+"",result.errMsg);
         }catch (HTTPException e) {
             logger.error(e.getStackTrace()[0].getMethodName(), e);
         } catch (JSONException e) {
@@ -77,6 +80,7 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
         return sendSms(smsContent,mobileTo,"","","");
     }
 
+
     /**
      * 根据手机短信模板返送短信
      * @param model
@@ -87,16 +91,16 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
     @Override
     public Boolean sendSms(Map<String, ?> model, String templateId, String[] mobileTo) {
         SmsMultiSender sender = new SmsMultiSender(this.properties.getAppId(), this.properties.getAppKey());
-        logger.info("发送短信.smsContent:{},mobileTo:{}..............................",JSON.toJSONString(model), JSON.toJSONString(mobileTo));
+        logger.debug("发送短信.smsContent:{},mobileTo:{}..............................",JSON.toJSONString(model), JSON.toJSONString(mobileTo));
         SmsMultiSenderResult result =null;
         try{
             String[] params=model.values().stream().map(Object::toString).toArray(String[]::new);
-            result =sender.sendWithParam("",mobileTo,Integer.valueOf(templateId),params,"","","");
+            result =sender.sendWithParam(null,mobileTo,Integer.valueOf(templateId),params,"","","");
             if(result.result==0){
                 return Boolean.TRUE;
             }
             logger.error("发送短信.result:{}..............................",JSON.toJSONString(result));
-            throw new SmsSendException(JSON.toJSONString(result));
+            throw new SmsSendException(result.result+"",result.errMsg);
         }catch (HTTPException e) {
             logger.error(e.getStackTrace()[0].getMethodName(), e);
         } catch (JSONException e) {
@@ -119,6 +123,6 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
      */
     @Override
     public Boolean sendSms(Map<String, ?> model, String templateId, String[] mobileTo, String nationCode, String sign, String extend, String ext) {
-        return sendSms(model,templateId,mobileTo,"","","","");
+        return sendSms(model,templateId,mobileTo,null,null,null,null);
     }
 }
