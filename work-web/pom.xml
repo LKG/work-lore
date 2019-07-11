@@ -128,14 +128,6 @@
                         </include>
                         <include>
                             <groupId>im.heart</groupId>
-                            <artifactId>work-admin</artifactId>
-                        </include>
-                         <include>
-                             <groupId>im.heart</groupId>
-                             <artifactId>work-search</artifactId>
-                         </include>
-                        <include>
-                            <groupId>im.heart</groupId>
                             <artifactId>work-cms-core</artifactId>
                         </include>
                         <include>
@@ -182,6 +174,14 @@
                             <groupId>im.heart</groupId>
                             <artifactId>work-rpt-domain</artifactId>
                         </include>
+                         <include>
+                             <groupId>im.heart</groupId>
+                             <artifactId>work-admin</artifactId>
+                         </include>
+                         <include>
+                             <groupId>im.heart</groupId>
+                             <artifactId>work-search</artifactId>
+                         </include>
                     </includes>
                 </configuration>
                 <executions>
