@@ -1,4 +1,4 @@
-<script src="${appHost}/modules/seajs/2.3.0/sea.js" data-main="application/application"  id="seajsnode" ></script>
+<script src="${appHost}/modules/seajs/sea.js" data-main="application/application"  id="seajsnode" ></script>
 <script   type="text/javascript" id="seajsconfig" >
   	seajs.config({
   	  charset: 'utf-8',
