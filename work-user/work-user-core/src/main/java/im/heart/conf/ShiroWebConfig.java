@@ -131,6 +131,8 @@ public class ShiroWebConfig extends ShiroWebAutoConfiguration{
 		chain.addPathDefinition("/articles/**", "anon");
 		chain.addPathDefinition("/article/**", "anon");
 		chain.addPathDefinition("/doc/**", "anon");
+		chain.addPathDefinition("/topic/**", "anon");
+		chain.addPathDefinition("/topic**", "anon");
 		chain.addPathDefinition("/logout*", "logout");
 		chain.addPathDefinition("/", "anon");
 		chain.addPathDefinition("/admin/druid/**", "perms[druid:monitor]");
