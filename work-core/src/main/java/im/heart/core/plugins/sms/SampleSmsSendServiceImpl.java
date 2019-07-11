@@ -12,13 +12,11 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-//import org.springframework.beans.factory.annotation.Autowired;
-
 
 /**
- * 
- * 短信发送实现类 demo
- * @作者 LKG
+ *
+ * @author gg
+ * @desc 短信发送接口实现类
  */
 @Profile("!prod")
 @Component(value = SmsSendService.BEAN_NAME)
@@ -36,7 +34,7 @@ public class SampleSmsSendServiceImpl implements SmsSendService {
 	 */
 	@Async
 	@Override
-	public ResponseError sendSms(String smsContent, String mobileTo) {
+	public Boolean sendSms(String smsContent, String mobileTo) {
 		return sendSms(smsContent,mobileTo,"","","");
 	}
 
@@ -52,16 +50,16 @@ public class SampleSmsSendServiceImpl implements SmsSendService {
 	 */
 	@Async
 	@Override
-	public ResponseError sendSms(String smsContent, String mobileTo, String nationCode, String extend, String ext) {
+	public Boolean sendSms(String smsContent, String mobileTo, String nationCode, String extend, String ext) {
 		logger.info("模拟发送短信啦.smsContent:{},mobileTo:{}..............................",smsContent,JSON.toJSONString(mobileTo));
-		return null;
+		return Boolean.TRUE;
 	}
 	@Async
 	@Override
-	public ResponseError sendSms(Map<String, Object> model, String templateId,
+	public Boolean sendSms(Map<String, ?> model, String templateId,
 								 String[] mobileTo,String nationCode,String sign,String extend, String ext) {
 		logger.info("模拟发送短信啦.templateId:{}.model:{},mobileTo:{}..............................",templateId,JSON.toJSONString(model),JSON.toJSONString(mobileTo));
-		return null;
+		return Boolean.TRUE;
 	}
 
 	/**
@@ -74,7 +72,7 @@ public class SampleSmsSendServiceImpl implements SmsSendService {
 	 */
 	@Async
 	@Override
-	public ResponseError sendSms(Map<String, Object> model, String templateId, String[] mobileTo) {
+	public Boolean sendSms(Map<String, ?> model, String templateId, String[] mobileTo) {
 		return sendSms( model,templateId,mobileTo, "","","", "");
 	}
 }

@@ -12,6 +12,7 @@ import im.heart.core.utils.BaseUtils;
 import im.heart.core.utils.StringUtilsEx;
 import im.heart.core.web.AbstractController;
 import im.heart.core.web.ResponseError;
+import im.heart.core.web.enums.WebError;
 import org.apache.commons.codec.Charsets;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
@@ -155,15 +156,18 @@ public class ValidateController extends AbstractController {
                                        @RequestParam(value = "type", required = false,defaultValue="1") String type, ModelMap model) {
 		int mobileCode = (int)((Math.random()*9+1)*10000);
 		Map<String,Object> modelTemp = Maps.newHashMap();
-		modelTemp.put("mobileCode", mobileCode);
-		logger.info("mobileCode:[{}],mobile:[{}], type:[{}],mobileCode-host:[{}]", BaseUtils.getIpAddr(request),mobile,mobileCode,type);
 		UserCacheUtils.generateMobileCache(mobile, mobileCode);
-		ResponseError responseError=this.smsSendService.sendSms(modelTemp, SmsTplEnum.REGISTER.templatePath, new String[]{mobile});
-		if(responseError==null){
+		modelTemp.put("mobileCode", mobileCode);
+		modelTemp.put("product", "公文库");
+		modelTemp.put("expiredTime", UserCacheUtils.CacheConfig.MOBILE_CODE.expiredTime/60);
+		logger.info("mobileCode:[{}],mobile:[{}], type:[{}],mobileCode-host:[{}]", BaseUtils.getIpAddr(request),mobile,mobileCode,type);
+
+		Boolean isSuccess=this.smsSendService.sendSms(modelTemp, SmsTplEnum.REGISTER.templateId, new String[]{mobile});
+		if(isSuccess){
 			this.success(model);
 			return new ModelAndView(RESULT_PAGE);
 		}
-		this.fail(model,responseError);
+		this.fail(model,new ResponseError(WebError.AUTH_PHONE_CODE_INCORRECT));
 		return new ModelAndView(RESULT_PAGE);
 	}
 

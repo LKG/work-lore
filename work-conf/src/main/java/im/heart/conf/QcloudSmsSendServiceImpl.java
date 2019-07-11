@@ -6,8 +6,8 @@ import com.github.qcloudsms.SmsMultiSenderResult;
 import com.github.qcloudsms.SmsSingleSender;
 import com.github.qcloudsms.SmsSingleSenderResult;
 import com.github.qcloudsms.httpclient.HTTPException;
+import im.heart.core.plugins.sms.SmsSendException;
 import im.heart.core.plugins.sms.SmsSendService;
-import im.heart.core.web.ResponseError;
 import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,31 +17,21 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
+
 /**
  *
  * @author: gg
  *  腾讯云发送短信接口
  */
-@Profile("test")
+@Profile("prod")
 @Component
 @EnableConfigurationProperties(QcloudSmsProperties.class)
 public class QcloudSmsSendServiceImpl implements SmsSendService {
     protected static final Logger logger = LoggerFactory.getLogger(QcloudSmsSendServiceImpl.class);
     @Resource
     private QcloudSmsProperties properties;
-    public static void main(String[] args) throws Exception{
-        int appId = 1400197686;
-        String[] phoneNumbers={"18668169331"};
-        String appKey = "f9f4cc6fd9ff57f332760650c5d1c755"; //sdkappid 对应的 appkey，需要业务方高度保密
-        String[] params = {"6666","公文库","15"};//数组具体的元素个数和模板中变量个数必须一致，例如事例中templateId:5678对应一个变量，参数数组中元素个数也必须是一个
-        int templateId = 370072;
-        SmsSingleSender ssender = new SmsSingleSender(appId, appKey);
-        SmsSingleSenderResult result = ssender.sendWithParam(null, phoneNumbers[0],
-                templateId, params, null,null,null);
-    }
+
     /**
      * 根据发送短信，短信内容必须和模板中的一致
      *
@@ -53,12 +43,17 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
      * @return
      */
     @Override
-    public ResponseError sendSms(String smsContent, String mobileTo, String nationCode, String extend, String ext) {
-        logger.info("模拟发送短信啦.smsContent:{},mobileTo:{}..............................",smsContent, JSON.toJSONString(mobileTo));
+    public Boolean sendSms(String smsContent, String mobileTo, String nationCode, String extend, String ext) {
+        logger.info("发送短信.smsContent:{},mobileTo:{}..............................",smsContent, JSON.toJSONString(mobileTo));
         SmsSingleSender sender = new SmsSingleSender(this.properties.getAppId(), this.properties.getAppKey());
         try{
             SmsSingleSenderResult result = sender.send(0, "", mobileTo,
                     smsContent, "", "");
+            if(result.result==0){
+                return Boolean.TRUE;
+            }
+            logger.error("发送短信.result:{}..............................",JSON.toJSONString(result));
+            throw new SmsSendException(JSON.toJSONString(result));
         }catch (HTTPException e) {
             logger.error(e.getStackTrace()[0].getMethodName(), e);
         } catch (JSONException e) {
@@ -67,7 +62,7 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
             logger.error(e.getStackTrace()[0].getMethodName(), e);
         }
 
-        return null;
+       return Boolean.FALSE;
     }
 
     /**
@@ -78,7 +73,7 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
      * @return
      */
     @Override
-    public ResponseError sendSms(String smsContent, String mobileTo) {
+    public Boolean sendSms(String smsContent, String mobileTo) {
         return sendSms(smsContent,mobileTo,"","","");
     }
 
@@ -90,10 +85,18 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
      * @return
      */
     @Override
-    public ResponseError sendSms(Map<String, Object> model, String templateId, String[] mobileTo) {
+    public Boolean sendSms(Map<String, ?> model, String templateId, String[] mobileTo) {
         SmsMultiSender sender = new SmsMultiSender(this.properties.getAppId(), this.properties.getAppKey());
+        logger.info("发送短信.smsContent:{},mobileTo:{}..............................",JSON.toJSONString(model), JSON.toJSONString(mobileTo));
+        SmsMultiSenderResult result =null;
         try{
-            SmsMultiSenderResult result =sender.sendWithParam("",mobileTo,Integer.valueOf(templateId),mobileTo,"","","");
+            String[] params=model.values().stream().map(Object::toString).toArray(String[]::new);
+            result =sender.sendWithParam("",mobileTo,Integer.valueOf(templateId),params,"","","");
+            if(result.result==0){
+                return Boolean.TRUE;
+            }
+            logger.error("发送短信.result:{}..............................",JSON.toJSONString(result));
+            throw new SmsSendException(JSON.toJSONString(result));
         }catch (HTTPException e) {
             logger.error(e.getStackTrace()[0].getMethodName(), e);
         } catch (JSONException e) {
@@ -101,7 +104,7 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
         } catch (IOException e) {
             logger.error(e.getStackTrace()[0].getMethodName(), e);
         }
-        return null;
+        return Boolean.FALSE;
     }
     /**
      * @param model
@@ -115,7 +118,7 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
      * 根据手机短信模板返送短信
      */
     @Override
-    public ResponseError sendSms(Map<String, Object> model, String templateId, String[] mobileTo, String nationCode, String sign, String extend, String ext) {
+    public Boolean sendSms(Map<String, ?> model, String templateId, String[] mobileTo, String nationCode, String sign, String extend, String ext) {
         return sendSms(model,templateId,mobileTo,"","","","");
     }
 }

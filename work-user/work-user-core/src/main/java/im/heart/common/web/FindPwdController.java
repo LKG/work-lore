@@ -163,8 +163,7 @@ public class FindPwdController extends AbstractController {
 		if(StringUtilsEx.isNotBlank(account)&& StringUtilsEx.isNotBlank(validateCode)){
 			String sessionId = request.getRequestedSessionId();
 			if(!this.imageCaptchaService.validateResponseForID(sessionId, validateCode).booleanValue()){
-				ResponseError responseError=new ResponseError(WebError.AUTH_CAPTCHA_INCORRECT);
-				this.fail(model,responseError);
+				this.fail(model,new ResponseError(WebError.AUTH_CAPTCHA_INCORRECT));
 				return new ModelAndView("findpwd/index");
 			}
 			FrameUser user=this.frameUserService.findFrameUser(account);
@@ -358,6 +357,7 @@ public class FindPwdController extends AbstractController {
 				UserCacheUtils.generateEmailCodeCache(userEmail,emailCode);
 				modelTemp.put("k", key);
 				modelTemp.put("emailCode", emailCode);
+				modelTemp.put("expiredTime", UserCacheUtils.CacheConfig.EMAIL_CODE.expiredTime/60);
 				modelTemp.put(RequestResult.RESULT, user);
 				EmailTplEnum tpl= EmailTplEnum.FIND_PWD;
 				this.sendEmailService.sendEmail(modelTemp, tpl.description,
@@ -375,7 +375,7 @@ public class FindPwdController extends AbstractController {
 				return new ModelAndView(redirectToUrl(apiVer+"/checkSuccess."+format+"?k2="+key2));
 			}
 		}
-		this.fail(model,new ResponseError(WebError.AUTH_PHONECODE_INCORRECT));
+		this.fail(model,new ResponseError(WebError.AUTH_PHONE_CODE_INCORRECT));
 		return new ModelAndView(RESULT_PAGE);
 	}
 	/**
@@ -400,11 +400,13 @@ public class FindPwdController extends AbstractController {
 			int mobileCode = (int)((Math.random()*9+1)*10000);
 			Map<String,Object> modelTemp = Maps.newHashMap();
 			modelTemp.put("mobileCode", mobileCode);
+			modelTemp.put("product", "公文库");
+			modelTemp.put("expiredTime", UserCacheUtils.CacheConfig.MOBILE_CODE.expiredTime/60);
 			String mobile=user.getUserPhone();
 			logger.info("mobileCode-host:[{}],mobile:[{}] mobileCode:[{}] type:[{}]", BaseUtils.getIpAddr(request),mobile,mobileCode,type);
 			UserCacheUtils.generateMobileCache(mobile, mobileCode);
-			responseError=this.smsSendService.sendSms(modelTemp, SmsTplEnum.FIND_PWD.templatePath, new String[]{mobile});
-			if(responseError==null){
+			Boolean isSuccess =this.smsSendService.sendSms(modelTemp, SmsTplEnum.FIND_PWD.templateId, new String[]{mobile});
+			if(isSuccess){
 				this.success(model);
 			}else{
 				this.fail(model,responseError);

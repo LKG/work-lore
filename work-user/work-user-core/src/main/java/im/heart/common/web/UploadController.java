@@ -38,11 +38,11 @@ public class UploadController extends AbstractController {
 	@Autowired
 	private FrameUserService frameUserService;
 	@Value("${prod.upload.path.root:''}")
-	private String uplaodFilePath="";
+	private String uploadFilePath="";
 	protected static final String  IMG_FILE_PATH= CommonConst.STATIC_UPLOAD_ROOT;
 
 	@RequestMapping(apiVer+"/userHeadImg")
-	public ModelAndView userinfo(HttpServletRequest request, HttpServletResponse response,
+	public ModelAndView userHeadImg(HttpServletRequest request, HttpServletResponse response,
                                  ModelMap model) {
 		Subject subject = SecurityUtils.getSubject();
 		Object po = subject.getPrincipal();
@@ -53,7 +53,7 @@ public class UploadController extends AbstractController {
 			if(uploadFileList!=null&&!uploadFileList.isEmpty()){
 				for(MultipartFile file :uploadFileList){
 					String realPath=File.separator+IMG_FILE_PATH+File.separator+DateTime.now().toString("yyyyMMdd")+File.separator;
-					String path=uplaodFilePath+realPath;
+					String path=uploadFilePath+realPath;
 					try {
 						String filePath = super.uploadFile(file, path);
 						model.put("name", file.getOriginalFilename());

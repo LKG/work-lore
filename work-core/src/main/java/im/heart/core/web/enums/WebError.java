@@ -30,7 +30,7 @@ public enum WebError {
     AUTH_EXCESSIVE_ATTEMPTS("auth_excessive_attempts", "20105","尝试次数过多,账号被锁定"),
     AUTH_CREDENTIALS_EXPIRED("auth_credentials_expired", "20106","用户凭证过期"),
     AUTH_CAPTCHA_INCORRECT("auth_captcha_incorrect", "20107","验证码错误"),
-    AUTH_PHONECODE_INCORRECT("auth_phonecode_incorrect", "20108","短信码错误"),
+    AUTH_PHONE_CODE_INCORRECT("auth_phone_code_incorrect", "20108","短信码错误"),
     AUTH_EXCEPTION("auth_exception", "20109","未知认证错误，请联系管理员"),
     AUTH_ACCOUNT_FORCE("auth_account_force", "20110","账号被踢出"),
     AUTH_ACCOUNT_REPEAT("auth_account_repeat", "20111","账号已登录"),

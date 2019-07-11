@@ -18,7 +18,7 @@ public interface SmsSendService {
 	 * @param mobileTo
 	 * @return
 	 */
-	public ResponseError sendSms(String smsContent, String mobileTo);
+	public Boolean sendSms(String smsContent, String mobileTo);
 	/**
 	 * 根据发送短信，短信内容必须和模板中的一致
 	 * @param smsContent 短信内容必须和模板中的一致
@@ -28,7 +28,7 @@ public interface SmsSendService {
 	 * @param ext 服务端原样返回的参数，可填空
 	 * @return
 	 */
-	public ResponseError sendSms(String smsContent, String mobileTo,String nationCode,String extend, String ext);
+	public Boolean sendSms(String smsContent, String mobileTo,String nationCode,String extend, String ext);
 
 
 	/**
@@ -39,7 +39,7 @@ public interface SmsSendService {
 	 * @param mobileTo
 	 * @return
 	 */
-	public ResponseError sendSms(Map<String, Object> model, String templateId, String[] mobileTo);
+	public Boolean sendSms(Map<String, ?> model, String templateId, String[] mobileTo);
 	/**
 	 *  根据手机短信模板发送短信
 	 * @param model 数据
@@ -51,5 +51,5 @@ public interface SmsSendService {
 	 * @param ext 服务端原样返回的参数，可填空
 	 * @return
 	 */
-	public ResponseError sendSms(Map<String, Object> model, String templateId,String[] mobileTo,String nationCode,String sign,String extend, String ext);
+	public Boolean sendSms(Map<String, ?> model, String templateId,String[] mobileTo,String nationCode,String sign,String extend, String ext);
 }

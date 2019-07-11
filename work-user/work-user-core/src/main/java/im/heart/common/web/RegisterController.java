@@ -82,8 +82,7 @@ public class RegisterController extends AbstractController {
 			super.fail(model);
 			return new ModelAndView(RESULT_PAGE);
 		}
-		boolean exist = this.frameUserService.existsUserName(userName);
-		if (exist) {
+		if (this.frameUserService.existsUserName(userName)) {
 			super.fail(model);
 			return new ModelAndView(RESULT_PAGE);
 		}
@@ -101,8 +100,7 @@ public class RegisterController extends AbstractController {
 			super.fail(model);
 			return new ModelAndView(RESULT_PAGE);
 		}
-		boolean exist = this.frameUserService.existsUserEmail(userEmail);
-		if (exist) {
+		if (this.frameUserService.existsUserEmail(userEmail)) {
 			super.fail(model);
 			return new ModelAndView(RESULT_PAGE);
 		}
@@ -120,8 +118,7 @@ public class RegisterController extends AbstractController {
 			super.fail(model);
 			return new ModelAndView(RESULT_PAGE);
 		}
-		boolean exist = this.frameUserService.existsUserPhone(userPhone);;
-		if (exist) {
+		if (this.frameUserService.existsUserPhone(userPhone)) {
 			super.fail(model);
 			return new ModelAndView(RESULT_PAGE);
 		}
@@ -162,8 +159,7 @@ public class RegisterController extends AbstractController {
 			super.fail(model);
 			return new ModelAndView(RESULT_PAGE);
 		}
-		boolean exist = this.frameUserService.existsUserPhone(userPhone);;
-		if (exist) {
+		if (this.frameUserService.existsUserPhone(userPhone)) {
 			super.fail(model);
 			return new ModelAndView(RESULT_PAGE);
 		}
@@ -211,8 +207,7 @@ public class RegisterController extends AbstractController {
 		}*/
 		String phone=frameUser.getUserPhone();
 		if (!UserCacheUtils.checkMobileCode(phone,phoneCode)) {
-			ResponseError responseError=new ResponseError(WebError.AUTH_PHONECODE_INCORRECT);
-			this.fail(model,responseError);
+			this.fail(model,new ResponseError(WebError.AUTH_PHONE_CODE_INCORRECT));
 			return new ModelAndView(RESULT_PAGE);
 		}
 		if(ValidatorUtils.isPhone(phone)){
