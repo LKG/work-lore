@@ -13,8 +13,8 @@
 		'swiper': '${appHost}/modules/swiper',
 	  },
 	  alias: {
-		'$': 'https://code.jquery.com/jquery-3.3.1.min.js',
-		'jquery': 'https://code.jquery.com/jquery-3.3.1.min.js',
+		'$': '${appHost}/js/common/jquery.js',
+		'jquery': '${appHost}/js/common/jquery.js',
 	    'store': 'store/1.3.7/store.js',
 	    'editor.md': 'editor.md/editormd.min.js',
 	    'link-dialog': 'editor.md/plugins/link-dialog/link-dialog.js',
