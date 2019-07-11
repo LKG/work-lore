@@ -2,7 +2,7 @@ define(function (require, exports, moudles) {
 	var $ = require('jquery');
 	var jQuery = require('jquery');
 	require('validate');
-	var artDialog = require('artDialog');
+	var dialog = require('art-dialog');
 	var $baseRoot=$("#baseRoot");
 	var baseRoot=$baseRoot.attr("href");
 	 $("#J_ForgotpasswdForm").validate({

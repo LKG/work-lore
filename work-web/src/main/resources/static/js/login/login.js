@@ -2,7 +2,7 @@ define(function (require, exports, moudles) {
 	var $ = require('jquery');
 	var $loginBox=$("#J_LoginBox");
 	var $baseRoot=$("#baseRoot");
-	var artDialog = require('artDialog');
+	var artDialog = require('art-dialog');
 	var baseRoot=$baseRoot.attr("href");
 	$("#J_2QRCode").show();//显示二维码登录切换
 	var getFormData=function(obj){

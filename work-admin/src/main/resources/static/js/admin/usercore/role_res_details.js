@@ -2,7 +2,7 @@ define(function (require, exports, moudles) {
 	var $ = require('jquery');
 	var jQuery = require('jquery');
 	var template = require('arttemplate');
-	 var dialog = require('artDialog');
+	 var dialog = require('art-dialog');
 	 var $baseRoot=$("#baseRoot");
 	 var baseRoot=$baseRoot.attr("href");
 	 var httpUtil = require('js/common/httpUtil.js');

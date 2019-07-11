@@ -3,7 +3,7 @@ define(function (require, exports, moudles) {
 	var template = require('template');
 	 require('validate');
 	 require('js/common/from');
-	 var dialog = require('artDialog');
+	 var dialog = require('art-dialog');
 	 var $baseRoot=$("#baseRoot");
 	window.dialog = dialog;
 	var $msg= require('/js/common/alerts.js');

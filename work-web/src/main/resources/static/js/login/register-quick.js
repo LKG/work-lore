@@ -4,7 +4,7 @@ define(function (require, exports, moudles) {
 	require('validate');
 	 var $baseRoot=$("#baseRoot");
 	 var baseRoot=$baseRoot.attr("href");
-	 var dialog = require('artDialog');
+	 var dialog = require('art-dialog');
     $("#Q_protocol-btn").on("click",function(){
         var agreements=$("#agreements-body").html();
         var d = dialog({

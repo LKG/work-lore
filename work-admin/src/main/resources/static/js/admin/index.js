@@ -6,7 +6,7 @@ define(function(require, exports, moudles) {
 	var country = remote_ip_info['country'];*/
 	var $ = require('jquery');
 	var template = require('arttemplate');
-	var dialog = require('artDialog');
+	var dialog = require('art-dialog');
 	window.dialog = dialog;
 	require('js/common/highcharts-cmd.js');
 	var $baseRoot = $("#baseRoot");
