@@ -10,7 +10,7 @@
 // 		otext.style.color='rgb(51, 51, 51)';
 // 	};
 // }
-$(function(){
+;$(function(){
 				//手动控制轮播图
 				$('#one li').eq(0).show();
 
@@ -71,7 +71,6 @@ $(function(){
 	$('.panel .nav-tabs li').on("click mouseover",function () {
 		$(this).addClass('active').siblings().removeClass('active');
 		var index=$(this).index();
-            debugger;
         $(this).parents('.panel').find('.tab-pane').eq(index).show().siblings().hide();
 	});
 });

@@ -5,6 +5,7 @@
 	  base: '${appHost}/',
 	 // 设置路径，方便跨目录调用
 	  paths: {
+	    'jquery': '${appHost}/modules/jquery',
 		'store': '${appHost}/modules/store',
 		'editor.md': '${appHost}/modules/editor.md',
 		'select2': '${appHost}/modules/select2',
@@ -13,9 +14,8 @@
 		'swiper': '${appHost}/modules/swiper',
 	  },
 	  alias: {
-		'$': 'https://code.jquery.com/jquery-3.3.1.min.js',
-		'jquery': 'https://code.jquery.com/jquery-3.3.1.min.js',
-        'jQuery': 'https://code.jquery.com/jquery-3.3.1.min.js',
+        '$': 'jquery/1.8.2/jquery.min.js',
+        'jquery': 'jquery/1.8.2/jquery.min.js',
 	    'store': 'store/1.3.7/store.js',
 	    'editor.md': 'editor.md/editormd.min.js',
 	    'link-dialog': 'editor.md/plugins/link-dialog/link-dialog.js',

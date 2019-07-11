@@ -2,6 +2,8 @@ define(function (require, exports, moudles) {
     var $ = require('jquery');
     var jQuery = require('jquery');
     var dialog = require('artDialog');
+    alert($);
+    debugger;
     var $baseRoot=$("#baseRoot");
     window.dialog = dialog;
     var baseRoot=$baseRoot.attr("href");
