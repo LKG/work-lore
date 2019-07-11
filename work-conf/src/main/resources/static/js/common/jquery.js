@@ -1,4 +1,5 @@
 define(function (require, exports, moudles) {
-    require('../../modules/jquery/jquery.min.js');
+   var  $=require('../../modules/jquery/1.8.2/jquery.min.js');
+    var  jQuery=require('../../modules/jquery/1.8.2/jquery.min.js');
     return $.noConflict();;
 });

@@ -33,7 +33,7 @@
 	    'laypage': '${appHost}/js/common/laypage.js',
 		'lazyload': '${appHost}/js/common/lazyload.js',
 	    'validate': '${appHost}/js/common/validate.js',
-	    'artDialog': '${appHost}/js/common/dialog.js',
+	    'artDialog': '${appHost}/modules/artDialog/dist/dialog-plus.js',
 	    'fine-uploader': '${appHost}/js/common/fine-uploader.js',
 	    'lrz': '${appHost}/modules/localResizeIMG/dist/lrz.all.bundle.js',
 	    'select2': 'select2/4.0.3/js/select2.full.min.js',
