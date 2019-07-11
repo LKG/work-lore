@@ -17,12 +17,8 @@ define(function (require, exports, moudles) {
     $("#xx,#xx a").on("click",function () {
         $("#top-banner").hide();
     });
-    $("#refresh,#seach-btn").on("click", function() {
-        $("#page").val(1);
-        search(true);
-    });
     $("#btn-print").on("click", function() {
-        $("#article-row").printThis();
+        $("#article-row").printThis({ importCSS: true,});
     });
     $(".artinfo .cgray").on("click", function() {
         var font=$(this).attr("data-font");

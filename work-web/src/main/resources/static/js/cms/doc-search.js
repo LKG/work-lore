@@ -37,8 +37,7 @@ define(function (require, exports, moudles) {
             if (!first) {
                 var curr = obj.curr;
                 $("#page").val(curr);
-                model = dialog({content: '<i class="fa fa-spinner fa-pulse fa-spin"></i>服务器正在处理中。。。',});
-                model.showModal();
+                dialog({content: '<i class="fa fa-spinner fa-pulse fa-spin"></i>服务器正在处理中。。。',}).showModal();
                 replaceParamVal("page",curr);
             }
         }
