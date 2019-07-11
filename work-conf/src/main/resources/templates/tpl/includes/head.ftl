@@ -7,7 +7,7 @@
 <base href="${appHost}" id="baseRoot"/>
 <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="${appHost}/modules/fontawesome/4.7.0/css/font-awesome.min.css?v=${ver!'1'}" />
+<link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 <link rel="stylesheet" type="text/css" href="${appHost}/modules/nprogress/nprogress.css?v=${ver!'1'}" />
 <link rel="stylesheet" type="text/css" href="${appHost}/css/animate.css?v=${ver!'1'}" />
 <link rel="stylesheet" type="text/css" href="${appHost}/modules/artDialog/css/dialog.css?v=${ver!'1'}" />
