@@ -2,6 +2,8 @@ package im.heart.core.support.handler;
 
 import com.google.common.collect.Maps;
 import im.heart.core.CommonConst.RequestResult;
+import im.heart.core.plugins.captcha.CaptchaServiceException;
+import im.heart.core.plugins.sms.SmsSendException;
 import im.heart.core.utils.BaseUtils;
 import im.heart.core.validator.BeanValidators;
 import org.slf4j.Logger;
@@ -89,6 +91,16 @@ public class RestExceptionHandler{
 	@ExceptionHandler(IllegalArgumentException.class)
 	public ModelAndView handleIllegalArgumentException(HttpServletRequest request, IllegalArgumentException ex) {
 		logger.error("handleIllegalArgumentException:"+ex.getStackTrace()[0].getMethodName(), ex);
+		return this.chooseView(request,this.error(request, ex));
+	}
+	@ExceptionHandler(SmsSendException.class)
+	public ModelAndView handleSmsSendException(HttpServletRequest request, SmsSendException ex) {
+		logger.error("handleSmsSendException:"+ex.getStackTrace()[0].getMethodName(), ex);
+		return this.chooseView(request,this.error(request, ex));
+	}
+	@ExceptionHandler(CaptchaServiceException.class)
+	public ModelAndView handleCaptchaServiceException(HttpServletRequest request, CaptchaServiceException ex) {
+		logger.error("handleCaptchaServiceException:"+ex.getStackTrace()[0].getMethodName(), ex);
 		return this.chooseView(request,this.error(request, ex));
 	}
 	/**
