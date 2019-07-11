@@ -1,5 +1,5 @@
 define(function(require, exports, moudles) {
-	var $ = require('jquery');
+	require('jquery');
 	var httpUtil = require('js/common/httpUtil.js');
 	var $msg= require('/js/common/alerts.js');
 	var store = require('store');

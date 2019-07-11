@@ -1,12 +1,12 @@
 define(function(require, exports, moudles) {
-	var $ = require('jquery');
+	require('jquery');
 	/*var myprovince = remote_ip_info['province'];
 	var mycity = remote_ip_info['city']
 	var mydistrict = remote_ip_info['district'];
 	var country = remote_ip_info['country'];*/
-	var $ = require('jquery');
+	require('jquery');
 	var template = require('arttemplate');
-	var dialog = require('art-dialog');
+	require('art-dialog');
 	window.dialog = dialog;
 	require('js/common/highcharts-cmd.js');
 	var $baseRoot = $("#baseRoot");

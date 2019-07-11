@@ -1,5 +1,5 @@
 define(function(require, exports, moudles) {
-	var $ = require('jquery');
+	require('jquery');
 	var store = require('store');
 	var setting={local:'zh_cn',sidebar:'min'};
 	store.set('setting-config',setting);

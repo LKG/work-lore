@@ -1,5 +1,5 @@
 define(function (require, exports, moudles) {
-		var $ = require('jquery');
+		require('jquery');
 		var bgColor="rgb(19, 53, 81)";
 		var bgUrl="https://img.alicdn.com/tfs/TB174geRVXXXXcYXVXXXXXXXXXX-2880-1024.png";
 		//$("#wrap-login").css('background-color',bgColor);

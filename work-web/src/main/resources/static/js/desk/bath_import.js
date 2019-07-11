@@ -1,7 +1,7 @@
 define(function(require, exports, moudles) {
-	var $ = require('jquery');
+	require('jquery');
 	var template = require('arttemplate');
-	var dialog = require('art-dialog');
+	require('art-dialog');
 	var fineUploader = require('fine-uploader');
 	window.dialog = dialog;
     var $msg= require('/js/common/alerts.js');

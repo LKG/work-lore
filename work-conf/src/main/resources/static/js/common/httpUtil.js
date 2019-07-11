@@ -1,6 +1,6 @@
 define(function(require, exports, moudles) {
-	var $ = require('jquery');
-	var dialog = require('./dialog');
+	require('jquery');
+	require('art-dialog');
 	"use strict";
 	var pluginName = 'httpUtil';// 插件名称
 	// 构造方法

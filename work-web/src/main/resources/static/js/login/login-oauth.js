@@ -1,5 +1,5 @@
 define(function (require, exports, moudles) {
-	var $ = require('jquery');
+	require('jquery');
 	 require('../common/modal.js')($);
 	$loginBox=$("#J_LoginBox");
 	 var $baseRoot=$("#baseRoot");

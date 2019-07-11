@@ -1,6 +1,5 @@
 define(function(require, exports, moudles) {
-	var $ = require('jquery');
-	var jQuery = require('jquery');
+    require('jquery')
 	$.fn.transferItem = function(options) {
 		function transferItem($this, options) {
 			this.init($this, options)

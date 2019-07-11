@@ -1,5 +1,5 @@
 define(function(require, exports, moudles) {
-	var $ = require('jquery');
+	require('jquery');
 	var $baseRoot = $('#baseRoot');
 	var baseRoot = $baseRoot.attr("href");
 	var template = require('arttemplate');

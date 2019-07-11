@@ -1,8 +1,7 @@
 define(function (require, exports, moudles) {
-	var $ = require('jquery');
-	var jQuery = require('jquery');
+require('jquery')
 	 require('validate');
-	 var dialog = require('art-dialog');
+	 require('art-dialog');
 	 var $baseRoot=$("#baseRoot");
 	 var baseRoot=$baseRoot.attr("href");
 	 var validator = $("#J_changePwdForm").validate({

@@ -1,6 +1,5 @@
 define(function (require, exports, moudles) {
-	var $ = require('jquery');
-	var jQuery = require('jquery');
+require('jquery')
 	var pin = require('pin');
     var template = require('arttemplate');
     var lazyload = require('lazyload');

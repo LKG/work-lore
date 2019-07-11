@@ -1,5 +1,5 @@
 define(function (require, exports, moudles) {
-	var $ = require('jquery');
+	require('jquery');
 	var $loginBox=$("#J_LoginBox");
 	var $baseRoot=$("#baseRoot");
 	var artDialog = require('art-dialog');

@@ -1,6 +1,5 @@
 define(function (require, exports, moudles) {
-	var $ = require('jquery');
-	var jQuery = require('jquery');
+	require('jquery')
 	var $baseRoot = $('#baseRoot');
 	var baseRoot = $baseRoot.attr("href");
 	var getAreas = function(obj, parentId, defaultVal) {

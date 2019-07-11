@@ -1,7 +1,7 @@
 define(function (require, exports, moudles) {
-    var $ = require('jquery');
-    var jQuery = require('jquery');
-    var dialog = require('art-dialog');
+    require('jquery');
+    ;
+    require('art-dialog');
     var laypage = require('laypage');
     window.dialog = dialog;
     $("#xx,#xx a").on("click",function () {

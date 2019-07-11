@@ -1,10 +1,9 @@
 define(function (require, exports, moudles) {
-	var $ = require('jquery');
-	var jQuery = require('jquery');
+require('jquery')
 	require('validate');
 	 var $baseRoot=$("#baseRoot");
 	 var baseRoot=$baseRoot.attr("href");
-	 var dialog = require('art-dialog');
+	 require('art-dialog');
     $("#Q_protocol-btn").on("click",function(){
         var agreements=$("#agreements-body").html();
         var d = dialog({

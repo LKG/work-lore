@@ -1,9 +1,9 @@
 define(function (require, exports, moudles) {
-	var $ = require('jquery');
+	require('jquery');
 	var template = require('template');
 	 require('validate');
 	 require('js/common/from');
-	 var dialog = require('art-dialog');
+	 require('art-dialog');
 	 var $baseRoot=$("#baseRoot");
 	window.dialog = dialog;
 	var $msg= require('/js/common/alerts.js');

@@ -1,7 +1,7 @@
 define(function (require, exports, moudles) {
-    var $ = require('jquery');
-    var jQuery = require('jquery');
-    var dialog = require('art-dialog');
+    require('jquery');
+    ;
+    require('art-dialog');
     var $baseRoot=$("#baseRoot");
     var baseRoot=$baseRoot.attr("href");
     var $httpUtil = require('/js/common/httpUtil.js');

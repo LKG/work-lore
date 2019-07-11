@@ -1,6 +1,5 @@
 define(function (require, exports, moudles) {
-	var $ = require('jquery');
-	var jQuery = require('jquery');
+require('jquery')
 	var template =require('../../modules/arttemplate/template-native.js');
 	 template.helper("substr", function(content,begin,end){  
 		  var mphone = content.substr(begin,end);

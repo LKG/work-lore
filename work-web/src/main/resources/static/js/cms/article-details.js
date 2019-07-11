@@ -1,8 +1,8 @@
 define(function (require, exports, moudles) {
-    var $ = require('jquery');
-    var jQuery = require('jquery');
+     require('jquery');
     var template = require('arttemplate');
-    var dialog = require('art-dialog');
+    require('art-dialog');
+    debugger;
     var $baseRoot=$("#baseRoot");
     var $httpUtil = require('/js/common/httpUtil.js');
     var $docSupportContainer=$("#doc-support-container");
@@ -20,7 +20,6 @@ define(function (require, exports, moudles) {
     });
     $("#btn-print").on("click", function() {
         var $row=$('#article-row');
-        alert($row);
         $('#article-row').printThis({
             importCSS: true,
         });

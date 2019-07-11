@@ -1,6 +1,5 @@
 define(function (require, exports, moudles) {
-	var $ = require('jquery');
-	var jQuery = require('jquery');
+require('jquery')
 	 require('./jquery.validate.js')($);
 	 require('./jquery.form.js')($);
 	 var $msg= require('/js/common/alerts.js');
