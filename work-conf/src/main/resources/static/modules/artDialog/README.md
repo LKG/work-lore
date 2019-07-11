@@ -1,9 +1,16 @@
 #	artDialog
 
-artDialog——经典、优雅的网页对话框控件。
-文档与示例：<http://aui.github.io/artDialog/doc/index.html>
+[![CDNJS](https://img.shields.io/cdnjs/v/artDialog.svg)](https://cdnjs.com/libraries/artDialog)
+[![NPM Version](https://img.shields.io/npm/v/art-dialog.svg)](https://npmjs.org/package/art-dialog)
+[![NPM Downloads](https://img.shields.io/npm/dm/art-dialog.svg)](https://npmjs.org/package/art-dialog)
 
-AngularJS 版本：<https://github.com/aui/angular-popups>
+artDialog——经典、优雅的网页对话框控件。
+
+[文档与示例](http://aui.github.io/artDialog/doc/index.html) | [AngularJS 版本](https://github.com/aui/angular-popups)
+
+```
+npm install --save-dev art-dialog
+```
 
 ##	成功案例
 
@@ -15,6 +22,12 @@ AngularJS 版本：<https://github.com/aui/angular-popups>
 *	...
 
 ##	更新历史
+
+7.0.0
+
+1. 支持 Webpack
+2. 支持 Npm
+2. 将 CSS 打包到 JS 中
 
 6.0.4
 
@@ -48,4 +61,6 @@ AngularJS 版本：<https://github.com/aui/angular-popups>
 
 ##	授权协议
 
-免费，且开源，基于[LGPL](./LICENSE.md)协议。
+免费，且开源，基于[LGPL-3.0](./LICENSE.md)协议。
+
+[\[AD\] 前端招聘：在海边写代码](https://juejin.im/post/5a2651d06fb9a0451c3a40ad)

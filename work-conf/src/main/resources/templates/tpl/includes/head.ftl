@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="${appHost}/modules/fontawesome/4.7.0/css/font-awesome.min.css?v=${ver!'1'}" />
 <link rel="stylesheet" type="text/css" href="${appHost}/modules/nprogress/nprogress.css?v=${ver!'1'}" />
 <link rel="stylesheet" type="text/css" href="${appHost}/css/animate.css?v=${ver!'1'}" />
-<link rel="stylesheet" type="text/css" href="${appHost}/modules/artDialog/css/ui-dialog.css?v=${ver!'1'}" />
+<link rel="stylesheet" type="text/css" href="${appHost}/modules/artDialog/css/dialog.css?v=${ver!'1'}" />
 <link rel="stylesheet" type="text/css" href="${appHost}/css/style.css?v=${ver!'1'}" />
 <link href="${appHost}/css/index.css?v=${ver!'1'}" type="text/css" rel="stylesheet">
 <style>
