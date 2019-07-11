@@ -31,7 +31,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
-
+/**
+ *
+ * @author gg
+ * @desc 校验控制器
+ */
 @Controller
 @RequestMapping("/validate")
 public class ValidateController extends AbstractController {
@@ -41,7 +45,6 @@ public class ValidateController extends AbstractController {
 	private SmsSendService smsSendService;
 	@Autowired
 	private ImageCaptchaExService imageCaptchaService;
-
 	@Autowired
 	private QRCodeService qRCodeService;
 
@@ -52,17 +55,16 @@ public class ValidateController extends AbstractController {
 	 * @param module
 	 */
 	@RequestMapping(value = "/passcode")
-	public void generatImageCaptcha(HttpServletRequest request,
+	public void generateCaptcha(HttpServletRequest request,
 			HttpServletResponse response,
 			@RequestParam(value = "module", required = false ,defaultValue="login") String module,
 			@RequestParam(value = "rand", required = false ,defaultValue="sjrand") String rand) {
 		ServletOutputStream out = null;
 		try {
-			logger.debug("module："+module+"rand:"+rand);
+			logger.debug("module:{}rand:{}",module,rand);
 			BaseUtils.setNoCacheHeader(response);
 			response.setContentType("image/jpeg");
 			String sessionId = request.getSession().getId();
-
 			BufferedImage bufferedImage = this.imageCaptchaService.getImageChallengeForID(sessionId, request.getLocale());
 			out = response.getOutputStream();
 			ImageIO.write(bufferedImage, "jpg", out);
@@ -95,7 +97,7 @@ public class ValidateController extends AbstractController {
 	 * @param logo
 	 */
 	@RequestMapping(value = "/passQRcode")
-	public void generatQRcode(HttpServletRequest request,
+	public void generateQRcode(HttpServletRequest request,
 			HttpServletResponse response,
 			@RequestParam(value = "text", required = false ) String contents,
 			@RequestParam(value = "bg", required = false ,defaultValue="ffffff") String background,
@@ -180,7 +182,7 @@ public class ValidateController extends AbstractController {
               @RequestParam(value = "userPhone", required = false ) String userPhone,
               @RequestParam(value = "phoneCode", required = false) String phoneCode,
               ModelMap model){
-		logger.debug("passcode-host:"+request.getLocalAddr());
+		logger.debug("passcode-host:{}",request.getLocalAddr());
 		Boolean isResponseCorrect= UserCacheUtils.checkMobileCode(userPhone, phoneCode);
 		if(isResponseCorrect){
 			super.success(model);
@@ -203,20 +205,19 @@ public class ValidateController extends AbstractController {
               HttpServletResponse response,
               @RequestParam(value = "validateCode", required = false) String captchaValue,
               ModelMap model){
-		logger.debug("passcode-host:"+request.getLocalAddr());
-		Boolean isResponseCorrect = Boolean.FALSE;
+		logger.debug("passcode-host:{}",request.getLocalAddr());
 		String sessionId = request.getRequestedSessionId();
 		boolean isAjax = BaseUtils.isAjaxRequest(request);
 		try {
 			//Ajax 请求不移除session
-			isResponseCorrect = this.imageCaptchaService.validateResponseForID(sessionId, captchaValue,isAjax).booleanValue();
+			Boolean isResponseCorrect = this.imageCaptchaService.validateResponseForID(sessionId, captchaValue,isAjax).booleanValue();
+			if(isResponseCorrect){
+				super.success(model);
+				return new ModelAndView(RESULT_PAGE);
+			}
 		} catch (CaptchaServiceException e) {
 			logger.error(e.getStackTrace()[0].getMethodName(), e);
 			throw new CaptchaServiceException(e);
-		}
-		if(isResponseCorrect){
-			super.success(model);
-			return new ModelAndView(RESULT_PAGE);
 		}
 		super.fail(model);
 		return new ModelAndView(RESULT_PAGE);
