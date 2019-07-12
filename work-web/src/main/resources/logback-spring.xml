@@ -78,12 +78,24 @@
 			<onMismatch>DENY</onMismatch>
 		</filter>
 	</appender>
-	<root level="debug">
-		<appender-ref ref="CONSOLE" />
-	</root>
-
-	<root level="info">
-		<appender-ref ref="FILE_INFO" />
-		<appender-ref ref="FILE_ERROR" />
-	</root>
+	<!-- 开发环境下的日志配置 -->
+	<springProfile name="dev">
+		<root level="INFO">
+			<appender-ref ref="CONSOLE" />
+		</root>
+	</springProfile>
+	<springProfile name="test">
+		<root level="INFO">
+			<appender-ref ref="CONSOLE" />
+			<appender-ref ref="FILE_INFO" />
+			<appender-ref ref="FILE_ERROR" />
+		</root>
+	</springProfile>
+	<!-- 生产环境下的日志配置 -->
+	<springProfile name="prod">
+		<root level="INFO">
+			<appender-ref ref="FILE_INFO" />
+			<appender-ref ref="FILE_ERROR" />
+		</root>
+	</springProfile>
 </configuration>
