@@ -1,5 +1,6 @@
 package im.heart.frame.service.impl;
 
+import com.google.common.collect.Sets;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.plugins.persistence.SearchFilter.Operator;
@@ -25,6 +26,7 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 
 /**
  *
@@ -45,7 +47,7 @@ public class FrameTplServiceImpl extends CommonServiceImpl<FrameTpl, BigInteger>
 	
 	@Override
 	public boolean exists(String tplCode) {
-		final Collection<SearchFilter> filters = new HashSet<SearchFilter>();
+		final Collection<SearchFilter> filters = Sets.newHashSet();
 		filters.add(new SearchFilter("tplCode", Operator.EQ, tplCode));
 		Specification<FrameTpl> spec = DynamicSpecifications.bySearchFilter(filters, FrameTpl.class);
 		long count = this.frameTplRepository.count(spec);
@@ -56,8 +58,11 @@ public class FrameTplServiceImpl extends CommonServiceImpl<FrameTpl, BigInteger>
 	}
 	@Override
 	public String read(BigInteger id) {
-		FrameTpl frameTpl = this.findById(id);
-		return read(frameTpl);
+		Optional<FrameTpl> optional=this.findById(id);
+		if(optional.isPresent()){
+			return read(optional.get());
+		}
+		return "";
 	}
 	@Override
 	public String read(FrameTpl template) {
@@ -73,8 +78,11 @@ public class FrameTplServiceImpl extends CommonServiceImpl<FrameTpl, BigInteger>
 	}
 	@Override
 	public void write(BigInteger id, String content) {
-		FrameTpl template = this.findById(id);
-		write(template, content);
+		Optional<FrameTpl> optional=this.findById(id);
+		if(optional.isPresent()){
+			write(optional.get(), content);
+		}
+
 	}
 	@Override
 	public void write(FrameTpl template, String content) {

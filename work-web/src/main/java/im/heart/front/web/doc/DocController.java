@@ -9,6 +9,7 @@ import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.web.AbstractController;
 import im.heart.media.entity.Periodical;
 import im.heart.media.entity.PeriodicalContent;
+import im.heart.media.entity.PeriodicalPackage;
 import im.heart.media.service.PeriodicalContentService;
 import im.heart.media.service.PeriodicalImgService;
 import im.heart.media.service.PeriodicalService;
@@ -61,21 +62,24 @@ public class DocController extends AbstractController {
             HttpServletRequest request,
             ModelMap model) {
         this.updateHitsById(id);
-        Periodical po = this.periodicalService.findById(id);
-        List<PeriodicalContent> contents=this.periodicalContentService.findByPeriodicalId(id);
-        PeriodicalVO vo=new PeriodicalVO(po);
-        vo.setContents(contents);
-        FrameUser user= SecurityUtilsHelper.getCurrentUser();
-        if(user!=null){
-            Optional<FrameUserFollow> optional= this.frameUserFollowService.findByUserIdAndRelateIdAndType(user.getUserId(),po.getId(),po.getPeriodicalType());
-            if(optional.isPresent()){
-                vo.setIsCollect(Boolean.TRUE);
+        Optional<Periodical> optional = this.periodicalService.findById(id);
+        if(optional.isPresent()){
+            PeriodicalVO vo=new PeriodicalVO(optional.get());
+            List<PeriodicalContent> contents=this.periodicalContentService.findByPeriodicalId(id);
+            vo.setContents(contents);
+            FrameUser user= SecurityUtilsHelper.getCurrentUser();
+            if(user!=null){
+                Optional<FrameUserFollow> optionals= this.frameUserFollowService.findByUserIdAndRelateIdAndType(user.getUserId(),vo.getId(),vo.getPeriodicalType());
+                if(optionals.isPresent()){
+                    vo.setIsCollect(Boolean.TRUE);
+                }
+                if(BigDecimal.ZERO.compareTo(vo.getFinalPrice())==0||user.getIsExpiry()){
+                    vo.setAllowDown(Boolean.TRUE);
+                }
             }
-            if(BigDecimal.ZERO.compareTo(po.getFinalPrice())==0||user.getIsExpiry()){
-                vo.setAllowDown(Boolean.TRUE);
-            }
+            super.success(model,vo );
         }
-        super.success(model,vo );
+
         return new ModelAndView(VIEW_DETAILS);
     }
     @RequestMapping(apiVer+"s")
@@ -128,17 +132,20 @@ public class DocController extends AbstractController {
             HttpServletRequest request,
             ModelMap model) {
         BigInteger userId= SecurityUtilsHelper.getCurrentUserId();
-        Periodical materialPeriodical=this.periodicalService.findById(id);
-        Optional<FrameUserFollow> optional= this.frameUserFollowService.findByUserIdAndRelateIdAndType(userId,id,materialPeriodical.getPeriodicalType());
-        if(!optional.isPresent()){
-            FrameUserFollow userFollow=new FrameUserFollow();
-            userFollow.setRelateId(id);
-            userFollow.setType(materialPeriodical.getPeriodicalType());
-            userFollow.setUserId(userId);
-            userFollow.setStatus(Status.enabled);
-            userFollow.setItemTitle(materialPeriodical.getPeriodicalName());
-            userFollow.setItemImgUrl(materialPeriodical.getCoverImgUrl());
-            this.frameUserFollowService.save(userFollow);
+        Optional<Periodical> optional = this.periodicalService.findById(id);
+        if (optional.isPresent()){
+            Periodical materialPeriodical=optional.get();
+            Optional<FrameUserFollow> optionals= this.frameUserFollowService.findByUserIdAndRelateIdAndType(userId,id,materialPeriodical.getPeriodicalType());
+            if(!optionals.isPresent()){
+                FrameUserFollow userFollow=new FrameUserFollow();
+                userFollow.setRelateId(id);
+                userFollow.setType(materialPeriodical.getPeriodicalType());
+                userFollow.setUserId(userId);
+                userFollow.setStatus(Status.enabled);
+                userFollow.setItemTitle(materialPeriodical.getPeriodicalName());
+                userFollow.setItemImgUrl(materialPeriodical.getCoverImgUrl());
+                this.frameUserFollowService.save(userFollow);
+            }
         }
         super.success(model,true);
         return new ModelAndView(VIEW_DETAILS);

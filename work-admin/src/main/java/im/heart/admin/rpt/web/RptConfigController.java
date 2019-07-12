@@ -30,6 +30,7 @@ import java.beans.PropertyEditorSupport;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 
@@ -102,8 +103,10 @@ public class RptConfigController extends AbstractController {
 			HttpServletRequest request,
 			@RequestParam(value = RequestResult.ACCESS_TOKEN, required = false) String token,
 			ModelMap model) {
-		RptConfig po = this.rptConfigService.findById(id);
-		super.success(model, po);
+		Optional<RptConfig> optional= this.rptConfigService.findById(id);
+		if(optional.isPresent()) {
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	
@@ -147,15 +150,11 @@ public class RptConfigController extends AbstractController {
 	@RequestMapping(value = apiVer + "/subGeneral", method = RequestMethod.POST)
 	public ModelAndView create(
 			@Valid @ModelAttribute(RequestResult.RESULT) RptConfig rptConfig,
-			@RequestParam(value = "format", required = false) String format,
+			@RequestParam(value = "format", required = false ,defaultValue = "jhtml") String format,
 			BindingResult result, HttpServletRequest request,
 			RedirectAttributes redirectAttributes) {
-		
 		RptConfig entity=this.rptConfigService.save(rptConfig);
 		redirectAttributes.addFlashAttribute(RequestResult.RESULT, entity);
-		if(StringUtilsEx.isBlank(format)){
-			format="jhtml";
-		}
 		return new ModelAndView(redirectToUrl(apiVer + "/success."+format));
 	}
 }

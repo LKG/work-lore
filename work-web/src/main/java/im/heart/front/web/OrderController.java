@@ -4,6 +4,7 @@ import im.heart.core.CommonConst;
 import im.heart.core.web.AbstractController;
 import im.heart.core.web.ResponseError;
 import im.heart.core.web.enums.WebError;
+import im.heart.frame.entity.FrameDict;
 import im.heart.media.entity.Periodical;
 import im.heart.media.service.PeriodicalService;
 import im.heart.media.vo.PeriodicalVO;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class OrderController extends AbstractController {
@@ -43,12 +45,14 @@ public class OrderController extends AbstractController {
      * @param request
      * @return
      */
-    @RequestMapping(value={apiVer+"/getOrderInfo"} ,method = RequestMethod.GET)
+    @RequestMapping(value={apiVer+"/getOrderProdInfo"} ,method = RequestMethod.GET)
     public ModelAndView getOrderInfo(HttpServletRequest request,
                                      @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN , required = false) String token,
                                      ModelMap model, BigInteger id) {
-        Periodical materialPeriodical=this.periodicalService.findById(id);
-       super.success(model, new PeriodicalVO(materialPeriodical));
+        Optional<Periodical> optional = this.periodicalService.findById(id);
+        if(optional.isPresent()){
+            super.success(model, new PeriodicalVO(optional.get()));
+        }
         return new ModelAndView(CREATE_LIST);
     }
     /**
@@ -60,8 +64,10 @@ public class OrderController extends AbstractController {
     public ModelAndView confirmOrderInfo(HttpServletRequest request,
                                          @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN , required = false) String token,
                                          ModelMap model, Long orderId) {
-        Order po=this.orderService.findById(orderId);
-        super.success(model, po);
+        Optional<Order> optional = this.orderService.findById(orderId);
+        if(optional.isPresent()){
+            super.success(model, optional.get());
+        }
         return new ModelAndView(CONFIRM_PAGE);
     }
     /**

@@ -11,6 +11,8 @@ import im.heart.frame.entity.FrameDict;
 import im.heart.frame.entity.FrameDictItem;
 import im.heart.frame.service.FrameDictItemService;
 import im.heart.frame.service.FrameDictService;
+import im.heart.media.entity.Periodical;
+import im.heart.media.vo.PeriodicalVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * 
@@ -51,8 +54,10 @@ public class ApiDictItemController extends AbstractController {
 			@RequestParam(value = RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
 			@PathVariable() BigInteger dictId,
 			ModelMap model){
-		FrameDict po = this.frameDictService.findById(dictId);
-		super.success(model,po);
+		Optional<FrameDict> optional = this.frameDictService.findById(dictId);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_CREATE);
 	}
 	@RequestMapping(value={apiVer+"/item/save"},method = RequestMethod.POST)

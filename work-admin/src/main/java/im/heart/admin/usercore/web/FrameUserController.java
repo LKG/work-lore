@@ -39,6 +39,7 @@ import javax.validation.Valid;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -144,7 +145,10 @@ public class FrameUserController extends AbstractController {
 			@PathVariable BigInteger userId,
 			HttpServletRequest request,
 			ModelMap model) {
-		FrameUser frameUser = this.frameUserService.findById(userId);
+		Optional<FrameUser> optional = this.frameUserService.findById(userId);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		Map<String, BigInteger> roleMap = this.frameUserRoleService.findRoleCodeMapByUserId(userId);
 		List<FrameRole> roles = this.frameRoleService.findAll(new Sort(Sort.DEFAULT_DIRECTION,"createTime"));
 		List<FrameUserRoleVO> vos = Lists.newArrayList();
@@ -156,7 +160,6 @@ public class FrameUserController extends AbstractController {
 			}
 			vos.add(userRoleVO);
 		}
-		super.success(model, frameUser);
 		model.put("roleCodes",vos);
 		return new ModelAndView(VIEW_AUTH);
 	}
@@ -199,9 +202,13 @@ public class FrameUserController extends AbstractController {
 			HttpServletRequest request,
 			ModelMap model) {
 		for(BigInteger id:ids){
-			FrameUser frameUser = this.frameUserService.findById(id);
-			frameUser.setStatus(Status.enabled);
-			this.frameUserService.save(frameUser);
+			Optional<FrameUser> optional = this.frameUserService.findById(id);
+			if(optional.isPresent()){
+				FrameUser frameUser = optional.get();
+				frameUser.setStatus(Status.enabled);
+				this.frameUserService.save(frameUser);
+			}
+
 		}
 		super.success(model,true);
 		return new ModelAndView(VIEW_SUCCESS);
@@ -248,9 +255,12 @@ public class FrameUserController extends AbstractController {
 			HttpServletRequest request,
 			ModelMap model) {
 		for(BigInteger id:ids){
-			FrameUser frameUser = this.frameUserService.findById(id);
-			frameUser.setStatus(Status.disabled);
-			this.frameUserService.save(frameUser);
+			Optional<FrameUser> optional = this.frameUserService.findById(id);
+			if(optional.isPresent()){
+				FrameUser frameUser = optional.get();
+				frameUser.setStatus(Status.disabled);
+				this.frameUserService.save(frameUser);
+			}
 		}
 		super.success(model,true);
 		return new ModelAndView(VIEW_SUCCESS);
@@ -302,9 +312,12 @@ public class FrameUserController extends AbstractController {
 			@PathVariable BigInteger id,
 			HttpServletRequest request,
 			ModelMap model) {
-		FrameUser po = this.frameUserService.findById(id);
-		FrameUserVO vo = new FrameUserVO(po);
-		super.success(model, vo);
+		Optional<FrameUser> optional = this.frameUserService.findById(id);
+		if(optional.isPresent()){
+			FrameUser po = optional.get();
+			FrameUserVO vo = new FrameUserVO(po);
+			super.success(model, vo);
+		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
 }

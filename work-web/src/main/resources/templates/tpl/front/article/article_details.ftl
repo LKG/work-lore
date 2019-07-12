@@ -6,7 +6,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <#include "/includes/head.ftl" />
-    <title>${result.type!''}-${result.title!''}-<@spring.message  code="label.system.name" /></title>
+    <title>${result.categoryName!''}-${result.title!''}-<@spring.message  code="label.system.name" /></title>
     <link rel="stylesheet" type="text/css" href="${appHost}/css/style.css?v=${ver!'1'}" />
     <meta name="Keywords" content="${result.seoKeywords!''}" />
     <meta name="description" itemprop="description"  content="${result.seoDescription!''}" />

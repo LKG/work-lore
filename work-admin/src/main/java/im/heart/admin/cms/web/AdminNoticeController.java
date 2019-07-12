@@ -1,5 +1,6 @@
 package im.heart.admin.cms.web;
 
+import im.heart.cms.entity.FriendLink;
 import im.heart.cms.entity.Notice;
 import im.heart.cms.service.NoticeService;
 import im.heart.core.CommonConst;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.math.BigInteger;
+import java.util.Optional;
 
 
 @Controller
@@ -79,8 +81,10 @@ public class AdminNoticeController extends AbstractController {
 			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model) throws Exception {
-		Notice po = this.noticeService.findById(id);
-		super.success(model, po);
+		Optional<Notice> optional = this.noticeService.findById(id);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	/**

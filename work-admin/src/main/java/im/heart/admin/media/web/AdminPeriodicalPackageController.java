@@ -9,6 +9,7 @@ import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.web.AbstractController;
 import im.heart.core.web.ResponseError;
 import im.heart.core.web.enums.WebError;
+import im.heart.frame.entity.FrameTpl;
 import im.heart.media.entity.PeriodicalPackage;
 import im.heart.media.enums.PackageType;
 import im.heart.media.packs.PackageDataService;
@@ -92,15 +93,18 @@ public class  AdminPeriodicalPackageController extends AbstractController {
 		return new ModelAndView(VIEW_LIST);
 	}
 	@RequestMapping(value = apiVer+"/{id}",method = RequestMethod.GET)
-	protected ModelAndView findByKey(
+	protected ModelAndView findById(
 			@RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
 			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN , required = false) String token,
 			@PathVariable BigInteger id,
 			HttpServletRequest request,
 			ModelMap model) {
-		PeriodicalPackage po = this.periodicalPackageService.findById(id);
+		Optional<PeriodicalPackage> optional = this.periodicalPackageService.findById(id);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		model.put("bucketName", bucketName);
-		super.success(model, po);
+
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	@RequestMapping(value = apiVer+"/{ids}/publish",method = RequestMethod.POST)
@@ -110,9 +114,12 @@ public class  AdminPeriodicalPackageController extends AbstractController {
 			HttpServletRequest request,
 			ModelMap model) {
 		for(BigInteger id:ids){
-			PeriodicalPackage materialPackage = this.periodicalPackageService.findById(id);
-			materialPackage.setCheckStatus(Status.enabled);
-			this.periodicalPackageService.save(materialPackage);
+			Optional<PeriodicalPackage> optional = this.periodicalPackageService.findById(id);
+			if(optional.isPresent()){
+				PeriodicalPackage materialPackage=optional.get();
+				materialPackage.setCheckStatus(Status.enabled);
+				this.periodicalPackageService.save(materialPackage);
+			}
 		}
 		super.success(model);
 		return new ModelAndView(VIEW_SUCCESS);
@@ -125,9 +132,13 @@ public class  AdminPeriodicalPackageController extends AbstractController {
 			HttpServletRequest request,
 			ModelMap model) {
 		for(BigInteger id:ids){
-			PeriodicalPackage materialPackage = this.periodicalPackageService.findById(id);
-			materialPackage.setCheckStatus(Status.disabled);
-			this.periodicalPackageService.save(materialPackage);
+			Optional<PeriodicalPackage> optional = this.periodicalPackageService.findById(id);
+			if(optional.isPresent()){
+				PeriodicalPackage materialPackage=optional.get();
+				materialPackage.setCheckStatus(Status.disabled);
+				this.periodicalPackageService.save(materialPackage);
+			}
+
 		}
 		super.success(model);
 		return new ModelAndView(VIEW_SUCCESS);
@@ -185,12 +196,14 @@ public class  AdminPeriodicalPackageController extends AbstractController {
 			HttpServletRequest request,
 			ModelMap model) {
 		for(BigInteger id:ids){
-			PeriodicalPackage materialPackage = this.periodicalPackageService.findById(id);
-			String packageType = materialPackage.getPackageType();	
-			PackageType packType= PackageType.findPackageType(Integer.valueOf(packageType));
-			if(packType!=null){
-				PackageDataService packageDataService=(PackageDataService) ContextManager.getBean(packType.code+PackageDataService.BEAN_SUFFIX);
-				packageDataService.addPackageData(materialPackage);
+			Optional<PeriodicalPackage> optional = this.periodicalPackageService.findById(id);
+			if(optional.isPresent()){
+				PeriodicalPackage materialPackage =optional.get();
+				PackageType packType= PackageType.findPackageType(Integer.valueOf(materialPackage.getPackageType()));
+				if(packType!=null){
+					PackageDataService packageDataService=(PackageDataService) ContextManager.getBean(packType.code+PackageDataService.BEAN_SUFFIX);
+					packageDataService.addPackageData(materialPackage);
+				}
 			}
 		}
 		super.success(model);

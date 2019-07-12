@@ -8,6 +8,7 @@ import im.heart.core.plugins.persistence.DynamicPageRequest;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.utils.StringUtilsEx;
 import im.heart.core.web.AbstractController;
+import im.heart.media.entity.PeriodicalPackage;
 import im.heart.usercore.entity.FramePermission;
 import im.heart.usercore.entity.FrameResource;
 import im.heart.usercore.service.FramePermissionService;
@@ -29,6 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Controller
@@ -59,10 +61,10 @@ public class FrameResourceController extends AbstractController {
 			ModelMap model){
 		FrameResource po=new FrameResource();
 		if(parentId!=null&&parentId.intValue()!=0){
-			FrameResource parentResource = this.frameResourceService.findById(parentId);
-			if(parentResource!=null){
+			Optional<FrameResource> optional = this.frameResourceService.findById(parentId);
+			if(optional.isPresent()){
 				po.setParentId(parentId);
-				po.setParentName(parentResource.getResourceName());
+				po.setParentName(optional.get().getResourceName());
 			}
 		}
 		super.success(model, po);
@@ -141,14 +143,16 @@ public class FrameResourceController extends AbstractController {
 	}
 	@RequiresPermissions("func:view")
 	@RequestMapping(value = apiVer+"/{id}")
-	protected ModelAndView findByKey(
+	protected ModelAndView findById(
 			@RequestParam(value = RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
 			@RequestParam(value = RequestResult.ACCESS_TOKEN , required = false) String token,
 			@PathVariable BigInteger id,
 			HttpServletRequest request,
 			ModelMap model) {
-		FrameResource po = this.frameResourceService.findById(id);
-		super.success(model, po);
+		Optional<FrameResource> optional = this.frameResourceService.findById(id);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	@RequiresPermissions("func:delete")

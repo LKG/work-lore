@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.math.BigInteger;
+import java.util.Optional;
 
 /**
  * 
@@ -114,12 +115,18 @@ public class AdminAreaController extends AbstractController {
 			@RequestParam(value = RequestResult.ACCESS_TOKEN, required = false) String token,
 			HttpServletRequest request,
 			ModelMap model) {
-		FrameArea po = this.frameAreaService.findById(id.toString());
-		if(!po.isRoot()){
-			FrameArea parentArea =this.frameAreaService.findById(po.getParentId().toString());
-			po.setParentName(parentArea.getName());
+		Optional<FrameArea> optional = this.frameAreaService.findById(id.toString());
+		if(optional.isPresent()){
+			FrameArea po=optional.get();
+			if(!po.isRoot()){
+				Optional<FrameArea>  optionalParent =this.frameAreaService.findById(po.getParentId().toString());
+				if(optionalParent.isPresent()){
+					po.setParentName(optionalParent.get().getName());
+				}
+			}
+			super.success(model, po);
 		}
-		super.success(model, po);
+
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	
@@ -153,8 +160,9 @@ public class AdminAreaController extends AbstractController {
 			ModelMap model){
 		FrameArea po=new FrameArea();
 		if(parentId!=null&&!BigInteger.ZERO.equals(parentId)){
-			FrameArea parentArea= this.frameAreaService.findById(parentId.toString());
-			if(parentArea!=null){
+			Optional<FrameArea>  optionalParent =this.frameAreaService.findById(po.getParentId().toString());
+			if(optionalParent.isPresent()){
+				FrameArea parentArea=optionalParent.get();
 				po.setLevel(parentArea.getLevel()+1);
 				po.setParentId(new BigInteger(parentArea.getCode()));
 				po.setParentName(parentArea.getName());

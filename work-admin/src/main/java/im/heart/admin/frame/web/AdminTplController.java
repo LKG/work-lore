@@ -1,5 +1,6 @@
 package im.heart.admin.frame.web;
 
+import im.heart.cms.entity.Comment;
 import im.heart.core.CommonConst;
 import im.heart.core.CommonConst.RequestResult;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.math.BigInteger;
+import java.util.Optional;
 
 
 /**
@@ -87,9 +89,11 @@ public class AdminTplController extends AbstractController {
 			@PathVariable BigInteger id,
 			HttpServletRequest request,
 			ModelMap model) {
-		FrameTpl po = this.frameTplService.findById(id);
-		model.addAttribute("content", this.templateService.read(id));
-		super.success(model, po);
+		Optional<FrameTpl> optional = this.frameTplService.findById(id);
+		if(optional.isPresent()){
+			model.addAttribute("content", this.templateService.read(id));
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	@RequestMapping(value = apiVer + "/checkCode")
@@ -103,7 +107,7 @@ public class AdminTplController extends AbstractController {
 			return new ModelAndView(RESULT_PAGE);
 		}
 		boolean exists = this.frameTplService.exists(tplCode);
-		if (exists) {// 已存在
+		if (exists) {
 			super.fail(model,false);
 			return new ModelAndView(RESULT_PAGE);
 		}

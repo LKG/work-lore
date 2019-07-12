@@ -7,6 +7,7 @@ import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.web.AbstractController;
 import im.heart.media.entity.PeriodicalCategory;
 import im.heart.media.service.PeriodicalCategoryService;
+import im.heart.shop.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/api")
@@ -66,8 +68,10 @@ public class PeriodicalCategoryController extends AbstractController {
 			 @PathVariable BigInteger id,
 			HttpServletRequest request,
 			ModelMap model) {
-		PeriodicalCategory po = this.periodicalCategoryService.findById(id);
-		super.success(model, po);
+		Optional<PeriodicalCategory> optional = this.periodicalCategoryService.findById(id);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_SUCCESS);
 	}
 }

@@ -7,6 +7,7 @@ import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.web.AbstractController;
 import im.heart.media.entity.Periodical;
+import im.heart.media.entity.PeriodicalPackage;
 import im.heart.media.service.PeriodicalService;
 import im.heart.media.vo.PeriodicalVO;
 import im.heart.security.utils.SecurityUtilsHelper;
@@ -28,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserDocController extends AbstractController {
@@ -48,9 +50,11 @@ public class UserDocController extends AbstractController {
             @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
             HttpServletRequest request,
             ModelMap model) {
-        Periodical po = this.materialPeriodicalService.findById(id);
-        PeriodicalVO vo=new PeriodicalVO(po);
-        super.success(model, vo);
+        Optional<Periodical> optional = this.materialPeriodicalService.findById(id);
+        if(optional.isPresent()){
+            PeriodicalVO vo=new PeriodicalVO(optional.get());
+            super.success(model, vo);
+        }
         return new ModelAndView(VIEW_DETAILS);
     }
     @RequestMapping(apiVer+"s")

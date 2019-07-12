@@ -7,6 +7,8 @@ import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.web.AbstractController;
 import im.heart.frame.entity.FrameDict;
 import im.heart.frame.service.FrameDictService;
+import im.heart.media.entity.Periodical;
+import im.heart.media.vo.PeriodicalVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.math.BigInteger;
+import java.util.Optional;
 
 /**
  *
@@ -114,8 +117,10 @@ public class ApiDictController extends AbstractController {
             @PathVariable BigInteger id,
             HttpServletRequest request,
             ModelMap model) {
-        FrameDict po = this.frameDictService.findById(id);
-        super.success(model, po);
+        Optional<FrameDict> optional = this.frameDictService.findById(id);
+        if(optional.isPresent()){
+            super.success(model, optional.get());
+        }
         return new ModelAndView(VIEW_DETAILS);
     }
 

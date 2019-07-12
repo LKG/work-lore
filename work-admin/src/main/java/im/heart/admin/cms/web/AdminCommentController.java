@@ -6,6 +6,7 @@ import im.heart.core.CommonConst;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.web.AbstractController;
+import im.heart.frame.entity.FrameDict;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -37,8 +39,10 @@ public class AdminCommentController extends AbstractController {
 			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
 			HttpServletRequest request,
 			ModelMap model) {
-		Comment po = this.commentService.findById(id);
-		super.success(model, po);
+		Optional<Comment> optional = this.commentService.findById(id);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	@RequestMapping(apiVer+"s")

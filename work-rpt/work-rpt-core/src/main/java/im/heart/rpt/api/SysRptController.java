@@ -25,6 +25,7 @@ import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * 
@@ -174,8 +175,9 @@ public class SysRptController extends AbstractController {
 			@RequestParam(value = "jsoncallback", required = false) String jsoncallback,
 			@PathVariable BigInteger rptId, HttpServletRequest request,
 			ModelMap model) throws UnsupportedEncodingException {
-		RptConfig po = this.rptConfigService.findById(rptId);
-		if (po != null) {
+		Optional<RptConfig> optional = this.rptConfigService.findById(rptId);
+		if(optional.isPresent()) {
+			RptConfig po=optional.get();
 			List<Map<String, Object>> datas = queryForList(request, po);
 			super.success(model, "data", datas);
 			return new ModelAndView(po.getRptUrl());

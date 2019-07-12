@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  *
@@ -87,8 +88,10 @@ public class ApiAdController extends AbstractController {
 			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
 			HttpServletRequest request, HttpServletResponse response,
 			ModelMap model){
-		Ad po = this.adService.findById(id);
-		super.success(model, po);
+		Optional<Ad> optional = this.adService.findById(id);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
 }

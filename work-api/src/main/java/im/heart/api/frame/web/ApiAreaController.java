@@ -93,32 +93,7 @@ public class ApiAreaController extends AbstractController {
 		super.success(model,pag);
 		return new ModelAndView(VIEW_LIST);
 	}
-//	/**
-//	 * 根据Id 查询记录
-//	 * @param jsoncallback
-//	 * @param id
-//	 * @param token
-//	 * @param request
-//	 * @param model
-//	 * @return
-//	 */
-//
-//	@RequestMapping(value = apiVer+"/{id}")
-//	protected ModelAndView findById(
-//			@RequestParam(value = RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
-//			@PathVariable BigInteger id,
-//			@RequestParam(value = RequestResult.ACCESS_TOKEN, required = false) String token,
-//			HttpServletRequest request,
-//			ModelMap model) {
-//		FrameArea po = this.frameAreaService.findById(id.toString());
-//		if(!po.isRoot()){
-//			FrameArea parentArea =this.frameAreaService.findById(po.getParentId().toString());
-//			po.setParentName(parentArea.getName());
-//		}
-//		super.success(model, po);
-//		return new ModelAndView(VIEW_DETAILS);
-//	}
-	
+
 	/**
 	 * 修改记录
 	 * @param frameArea
@@ -138,25 +113,6 @@ public class ApiAreaController extends AbstractController {
 		this.frameAreaService.save(frameArea);
 		super.success(model);
 		return new ModelAndView(VIEW_SUCCESS);
-	}
-	
-
-	@RequestMapping(value={apiVer+"/{parentId}/add"})
-	public ModelAndView add(HttpServletRequest request, HttpServletResponse response,
-			@RequestParam(value = RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
-			@PathVariable() BigInteger parentId,
-			ModelMap model){
-		FrameArea po=new FrameArea();
-		if(parentId!=null&&parentId.intValue()!=0){
-			FrameArea parentArea= this.frameAreaService.findById(parentId.toString());
-			if(parentArea!=null){
-				po.setLevel(parentArea.getLevel()+1);
-				po.setParentId(new BigInteger(parentArea.getCode()));
-				po.setParentName(parentArea.getName());
-			}
-		}
-		super.success(model, po);
-		return new ModelAndView(VIEW_CREATE);
 	}
 
 	@RequestMapping(value = apiVer+"/{ids}/delete",method = RequestMethod.POST)

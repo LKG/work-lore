@@ -1,5 +1,6 @@
 package im.heart.admin.media.web;
 
+import im.heart.cms.entity.AdPosition;
 import im.heart.core.CommonConst;
 import im.heart.core.CommonConst.RequestResult;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
@@ -23,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.math.BigInteger;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -107,8 +109,10 @@ public class  AdminPeriodicalCategoryController extends AbstractController {
 			 @PathVariable BigInteger id,
 			HttpServletRequest request,
 			ModelMap model) {
-		PeriodicalCategory po = this.periodicalCategoryService.findById(id);
-		super.success(model, po);
+		Optional<PeriodicalCategory> optional = this.periodicalCategoryService.findById(id);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	@RequestMapping(value={apiVer+"/{parentId}/add"})
@@ -117,8 +121,9 @@ public class  AdminPeriodicalCategoryController extends AbstractController {
                             @PathVariable() BigInteger parentId,
                             ModelMap model, PeriodicalCategory po){
 		if(parentId!=null&&parentId.intValue()!=0){
-			PeriodicalCategory parentCategory = this.periodicalCategoryService.findById(parentId);
-			if(parentCategory!=null){
+			Optional<PeriodicalCategory> optional = this.periodicalCategoryService.findById(parentId);
+			if(optional.isPresent()){
+				PeriodicalCategory parentCategory =optional.get();
 				po.setLevel(parentCategory.getLevel()+1);
 				po.setParentId(parentCategory.getCategoryId());
 				po.setParentName(parentCategory.getCategoryName());

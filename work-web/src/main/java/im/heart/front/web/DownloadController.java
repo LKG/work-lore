@@ -8,6 +8,7 @@ import im.heart.core.web.AbstractController;
 import im.heart.core.web.ResponseError;
 import im.heart.core.web.enums.WebError;
 import im.heart.media.entity.Periodical;
+import im.heart.media.entity.PeriodicalCategory;
 import im.heart.media.service.PeriodicalService;
 import im.heart.security.utils.SecurityUtilsHelper;
 import im.heart.usercore.vo.FrameUserVO;
@@ -18,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Controller
@@ -69,30 +72,33 @@ public class DownloadController extends AbstractController {
             HttpServletRequest request, HttpServletResponse response,
             ModelMap model) {
         FrameUserVO user= SecurityUtilsHelper.getCurrentUser();
-        Periodical po = this.periodicalService.findById(id);
-
-        if(!checkDownCount(user.getUserName())){
-            super.fail(model,new ResponseError(WebError.AUTH_EXCESSIVE_ATTEMPTS));
-            return  new ModelAndView(RESULT_PAGE);
-        }
-        //限制下载
-        if(!Status.enabled.equals(po.getCheckStatus())){
-            super.fail(model,new ResponseError(WebError.ACCESS_DENIED));
-            return  new ModelAndView(RESULT_PAGE);
-        }
-        //校验用户是否有权限
-        boolean isFree=(BigDecimal.ZERO.compareTo(po.getFinalPrice())==0);
-        if(isFree||user.getIsExpiry()){
-            if(StringUtils.isBlank(filename)){
-                filename=po.getPeriodicalName().concat(".").concat(po.getFileHeader());
+        Optional<Periodical> optional = this.periodicalService.findById(id);
+        if(optional.isPresent()){
+            Periodical po=optional.get();
+            if(!checkDownCount(user.getUserName())){
+                super.fail(model,new ResponseError(WebError.AUTH_EXCESSIVE_ATTEMPTS));
+                return  new ModelAndView(RESULT_PAGE);
             }
-            this.periodicalService.addUpdateDownTimesTask(id);
-            BaseUtils.setFileDownloadHeader(request,response,filename);
-            //文件的真实路径
-            response.addHeader("X-Accel-Redirect",po.getRealFilePath());
-            response.addHeader(HttpHeaders.CONTENT_TYPE,"application/octet-stream; charset=utf-8");
-            return  new ModelAndView(RESULT_PAGE);
+            //限制下载
+            if(!Status.enabled.equals(po.getCheckStatus())){
+                super.fail(model,new ResponseError(WebError.ACCESS_DENIED));
+                return  new ModelAndView(RESULT_PAGE);
+            }
+            //校验用户是否有权限
+            boolean isFree=(BigDecimal.ZERO.compareTo(po.getFinalPrice())==0);
+            if(isFree||user.getIsExpiry()){
+                if(StringUtils.isBlank(filename)){
+                    filename=po.getPeriodicalName().concat(".").concat(po.getFileHeader());
+                }
+                this.periodicalService.addUpdateDownTimesTask(id);
+                BaseUtils.setFileDownloadHeader(request,response,filename);
+                //文件的真实路径
+                response.addHeader("X-Accel-Redirect",po.getRealFilePath());
+                response.addHeader(HttpHeaders.CONTENT_TYPE,MediaType.APPLICATION_OCTET_STREAM_VALUE);
+                return  new ModelAndView(RESULT_PAGE);
+            }
         }
+
         super.fail(model,new ResponseError(WebError.ACCESS_DENIED));
         return  new ModelAndView(RESULT_PAGE);
     }

@@ -1,6 +1,7 @@
 package im.heart.admin.cms.web;
 
 import im.heart.cms.entity.Ad;
+import im.heart.cms.entity.Article;
 import im.heart.cms.service.AdService;
 import im.heart.core.CommonConst;
 import im.heart.core.plugins.log.OptLog;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.math.BigInteger;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -44,8 +46,10 @@ public class AdminAdmsController extends AbstractController {
 			@RequestParam(value = "access_token", required = false) String token,
 			HttpServletRequest request,
 			ModelMap model) {
-		Ad po = this.adService.findById(id);
-		super.success(model, po);
+		Optional<Ad> optional = this.adService.findById(id);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	@RequestMapping(apiVer+"s")

@@ -1,5 +1,6 @@
 package im.heart.admin.cms.web;
 
+import im.heart.cms.entity.Ad;
 import im.heart.cms.entity.FriendLink;
 import im.heart.cms.service.FriendLinkService;
 import im.heart.core.CommonConst;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.math.BigInteger;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -41,8 +43,10 @@ public class AdminFriendLinkController extends AbstractController {
 			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
 			HttpServletRequest request,
 			ModelMap model) {
-		FriendLink po = this.friendLinkService.findById(id);
-		super.success(model, po);
+		Optional<FriendLink> optional = this.friendLinkService.findById(id);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	

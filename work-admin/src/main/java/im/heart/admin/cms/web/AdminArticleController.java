@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.math.BigInteger;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -45,8 +46,10 @@ public class AdminArticleController extends AbstractController {
 			@RequestParam(value = "access_token", required = false) String token,
 			HttpServletRequest request,
 			ModelMap model) {
-		Article po = this.articleService.findById(id);
-		super.success(model, po);
+		Optional<Article> optional = this.articleService.findById(id);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	@RequestMapping(apiVer+"s")

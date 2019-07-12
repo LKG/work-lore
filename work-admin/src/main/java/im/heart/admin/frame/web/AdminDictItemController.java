@@ -1,5 +1,6 @@
 package im.heart.admin.frame.web;
 
+import im.heart.cms.entity.AdPosition;
 import im.heart.core.CommonConst;
 import im.heart.core.CommonConst.RequestResult;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
@@ -27,6 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.Optional;
 
 /**
  * 
@@ -53,8 +55,10 @@ public class AdminDictItemController extends AbstractController {
 			@RequestParam(value = RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
 			@PathVariable() BigInteger dictId,
 			ModelMap model){
-		FrameDict po = this.frameDictService.findById(dictId);
-		super.success(model,po);
+		Optional<FrameDict> optional = this.frameDictService.findById(dictId);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_CREATE);
 	}
 	@RequiresPermissions("dict:create")

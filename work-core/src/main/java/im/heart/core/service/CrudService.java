@@ -23,7 +23,7 @@ public interface CrudService<T, ID>  extends BaseService<T, ID> {
 	 * @param id
 	 * @return
 	 */
-	public T findById(ID id);
+	public Optional<T>  findById(ID id);
 
 	/**
 	 *  根据id 删除数据

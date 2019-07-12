@@ -7,6 +7,7 @@ import im.heart.core.web.AbstractController;
 import im.heart.core.web.ResponseError;
 import im.heart.core.web.enums.WebError;
 import im.heart.media.entity.Periodical;
+import im.heart.media.entity.PeriodicalPackage;
 import im.heart.media.service.PeriodicalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
+import java.util.Optional;
 
 /**
  *
@@ -36,12 +38,13 @@ public class CopyrightAppealController extends AbstractController {
 	public ModelAndView copyrightAppeal(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "bid", required = false) BigInteger bid,
 			ModelMap model) {
-		Periodical periodical=this.periodicalService.findById(bid);
-		if(periodical==null){
+		Optional<Periodical> optional = this.periodicalService.findById(bid);
+		if(!optional.isPresent()){
 			ResponseError responseError=new ResponseError(WebError.REQUEST_PARAMETER_MISSING);
 			super.fail(model,responseError);
 			return new ModelAndView(ERROR_PAGE);
 		}
+		Periodical periodical=optional.get();
 		if(!CommonConst.FlowStatus.processed.equals(periodical.getStatus())){
 			ResponseError responseError=new ResponseError(WebError.REQUEST_PARAMETER_MISSING);
 			super.fail(model,responseError);

@@ -1,5 +1,7 @@
 package im.heart.front.web.user;
 
+import im.heart.cms.dto.ArticleDTO;
+import im.heart.cms.entity.Article;
 import im.heart.core.CommonConst;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
@@ -24,6 +26,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserOrderController extends AbstractController {
@@ -82,11 +86,15 @@ public class UserOrderController extends AbstractController {
             ModelMap model) {
         super.success(model,true);
         BigInteger userId= SecurityUtilsHelper.getCurrentUser().getUserId();
-        Order order=this.orderService.findById(orderId);
-        if(order!=null&& Order.OrderStatus.unprocessed.equals(order.getOrderStatus())&&order.getUserId().equals(userId)){
-            order.setOrderStatus(Order.OrderStatus.invalid);
-            this.orderService.save(order);
+        Optional<Order> optional = this.orderService.findById(orderId);
+        if(optional.isPresent()){
+            Order order=optional.get();
+            if(order!=null&& Order.OrderStatus.unprocessed.equals(order.getOrderStatus())&&order.getUserId().equals(userId)){
+                order.setOrderStatus(Order.OrderStatus.invalid);
+                this.orderService.save(order);
+            }
         }
+
         return new ModelAndView(VIEW_SUCCESS);
     }
 }

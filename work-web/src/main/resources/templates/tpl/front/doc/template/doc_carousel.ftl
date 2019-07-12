@@ -16,7 +16,7 @@
     <a type="button" class="btn btn-danger" href="${appHost}/copyrightAppeal.jhtml?bid=${result.id!''}" ><i class="fa  fa-exclamation">举报</i></a>
     <a type="button" class="btn btn-danger" href="${appHost}/copyrightAppeal.jhtml?bid=${result.id!''}" ><i class="fa  fa-exclamation-triangle">版权申诉</i></a>
     <a href="#" class="alert-link">word格式文档无特别注明外均可编辑修改；预览文档经过压缩，下载后原文更清晰！ </a>
-    <a type="button" class="btn btn-danger pull-right" href="${appHost}/order/getOrderInfo.jhtml?id=${result.id!''}" ><i class="fa  fa-cloud-download">立即下载</i></a>
+    <a type="button" class="btn btn-danger pull-right" href="${appHost}/order/getOrderProdInfo.jhtml?id=${result.id!''}" ><i class="fa  fa-cloud-download">立即下载</i></a>
 </div>
 <div class="alert alert-warning" role="alert">
    <i class="fa  fa-exclamation-triangle"></i> <a href="#" class="alert-link">本站所有资源均是用户自行上传分享，仅供网友学习交流，未经上传用户书面授权，请勿作他用。 </a>

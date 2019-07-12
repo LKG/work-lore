@@ -31,6 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
 import java.util.Collection;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -92,14 +93,13 @@ public class FrameRoleController extends AbstractController {
 	protected ModelAndView update(
 			@PathVariable() BigInteger roleId,
 			@Validated() @ModelAttribute(RequestResult.RESULT) FrameRole frameRole,
-			@RequestParam(value = "format", required = false) String format,
 			BindingResult result, HttpServletRequest request,
 			@RequestParam(value = RequestResult.ACCESS_TOKEN , required = false) String token,
 			RedirectAttributes redirectAttributes,ModelMap model){
-		FrameRole oldRole = this.frameRoleService.findById(roleId);
-		if(oldRole!=null){
-			BeanUtils.copyProperties(frameRole, oldRole);
-			FrameRole newframeRole = this.frameRoleService.save(oldRole);
+		 Optional<FrameRole> optional = this.frameRoleService.findById(roleId);
+		if(!optional.isPresent()){
+			BeanUtils.copyProperties(frameRole, optional.get());
+			FrameRole newframeRole = this.frameRoleService.save(optional.get());
 			super.success(model,newframeRole);
 		}
 		return new ModelAndView(VIEW_SUCCESS);
@@ -150,8 +150,11 @@ public class FrameRoleController extends AbstractController {
 		Specification<FrameUser> spec= DynamicSpecifications.bySearchFilter(filters, FrameUser.class);
 		PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order, FrameUser.class);
 		Page<FrameUser> pag = this.frameUserService.findAll(spec, pageRequest);
-	    FrameRole role = this.frameRoleService.findById(roleId);
-	    model.put("role", role);
+
+	    Optional<FrameRole> optional = this.frameRoleService.findById(roleId);
+	    if(optional.isPresent()){
+			model.put("role", optional.get());
+		}
 		super.success(model,pag);
 		return new ModelAndView(VIEW_USER_DETAILS);
 	}
@@ -164,8 +167,11 @@ public class FrameRoleController extends AbstractController {
 			@PathVariable() BigInteger roleId,
 			HttpServletRequest request,
 			ModelMap model) {
-		FrameRole po = this.frameRoleService.findById(roleId);
-		super.success(model, po);
+		Optional<FrameRole> optional = this.frameRoleService.findById(roleId);
+		if(optional.isPresent()) {
+			super.success(model, optional.get());
+		}
+
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	@RequiresPermissions("role:delete")

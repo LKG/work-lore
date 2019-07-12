@@ -32,10 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigInteger;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 
@@ -64,12 +61,12 @@ public class FrameRoleResourceController extends AbstractController {
 			@PathVariable BigInteger roleId,
 			HttpServletRequest request,
 			ModelMap model) {
-		FrameRole po = this.frameRoleService.findById(roleId);
-		//直接从请求中取值避免spring 转换
-		String datas = request.getParameter("datas");
-		if(po!=null){
+		Optional<FrameRole> optional = this.frameRoleService.findById(roleId);
+		if(optional.isPresent()){
+			//直接从请求中取值避免spring 转换
+			String datas = request.getParameter("datas");
 			List<ResourceCheckModel> checkBoxModels = JSON.parseArray(datas, ResourceCheckModel.class);
-			this.frameRoleResourceService.saveRoleResource(po,checkBoxModels);
+			this.frameRoleResourceService.saveRoleResource(optional.get(),checkBoxModels);
 		}
 		super.success(model);
 		return new ModelAndView(VIEW_SUCCESS);
@@ -86,24 +83,28 @@ public class FrameRoleResourceController extends AbstractController {
 			@PathVariable() BigInteger roleId,
 			HttpServletRequest request,
 			ModelMap model) {
-		FrameRole po = this.frameRoleService.findById(roleId);
-		Map<BigInteger,Set<BigInteger>> roleResourceMap=this.frameRoleResourceService.findResourceMapByRoleCode(po.getRoleCode());
-		final Collection<SearchFilter> filters= DynamicSpecifications.buildSearchFilters(request);
-		filters.add(new SearchFilter("status", Operator.EQ, Status.enabled));
-		Specification<FrameResource> spec= DynamicSpecifications.bySearchFilter(filters, FrameResource.class);
-		PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order, FrameResource.class);
-		Page<FrameResource> pag = this.frameResourceService.findAll(spec, pageRequest);
-		super.success(model,po);
-		if(pag!=null&&pag.hasContent()){
-			List<FrameResourceVO> vos = Lists.newArrayList();
-			for(FrameResource res:pag.getContent()){
-				FrameResourceVO resourceVO=new FrameResourceVO(res,roleResourceMap);
-				vos.add(resourceVO);
+		Optional<FrameRole> optional = this.frameRoleService.findById(roleId);
+		if(optional.isPresent()){
+			FrameRole po=optional.get();
+			Map<BigInteger,Set<BigInteger>> roleResourceMap=this.frameRoleResourceService.findResourceMapByRoleCode(po.getRoleCode());
+			final Collection<SearchFilter> filters= DynamicSpecifications.buildSearchFilters(request);
+			filters.add(new SearchFilter("status", Operator.EQ, Status.enabled));
+			Specification<FrameResource> spec= DynamicSpecifications.bySearchFilter(filters, FrameResource.class);
+			PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order, FrameResource.class);
+			Page<FrameResource> pag = this.frameResourceService.findAll(spec, pageRequest);
+			super.success(model,po);
+			if(pag!=null&&pag.hasContent()){
+				List<FrameResourceVO> vos = Lists.newArrayList();
+				for(FrameResource res:pag.getContent()){
+					FrameResourceVO resourceVO=new FrameResourceVO(res,roleResourceMap);
+					vos.add(resourceVO);
+				}
+				Page<FrameResourceVO> pagvos =new PageImpl<FrameResourceVO>(vos,pageRequest,pag.getTotalElements());
+				model.put("resources", pagvos);
+				return new ModelAndView(VIEW_RES_DETAILS);
 			}
-			Page<FrameResourceVO> pagvos =new PageImpl<FrameResourceVO>(vos,pageRequest,pag.getTotalElements());
-			model.put("resources", pagvos);
-			return new ModelAndView(VIEW_RES_DETAILS);
 		}
+
 
 		return new ModelAndView(VIEW_RES_DETAILS);
 	}

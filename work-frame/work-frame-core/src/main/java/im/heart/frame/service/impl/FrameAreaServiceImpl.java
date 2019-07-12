@@ -1,5 +1,6 @@
 package im.heart.frame.service.impl;
 
+import com.google.common.collect.Sets;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.plugins.persistence.SearchFilter.Operator;
@@ -22,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -43,8 +45,8 @@ public class FrameAreaServiceImpl extends CommonServiceImpl<FrameArea, String> i
 	}
 	@Cacheable(value=CACHE_NAMES, key="#id")
 	@Override
-	public FrameArea findById(String id) {
-		return this.frameAreaRepository.findById(id).get();
+	public Optional<FrameArea> findById(String id) {
+		return this.frameAreaRepository.findById(id);
 	}
     /**
      *  保存
@@ -60,7 +62,7 @@ public class FrameAreaServiceImpl extends CommonServiceImpl<FrameArea, String> i
 	@Override
 	@Cacheable(value=CACHE_NAMES, key="#areaName")
 	public List<FrameArea> findAreasByName(String areaName) {
-		final Collection<SearchFilter> filters = new HashSet<SearchFilter>();
+		final Collection<SearchFilter> filters = Sets.newHashSet();
 		filters.add(new SearchFilter("name", Operator.LIKES, areaName));
 		Specification<FrameArea> spec = DynamicSpecifications.bySearchFilter(filters, FrameArea.class);
 		List<FrameArea> list = this.frameAreaRepository.findAll(spec);

@@ -39,10 +39,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
@@ -77,8 +74,10 @@ public class  FrameUserOrgController extends AbstractController {
 			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
 			HttpServletRequest request,
 			ModelMap model) {
-		FrameUser po = this.frameUserService.findById(userId);
-		super.success(model, new FrameUserVO(po));
+		Optional<FrameUser> optional = this.frameUserService.findById(userId);
+		if(optional.isPresent()){
+			super.success(model, new FrameUserVO(optional.get()));
+		}
 		return new ModelAndView(VIEW_RELATED);
 	}
 
@@ -95,7 +94,7 @@ public class  FrameUserOrgController extends AbstractController {
 	}
 	/**
 	 * 
-	 * 查询外修商，并包装
+	 * 查询关联机构，并包装
 	 * @param request
 	 * @param response
 	 * @param jsoncallback
@@ -153,17 +152,20 @@ public class  FrameUserOrgController extends AbstractController {
 		List<CheckModel> checkBoxModels = JSON.parseArray(datas, CheckModel.class);
 		for(CheckModel checkBoxModel:checkBoxModels){
 			BigInteger id = checkBoxModel.getId();
-			FrameOrg relateOrg = this.frameOrgService.findById(id);
-			FrameUserOrg userOrg=new FrameUserOrg();
-			userOrg.setUserId(userId);
-			userOrg.setRelateOrg(relateOrg);
-			//判断用户是否关联机构，如果无关联取第一条数据为默认
-			boolean exists = this.frameUserOrgService.existsUserOrg(userId);
-			if(!exists){
-				this.frameUserService.setUserDefaultOrg(userId, relateOrg.getId());
-				userOrg.setIsDefault(Boolean.TRUE);
+			Optional<FrameOrg> optional = this.frameOrgService.findById(id);
+			if(optional.isPresent()){
+				FrameOrg relateOrg  = optional.get();
+				FrameUserOrg userOrg=new FrameUserOrg();
+				userOrg.setUserId(userId);
+				userOrg.setRelateOrg(relateOrg);
+				//判断用户是否关联机构，如果无关联取第一条数据为默认
+				boolean exists = this.frameUserOrgService.existsUserOrg(userId);
+				if(!exists){
+					this.frameUserService.setUserDefaultOrg(userId, relateOrg.getId());
+					userOrg.setIsDefault(Boolean.TRUE);
+				}
+				entities.add(userOrg);
 			}
-			entities.add(userOrg);
 		}
 		this.frameUserOrgService.saveAll(entities);
 		super.success(model);

@@ -3,6 +3,8 @@ package im.heart.admin.usercore.web;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import im.heart.cms.entity.Ad;
+import im.heart.cms.entity.Notice;
 import im.heart.core.CommonConst;
 import im.heart.core.CommonConst.RequestResult;
 import im.heart.core.enums.Status;
@@ -37,6 +39,7 @@ import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * 
@@ -82,8 +85,10 @@ public class  FrameOrgRelateController extends AbstractController {
 			@RequestParam(value = RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
 			@RequestParam(value = RequestResult.ACCESS_TOKEN, required = false) String token,
 			ModelMap model) {
-		FrameOrg po = this.frameOrgService.findById(orgId);
-		super.success(model, po);
+		Optional<FrameOrg> optional = this.frameOrgService.findById(orgId);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_RELATED);
 	}
 	/**
@@ -180,16 +185,16 @@ public class  FrameOrgRelateController extends AbstractController {
 			@PathVariable String relateType,
 			HttpServletRequest request,
 			ModelMap model) {
-		FrameOrg org= this.frameOrgService.findById(orgId);
-		//直接从请求中取值避免spring 转换
-		String datas = request.getParameter("datas");
-		List<FrameOrgRelate> entities=Lists.newArrayList();
-		if(org!=null){
+		Optional<FrameOrg> optional = this.frameOrgService.findById(orgId);
+		if(optional.isPresent()){
+			//直接从请求中取值避免spring 转换
+			String datas = request.getParameter("datas");
+			List<FrameOrgRelate> entities=Lists.newArrayList();
 			List<CheckModel> checkBoxModels = JSON.parseArray(datas, CheckModel.class);
 			for(CheckModel checkBox:checkBoxModels){
 				BigInteger id = checkBox.getId();
 				Boolean isDefault=checkBox.getIsDefault();
-				FrameOrg frameOrg = this.frameOrgService.findById(id);
+				FrameOrg frameOrg = this.frameOrgService.findById(id).get();
 				FrameOrgRelate entitie=new FrameOrgRelate();
 				entitie.setIsDefault(isDefault);
 				entitie.setOrgId(orgId);
@@ -210,8 +215,9 @@ public class  FrameOrgRelateController extends AbstractController {
 			HttpServletRequest request,
 			ModelMap model) {
 		for(BigInteger id:ids){
-			FrameOrgRelate entitie = this.frameOrgRelateService.findById(id);
-			if(entitie!=null){
+			Optional<FrameOrgRelate> optional = this.frameOrgRelateService.findById(id);
+			if(optional.isPresent()){
+				FrameOrgRelate entitie=optional.get();
 				entitie.setIsDefault(false);
 				this.frameOrgRelateService.save(entitie);
 			}
@@ -227,8 +233,9 @@ public class  FrameOrgRelateController extends AbstractController {
 			HttpServletRequest request,
 			ModelMap model) {
 		for(BigInteger id:ids){
-			FrameOrgRelate entitie = this.frameOrgRelateService.findById(id);
-			if(entitie!=null){
+			Optional<FrameOrgRelate> optional = this.frameOrgRelateService.findById(id);
+			if(optional.isPresent()){
+				FrameOrgRelate entitie=optional.get();
 				entitie.setIsDefault(true);
 				this.frameOrgRelateService.save(entitie);
 			}

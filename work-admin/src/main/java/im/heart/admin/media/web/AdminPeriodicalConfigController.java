@@ -1,5 +1,6 @@
 package im.heart.admin.media.web;
 
+import im.heart.cms.entity.AdPosition;
 import im.heart.core.CommonConst;
 import im.heart.core.CommonConst.RequestResult;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
@@ -24,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.math.BigInteger;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -131,8 +133,10 @@ public class  AdminPeriodicalConfigController extends AbstractController {
 			@PathVariable BigInteger id,
 			HttpServletRequest request,
 			ModelMap model) {
-		PeriodicalConfig po = this.periodicalConfigService.findById(id);
-		super.success(model, po);
+		Optional<PeriodicalConfig> optional = this.periodicalConfigService.findById(id);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	@RequestMapping(value = apiVer+"/{ids}/disabled",method = RequestMethod.POST)

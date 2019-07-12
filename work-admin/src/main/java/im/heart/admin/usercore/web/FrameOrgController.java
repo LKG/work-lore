@@ -7,6 +7,7 @@ import im.heart.core.plugins.persistence.DynamicPageRequest;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.utils.StringUtilsEx;
 import im.heart.core.web.AbstractController;
+import im.heart.media.entity.PeriodicalConfig;
 import im.heart.usercore.entity.FrameOrg;
 import im.heart.usercore.service.FrameOrgService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.math.BigInteger;
+import java.util.Optional;
 
 
 /**
@@ -118,12 +120,18 @@ public class FrameOrgController extends AbstractController {
 			@RequestParam(value = RequestResult.ACCESS_TOKEN, required = false) String token,
 			HttpServletRequest request,
 			ModelMap model) {
-		FrameOrg po = this.frameOrgService.findById(id);
-		if(!po.isRoot()){
-			FrameOrg parentOrg =this.frameOrgService.findById(po.getParentId());
-			po.setParentName(parentOrg.getName());
+		Optional<FrameOrg> optional = this.frameOrgService.findById(id);
+		if(optional.isPresent()){
+			FrameOrg po=optional.get();
+			if(!po.isRoot()){
+				Optional<FrameOrg> optionalParent = this.frameOrgService.findById(po.getParentId());
+				if(optionalParent.isPresent()){
+					po.setParentName(optionalParent.get().getName());
+				}
+			}
+			super.success(model, po);
 		}
-		super.success(model, po);
+
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	
@@ -158,8 +166,9 @@ public class FrameOrgController extends AbstractController {
 			ModelMap model){
 		FrameOrg po=new FrameOrg();
 		if(parentId!=null&&!BigInteger.ZERO.equals(parentId)){
-			FrameOrg parentOrg= this.frameOrgService.findById(parentId);
-			if(parentOrg!=null){
+			Optional<FrameOrg> optional = this.frameOrgService.findById(parentId);
+			if(optional.isPresent()){
+				FrameOrg parentOrg=optional.get();
 				po.setLevel(parentOrg.getLevel()+1);
 				po.setParentId(parentOrg.getId());
 				po.setType(parentOrg.getType());

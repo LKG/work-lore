@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigInteger;
+import java.util.Optional;
 
 @Controller
 public class UserController extends AbstractController {
@@ -39,8 +40,9 @@ public class UserController extends AbstractController {
                                  ModelMap model) {
 		FrameUserVO vo= SecurityUtilsHelper.getCurrentUser();
 		if(vo!=null){
-			FrameUser user = this.frameUserService.findById(vo.getUserId());
-			FrameUserVO userVo = new FrameUserVO(user);
+			Optional<FrameUser>  optional = this.frameUserService.findById(vo.getUserId());
+			//TODO
+			FrameUserVO userVo = new FrameUserVO(optional.get());
 			super.success(model,userVo);
 		}
 		return new ModelAndView("userinfo/index");

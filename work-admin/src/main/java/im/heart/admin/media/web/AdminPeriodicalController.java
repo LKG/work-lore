@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.math.BigInteger;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/admin")
@@ -75,8 +76,10 @@ public class AdminPeriodicalController extends AbstractController {
 			@PathVariable BigInteger id,
 			HttpServletRequest request,
 			ModelMap model) {
-		Periodical po = this.periodicalService.findById(id);
-		super.success(model, po);
+		Optional<Periodical> optional = this.periodicalService.findById(id);
+		if(optional.isPresent()){
+			super.success(model, optional.get());
+		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	@RequestMapping(value = apiVer+"/{ids}/disabled",method = RequestMethod.POST)
@@ -98,15 +101,19 @@ public class AdminPeriodicalController extends AbstractController {
 			HttpServletRequest request,
 			ModelMap model) {
 		for(BigInteger periodicalId:ids){
-			Periodical periodical=this.periodicalService.findById(periodicalId);
-			FileInputStream inputStream=null;
-			try {
-				inputStream=FileUtilsEx.openInputStream(new File(periodical.getRealFilePath()));
-				this.periodicalParser.addParserTask(periodical,inputStream);
-			}catch (Exception e){
-				logger.error(e.getStackTrace()[0].getMethodName(), e);
-				IOUtils.closeQuietly(inputStream);
+			Optional<Periodical> optional=this.periodicalService.findById(periodicalId);
+			if(optional.isPresent()){
+				FileInputStream inputStream=null;
+				try {
+					Periodical periodical=optional.get();
+					inputStream=FileUtilsEx.openInputStream(new File(periodical.getRealFilePath()));
+					this.periodicalParser.addParserTask(periodical,inputStream);
+				}catch (Exception e){
+					logger.error(e.getStackTrace()[0].getMethodName(), e);
+					IOUtils.closeQuietly(inputStream);
+				}
 			}
+
 		}
 		super.success(model);
 		return new ModelAndView(VIEW_SUCCESS);
