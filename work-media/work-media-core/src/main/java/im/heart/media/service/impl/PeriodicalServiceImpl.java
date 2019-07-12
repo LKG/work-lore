@@ -62,17 +62,17 @@ public class PeriodicalServiceImpl   extends CommonServiceImpl<Periodical, BigIn
 
 	@Override
 	public List<Periodical> findAll(Predicate predicate, long limit){
-		QPeriodical qArticle= QPeriodical.periodical;
-		JPAQuery<Periodical> jpaQuery = this.jpaQueryFactory.select(qArticle)
-				.from(qArticle).where(predicate)
+		QPeriodical qPeriodical= QPeriodical.periodical;
+		JPAQuery<Periodical> jpaQuery = this.jpaQueryFactory.select(qPeriodical)
+				.from(qPeriodical).where(predicate)
 				.limit(limit);
 		return jpaQuery.fetch();
 	}
 	@Override
 	public List<Periodical> findAll(Predicate predicate,long limit, OrderSpecifier<?>... orders){
-		QPeriodical qArticle= QPeriodical.periodical;
-		JPAQuery<Periodical> jpaQuery = this.jpaQueryFactory.select(qArticle)
-				.from(qArticle).where(predicate).orderBy(orders)
+		QPeriodical qPeriodical= QPeriodical.periodical;
+		JPAQuery<Periodical> jpaQuery = this.jpaQueryFactory.select(qPeriodical)
+				.from(qPeriodical).where(predicate).orderBy(orders)
 				.limit(limit);
 		return jpaQuery.fetch();
 	}

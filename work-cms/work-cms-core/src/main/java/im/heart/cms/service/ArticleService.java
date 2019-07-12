@@ -35,7 +35,7 @@ public interface   ArticleService extends CommonService<Article, BigInteger>{
 
 	public List<ArticleDTO> findAll(Predicate predicate, long limit, OrderSpecifier<?>... orders);
 
-	public List<ArticleDTO> queryNearById(BigInteger id, BigInteger categoryId);
+	public List<ArticleDTO> queryNearById(BigInteger id, Long categoryId);
 
 	public void addUpdateHitsTask(BigInteger id);
 

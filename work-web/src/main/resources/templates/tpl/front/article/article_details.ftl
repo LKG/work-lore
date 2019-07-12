@@ -87,7 +87,7 @@
 <div class="container" style="margin-top: 15px;">
 <ol class="breadcrumb">
     <li><a href="${appHost}/"><@spring.message  code="label.system.index" /></a></li>
-    <li><a href="${appHost}/articles/c-${result.categoryId!''}.jhtml">${result.type!''}</a></li>
+    <li><a href="${appHost}/articles/c-${result.categoryId!''}.jhtml">${result.categoryName!''}</a></li>
     <li class="active">文章正文</li>
 </ol>
 </div>

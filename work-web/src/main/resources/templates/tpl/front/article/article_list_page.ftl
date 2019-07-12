@@ -184,7 +184,7 @@
                               <#else>
                                   <#list result.content as article>
                                       <li class="list-group-item">
-                                          <span class="item-type" style="padding-right: 50px;">[${article.type!''}]</span>
+                                          <span class="item-type" style="padding-right: 50px;">[${article.categoryName!''}]</span>
                                           <a class="item-href"  href="${appHost}/article/${article.id!''}.jhtml"
                                              target="_blank" >${article.title!''}</a>
                                           <span >阅读量：<code>${article.hits!'0'}</code></span>

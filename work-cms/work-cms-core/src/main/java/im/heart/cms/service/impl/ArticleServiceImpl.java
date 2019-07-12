@@ -74,7 +74,7 @@ public class ArticleServiceImpl extends CommonServiceImpl<Article, BigInteger> i
 				qArticle.title,
 				qArticle.author,
 				qArticle.source,
-				qArticle.type,
+				qArticle.categoryName,
 				qArticle.pushTime,
 				qArticle.summary,
 				qArticle.allowComment,
@@ -115,7 +115,7 @@ public class ArticleServiceImpl extends CommonServiceImpl<Article, BigInteger> i
 		this.updateHitsById(id);
 	}
 	@Override
-	public List<ArticleDTO> queryNearById(BigInteger id, BigInteger categoryId) {
+	public List<ArticleDTO> queryNearById(BigInteger id, Long categoryId) {
 		List<ArticleProjection> projections=this.articleRepository.queryNearById(id,categoryId);
 		List<ArticleDTO> list= Lists.newArrayList();
 		for (ArticleProjection po:projections){
