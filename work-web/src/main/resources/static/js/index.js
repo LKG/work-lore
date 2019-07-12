@@ -71,13 +71,12 @@ $(function(){
     $('.panel .nav-tabs li').on("click mouseover",function () {
         $(this).addClass('active').siblings().removeClass('active');
         var index=$(this).index();
-        debugger;
         $(this).parents('.panel').find('.tab-pane').eq(index).show().siblings().hide();
     });
 });
 $(function () {
     //当点击跳转链接后，回到页面顶部位置
-    $("#jdm-tbar-tab-top").click(function(){
+    $("#jdm-tbar-tab-top").on("click",function () {
         $('body,html').animate({scrollTop:0},2000);
         return false;
     });
