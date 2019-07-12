@@ -16,15 +16,11 @@ import java.io.IOException;
 @Slf4j
 public class XuexiJob extends CommonJob {
 
-    @Scheduled(cron = "0 19 15 * * ?")
+    @Scheduled(cron = "0 51 09 * * ?")
     void executeJob()throws Exception{
         log.info("...........begin..........");
         parseArticleList("https://www.xuexi.cn/d05cad69216e688d304bb91ef3aac4c6/9a3668c13f6e303932b5e0e100fc248b.html","时评");
         log.info("...........end..........");
-    }
-    @Override
-    public Integer  getMaxPage(){
-        return 10;
     }
     @Async
     @Override
