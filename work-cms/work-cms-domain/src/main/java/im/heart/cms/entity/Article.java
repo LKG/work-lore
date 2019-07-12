@@ -119,8 +119,6 @@ public class Article implements AbstractEntity<BigInteger>{
 	@Column(name = "OBTAIN_URL", nullable = false)
 	private String obtainUrl;
 
-	@Column(name = "TYPE", nullable = false)
-	private String type;
 	/** 是否发布. */
 	@NotNull
 	@Column(name = "IS_PUB", nullable = false)
@@ -150,8 +148,11 @@ public class Article implements AbstractEntity<BigInteger>{
 	private Integer pageNumber;
 	
 	@Column(name = "CATEGORY_ID", nullable = false, length=20)
-	private BigInteger categoryId;
-	
+	private Long categoryId;
+
+	@Column(name = "CATEGORY_CODE", nullable = false, length=20)
+	private String categoryCode;
+
 	@Formula(value = "(select model.name from cms_article_category model where model.id = category_id)")
 	private String categoryName;
 

@@ -3,6 +3,7 @@ package im.heart.cms.job;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import im.heart.cms.entity.Article;
+import im.heart.cms.entity.ArticleCategory;
 import im.heart.cms.service.ArticleService;
 import im.heart.core.utils.DateUtilsEx;
 import im.heart.core.utils.OkHttpClientUtils;
@@ -32,13 +33,15 @@ public class CommonJob extends  AbstractJob {
 
     @Async
     @Override
-    public   Article parseArticle(String url,String type){
+    public   Article parseArticle(String url, ArticleCategory category){
         Article entity=null;
         try
         {
             URL uri=new URL(url);
             entity= new Article();
-            entity.setType(type);
+            entity.setCategoryCode(category.getCode());
+            entity.setCategoryId(category.getId());
+            entity.setCategoryName(category.getName());
             Document html= Jsoup.parse(uri,10000);
             String idStr= StringUtils.substringAfterLast(url,"/");
             idStr=StringUtils.substringBefore(idStr,".");
@@ -53,7 +56,6 @@ public class CommonJob extends  AbstractJob {
                 return null;
             }
             entity.setId(id);
-
             Elements keywordsEle=html.select("meta[name=keywords]");
             String keywords=keywordsEle.attr("content");
             entity.setSeoKeywords(keywords);
@@ -102,7 +104,6 @@ public class CommonJob extends  AbstractJob {
             entity.setUrl(url);
             entity.setSource(source);
             entity.setContent(contentEle.outerHtml());
-            entity.setCategoryId(BigInteger.ZERO);
             entity.setUserId(BigInteger.ZERO);
             this.articleService.save(entity);
         }catch (MalformedURLException e){

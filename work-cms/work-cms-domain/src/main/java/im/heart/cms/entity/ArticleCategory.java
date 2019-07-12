@@ -47,7 +47,10 @@ public class ArticleCategory implements TreeEntity<Long>{
 	@Length(max = 200)
 	@Column(nullable = false,name="NAME")
 	private String name;
-
+	@NotEmpty
+	@Length(max = 200)
+	@Column(nullable = false,name="CODE")
+	private String code;
 	/** 页面标题. */
 	@Column(name = "SEO_TITLE", nullable = false)
 	private String seoTitle;

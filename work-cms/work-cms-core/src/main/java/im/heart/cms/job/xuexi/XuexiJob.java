@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import im.heart.cms.entity.Article;
+import im.heart.cms.entity.ArticleCategory;
 import im.heart.cms.job.CommonJob;
 import im.heart.core.utils.OkHttpClientUtils;
 import im.heart.core.utils.StringUtilsEx;
@@ -19,12 +20,12 @@ public class XuexiJob extends CommonJob {
     @Scheduled(cron = "0 51 09 * * ?")
     void executeJob()throws Exception{
         log.info("...........begin..........");
-        parseArticleList("https://www.xuexi.cn/d05cad69216e688d304bb91ef3aac4c6/9a3668c13f6e303932b5e0e100fc248b.html","时评");
+//        parseArticleList("https://www.xuexi.cn/d05cad69216e688d304bb91ef3aac4c6/9a3668c13f6e303932b5e0e100fc248b.html","时评");
         log.info("...........end..........");
     }
     @Async
     @Override
-    public void parseArticleList(String url,String type){
+    public void parseArticleList(String url, ArticleCategory category){
         try {
             String lists = OkHttpClientUtils.fetchEntityString(url,null);
             String jsonContent1 = StringUtilsEx.substringBetween(lists, "globalCache = ","};");
@@ -38,7 +39,7 @@ public class XuexiJob extends CommonJob {
                 String prefix=StringUtilsEx.substringBeforeLast(static_page_url,"/");
                 String id=StringUtilsEx.substringAfterLast(static_page_url,"/");
                 id = StringUtilsEx.substringBeforeLast(id, ".html");
-                parseArticle(prefix+"/data"+id+".js",type);
+                parseArticle(prefix+"/data"+id+".js",category);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,7 +47,7 @@ public class XuexiJob extends CommonJob {
 
     }
     @Override
-    public  Article parseArticle(String url, String type){
+    public  Article parseArticle(String url, ArticleCategory category){
         try {
             Article entity=null;
             String cl=  OkHttpClientUtils.fetchEntityString(url,null);
