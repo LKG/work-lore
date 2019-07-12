@@ -15,7 +15,7 @@ public class ArticleDTO {
     private String title;
     private String author;
     private String source;
-    private String type;
+    private String categoryName;
     private Date pushTime;
     private String summary;
     private Boolean allowComment=Boolean.FALSE;

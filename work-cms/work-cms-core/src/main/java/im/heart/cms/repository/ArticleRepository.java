@@ -40,8 +40,8 @@ public interface ArticleRepository extends QuerydslPredicateExecutor<Article>,  
      * @param categoryId
      * @return
      */
-    @Query(nativeQuery = true,value = "(SELECT model.id AS id ,model.title AS title ,model.source AS source ,model.type AS type ,model.summary AS summary ,model.hits AS hits,model.rate_times AS rateTimes ,model.push_time AS pushTime FROM cms_article model WHERE  model.id <:id  AND model.category_id = :categoryId AND model.is_pub = 1 ORDER BY  model.id DESC LIMIT 1)" +
-            " UNION  (SELECT model.id AS id ,model.title AS title ,model.source AS source ,model.type AS type ,model.summary AS summary ,model.hits AS hits,model.rate_times AS rateTimes ,model.push_time AS pushTime FROM cms_article model WHERE  model.id >:id   AND model.category_id = :categoryId AND model.is_pub = 1 ORDER BY  model.id  LIMIT 1)")
+    @Query(nativeQuery = true,value = "(SELECT model.id AS id ,model.title AS title ,model.source AS source ,model.category_name AS categoryName ,model.summary AS summary ,model.hits AS hits,model.rate_times AS rateTimes ,model.push_time AS pushTime FROM cms_article model WHERE  model.id <:id  AND model.category_id = :categoryId AND model.is_pub = 1 ORDER BY  model.id DESC LIMIT 1)" +
+            " UNION  (SELECT model.id AS id ,model.title AS title ,model.source AS source ,model.category_name AS categoryName ,model.summary AS summary ,model.hits AS hits,model.rate_times AS rateTimes ,model.push_time AS pushTime FROM cms_article model WHERE  model.id >:id   AND model.category_id = :categoryId AND model.is_pub = 1 ORDER BY  model.id  LIMIT 1)")
     public List<ArticleProjection> queryNearById(@Param("id") BigInteger id, @Param("categoryId") Long categoryId);
 
 }

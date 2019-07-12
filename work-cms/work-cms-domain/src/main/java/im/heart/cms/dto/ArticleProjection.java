@@ -26,7 +26,7 @@ public interface ArticleProjection{
      * 类型
      * @return
      */
-    String getType();
+    String getCategoryName();
 
     /**
      * 发布时间

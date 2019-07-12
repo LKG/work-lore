@@ -53,7 +53,7 @@ public class ArticleServiceImpl extends CommonServiceImpl<Article, BigInteger> i
 	@Override
 	public List<ArticleDTO> findAll(Predicate predicate,long limit){
 		QArticle qArticle=QArticle.article;
-		ConstructorExpression<ArticleDTO> constructorExpression=bulidConstructor(qArticle);
+		ConstructorExpression<ArticleDTO> constructorExpression=buildConstructor(qArticle);
 		JPAQuery<ArticleDTO> jpaQuery = this.jpaQueryFactory.select(constructorExpression)
 				.from(qArticle).where(predicate)
 				.limit(limit);
@@ -62,13 +62,13 @@ public class ArticleServiceImpl extends CommonServiceImpl<Article, BigInteger> i
 	@Override
 	public List<ArticleDTO> findAll(Predicate predicate, long limit, OrderSpecifier... orders){
 		QArticle qArticle=QArticle.article;
-		ConstructorExpression<ArticleDTO> constructorExpression=bulidConstructor(qArticle);
+		ConstructorExpression<ArticleDTO> constructorExpression=buildConstructor(qArticle);
 		JPAQuery<ArticleDTO> jpaQuery = this.jpaQueryFactory.select(constructorExpression)
 				.from(qArticle).where(predicate).orderBy(orders)
 				.limit(limit);
 		return jpaQuery.fetch();
 	}
-	private ConstructorExpression<ArticleDTO> bulidConstructor(QArticle qArticle){
+	private ConstructorExpression<ArticleDTO> buildConstructor(QArticle qArticle){
 		return Projections.constructor(ArticleDTO.class,
 				qArticle.id,
 				qArticle.title,
@@ -86,7 +86,7 @@ public class ArticleServiceImpl extends CommonServiceImpl<Article, BigInteger> i
 	@Override
 	public Page<ArticleDTO> findAll(Predicate predicate, Pageable pageable){
 		QArticle qArticle=QArticle.article;
-		ConstructorExpression<ArticleDTO> constructorExpression=bulidConstructor(qArticle);
+		ConstructorExpression<ArticleDTO> constructorExpression=buildConstructor(qArticle);
 		QueryResults<ArticleDTO> queryResults = this.jpaQueryFactory.select(constructorExpression)
 				.from(qArticle).where(predicate)
 				.offset(pageable.getOffset()).limit(pageable.getPageSize()).fetchResults();
@@ -99,7 +99,7 @@ public class ArticleServiceImpl extends CommonServiceImpl<Article, BigInteger> i
 	  vo.setId(po.getId());
 	  vo.setTitle(po.getTitle());
 	  vo.setPushTime(po.getPushTime());
-	  vo.setType(po.getType());
+	  vo.setCategoryName(po.getCategoryName());
 	  vo.setHits(po.getHits());
 	  vo.setAllowComment(po.getAllowComment());
 	  return vo;
