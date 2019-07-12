@@ -4,9 +4,9 @@
 	<include resource="org/springframework/boot/logging/logback/base.xml" />
 	<property name="LOG_HOME" value="/var/www/logs/lore" />
 	<property name="log.colorPattern" value="%d{yyyy-MM-dd HH:mm:ss} | %highlight(%-5level) | %boldYellow(%thread) | %boldGreen(%logger) | %msg%n"/>
-	<property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n" />
+	<property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss}  %contextName [%thread] %-5level %logger{36} - %msg%n" />
 	<!-- 控制台日志配置 -->
-	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
 			<pattern>${log.colorPattern}</pattern>
 		</encoder>
@@ -33,7 +33,7 @@
 		<!-- 定义文件大小 -->
 		<triggeringPolicy
 			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-			<maxFileSize>100MB</maxFileSize>
+			<maxFileSize>50MB</maxFileSize>
 		</triggeringPolicy>
 		<!-- 格式化输出 -->
 		<encoder>
@@ -54,18 +54,18 @@
 			<!-- 按天回滚 daily -->
 			<fileNamePattern>${LOG_HOME}/runtime_error-%d{yyyy-MM-dd}.log</fileNamePattern>
 			<!-- 日志最大的历史 -->
-			<maxHistory>30</maxHistory>
+			<maxHistory>15</maxHistory>
 		</rollingPolicy>
 		<!-- 定义归档 -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
 			<fileNamePattern>${LOG_HOME}/runtime_error.%i.log.zip</fileNamePattern>
 			<minIndex>1</minIndex>
-			<maxIndex>12</maxIndex>
+			<maxIndex>15</maxIndex>
 		</rollingPolicy>
 		<!-- 定义文件大小 -->
 		<triggeringPolicy
 			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-			<maxFileSize>100MB</maxFileSize>
+			<maxFileSize>50MB</maxFileSize>
 		</triggeringPolicy>
 		<!-- 格式化输出 -->
 		<encoder>
@@ -79,7 +79,7 @@
 		</filter>
 	</appender>
 	<root level="debug">
-		<appender-ref ref="consoleAppender" />
+		<appender-ref ref="CONSOLE" />
 	</root>
 
 	<root level="info">

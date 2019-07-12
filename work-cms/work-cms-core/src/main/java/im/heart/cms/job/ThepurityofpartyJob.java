@@ -16,7 +16,7 @@ public class ThepurityofpartyJob extends CommonJob {
     public Integer  getMaxPage(){
         return 5;
     }
-    @Scheduled(cron = "0 19 13 * * ?")
+    @Scheduled(cron = "0 31 16 * * ?")
     void executeJob()throws Exception{
         log.info("...........begin..........");
         ArticleCategory category=new ArticleCategory();
