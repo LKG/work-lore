@@ -78,11 +78,11 @@
 <#include "/index-toolbar.ftl" />
 <!-- toolbar end-->
 <!-----------------------------------------顶部-------------->
-<!-- header begin-->
-<#include "/index-header.ftl" />
 <!-- banner 广告 begin-->
 <#include "/index-top-banner.ftl" />
 <!-- banner 广告 end-->
+<!-- header begin-->
+<#include "/index-header.ftl" />
 
 <div class="container" style="margin-top: 15px;">
 <ol class="breadcrumb">

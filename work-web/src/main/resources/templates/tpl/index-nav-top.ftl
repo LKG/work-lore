@@ -1,5 +1,5 @@
-<div id="navv">
-    <div class="nav-img" style="background:url(https://static.gongwk.com/images/navv.jpg) repeat-x"></div>
+<div id="nav-v">
+    <div class="nav-img" ></div>
 </div>
 <div class="focus" >
     <div class="focus-a">

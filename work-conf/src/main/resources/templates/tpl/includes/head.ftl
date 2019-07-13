@@ -16,9 +16,7 @@
 <style>
  body{
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif Microsoft Yahei,Arial ;
-  font-size: 14px;
-  line-height: 1.42857143;
-  
+  font-size: 14px;line-height: 1.42857143;background-color: #f4f4f4;
  }
   html{
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif Microsoft Yahei,Arial ;

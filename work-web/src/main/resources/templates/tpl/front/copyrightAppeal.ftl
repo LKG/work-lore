@@ -15,12 +15,12 @@
 <#include "/index-toolbar.ftl"/>
 <!-- toolbar end-->
 <!-----------------------------------------顶部-------------->
-<!-- header begin-->
-<#include "/index-header.ftl" />
-<!-- header end-->
 <!-- banner 广告 begin-->
 <#include "/index-top-banner.ftl" />
 <!-- banner 广告 end-->
+<!-- header begin-->
+<#include "/index-header.ftl" />
+<!-- header end-->
 <!-- 搜索框 begin-->
 <#include "/index-top-search.ftl" />
 <!-- 搜索框 end-->

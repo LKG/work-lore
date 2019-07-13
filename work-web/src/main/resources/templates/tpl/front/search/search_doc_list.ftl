@@ -57,11 +57,11 @@
 <#include "/index-toolbar.ftl"/>
 <!-- toolbar end-->
 <!-----------------------------------------顶部-------------->
+<!-- banner 广告 begin-->
+<#include "/index-top-banner.ftl" />
+<!-- banner 广告 end-->
 <!-- header begin-->
 <#include "/index-header.ftl" />
-<!-- banner 广告 begin-->
-  <#include "/index-top-banner.ftl" />
-<!-- banner 广告 end-->
 <!-- 搜索框 begin-->
 <#include "/index-top-search.ftl" />
 <!-- 搜索框 end-->

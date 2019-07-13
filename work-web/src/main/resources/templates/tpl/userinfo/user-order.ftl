@@ -55,11 +55,11 @@
 <#include "/index-toolbar.ftl"/>
 <!-- toolbar end-->
 <!-----------------------------------------顶部-------------->
+<!-- banner 广告 begin-->
+<#include "/index-top-banner.ftl" />
+<!-- banner 广告 end-->
 <!-- header begin-->
 <#include "/index-header.ftl" />
-<!-- banner 广告 begin-->
-  <#include "/index-top-banner.ftl" />
-<!-- banner 广告 end-->
 <div class="clearfix"></div>
 <div class="full-container main-container">
     <div class="row">
