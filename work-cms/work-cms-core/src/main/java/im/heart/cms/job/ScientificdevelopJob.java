@@ -14,9 +14,9 @@ public class ScientificdevelopJob extends CommonJob {
     ArticleService articleService;
     @Override
     public Integer  getMaxPage(){
-        return 5;
+        return 3;
     }
-    @Scheduled(cron = "0 51 14 * * ?")
+    @Scheduled(cron = "0 10 09 * * ?")
     void executeJob()throws Exception{
         log.info("...........begin..........");
         ArticleCategory category=new ArticleCategory();

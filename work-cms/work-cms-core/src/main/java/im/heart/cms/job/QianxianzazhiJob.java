@@ -10,9 +10,13 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class QianxianzazhiJob extends CommonJob {
+    @Override
+    public Integer  getMaxPage(){
+        return 3;
+    }
     @Autowired
     ArticleService articleService;
-    @Scheduled(cron = "0 04 17 * * ?")
+    @Scheduled(cron = "0 42 11 * * ?")
     void executeJob()throws Exception{
         log.info("...........begin..........");
         ArticleCategory category=new ArticleCategory();

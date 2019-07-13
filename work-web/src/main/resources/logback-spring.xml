@@ -3,8 +3,10 @@
 
 	<include resource="org/springframework/boot/logging/logback/base.xml" />
 	<property name="LOG_HOME" value="/var/www/logs/lore" />
-	<property name="log.colorPattern" value="%d{yyyy-MM-dd HH:mm:ss} | %highlight(%-5level) | %boldYellow(%thread) | %boldGreen(%logger) | %msg%n"/>
-	<property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss}  %contextName [%thread] %-5level %logger{36} - %msg%n" />
+
+
+	<property name="log.colorPattern" value="%yellow(%d{yyyy-MM-dd HH:mm:ss}) |%highlight(%-5level) |%blue(%thread) |%blue(%file:%line) |%green(%logger) |%cyan(%msg%n)"/>
+	<property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss}| %contextName| [%thread] %-5level| %logger{36} | %msg%n" />
 	<!-- 控制台日志配置 -->
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>

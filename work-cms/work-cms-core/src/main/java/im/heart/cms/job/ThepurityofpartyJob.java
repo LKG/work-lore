@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class ThepurityofpartyJob extends CommonJob {
-    @Autowired
-    ArticleService articleService;
     @Override
     public Integer  getMaxPage(){
-        return 5;
+        return 3;
     }
-    @Scheduled(cron = "0 31 16 * * ?")
+    @Autowired
+    ArticleService articleService;
+    @Scheduled(cron = "0 25 10 * * ?")
     void executeJob()throws Exception{
         log.info("...........begin..........");
         ArticleCategory category=new ArticleCategory();

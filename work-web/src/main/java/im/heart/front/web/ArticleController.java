@@ -60,7 +60,7 @@ public class ArticleController extends AbstractController {
                              @RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
                              @RequestParam(value = "page", required = false, defaultValue = CommonConst.Page.DEFAULT_PAGE+"") Integer page,
                              @RequestParam(value = "size", required = false, defaultValue = CommonConst.Page.DEFAULT_SIZE+"") Integer size,
-                             @RequestParam(value = "sort", required = false,defaultValue = "") String sort,
+                             @RequestParam(value = "sort", required = false,defaultValue = "pushTime") String sort,
                              @RequestParam(value = "categoryId", required = false,defaultValue = "") Long categoryId,
                              @RequestParam(value = "order", required = false,defaultValue = CommonConst.Page.ORDER_DESC) String order,
                              @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,

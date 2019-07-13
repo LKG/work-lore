@@ -35,8 +35,7 @@ public class CommonJob extends  AbstractJob {
     @Override
     public   Article parseArticle(String url, ArticleCategory category){
         Article entity=null;
-        try
-        {
+        try {
             URL uri=new URL(url);
             entity= new Article();
             entity.setCategoryCode(category.getCode());
@@ -99,7 +98,6 @@ public class CommonJob extends  AbstractJob {
             }
             if (!contentEle.hasText()){
                 log.info("获取内容异常"+url);
-                return null;
             }
             entity.setUrl(url);
             entity.setSource(source);
