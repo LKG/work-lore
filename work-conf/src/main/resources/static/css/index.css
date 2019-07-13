@@ -258,6 +258,17 @@ _display: block;
 	background-color: #fff;
 	border-bottom: 1px solid #ededed;
 }
+#logo .tip {
+	display: none;
+	position: absolute;
+	left: -50px;
+	width: 289px;
+	height: 138px;
+	background: url(//static.gongwk.com/images/logo-tip.png) center no-repeat;
+	box-sizing: border-box;
+	padding-left:50px;
+	padding-top: 106px;
+}
 .logo_tit {
 	width: 100%;
 	height: 100%;

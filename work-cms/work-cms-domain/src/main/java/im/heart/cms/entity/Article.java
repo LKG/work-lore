@@ -212,8 +212,8 @@ public class Article implements AbstractEntity<BigInteger>{
 	/**
 	 * 设置页面关键词.
 	 * 
-	 * @param seoKeywords
-	 *            页面关键词
+	 * @param seoKeywords 页面关键词
+	 *
 	 */
 	public void setSeoKeywords(String seoKeywords) {
 		if (seoKeywords != null) {

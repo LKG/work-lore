@@ -41,7 +41,7 @@ public class CommonJob extends  AbstractJob {
             entity.setCategoryCode(category.getCode());
             entity.setCategoryId(category.getId());
             entity.setCategoryName(category.getName());
-            Document html= Jsoup.parse(uri,10000);
+            Document html= Jsoup.parse(uri,10000*30);
             String idStr= StringUtils.substringAfterLast(url,"/");
             idStr=StringUtils.substringBefore(idStr,".");
             if (StringUtils.isBlank(idStr)){

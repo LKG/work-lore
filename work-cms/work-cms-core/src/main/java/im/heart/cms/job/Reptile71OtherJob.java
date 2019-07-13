@@ -8,8 +8,11 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class Reptile71OtherJob    extends  CommonJob{
-
-    @Scheduled(cron = "0 30 9 * * ?")
+    @Override
+    public Integer  getMaxPage(){
+        return 3;
+    }
+    @Scheduled(cron = "0 42 11 * * ?")
     void executeJob()throws Exception{
         log.info("..........begin...........");
         ArticleCategory category=new ArticleCategory();

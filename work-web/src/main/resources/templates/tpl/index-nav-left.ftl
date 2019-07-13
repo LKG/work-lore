@@ -1,4 +1,5 @@
 <div class="container m-container"  style="position: relative;height: 400px;padding-top: 0px;margin-top: 7px;">
+    <#include "index-nav-menu.ftl" />
 <!------------------------------------轮播图------------------------------------>
 <div id="lunbo">
     <ul id="one">

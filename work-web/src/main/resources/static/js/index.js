@@ -42,31 +42,43 @@ $(function(){
         $('#two li').eq(i).addClass('on').siblings().removeClass('on');
         $('#one li').eq(i).fadeIn(300).siblings().fadeOut(300);
     }
-    $('#left').click(function(){
+    $('#left').on("click",function () {
         moveL();
-    })
-    $('#right').click(function(){
+    });
+    $('#right').on("click",function () {
         move();
-    })
+    });
     //鼠标移入移除
     $('#lunbo').hover(function(){
         clearInterval(t);
     },function(){
         t=setInterval(move,1500);
     })
-})
-//**************服装鞋包选项卡*******************
-$(function(){
-    $('.tab li').mouseover(function(){
-        $(this).addClass('active').siblings().removeClass('active');
-        $('.tatab-item span').css('right','1px');
-        var index=$(this).index();
-        $('.main').eq(index).show().siblings().hide();
-        $('.side').css('display','block');
-    });
-
 });
 
+$(function(){
+    $('#logo').on({
+        mouseover : function(){
+            $('#logo .tip').show();
+        } ,
+        mouseout : function(){
+            $('#logo .tip').hide();
+        }
+    }) ;
+});
+//**************服装鞋包选项卡*******************
+$(function(){
+    $('.tab li').on({
+            mouseover: function(){
+                $(this).addClass('active').siblings().removeClass('active');
+                $('.tatab-item span').css('right','1px');
+                var index=$(this).index();
+                $('.main').eq(index).show().siblings().hide();
+                $('.side').css('display','block');
+            }
+        }
+    );
+});
 $(function(){
     $('.panel .nav-tabs li').on("click mouseover",function () {
         $(this).addClass('active').siblings().removeClass('active');

@@ -3,6 +3,7 @@ package im.heart.cms.job;
 import im.heart.cms.entity.Article;
 import im.heart.cms.entity.ArticleCategory;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -30,9 +31,9 @@ public abstract class  AbstractJob {
             for (Element article:articleEle){
                 String articleUrl=article.attr("href");
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(RandomUtils.nextLong(100,800));
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    log.error(e.getStackTrace()[0].getMethodName(), e);
                 }
                 parseArticle(articleUrl,category);
             }

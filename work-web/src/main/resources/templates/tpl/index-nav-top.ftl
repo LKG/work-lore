@@ -16,5 +16,4 @@
             <li><a href="${appHost}/group.jhtml">QQ群交流<i class="fa fa-fire text-danger"></i></a></li>
         </ul>
     </div>
-        <#include "index-nav-menu.ftl" />
 </div>

@@ -6,6 +6,9 @@
         </h1>
         <h2 class="logo_subtit"><@spring.message  code="label.system.name" />,为您提供愉悦的资料分享体验!</h2>
         <div class="logo_extend" ></div>
+        <div class="tip">
+            <p>拖动LOGO到书签栏，立即收藏</p>
+        </div>
         <a href="${appHost}/" class="logo_scene logo_scene_hide" target="_blank" >
             <div class="logo_scene_img" style="background-image: url(&quot;//img1.360buyimg.com/da/jfs/t23587/127/1446750136/117942/e88b571d/5b5edcf8N17e6ab2a.gif?v=0.7380383504326977&quot;);"></div>
             <span class="logo_scene_text" style="color: rgb(142, 81, 63);">好资料不容错过</span>
@@ -27,7 +30,7 @@
                         </div>
                         <input type="text" class="form-control" id="q"  name="q"  value="${q!''}" aria-label="请输入搜索关键词">
                         <div class="input-group-btn">
-                            <select class="form-control" id="qt" data-val="${qt!'1'}"  name="qt" style="width: 110px;padding:6px; 10px;">
+                            <select class="form-control" id="qt" data-val="${qt!'1'}"  name="qt" style="width: 100px;padding:6px; 10px;">
                                 <#--<option value="0" >主题</option>-->
                                 <option value="1" >关键词</option>
                                 <option value="2"  >篇名</option>
