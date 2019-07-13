@@ -12,11 +12,11 @@ import org.springframework.stereotype.Component;
 public class ThepurityofpartyJob extends CommonJob {
     @Override
     public Integer  getMaxPage(){
-        return 3;
+        return 300;
     }
     @Autowired
     ArticleService articleService;
-    @Scheduled(cron = "0 25 10 * * ?")
+    @Scheduled(cron = "0 14 16 * * ?")
     void executeJob()throws Exception{
         log.info("...........begin..........");
         ArticleCategory category=new ArticleCategory();

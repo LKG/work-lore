@@ -10,10 +10,8 @@
             <p>拖动LOGO到书签栏，立即收藏</p>
         </div>
         <a href="${appHost}/" class="logo_scene logo_scene_hide" target="_blank" >
-            <div class="logo_scene_img" style="background-image: url(&quot;//img1.360buyimg.com/da/jfs/t23587/127/1446750136/117942/e88b571d/5b5edcf8N17e6ab2a.gif?v=0.7380383504326977&quot;);"></div>
-            <span class="logo_scene_text" style="color: rgb(142, 81, 63);">好资料不容错过</span>
-            <span class="logo_scene_btn" style="color: rgb(142, 81, 63); background-color: rgb(255, 255, 255);">去看看&gt;</span>
-        </a>
+            <span class="logo_scene_text" style="color: rgb(142, 81, 63);">公文库-好资料不容错过</span>
+         </a>
     </div>
     <!-- --->
     <div class="search">

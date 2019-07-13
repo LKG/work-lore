@@ -251,7 +251,7 @@ _display: block;
 	left: 0;
 	top: -31px;
 	width: 190px;
-	height: 160px;
+	height: 158px;
 	-webkit-box-shadow: 0 -12px 10px rgba(0,0,0,.2);
 	-moz-box-shadow: 0 -12px 10px rgba(0,0,0,.2);
 	box-shadow: 0 -12px 10px rgba(0,0,0,.2);
@@ -437,10 +437,10 @@ _display: block;
 	75%{transform: translate(-5%,0) rotate(-1deg);}
 }
 .nav-menu .dropdown-menu{
-	width: 190px; height: 407px;
+	width: 190px; height: 401px;
 }
 .nav-menu .dropdown-menu .popover{
-	width: 1020px;height: 408px;
+	width: 1020px;height: 402px;
 	max-width: 1020px !important;
 	border: 1px solid #f7f7f7;
 	-webkit-box-shadow: 2px 0 5px rgba(0,0,0,.3);
@@ -452,7 +452,7 @@ _display: block;
 	transition: top .25s ease;
 }
 /*轮播图*/
-#lunbo{clear:both;position:absolute;top:0px;left:191px;width:710px;}
+#lunbo{clear:both;position:absolute;top:0px;left:194px;width:710px;}
 #one{overflow:hidden;height:400px;}
 #one li{float:left;width:0;}
 #two .on{background:red;}
