@@ -3,8 +3,6 @@
 
 	<include resource="org/springframework/boot/logging/logback/base.xml" />
 	<property name="LOG_HOME" value="/var/www/logs/lore" />
-
-
 	<property name="log.colorPattern" value="%yellow(%d{yyyy-MM-dd HH:mm:ss}) |%highlight(%-5level) |%blue(%thread) |%blue(%file:%line) |%green(%logger) |%cyan(%msg%n)"/>
 	<property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss}| %contextName| [%thread] %-5level| %logger{36} | %msg%n" />
 	<!-- 控制台日志配置 -->
@@ -43,7 +41,7 @@
 		</encoder>
 		<!-- 过滤器 -->
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
-			<level>DEBUG</level>
+			<level>INFO</level>
 			<onMatch>ACCEPT</onMatch>
 			<onMismatch>DENY</onMismatch>
 		</filter>
@@ -81,13 +79,8 @@
 		</filter>
 	</appender>
 	<!-- 开发环境下的日志配置 -->
-	<springProfile name="dev">
-		<root level="INFO">
-			<appender-ref ref="CONSOLE" />
-		</root>
-	</springProfile>
-	<springProfile name="test">
-		<root level="INFO">
+	<springProfile name="!prod">
+		<root >
 			<appender-ref ref="CONSOLE" />
 			<appender-ref ref="FILE_INFO" />
 			<appender-ref ref="FILE_ERROR" />
@@ -95,7 +88,7 @@
 	</springProfile>
 	<!-- 生产环境下的日志配置 -->
 	<springProfile name="prod">
-		<root level="INFO">
+		<root >
 			<appender-ref ref="FILE_INFO" />
 			<appender-ref ref="FILE_ERROR" />
 		</root>

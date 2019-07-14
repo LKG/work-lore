@@ -2,6 +2,7 @@ define(function (require, exports, moudles) {
 require('jquery')
 	 require('validate');
 	 require('art-dialog');
+	require('select2');
 	 var $baseRoot=$("#baseRoot");
 	 var baseRoot=$baseRoot.attr("href");
 	 var $httpUtil = require('/js/common/httpUtil.js');

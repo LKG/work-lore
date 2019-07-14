@@ -1,7 +1,6 @@
 define(function (require, exports, moudles) {
 	require('jquery');
-	 require('../common/modal.js')($);
-	$loginBox=$("#J_LoginBox");
+	var $loginBox=$("#J_LoginBox");
 	 var $baseRoot=$("#baseRoot");
 	 var baseRoot=$baseRoot.attr("href");
 	$("#J_2QRCode").show();//显示二维码登录切换
@@ -41,12 +40,11 @@ define(function (require, exports, moudles) {
 					$("#l_f_code").show();	
 					$("#J_StandardCode").click();
 				}
+				var descr=json.result.error_description;
 				if(json.result.error_code=='20104'){
-					showLoginError(json.result.error_description+"<a href='"+baseRoot+"/forgotpasswd.jhtml' target='_blank' >立即激活</a>");
-				}else{
-					showLoginError(json.result.error_description);
+					descr=descr+"<a href='"+baseRoot+"/forgotpasswd.jhtml' target='_blank' >立即激活</a>";
 				}
-				
+				showLoginError(descr);
 			}
 		},"json");
 		return  false;

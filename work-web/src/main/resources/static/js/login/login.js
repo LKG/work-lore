@@ -2,7 +2,7 @@ define(function (require, exports, moudles) {
 	require('jquery');
 	var $loginBox=$("#J_LoginBox");
 	var $baseRoot=$("#baseRoot");
-	var artDialog = require('art-dialog');
+	require('art-dialog');
 	var baseRoot=$baseRoot.attr("href");
 	$("#J_2QRCode").show();//显示二维码登录切换
 	var getFormData=function(obj){
@@ -44,7 +44,7 @@ define(function (require, exports, moudles) {
 		var url=$form.attr("action");
 		$.post(url,data,function(json){
 			if(json.success){
-				var dialog = dialog=artDialog.getCurrent();
+				var dialog = window.dialog.getCurrent();
 				var successUrl=json.successUrl;
 			   	if(dialog){
 			   		$.httpUtil.curl({
@@ -66,11 +66,11 @@ define(function (require, exports, moudles) {
 					$("#J_StandardCode").click();
 				}
 				if(json.result&&json.result.error_code){
-					if(json.result.error_code=='20104'){//用户未激活
-						showLoginError(json.result.error_description+"<a href='"+baseRoot+"/forgotpasswd.jhtml' target='_blank' >立即激活</a>");
-					}else{
-						showLoginError(json.result.error_description);
+					var descr=json.result.error_description;
+					if(json.result.error_code=='20104'){
+						descr=descr+"<a href='"+baseRoot+"/forgotpasswd.jhtml' target='_blank' >立即激活</a>";
 					}
+					showLoginError(descr);
 				}else{
 					window.parent.location.reload();
 				}
@@ -78,7 +78,6 @@ define(function (require, exports, moudles) {
 		},"json");
 		return  false;
 	});
-
 	function showLoginError(message){
 		var $Jmessage=$("#J_Message");
 		var $i=$("<i class='fa fa-exclamation-triangle'></i>").html(message);
