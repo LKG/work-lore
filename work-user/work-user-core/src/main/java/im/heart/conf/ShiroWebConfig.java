@@ -104,10 +104,6 @@ public class ShiroWebConfig extends ShiroWebAutoConfiguration{
 		DefaultShiroFilterChainDefinition chain = new DefaultShiroFilterChainDefinition();
 		chain.addPathDefinition("/static/**", "anon");
 		chain.addPathDefinition("/favicon.ico", "anon");
-		chain.addPathDefinition("**.ico", "anon");
-		chain.addPathDefinition("**.css", "anon");
-		chain.addPathDefinition("*.jpg", "anon");
-		chain.addPathDefinition("*.png", "anon");
 		chain.addPathDefinition("/oauth2/**", "anon");
 		chain.addPathDefinition("/3rd/**", "anon");
 		chain.addPathDefinition("/css/**", "anon");
@@ -132,6 +128,7 @@ public class ShiroWebConfig extends ShiroWebAutoConfiguration{
 		chain.addPathDefinition("/pq**", "anon");
 		chain.addPathDefinition("/article**", "anon");
 		chain.addPathDefinition("/articles/**", "anon");
+		chain.addPathDefinition("/uploads/**", "anon");
 		chain.addPathDefinition("/article/**", "anon");
 		chain.addPathDefinition("/doc/**", "anon");
 		chain.addPathDefinition("/topic/**", "anon");

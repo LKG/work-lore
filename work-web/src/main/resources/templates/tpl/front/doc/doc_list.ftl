@@ -53,6 +53,9 @@
         .laypage_main{
             clear: none !important;
         }
+        .doc-col .thumbnail{
+            height: 450px;
+        }
     </style>
     <#assign template="docs"/>
 </head>
