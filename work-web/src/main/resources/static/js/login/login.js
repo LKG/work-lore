@@ -37,7 +37,6 @@ define(function (require, exports, moudles) {
 			showLoginError("密码长度至少六位");
 			return false;
 		}
-		
 		$btn.html($btn.attr("data-loading-text")).attr("disabled","disabled");
 		var $form=$('#J_StaticForm');
 		var data = getFormData($form);
