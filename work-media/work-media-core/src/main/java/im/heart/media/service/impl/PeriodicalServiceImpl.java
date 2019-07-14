@@ -113,12 +113,12 @@ public class PeriodicalServiceImpl   extends CommonServiceImpl<Periodical, BigIn
 
 	@Override
 	public void updateDownTimesById(BigInteger id) {
-		this.periodicalRepository.updateRateTimesById(id);
+		this.periodicalRepository.updateDownTimesById(id);
 	}
 	@Async
 	@Override
 	public void addUpdateDownTimesTask(BigInteger id) {
-		this.updateRateTimesById(id);
+		this.updateDownTimesById(id);
 	}
 
 	@Override
