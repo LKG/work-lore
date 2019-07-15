@@ -854,7 +854,7 @@ text-align: right;
 @media (min-width: 768px) {
 	.header-box{width:768px;}
 	.aa{width:768px;}
-	.w {width:768px;}
+/*	.w {width:768px;}*/
 	.w .logo{width:210px;}
 	.w .search .text{
 		width: 300px;

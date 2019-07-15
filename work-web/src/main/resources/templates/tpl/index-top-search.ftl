@@ -17,7 +17,7 @@
     <div class="search">
         <form  id="search-form"  style="margin-left: 260px;">
             <div class="row">
-                <div class="col-lg-7">
+                <div class="col-lg-7 col-md-6">
                     <div class="input-group" >
                         <input name="cc" value="${appHost}" type="hidden"/>
                         <div class="input-group-btn">
