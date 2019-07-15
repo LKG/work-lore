@@ -4,6 +4,7 @@
 <meta name="referrer" content="origin" />
 <meta name="viewport" content="width=1100, maximum-scale=1.0, user-scalable=yes" />
 <link rel="shortcut icon" href="//www.gongwk.com/favicon.ico" type="image/x-icon" />
+<meta name="msvalidate.01" content="4C57D7845E42949E0941175AF80FB522" />
 <base href="${appHost}" id="baseRoot"/>
 <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
