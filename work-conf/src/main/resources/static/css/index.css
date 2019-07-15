@@ -938,3 +938,8 @@ text-align: right;
 	line-height: 22px;
 }
 /**cate-search end****/
+@media print{
+	a:after{
+		content:""!important;
+	}
+}

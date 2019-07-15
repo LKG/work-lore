@@ -55,17 +55,6 @@ $(function(){
         t=setInterval(move,1500);
     })
 });
-
-$(function(){
-    $('#logo').on({
-        mouseover : function(){
-            $('#logo .tip').show();
-        } ,
-        mouseout : function(){
-            $('#logo .tip').hide();
-        }
-    }) ;
-});
 //**************服装鞋包选项卡*******************
 $(function(){
     $('.tab li').on({
@@ -84,13 +73,6 @@ $(function(){
         $(this).addClass('active').siblings().removeClass('active');
         var index=$(this).index();
         $(this).parents('.panel').find('.tab-pane').eq(index).show().siblings().hide();
-    });
-});
-$(function () {
-    //当点击跳转链接后，回到页面顶部位置
-    $("#jdm-tbar-tab-top").on("click",function () {
-        $('body,html').animate({scrollTop:0},2000);
-        return false;
     });
 });
 ;$(function(){
