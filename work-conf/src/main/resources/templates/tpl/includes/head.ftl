@@ -16,11 +16,11 @@
 <link href="${appHost}/css/index.css?v=${ver!'1'}" type="text/css" rel="stylesheet">
 <style>
  body{
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif Microsoft Yahei,Arial ;
+  font-family:  Microsoft YaHei,SimSun,Tahoma,Arial,serif;;
   font-size: 14px;line-height: 1.42857143;background-color: #f4f4f4;
  }
   html{
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif Microsoft Yahei,Arial ;
+  font-family:  Microsoft YaHei,SimSun,Tahoma,Arial,serif;
  }
  a {
      color: #666;

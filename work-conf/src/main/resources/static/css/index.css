@@ -2,7 +2,7 @@
 #header{clear:both;width:100%;height:30px;line-height:30px;background:#F1F1F1; border-bottom: 1px solid #ddd;}
 a{color:#666;}
 a:hover{color:red;}
-body{font: 1em/1.7em arial,"宋体",helvetica,verdana,tahoma,sans-serif;font-family: "Microsoft Yahei","\5b8b\4f53";color: #666;}
+body{font: 1em/1.7em arial,"宋体",helvetica,verdana,tahoma,sans-serif;font-family:  Microsoft YaHei,SimSun,Tahoma,Arial,serif;color: #666;}
 /*侧边栏*/
 .jdm-toolbar-wrap {
 position: fixed;
@@ -360,6 +360,9 @@ _display: block;
 @keyframes pluseAnimate{
 	0%,100%{transform: scale(1);}
 	50%{transform: scale(1.1);}
+}
+.dropdown-menu{
+	background-color:transparent;
 }
 .dropdown-menu > li > a.maintainHover {
 	color: white; background-color: #0081C2;
