@@ -67,7 +67,7 @@ public class WebUtilsEx extends WebUtils {
         if (METHOD_GET.equalsIgnoreCase(request.getMethod())) {
             isGet = true;
         }
-        Map<String, Object> params = new TreeMap<String, Object>();
+        Map<String, Object> params =  Maps.newTreeMap();
         if (prefix == null) {
             prefix = "";
         }
@@ -98,7 +98,7 @@ public class WebUtilsEx extends WebUtils {
 
     private static String decodeStr(String value) {
         try {
-            value = new String(value.getBytes("ISO-8859-1"), "utf-8");
+            value = new String(value.getBytes("ISO-8859-1"), "UTF-8");
             value = URLDecoder.decode(value, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             logger.error(e.getStackTrace()[0].getMethodName(), e);
