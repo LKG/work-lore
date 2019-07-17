@@ -43,9 +43,10 @@ define(function (require, exports, moudles) {
 		var url=$form.attr("action");
 		$.post(url,data,function(json){
 			if(json.success){
-				var dialog = window.dialog.getCurrent();
+				var topDialog =window.dialog;
 				var successUrl=json.successUrl;
-			   	if(dialog){
+			   	if(topDialog){
+					var dialog=topDialog.getCurrent();
 			   		$.httpUtil.curl({
 						url : successUrl,
 						type : "get",
