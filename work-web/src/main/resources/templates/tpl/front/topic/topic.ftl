@@ -26,15 +26,18 @@
 <!-- header begin-->
 <#include "/index-header.ftl" />
 <!-- header end-->
-<!-- 搜索框 begin-->
-<#include "/index-top-search.ftl" />
-<!-- 搜索框 end-->
 <!--轮播图上方导航栏  一栏-->
 <#include "/index-nav-top.ftl" />
 <div class="clear"></div>
 <!--轮播图上方导航栏  一栏-->
 <div class="clearfix" ></div>
-<div class="container m-container"  >
+<div class="container" style="margin-top: 15px;">
+    <ol class="breadcrumb">
+        <li><a href="${appHost}/"><@spring.message  code="label.system.index" /></a></li>
+        <li class="active">文库专栏</li>
+    </ol>
+</div>
+<div class="container m-container" style="" >
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default hot-article" id="hot-article" style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">

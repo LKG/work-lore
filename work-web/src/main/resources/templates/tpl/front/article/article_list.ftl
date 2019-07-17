@@ -31,6 +31,12 @@
 <div class="clear"></div>
 <!--轮播图上方导航栏  一栏-->
 <div class="clearfix" ></div>
+<div class="container" style="margin-top: 15px;">
+    <ol class="breadcrumb">
+        <li><a href="${appHost}/"><@spring.message  code="label.system.index" /></a></li>
+        <li class="active">免费文章</li>
+    </ol>
+</div>
 <div class="container m-container"  >
     <div class="row">
         <div class="col-md-12">
