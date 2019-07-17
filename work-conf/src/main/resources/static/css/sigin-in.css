@@ -45,14 +45,14 @@ button[data-color=maleskine].active,button[data-color=maleskine]:active {
 }
 
 li{list-style-type: none;}
-.login-box {width: 317px;overflow: hidden;margin: 0px 0px;border-top: 2px solid #ff4200;}
+.login-box {/*width: 317px;*/overflow: hidden;margin: 0px 0px;border-top: 2px solid #eee;}
 .login-box.loading {height: 272px;background: #FFF url(https://static.gongwk.com/images/loading.gif) no-repeat 50% 50%;}
 .login-box.loading .bd {display: none;}
 .login-box .field {position: relative;z-index: 1;padding-bottom: 5px;}
 .login-box .field label {display: block;font-weight: 700;padding-bottom: 3px;	color: #666;}
 .login-box .bd {overflow: hidden;	padding-bottom: 5px; vertical-align: middle;zoom: 1;}
 .login-box .login-text {
-	width: 206px;
+	/*width: 206px;*/
 	height: 28px;
 	line-height: 20px;
 	margin-right: 3px;
@@ -143,14 +143,14 @@ li{list-style-type: none;}
 .btn-2login:focus,.btn-2qrcode:focus {outline: 0;}
 .btn-2qrcode {background-image: url(https://static.gongwk.com/images/switcher-qr.png);}
 .login-box-switch{
-	position: absolute;
-	width: 317px;;
-	min-height: 317px;
+/*	position: absolute;*/
+/*	width: 317px;;
+	min-height: 317px;*/
 	_height: 317px;
 	z-index: 1;
 	padding-left: 30px;
-	padding-bottom: 40px; 
-	border: 1px solid #dedede;
+	padding-bottom: 40px;
+	border-right: 1px solid #dedede;
 	-webkit-transform: translateZ(0);
 }
 .login-sns{
