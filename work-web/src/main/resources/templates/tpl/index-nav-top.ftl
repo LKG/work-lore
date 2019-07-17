@@ -20,10 +20,10 @@
             </div>
         </div>
     </div>
-<#--    <div id="nav-v">
+    <div id="nav-v">
         <div class="nav-img" ></div>
         <div class="nav-imgs"></div>
-    </div>-->
+    </div>
 </div>
 
 
