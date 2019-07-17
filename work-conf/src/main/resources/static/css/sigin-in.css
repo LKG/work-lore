@@ -26,21 +26,21 @@ body {
 }
 button[data-color=maleskine] {
 	color: white;
-	border-color: #e78170;
-	background: #e78170
+	border-color: #337ab7;
+	background: #337ab7;
 }
 
 button[data-color=maleskine]:hover,button[data-color=maleskine]:focus {
-	color: white;
-	border-color: #f49484;
-	background-color: #f49484
+	color: #fff;
+	background-color: #286090;
+	border-color: #122b40;
 }
 
 button[data-color=maleskine].active,button[data-color=maleskine]:active {
 	outline: none;
-	color: white;
-	border-color: #b34129;
-	background: #b34129;
+	color: #fff;
+	background-color: #286090;
+	border-color: #122b40;
 	box-shadow: none
 }
 
@@ -52,7 +52,7 @@ li{list-style-type: none;}
 .login-box .field label {display: block;font-weight: 700;padding-bottom: 3px;	color: #666;}
 .login-box .bd {overflow: hidden;	padding-bottom: 5px; vertical-align: middle;zoom: 1;}
 .login-box .login-text {
-	/*width: 206px;*/
+	width: 206px;
 	height: 28px;
 	line-height: 20px;
 	margin-right: 3px;
