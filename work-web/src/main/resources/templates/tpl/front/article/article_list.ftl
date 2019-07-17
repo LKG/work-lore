@@ -26,9 +26,6 @@
 <!-- banner 广告 begin-->
 <#include "/index-top-banner.ftl" />
 <!-- banner 广告 end-->
-<!-- 搜索框 begin-->
-<#include "/index-top-search.ftl" />
-<!-- 搜索框 end-->
 <!--轮播图上方导航栏  一栏-->
 <#include "/index-nav-top.ftl" />
 <div class="clear"></div>

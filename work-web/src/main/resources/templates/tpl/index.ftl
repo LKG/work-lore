@@ -51,11 +51,10 @@
 <!-- header begin-->
 <#include "/index-header.ftl" />
 <!-- header end-->
-<!-- 搜索框 begin-->
-<#include "index-top-search.ftl" />
-<!-- 搜索框 end-->
+<div class="clearfix"></div>
 <!--轮播图上方导航栏  一栏-->
 <#include "index-nav-top.ftl" />
+<div class="clearfix"></div>
 <#include "index-nav-left.ftl" />
 
 <#include "index-main.ftl" />

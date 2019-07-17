@@ -81,11 +81,13 @@ background-image: url(https://static.gongwk.com/images/toolbar.png);
 _background-image: url(https://static.gongwk.com/images/toolbar-png8.png);
 background-repeat: no-repeat;
 }
+/*
 .m-container {
 	width: 1210px;
 	margin-top: 10px;
 	padding: 10px 2px;
 }
+*/
 
 .jdm-toolbar-tab .tab-text {
 width: 62px;
@@ -328,7 +330,6 @@ _display: block;
 	opacity: 0;
 	filter: alpha(opacity=0);
 }
-.w{width:1210px;margin:0 auto;position:relative;padding-top:15px ;}
 .w .search .button{float:left;width:82px;height:36px;background:#337ab7;border:none;color:#fff;font-size:16px;}
 .w .right{height:34px;width: 124px;border:1px solid #dfdfdf;padding:0 28px 0 34px;text-align:center;line-height:34px;float:right;font-size:12px;position:relative;}
 .w .right .gw-left{position:absolute;top:8px;left:17px;}
@@ -387,9 +388,9 @@ _display: block;
 .focus .focus-c{position:absolute;right:0;top:4px;}
 #nav-v{clear:both;position:relative;width:100%;background:#337ab7;}
 .nav-img{
-	height:10px;width:100%;position:absolute;top:40px;
+	height:10px;width:100%;position:absolute;
 	border-bottom: 1px solid #ddd;
-/*	background:url(https://static.gongwk.com/images/nav-img.jpg) repeat-x;*/
+	background:url('https://static.gongwk.com/images/nav-img.jpg') repeat-x;
 }
 .focus .focus-d{position:absolute;top:3px;left:458px;}
 .focus .focus-d{
@@ -869,7 +870,6 @@ text-align: right;
 		width: 1210px;
 	}
 	.aa{width:1210px;}
-	.w {width:1210px;}
 	.w .logo{width:360px;}
 	.w .search .text{
 		width: 455px;
