@@ -81,13 +81,10 @@ background-image: url(https://static.gongwk.com/images/toolbar.png);
 _background-image: url(https://static.gongwk.com/images/toolbar-png8.png);
 background-repeat: no-repeat;
 }
-/*
-.m-container {
-	width: 1210px;
-	margin-top: 10px;
-	padding: 10px 2px;
+.m-container{
+	padding-left: 0px;
+	padding-right: 0px;
 }
-*/
 
 .jdm-toolbar-tab .tab-text {
 width: 62px;
@@ -363,7 +360,10 @@ _display: block;
 	50%{transform: scale(1.1);}
 }
 .dropdown-menu{
-	background-color:transparent;
+	background-color:rgba(0,0,0,.5);
+}
+.dropdown-menu > li > a {
+	color: white;
 }
 .dropdown-menu > li > a.maintainHover {
 	color: white; background-color: #0081C2;
@@ -448,10 +448,12 @@ _display: block;
 	75%{transform: translate(-5%,0) rotate(-1deg);}
 }
 .nav-menu .dropdown-menu{
-	width: 190px; height: 401px;
+	width: 190px;
+	height: 350px;
 }
 .nav-menu .dropdown-menu .popover{
-	width: 1020px;height: 402px;
+	width: 1020px;
+	height: 350px;
 	max-width: 1020px !important;
 	border: 1px solid #f7f7f7;
 	-webkit-box-shadow: 2px 0 5px rgba(0,0,0,.3);
@@ -462,19 +464,6 @@ _display: block;
 	-moz-transition: top .25s ease;
 	transition: top .25s ease;
 }
-/*轮播图*/
-#lunbo{clear:both;position:absolute;top:0px;left:194px;width:710px;}
-#one{overflow:hidden;height:400px;}
-#one li{float:left;width:0;}
-#two .on{background:red;}
-#two{position:absolute;right:295px;bottom:10px}
-#two li{float:left;padding:1px  6px;border:1px solid #fff;margin-left:10px;background:#666;border-radius:20px;color:#fff;cursor: pointer;text-align:center;}
-/*轮播图左右箭头*/
-.slider-page{display:none;}
-.slider-page a{display:block;width:28px;height:62px;line-height:62px;background: rgba(0,0,0,.2);filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#32000000, endColorstr=#32000000);color: #fff;text-align: center;font-size: 22px;font-weight: 400;margin-top: -31px;font-family: simsun;}
-#left{position:absolute;left:0px;top:215px;}
-#right{position:absolute;right:0px;top:215px;}
-#lunbo:hover .slider-page{display:block;}
 /*轮播图右边快报  服务栏*/
 .m{width: 302px;font-size: 12px;border:1px solid #e4e4e4;height: 400px;position:absolute;right:0;top:0px;padding: 10px 2px;box-shadow: 0 1px 5px rgba(4,0,0,.1);}
 .mt{padding: 0px 10px 0px 20px ;border-bottom: 1px dotted #E8E8E7;height: 43px;line-height: 43px;}

@@ -22,11 +22,6 @@
         }
     </style>
     <style type="text/css">
-        .m-container{
-            width: 1210px;
-            margin-top: 10px;
-            padding: 10px 2px;
-        }
         .hot-list{
             height: 285px;
         }
@@ -36,6 +31,35 @@
         .counter.purple .title{ background: #a98ceb; }
         .dd-inner{
             display: block;
+        }
+        .m-account__head {
+            width: 80px;
+            height: 80px;
+            left: 50%;
+            top: -12px;
+            margin-left: -40px;
+            text-align: center;
+            position: absolute;
+        }
+        .m-account__head__default{
+            width: 80px;
+            height: 80px;
+            background: #fff;
+            border-radius: 50%;
+            -webkit-box-shadow: 0 -3px 5px 1px rgba(0,0,0,.2);
+            box-shadow: 0 -3px 5px 1px rgba(0,0,0,.2);
+            position: relative;
+        }
+        m-account__head__default .svg-default-avatar {
+            color: #f1eae1;
+            font-size: 80px;
+            margin-left: -2px;
+        }
+        .svg-icon {
+            width: 1em;
+            height: 1em;
+            fill: currentColor;
+            overflow: hidden;
         }
     </style>
   <#assign template="index"/>
@@ -51,12 +75,79 @@
 <!-- header begin-->
 <#include "/index-header.ftl" />
 <!-- header end-->
-<div class="clearfix"></div>
 <!--轮播图上方导航栏  一栏-->
 <#include "index-nav-top.ftl" />
-<div class="clearfix"></div>
-<#include "index-nav-left.ftl" />
+<div class="container m-container"  style="position: relative;padding-top: 0px;margin-top: 10px;height: 350px;">
+    <div class="row">
+        <div class="col-sm-8 col-md-8">
+            <#include "index-nav-menu.ftl" />
+            <#include "index-nav-carousel.ftl" />
+        </div>
+        <div class="col-sm-4 col-md-4">
 
+            <div class="panel panel-default user-panel" id="user-panel" style="margin-top: 3px;box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
+               <!--- --->
+                <div class="m-account__head">
+                    <div class="m-account__head__default" >
+                        <div class="m-account__head__default-inner g-pointer">
+                            <svg aria-hidden="true" class="svg-icon svg-default-avatar">
+                                <use xlink:href="#svg-default-avatar"></use>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <!--- --->
+            </div>
+            <div class="panel panel-default"  id="top-article" style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
+                <div class="panel-heading"  style="padding: 0px 2px 0px 0px">
+                    <ul id="my-tab-hot" class="myNavTab nav nav-tabs" role="tablist">
+                        <li role="presentation" style="cursor:pointer" class="active">
+                            <a id="my-tab-free" data-key="tab-pane-free">
+                                免费榜
+                            </a>
+                        </li>
+                        <li role="presentation" style="cursor:pointer" class="">
+                            <a id="my-tab-hot" data-key="tab-pane-hot">
+                                畅销榜
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane" id="tab-pane-free">
+
+                            <#if freeDocs??&&freeDocs??>
+                                <div class="mc">
+                                    <ul>
+                                        <#list freeDocs as model>
+                                            <li title="${model.periodicalName!''}"><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i> <a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                        </#list>
+                                    </ul>
+                                </div>
+                            </#if>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="tab-pane-hot">
+                            <@media.periodical >
+                                <div class="mc">
+                                    <ul>
+                                     <#if docs??>
+                                        <#list docs as model>
+                                            <li title="${model.periodicalName!''}"><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                        </#list>
+                                     </#if>
+                                    </ul>
+                                </div>
+                            </@media.periodical>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
 <#include "index-main.ftl" />
 <!------footer信息 begin----->
 

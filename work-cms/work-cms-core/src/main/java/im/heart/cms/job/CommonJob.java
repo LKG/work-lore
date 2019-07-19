@@ -80,7 +80,7 @@ public class CommonJob extends  AbstractJob {
             //判断是否有分页
             Elements showallcontEle=article.select("#showallcont");
             if(showallcontEle.hasText()){
-                String cl= OkHttpClientUtils.fetchEntityString(" http://app.71.cn/?app=article&controller=article&action=fulltext&jsoncallback=jsonp1553093490389&contentid="+id);
+                String cl= OkHttpClientUtils.fetchEntityString("http://app.71.cn/?app=article&controller=article&action=fulltext&jsoncallback=jsonp1553093490389&contentid="+id);
                 String jsonContent = StringUtilsEx.substringBetween(cl, "jsonp1553093490389(",");");
                 JSONObject jsonObject = JSON.parseObject(jsonContent);
                 String content=jsonObject.getString("content");

@@ -16,7 +16,7 @@ public class QianxianzazhiJob extends CommonJob {
     }
     @Autowired
     ArticleService articleService;
-    @Scheduled(cron = "0 42 11 * * ?")
+    @Scheduled(cron = "0 52 12 * * ?")
     void executeJob()throws Exception{
         log.info("...........begin..........");
         ArticleCategory category=new ArticleCategory();

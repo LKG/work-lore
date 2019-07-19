@@ -1,5 +1,5 @@
 <div class="pull-container" style="position: relative;padding-top: 0px;margin-top: 7px;">
-    <div class="container" style="position: relative;padding-top: 0px;margin-top: 7px;">
+    <div class="m-container container" style="position: relative;padding-top: 0px;">
         <!-- 搜索框 begin-->
         <#include "index-top-search.ftl" />
         <!-- 搜索框 end-->

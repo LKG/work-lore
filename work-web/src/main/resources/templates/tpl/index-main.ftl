@@ -60,7 +60,7 @@
 
         </div>
         <div class="col-sm-3 col-md-4">
-            <div class="panel panel-default"  id="top-article" style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
+            <div class="panel panel-default"  id="top-doc" style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
                 <div class="panel-heading"  style="padding: 0px 2px 0px 0px">
                     <ul id="my-tab-hot" class="myNavTab nav nav-tabs" role="tablist">
                         <li role="presentation" style="cursor:pointer" class="active">
@@ -109,10 +109,10 @@
     </div>
 </div>
 <div class="clearfix"></div>
-<div class="container m-container"  style="margin-top: -20px;">
+<div class="container m-container" >
     <div class="row">
         <div class="col-sm-3 col-md-4 doc-col">
-            <div class="panel panel-default"   id="work-article"   style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
+            <div class="panel panel-default"   id="work-doc"   style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
                 <div class="panel-heading" style="padding: 0px 2px 0px 0px;">
                     <ul id="my-tab-work" class="myNavTab nav nav-tabs" role="tablist">
                         <li role="presentation" style="cursor:pointer" class="active">

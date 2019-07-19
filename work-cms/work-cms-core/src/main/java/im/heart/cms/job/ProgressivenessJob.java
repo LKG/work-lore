@@ -14,9 +14,9 @@ public class ProgressivenessJob extends CommonJob {
     ArticleService articleService;
     @Override
     public Integer  getMaxPage(){
-        return 300;
+        return 3;
     }
-    @Scheduled(cron = "0 19 16 * * ?")
+    @Scheduled(cron = "0 22 10 * * ?")
     void executeJob()throws Exception{
         log.info("...........begin..........");
         ArticleCategory category=new ArticleCategory();

@@ -1,5 +1,5 @@
 <!-- ----->
-<ul class="nav nav-menu" style="margin-top: -2px" >
+<ul class="nav nav-menu">
     <li class="<#if template=='index'>open</#if> active">
         <!--
                      jQuery-menu-aim: this <ul> defines the dropdown main menu and its contents.

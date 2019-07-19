@@ -8,7 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.util.WebUtils;
 
+import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.*;
@@ -133,6 +137,27 @@ public class WebUtilsEx extends WebUtils {
         return getParametersJsonStartingWith(request, null);
     }
 
+    /**
+     *  获取请求体
+     * @param request
+     * @return
+     */
+    public static String getRequestBodyForString(HttpServletRequest request){
+        String body = "";
+        try {
+            ServletInputStream inputStream = request.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuffer sBuff=new StringBuffer();
+             String line="";
+            while ((line = reader.readLine()) != null) {
+                sBuff.append(line);
+            }
+            body = sBuff.toString();
+        } catch (IOException e) {
+            logger.error(e.getStackTrace()[0].getMethodName(), e);
+        }
+        return body;
+    }
     /**
      * @param request
      * @param prefix
