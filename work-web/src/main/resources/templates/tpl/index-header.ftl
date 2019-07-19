@@ -40,7 +40,6 @@
             </@shiro.hasRole >
             </@shiro.user>
             <li class="shu"></li>
-            <li class="shu"></li>
             <li class="my bj">
                 <a href="#">我的</a>
                 <i class="ci-right ">
