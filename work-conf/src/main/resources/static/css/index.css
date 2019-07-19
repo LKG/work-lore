@@ -449,11 +449,11 @@ _display: block;
 }
 .nav-menu .dropdown-menu{
 	width: 190px;
-	height: 350px;
+	height: 210px;
 }
 .nav-menu .dropdown-menu .popover{
 	width: 1020px;
-	height: 350px;
+	height: 210px;
 	max-width: 1020px !important;
 	border: 1px solid #f7f7f7;
 	-webkit-box-shadow: 2px 0 5px rgba(0,0,0,.3);
@@ -465,7 +465,7 @@ _display: block;
 	transition: top .25s ease;
 }
 /*轮播图右边快报  服务栏*/
-.m{width: 302px;font-size: 12px;border:1px solid #e4e4e4;height: 400px;position:absolute;right:0;top:0px;padding: 10px 2px;box-shadow: 0 1px 5px rgba(4,0,0,.1);}
+/*.m{width: 302px;font-size: 12px;border:1px solid #e4e4e4;height: 400px;position:absolute;right:0;top:0px;padding: 10px 2px;box-shadow: 0 1px 5px rgba(4,0,0,.1);}*/
 .mt{padding: 0px 10px 0px 20px ;border-bottom: 1px dotted #E8E8E7;height: 43px;line-height: 43px;}
 .mt h3{float:left;}
 .mt .extra{float:right;font: 400 9px/43px consolas;}
