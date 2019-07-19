@@ -9,10 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class Reptile71TjJob    extends  CommonJob{
 
-    @Override
-    public Integer  getMaxPage(){
-        return 3;
-    }
     @Scheduled(cron = "0 02 10 * * ?")
     void executeJob()throws Exception{
         log.info("..........begin...........");

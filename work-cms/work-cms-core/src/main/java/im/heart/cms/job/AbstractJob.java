@@ -15,7 +15,7 @@ import java.net.URL;
 
 @Slf4j
 public abstract class  AbstractJob {
-    Integer DEFAULT_MAX_PAGE=10;
+    Integer DEFAULT_MAX_PAGE=5;
     public abstract Integer getMaxPage();
     @Async
     public void parseArticleList(String url, ArticleCategory category){

@@ -11,11 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class HarsocietyJob extends CommonJob {
 
-    @Override
-    public Integer  getMaxPage(){
-        return 3;
-    }
-
     @Autowired
     ArticleService articleService;
     @Scheduled(cron = "0 34 09 * * ?")

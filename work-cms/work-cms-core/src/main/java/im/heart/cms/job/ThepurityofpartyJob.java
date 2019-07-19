@@ -10,10 +10,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 public class ThepurityofpartyJob extends CommonJob {
-    @Override
-    public Integer  getMaxPage(){
-        return 3;
-    }
+
     @Autowired
     ArticleService articleService;
     @Scheduled(cron = "0 48 09 * * ?")

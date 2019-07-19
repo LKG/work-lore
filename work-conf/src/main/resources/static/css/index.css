@@ -453,7 +453,7 @@ _display: block;
 }
 .nav-menu .dropdown-menu .popover{
 	width: 1020px;
-	height: 210px;
+	height: 215px;
 	max-width: 1020px !important;
 	border: 1px solid #f7f7f7;
 	-webkit-box-shadow: 2px 0 5px rgba(0,0,0,.3);

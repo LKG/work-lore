@@ -12,10 +12,7 @@ import org.springframework.stereotype.Component;
 public class ScientificdevelopJob extends CommonJob {
     @Autowired
     ArticleService articleService;
-    @Override
-    public Integer  getMaxPage(){
-        return 3;
-    }
+
     @Scheduled(cron = "0 43 09 * * ?")
     void executeJob()throws Exception{
         log.info("...........begin..........");
