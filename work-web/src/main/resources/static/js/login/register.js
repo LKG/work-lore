@@ -30,13 +30,18 @@ require('jquery')
 		 
 	 });
 	 $("#protocol-btn").on("click",function(){
-		 var agreements=$("#agreements-body").html();
-		 var d = dialog({
-				id : "protocol-btn",
-			    title: '用户注册协议',
-			    content: agreements,
-			});
-		 d.showModal();
+         $.httpUtil.curl({
+             url : baseRoot+"/index/agreementReg.jhtml",
+             type : "get",
+             loading : false,
+             success :function(data) {
+                 var d = dialog({
+                     id : "protocol-btn",
+                     title: '用户注册协议',
+                     content: data,
+                 }).showModal();
+             },
+         });
 	 });
 	//发送短信验证码
 	$("#J_PhoneCodeBtn").on("click",function(){

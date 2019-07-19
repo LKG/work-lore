@@ -5,14 +5,20 @@ require('jquery')
 	 var baseRoot=$baseRoot.attr("href");
 	 require('art-dialog');
     $("#Q_protocol-btn").on("click",function(){
-        var agreements=$("#agreements-body").html();
-        var d = dialog({
-            id : "protocol-btn",
-            title: '用户注册协议',
-            content: agreements,
+        $.httpUtil.curl({
+            url : baseRoot+"/index/agreementReg.jhtml",
+            type : "get",
+            loading : false,
+            success :function(data) {
+                var d = dialog({
+                    id : "protocol-btn",
+                    title: '用户注册协议',
+                    content: data,
+                }).showModal();
+            },
         });
-        d.showModal();
     });
+
 	//发送短信验证码
 	$("#Q_PhoneCodeBtn").on("click",function(){
 		var a=null;

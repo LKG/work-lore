@@ -51,5 +51,18 @@
    	margin-top: 40px;
    	height:583px;
    }
+ .agreement-title {
+     font-size: 14px;
+     font-weight: 700;
+     margin: 10px 0;
+ }
+ .agreement-content {
+     color: #333;
+     border: 1px solid #e0dddb;
+     padding: 10px;
+     border-radius: 8px;
+     -webkit-box-shadow: 0 3px 3px #e0dddb;
+     box-shadow: 0 3px 3px #e0dddb;
+ }
 </style>
 <#include "/includes/baidu-tongji.ftl" />

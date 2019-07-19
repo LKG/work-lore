@@ -90,12 +90,34 @@
         <div class="col-sm-4 col-md-4">
             <div class="panel panel-default hot-article" style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
                 <div class="panel-heading" style="border-left: 3px solid #FF970D;">
-                    <i class="fa fa-th" style="margin-right: 10px"></i> 热门文章
+                    <i class="fa fa-th" style="margin-right: 10px"></i>
                     <a href="${appHost}/article.jhtml" class="pull-right" >更多<i class="fa fa-angle-double-right"></i></a>
                 </div>
                 <div class="panel-body">
                     <div class="row">
-
+                        <!--- --->
+                        <div class="m-account__head">
+                            <div class="m-account__head__default" >
+                                <div class="m-account__head__default-inner g-pointer">
+                                    <svg aria-hidden="true" class="svg-icon svg-default-avatar">
+                                        <use xlink:href="#svg-default-avatar"></use>
+                                    </svg>
+                                </div>
+                                <@shiro.guest>
+                                  <p class="m-account__banner" >
+                                      <ul class="header-right">
+                                          <li class=""> <a href="${appHost}/login.jhtml">登录</a>
+                                          </li>
+                                          <li class="shu"></li>
+                                          <li class="">
+                                              <a  class="red" href="${appHost}/regist.jhtml" target="_blank" tabindex="8">注册</a>
+                                          </li>
+                                      </ul>
+                                  </p>
+                                </@shiro.guest>
+                            </div>
+                        </div>
+                        <!--- --->
                     </div>
                 </div>
             </div>

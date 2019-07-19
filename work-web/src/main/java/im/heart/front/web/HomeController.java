@@ -74,7 +74,15 @@ public class HomeController extends AbstractController {
 		return new ModelAndView("front/questions");
 	}
 
-
+	/**
+	 *  协议
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value={apiVer+"/agreementReg"}  ,method = RequestMethod.GET)
+	public ModelAndView agreementsReg(HttpServletRequest request) {
+		return new ModelAndView("front/agreement-reg");
+	}
 	/**
 	 *  协议
 	 * @param request
