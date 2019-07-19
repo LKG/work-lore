@@ -1,9 +1,21 @@
 <div id="carousel-example-generic" class="carousel slide"  style="margin-top: 3px;" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
+        <li >
+            <a class="carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">上一个</span>
+            </a>
+        </li>
         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li >
+            <a class="carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">下一个</span>
+            </a>
+        </li>
     </ol>
 
     <!-- Wrapper for slides -->
@@ -28,13 +40,4 @@
         </div>
     </div>
 
-    <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" role="button" style="margin-left: 200px" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">上一个</span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">下一个</span>
-    </a>
 </div>
