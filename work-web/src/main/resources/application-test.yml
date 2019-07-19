@@ -134,7 +134,7 @@ jodconverter:
   local:
     enabled: true
     office-home: C:\Program Files (x86)\OpenOffice 4 # 设置Office主目录
-    portNumbers: 8100,8101,8102 ,8103,,8104 # 开启多个Office进程，每个端口对应一个进程
+    portNumbers: 8100,8101,8102 ,8103,8104,8105,8106,8107   # 开启多个Office进程，每个端口对应一个进程
     maxTasksPerProcess: 50 # Office进程重启前的最大进程数
 alipay:
   appId: 2016091200495262
