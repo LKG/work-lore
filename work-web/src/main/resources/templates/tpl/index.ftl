@@ -89,9 +89,10 @@
         </div>
         <div class="col-sm-4 col-md-4">
 
-            <div class="panel panel-default"  id="top-article" style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
+            <div class="panel panel-default"  style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
                 <div class="panel-heading"  style="border-left: 3px solid #FF970D;padding: 0px 2px 0px 0px">
-                    <i class="fa fa-th" style="margin-right: 10px"></i>
+                    <i class="fa fa-hot" style="margin-right: 10px"> &nbsp;&nbsp;
+                    </i>
                     <!--- --->
                     <div class="m-account__head">
                         <div class="m-account__head__default" >
