@@ -81,7 +81,7 @@
 <!-- header end-->
 <!--轮播图上方导航栏  一栏-->
 <#include "index-nav-top.ftl" />
-<div class="container m-container"  style="position: relative;padding-top: 0px;margin-top: 10px;height: 350px;">
+<div class="container m-container"  style="position: relative;padding-top: 0px;margin-top: 10px;">
     <div class="row">
         <div class="col-sm-8 col-md-8">
             <#include "index-nav-menu.ftl" />
@@ -99,25 +99,20 @@
                         <div class="m-account__head">
                             <div class="m-account__head__default" >
                                 <div class="m-account__head__default-inner g-pointer">
-                                    <svg aria-hidden="true" class="svg-icon svg-default-avatar">
-                                        <use xlink:href="#svg-default-avatar"></use>
-                                    </svg>
+                                 <i class="fa fa-user fa-lg" style="font-size: 70px;line-height: 70px;"></i>
                                 </div>
-                                <@shiro.guest>
-                                  <p class="m-account__banner" >
-                                      <ul class="header-right">
-                                          <li class=""> <a href="${appHost}/login.jhtml">登录</a>
-                                          </li>
-                                          <li class="shu"></li>
-                                          <li class="">
-                                              <a  class="red" href="${appHost}/regist.jhtml" target="_blank" tabindex="8">注册</a>
-                                          </li>
-                                      </ul>
-                                  </p>
-                                </@shiro.guest>
                             </div>
                         </div>
                         <!--- --->
+                        <#if articles??&&articles??>
+                            <div class="mc">
+                                <ul>
+                                    <#list articles as article>
+                                        <li title="${article.title!''}"><a href="${appHost}/article/${article.id}.jhtml" ><span>[${article.categoryName!''}]</span>${article.shortTitle!''}</a></li>
+                                    </#list>
+                                </ul>
+                            </div>
+                        </#if>
                     </div>
                 </div>
             </div>

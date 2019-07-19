@@ -1,23 +1,18 @@
 <div id="carousel-example-generic" class="carousel slide"  style="margin-top: 3px;" data-ride="carousel">
     <!-- Indicators -->
+    <a class="carousel-control left" href="#carousel-example-generic" data-slide="prev">
+        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+        <span class="sr-only">Previous</span>
+    </a>
     <ol class="carousel-indicators">
-        <li >
-            <a class="carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">上一个</span>
-            </a>
-        </li>
         <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-        <li >
-            <a class="carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">下一个</span>
-            </a>
-        </li>
     </ol>
-
+    <a class="carousel-control right" href="#carousel-example-generic" data-slide="next">
+        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+        <span class="sr-only">Next</span>
+    </a>
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item active">
