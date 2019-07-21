@@ -44,22 +44,17 @@ define(function (require, exports, moudles) {
 		var url=$form.attr("action");
 		$.post(url,data,function(json){
 			if(json.success){
-				var topDialog =window.dialog;
 				var successUrl=json.successUrl;
-			   	if(topDialog){
-					var dialog=topDialog.getCurrent();
-			   		$.httpUtil.curl({
-						url : successUrl,
-						type : "get",
-						loading : false,
-						success :function(data) {
-							dialog.content(data);
-						},
-					});
-			   		
-			   	}else{
-			   		window.parent.location.href=successUrl;
-			   	}
+				// var dialog=window.dialog.getCurrent();
+				// $.httpUtil.curl({
+				// 	url : successUrl,
+				// 	type : "get",
+				// 	loading : false,
+				// 	success :function(data) {
+				// 		dialog.content(data);
+				// 	}
+				// });
+				window.parent.location.href=successUrl;
 			}else{
 				$btn.html(dataHtml).removeAttr("disabled");
 				if(json._login_times){
