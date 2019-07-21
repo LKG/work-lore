@@ -38,6 +38,9 @@
         .originPrice{
             text-decoration: line-through;
         }
+        .breadcrumb {
+            margin-bottom: 0px;
+        }
     </style>
 <#assign template="docs"/>
 </head>

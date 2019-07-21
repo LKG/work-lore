@@ -49,6 +49,9 @@
         .laypage_main{
             clear: none !important;
         }
+        .breadcrumb {
+            margin-bottom: 0px;
+        }
     </style>
     <#assign template="docs"/>
 </head>

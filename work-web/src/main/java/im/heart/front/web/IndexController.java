@@ -61,7 +61,7 @@ public class IndexController extends AbstractController {
 		Predicate predicate= qArticle.isPub.eq(Boolean.TRUE);
 		predicate=ExpressionUtils.and(predicate,qArticle.isDeleted.eq(Boolean.FALSE));
 		OrderSpecifier<Date> sortOrder = qArticle.pushTime.desc();
-		List<ArticleDTO> pag = this.articleService.findAll(predicate, 5,sortOrder);
+		List<ArticleDTO> pag = this.articleService.findAll(predicate, 10,sortOrder);
 		model.put("articles",pag);
 	}
 

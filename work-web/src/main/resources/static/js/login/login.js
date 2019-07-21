@@ -2,6 +2,7 @@ define(function (require, exports, moudles) {
 	require('jquery');
 	var $loginBox=$("#J_LoginBox");
 	var $baseRoot=$("#baseRoot");
+	var $httpUtil = require('/js/common/httpUtil.js');
 	require('art-dialog');
 	var baseRoot=$baseRoot.attr("href");
 	$("#J_2QRCode").show();//显示二维码登录切换

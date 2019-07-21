@@ -2,8 +2,8 @@ define(function (require, exports, moudles) {
 		require('jquery');
 		var bgColor="rgb(19, 53, 81)";
 		var bgUrl="https://img.alicdn.com/tfs/TB174geRVXXXXcYXVXXXXXXXXXX-2880-1024.png";
-		//$("#wrap-login").css('background-color',bgColor);
-		//$("#wrap-login").css('background-image',"url("+bgUrl+")");
+		// $("#wrap-login").css('background-color',bgColor);
+		// $("#wrap-login").css('background-image',"url("+bgUrl+")");
 		//处理小图
 		var $imgNode = $('#j_mediaImg'),
 		url = $imgNode.attr('src'),

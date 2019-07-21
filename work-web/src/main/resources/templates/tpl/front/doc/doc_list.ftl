@@ -56,6 +56,9 @@
         .doc-col .thumbnail{
             height: 450px;
         }
+        .breadcrumb {
+            margin-bottom: 0px;
+        }
     </style>
     <#assign template="docs"/>
 </head>

@@ -1,18 +1,20 @@
-<div id="carousel-example-generic" class="carousel slide"  style="margin-top: 3px;" data-ride="carousel">
+<div id="carousel-home-generic" class="carousel slide"  style="margin-top: 3px;" data-ride="carousel">
     <!-- Indicators -->
-    <a class="carousel-control left" href="#carousel-example-generic" data-slide="prev">
-        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
-        <span class="sr-only">Previous</span>
-    </a>
     <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li data-target="#carousel-home-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-home-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-home-generic" data-slide-to="2"></li>
     </ol>
-    <a class="carousel-control right" href="#carousel-example-generic" data-slide="next">
-        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
-        <span class="sr-only">Next</span>
-    </a>
+<#--    <div class="themeCtrl">
+        <a class="left" href="#carousel-home-generic" data-slide="prev" title="上一张">
+            <i class="fa fa-chevron-left" aria-hidden="true" ></i>
+            <span class="sr-only">上一张</span>
+        </a>
+        <a class="right" href="#carousel-home-generic" data-slide="next" title="下一张">
+            <i class="fa fa-chevron-right" aria-hidden="true" ></i>
+            <span class="sr-only">下一张</span>
+        </a>
+    </div>-->
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item active">

@@ -50,7 +50,7 @@
             box-shadow: 0 -3px 5px 1px rgba(0,0,0,.2);
             position: relative;
         }
-        m-account__head__default .svg-default-avatar {
+        m-account__head__default  {
             color: #f1eae1;
             font-size: 80px;
             margin-left: -2px;
@@ -59,11 +59,8 @@
             margin-top: 90px;
             font-weight: 700;
         }
-        .svg-icon {
-            width: 1em;
-            height: 1em;
-            fill: currentColor;
-            overflow: hidden;
+        #carousel-home-generic img{
+            height: 350px;
         }
     </style>
   <#assign template="index"/>
@@ -81,7 +78,7 @@
 <!-- header end-->
 <!--轮播图上方导航栏  一栏-->
 <#include "index-nav-top.ftl" />
-<div class="container m-container"  style="position: relative;padding-top: 0px;margin-top: 10px;">
+<div class="container m-container"  style="position: relative;padding-top: 0px;margin-top: 10px;height: 355px;">
     <div class="row">
         <div class="col-sm-8 col-md-8">
             <#include "index-nav-menu.ftl" />

@@ -53,6 +53,9 @@
             margin-top: -15px;
             height: 32px;
         }
+        .breadcrumb {
+            margin-bottom: 0px;
+        }
     </style>
 <#assign template="docs"/>
 </head>

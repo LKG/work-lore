@@ -70,6 +70,9 @@
         .keywords a{
             padding: 2px 2px;
         }
+        .breadcrumb {
+            margin-bottom: 0px;
+        }
     </style>
     <#assign template="article"/>
 </head>

@@ -29,8 +29,14 @@
 		<img id='j_mediaImg' style="display:none;"  src="#" >
 		</a>
 		<div class="themeCtrl">
-			<a id="prevTheme" href="javascript:void(0);" onclick="javascript:void(0);" title="上一张"><i class="fa fa-chevron-left"></i></a>
-			<a id="nextTheme" href="javascript:void(0);" onclick="javascript:void(0);" title="下一张"><i class="fa fa-chevron-right"></i></a>
+			<a id="prevTheme" href="javascript:void(0);" onclick="javascript:void(0);" title="上一张">
+                <i class="fa fa-chevron-left"></i>
+                <span class="sr-only">上一张</span>
+            </a>
+			<a id="nextTheme" href="javascript:void(0);" onclick="javascript:void(0);" title="下一张">
+                <i class="fa fa-chevron-right"></i>
+                <span class="sr-only">下一张</span>
+            </a>
 		</div>
    </div>
     <!--宣传图片end -->
