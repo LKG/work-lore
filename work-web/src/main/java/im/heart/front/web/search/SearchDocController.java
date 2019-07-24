@@ -3,6 +3,7 @@ package im.heart.front.web.search;
 import im.heart.cms.entity.Article;
 import im.heart.cms.service.ArticleService;
 import im.heart.core.CommonConst;
+import im.heart.core.enums.Status;
 import im.heart.core.plugins.persistence.DynamicPageRequest;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
@@ -65,6 +66,7 @@ public class SearchDocController extends AbstractController {
         final Collection<SearchFilter> filters= DynamicSpecifications.buildSearchFilters(request);
         filters.add(new SearchFilter("isPub", SearchFilter.Operator.EQ,Boolean.TRUE));
         filters.add(new SearchFilter("isDeleted", SearchFilter.Operator.EQ,Boolean.FALSE));
+        filters.add(new SearchFilter("checkStatus", SearchFilter.Operator.EQ, Status.enabled));
         SearchType searchType=SearchType.findByIntValue(qt);
         switch (searchType){
             case topical:
