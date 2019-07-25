@@ -1,15 +1,11 @@
-// window.onload=function(){
-// 	var oxx=document.getElementById('xx');
-// 	var obanner=document.getElementById('top-banner');
-// 	var otext=document.getElementById('textt');
-// 	oxx.onmousedown=function(){
-// 		obanner.style.display='none';
-// 	};
-// 	otext.onmousedown=function(){
-// 		otext.value='';
-// 		otext.style.color='rgb(51, 51, 51)';
-// 	};
-// }
+$(function() {
+    $('#xx').on("mousedown",function () {
+        $('#top-banner').hide();
+    });
+    $("#jdm-tbar-tab-top").on("click",function () {
+        $('body,html').animate({scrollTop:0},2000);
+    });
+});
 //**************服装鞋包选项卡*******************
 $(function(){
     $('.tab li').on({

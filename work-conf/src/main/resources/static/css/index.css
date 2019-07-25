@@ -237,8 +237,8 @@ _display: block;
 .my3{float:right;margin:31px 50px 0 0}
 .bj-1,.my1,.shouji1,.guanzhu,.kehu,.daohang,.dorpdown-layer{z-index:100;}
 /*广告条*/
-#top-banner{clear:both;width:100%;height:80px;background-color: rgb(212, 2, 13);display:block;}
-.top-ba{width:1210px;margin:0 auto;height:80px;position:relative;}
+#top-banner{clear:both;width:100%;display:block;}
+.top-ba{width:1210px;margin:0 auto;position:relative;}
 #xx{width:20px;height:20px;color: #fff;background: #2d2d2d;opacity: 0.3;filter: alpha(opacity=30);text-align:center;position:absolute;top:5px;right:25px;}
 #xx:hover{background:#c81600;}
 /*logo一栏*/

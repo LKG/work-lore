@@ -27,7 +27,7 @@
         </div>
         <div class="jdm-toolbar-footer">
             <div data-type="link" id="#top" class="J-trigger jdm-toolbar-tab jdm-tbar-tab-top">
-                <a href="#" >
+                <a href="javascript:void(0);" >
                     <i class="tab-ico"></i><em class="tab-text">顶部</em>
                 </a>
             </div>
