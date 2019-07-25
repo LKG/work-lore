@@ -16,7 +16,7 @@ define(function (require, exports, moudles) {
     $("#xx,#xx a").on("click",function () {
         $("#top-banner").hide();
     });
-    $("#refresh,#seach-btn").on("click", function() {
+    $("#refresh,#search-btn").on("click", function() {
         $("#page").val(1);
         var categoryId=$("#main-container").attr("data-categoryId");
         window.location.href=url.api+"s/c-"+categoryId+"-1.jhtml";

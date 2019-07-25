@@ -54,13 +54,13 @@ define(function(require, exports, moudles) {
 		if($(this).hasClass("active")){
 			return;
 		}
-		$("#org-seach-btn").click();
+		$("#org-search-btn").click();
 	});
 	$("#my-tab-rule").on("click", "#my-tab-related",function(){
 		if($(this).hasClass("active")){
 			return;
 		}
-		$("#related-org-seach-btn").click();
+		$("#related-org-search-btn").click();
 	});
 	var $orgTbody = $("#org-table-tbody");
 	// 全选事件
@@ -68,9 +68,9 @@ define(function(require, exports, moudles) {
 	$("#orgBtnSelectAll").on("change",function() {
 		var $checkBox = $orgTbody.find("input[name='id']:not(:disabled)");
 		if ($(this).is(':checked')) {
-			$checkBox.attr("checked",'true');// 全选
+			$checkBox.prop("checked",true);// 全选
 	    } else {
-			$checkBox.removeAttr("checked");// 反选
+			$checkBox.prop("checked",false);// 反选
 		}
 	});
 
@@ -137,7 +137,7 @@ define(function(require, exports, moudles) {
 			}
 		}).showModal();
 	});
-	$("#org-seach-btn").on("click", function() {
+	$("#org-search-btn").on("click", function() {
 		search(false);
 		$("#org-page").val("1");
 	});
@@ -149,7 +149,7 @@ define(function(require, exports, moudles) {
 	});
 	var search = function(loading) {
 		var hideId = $('#hideUserId').val();
-		$("#orgBtnSelectAll").removeAttr("checked");// 取消选中
+		$("#orgBtnSelectAll").prop("checked",false);// 取消选中
 		var param = $("#org_search_form").serialize();
 		$.httpUtil.curl({
 					url : url.userApi+"/"+hideId+"/orgs.json",
@@ -188,13 +188,13 @@ define(function(require, exports, moudles) {
 		var $checkBox = $relatedOrgTbody.find("input[name='id']:not(:disabled)");
 		if ($(this).is(':checked')) {
 			$("#related-remove-btn").removeAttr("disabled");
-			$checkBox.attr("checked",'true');// 全选
+			$checkBox.prop("checked",true);// 全选
 	    } else {
-			$checkBox.removeAttr("checked");// 反选
+			$checkBox.prop("checked",false);// 反选
 			$("#related-remove-btn").attr("disabled","disabled");
 		}
 	});
-	$("#related-org-seach-btn").on("click", function() {
+	$("#related-org-search-btn").on("click", function() {
 		$("#related-org-size").val($(this).val());
 		$("#related-org-page").val(1);
 		searchRelated(false);
@@ -205,11 +205,11 @@ define(function(require, exports, moudles) {
 		searchRelated(false);
 	});
 	setTimeout(function() {
-		$("#related-org-seach-btn").click();
+		$("#related-org-search-btn").click();
 	}, 10);
 	var searchRelated = function(loading) {
 		var hideId = $('#hideUserId').val();
-		$("#relatedOrgBtnSelectAll").removeAttr("checked");// 取消选中
+		$("#relatedOrgBtnSelectAll").prop("checked",false);// 取消选中
 		var param = $("#related_org_search_form").serialize();
 		$.httpUtil.curl({
 					url : url.userApi+"/"+hideId+"/related/orgs.json",
@@ -274,7 +274,7 @@ define(function(require, exports, moudles) {
 						 var content="设置默认机构成功";
 			        	   if(data.success){
 			             	   $msg.alert($(this),content);
-			        			$("#related-org-seach-btn").click();
+			        			$("#related-org-search-btn").click();
 			        		   return ;
 			        	   }else{
 			        		   if(data.result &&data.result.error_description){
@@ -322,7 +322,7 @@ define(function(require, exports, moudles) {
 						 var content="取消关联成功";
 			        	   if(data.success){
 			             	   $msg.alert($(this),content);
-			        			$("#related-org-seach-btn").click();
+			        			$("#related-org-search-btn").click();
 			        		   return ;
 			        	   }else{
 			        		   if(data.result &&data.result.error_description){

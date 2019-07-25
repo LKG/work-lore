@@ -91,7 +91,7 @@ define(function(require, exports, moudles) {
 		});
 		model.showModal();
 	});
-	$("#refresh,#seach-btn").on("click", function() {
+	$("#refresh,#search-btn").on("click", function() {
 		$("#page").val("1");
 		search(true);
 	});
@@ -107,9 +107,9 @@ define(function(require, exports, moudles) {
     $("#btSelectAll").on("change",function() {
         var $checkBox = $tbody.find("input[name='id']:not(:disabled)");
         if ($(this).is(':checked')) {
-            $checkBox.attr("checked",'true');// 全选
+            $checkBox.prop("checked",true);// 全选
         } else {
-            $checkBox.removeAttr("checked");// 反选
+            $checkBox.prop("checked",false);// 反选
         }
     });
 	$tbody.on("click", ".showcity",function() {
@@ -246,7 +246,7 @@ define(function(require, exports, moudles) {
 		d.showModal();
 	});
 	var search = function(loading) {
-		$("#btSelectAll").removeAttr("checked");
+		$("#btSelectAll").prop("checked",false);
 		var param = $("#search_form").serialize();
 		$.httpUtil.curl({
 					url : url.api + "s.json",
@@ -264,9 +264,9 @@ define(function(require, exports, moudles) {
 							$("#btSelectAll").on("change",function() {
 								var $checkBox = $tbody.find("input[type='checkbox']:not(:disabled)");
 								if ($(this).is(':checked')) {
-									$checkBox.attr("checked",'true');// 全选					
+									$checkBox.prop("checked",true);// 全选
 							    } else {
-									$checkBox.removeAttr("checked");// 反选
+									$checkBox.prop("checked",false);// 反选
 								}
 							});
 

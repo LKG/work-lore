@@ -43,7 +43,7 @@
 					 		<input type="hidden" name="size" id="related-item-size" value="10" />
 					 		<input type="hidden" name="order" id="related-item-order" value="level" />
 						 </div>
-					  <button type="button" id="related-item-seach-btn" class="btn btn-primary"><@spring.message code="label.default.button.search" /></button>
+					  <button type="button" id="related-item-search-btn" class="btn btn-primary"><@spring.message code="label.default.button.search" /></button>
 					  <button type="button" id="related-item-remove-btn" class="btn btn-danger"><@spring.message code="label.default.button.del" /></button>
 					<div class="bars pull-right" >
 					 <p  style="background-color: #fff;    display: inline-block;" >

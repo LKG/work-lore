@@ -87,16 +87,16 @@ define(function(require, exports, moudles) {
 		}).showModal();
 	 });
 	
-	$("#refresh,#seach-btn").on("click", function() {
+	$("#refresh,#search-btn").on("click", function() {
 		$("#page").val(1);
 		search(true);
 	});
 	$(".page-size-sel").on("change", function() {
 		$("#size").val($(this).val());
-		$("#seach-btn").click();
+		$("#search-btn").click();
 	});
 	var search = function(loading) {
-		$("#btSelectAll").removeAttr("checked");
+		$("#btSelectAll").prop("checked",false);
 		var param = $("#search_form").serialize();
 		$.httpUtil.curl({url : url.api + "s.json",
 			type : "get",

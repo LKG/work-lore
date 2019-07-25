@@ -109,7 +109,7 @@ define(function(require, exports, moudles) {
 		if($(this).hasClass("active")){
 			return;
 		}
-		$("#related-item-seach-btn").click();
+		$("#related-item-search-btn").click();
 	});
 	var $relatedTbody = $("#related-item-tbody");
 	var getRelatedCheckedBox=function(){
@@ -150,7 +150,7 @@ define(function(require, exports, moudles) {
 						 var content="删除成功";
 			        	   if(data.success){
 			          			$msg.alert($(this),content);
-			        		   $("#related-item-seach-btn").click();
+			        		   $("#related-item-search-btn").click();
 			        		   return ;
 			        	   }else{
 			        		   if(data.result &&data.result.error_description){
@@ -174,12 +174,12 @@ define(function(require, exports, moudles) {
 	$("#relatedBtnSelectAll").on("change",function() {
 		var $checkBox = $relatedTbody.find("input[name='itemId']:not(:disabled)");
 		if ($(this).is(':checked')) {
-			$checkBox.attr("checked",'true');// 全选
+			$checkBox.prop("checked",true);// 全选
 	    } else {
-			$checkBox.removeAttr("checked");// 反选
+			$checkBox.prop("checked",false);// 反选
 		}
 	});
-	$("#related-item-seach-btn").on("click", function() {
+	$("#related-item-search-btn").on("click", function() {
 		$("#related-item-size").val($(this).val());
 		$("#related-item-page").val(1);
 		searchRelated(false);
@@ -190,11 +190,11 @@ define(function(require, exports, moudles) {
 		searchRelated(false);
 	});
 	setTimeout(function() {
-		$("#related-item-seach-btn").click();
+		$("#related-item-search-btn").click();
 	}, 10);
 	var searchRelated = function(loading) {
 		var hideDictId = $('#hideDictId').val();
-		$("#relatedBtnSelectAll").removeAttr("checked");// 取消选中
+		$("#relatedBtnSelectAll").prop("checked",false);// 取消选中
 		var param = $("#related_item_search_form").serialize();
 		$.httpUtil.curl({
 					url : url.api+"/"+hideDictId+"/items.json",

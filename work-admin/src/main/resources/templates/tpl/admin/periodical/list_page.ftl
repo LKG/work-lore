@@ -64,7 +64,7 @@
 				   <option value="sharing" >共享</option>
 			   </select>
 		   </div>
-		   <button type="button" id="seach-btn" class="btn btn-primary"><@spring.message code="label.default.button.search" /></button>
+		   <button type="button" id="search-btn" class="btn btn-primary"><@spring.message code="label.default.button.search" /></button>
 	   </form>
    </div>
  	<div class="panel-body" >

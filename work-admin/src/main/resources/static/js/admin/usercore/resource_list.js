@@ -47,7 +47,7 @@ define(function(require, exports, moudles) {
 	 });
 	$(".page-size-sel").on("change", function() {
 		$("#size").val($(this).val());
-		$("#seach-btn").click();
+		$("#search-btn").click();
 	});
 	var $add= $("#btn-add");
 	$add.on("click", function() {
@@ -140,12 +140,12 @@ define(function(require, exports, moudles) {
 		deleteData(id,dataId);
 	 });
 	
-	$("#refresh,#seach-btn").on("click", function() {
+	$("#refresh,#search-btn").on("click", function() {
 		$("#page").val(1);
 		search(true);
 	});
 	var search = function(loading) {
-		$("#btSelectAll").removeAttr("checked");
+		$("#btSelectAll").prop("checked",false);
 		var param = $("#search_form").serialize();
 		$.httpUtil.curl({url : url.api + "s.json",
 			type : "get",

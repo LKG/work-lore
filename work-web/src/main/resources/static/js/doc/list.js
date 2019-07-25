@@ -13,7 +13,7 @@ require('jquery')
     var url = {
         api : baseRoot + "/doc",
     };
-    $("#refresh,#seach-btn").on("click", function() {
+    $("#refresh,#search-btn").on("click", function() {
         $("#page").val(1);
         window.location.href=url.api+"s/p-1.jhtml";
     });

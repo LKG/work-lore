@@ -33,7 +33,7 @@ define(function(require, exports, moudles) {
 		$msg.alert($(this));
 	});
 	
-	$("#refresh,#seach-btn").on("click", function() {
+	$("#refresh,#search-btn").on("click", function() {
 		search(true);
 	});
 	setTimeout(function() {
@@ -59,15 +59,15 @@ define(function(require, exports, moudles) {
     $("#btSelectAll").on("change",function() {
         var $checkBox = $tbody.find("input[type='checkbox']:not(:disabled)");
         if ($(this).is(':checked')) {
-            $checkBox.attr("checked",'true');// 全选
+            $checkBox.prop("checked",true);// 全选
             $("#remove").removeAttr("disabled");
         } else {
             $("#remove").attr("disabled","disabled");
-            $checkBox.removeAttr("checked");// 反选
+            $checkBox.prop("checked",false);// 反选
         }
     });
 	var search = function(loading) {
-		$("#btSelectAll").removeAttr("checked");
+		$("#btSelectAll").prop("checked",false);
 		var param = $("#search_form").serialize();
 		$.httpUtil.curl({
 					url : url.api + "s.json",

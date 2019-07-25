@@ -152,14 +152,14 @@
             // window.location.reload();
             treeObj.refresh();
             $("#search_form").find("#parentId").val("");
-            $("#search_form").find("#seach-btn").click();
+            $("#search_form").find("#search-btn").click();
         });
         function onAsyncSuccess(event, treeId, treeNode, msg) {
             $(".loading").hide();
         }
         function  onNodeClick(event, treeId, treeNode, clickFlag){
             $("#search_form").find("#parentId").val(treeNode.code);
-            $("#search_form").find("#seach-btn").click();
+            $("#search_form").find("#search-btn").click();
         };
         function onAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
             var zTree = $.fn.zTree.getZTreeObj("areaTree");

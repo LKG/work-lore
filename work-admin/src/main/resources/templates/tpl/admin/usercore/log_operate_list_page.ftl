@@ -9,7 +9,7 @@
 			 <label for="userName" >账号:</label>
 			 <input type="text" class="form-control" style="width: 200px;" value='' id="userName" name="userName_LIKES" placeholder="账号">
 		 </div>
-		  <button type="button" id="seach-btn" class="btn btn-primary"><@spring.message code="label.default.button.search" /></button>
+		  <button type="button" id="search-btn" class="btn btn-primary"><@spring.message code="label.default.button.search" /></button>
 	   </form>	
    </div>
  	<div class="panel-body" > 

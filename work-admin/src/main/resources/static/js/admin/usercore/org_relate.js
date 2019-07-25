@@ -59,20 +59,20 @@ define(function(require, exports, moudles) {
 		if($(this).hasClass("active")){
 			return;
 		}
-		$("#repair-seach-btn").click();
+		$("#repair-search-btn").click();
 	});
 	$("#my-tab-rule").on("click", "#my-tab-related",function(){
 		if($(this).hasClass("active")){
 			return;
 		}
-		$("#related-org-seach-btn").click();
+		$("#related-org-search-btn").click();
 	});
 	$("#orgBtnSelectAll").on("change",function() {
 		var $checkBox = $repairTbody.find("input[name='id']:not(:disabled)");
 		if ($(this).is(':checked')) {
-			$checkBox.attr("checked",'true');// 全选
+			$checkBox.prop("checked",true);// 全选
 	    } else {
-			$checkBox.removeAttr("checked");// 反选
+			$checkBox.prop("checked",false);// 反选
 		}
 	});
 
@@ -146,7 +146,7 @@ define(function(require, exports, moudles) {
 			}
 		}).showModal();
 	});
-	$("#repair-seach-btn").on("click", function() {
+	$("#repair-search-btn").on("click", function() {
 		search(false);
 		$("#repair-page").val("1");
 	});
@@ -158,7 +158,7 @@ define(function(require, exports, moudles) {
 	});
 	var search = function(loading) {
 		var hideOrgId = $('#hideOrgId').val();
-		$("#orgBtnSelectAll").removeAttr("checked");// 取消选中
+		$("#orgBtnSelectAll").prop("checked",false);// 取消选中
 		var param = $("#repair_search_form").serialize();
 		var relateType = $('#categoryIds').val();
 		if(relateType=="" ){
@@ -202,13 +202,13 @@ define(function(require, exports, moudles) {
 		var $checkBox = $relatedRepairTbody.find("input[name='id']:not(:disabled)");
 		if ($(this).is(':checked')) {
 			$("#related-remove-btn").removeAttr("disabled");
-			$checkBox.attr("checked",'true');// 全选
+			$checkBox.prop("checked",true);// 全选
 	    } else {
-			$checkBox.removeAttr("checked");// 反选
+			$checkBox.prop("checked",false);// 反选
 			$("#related-remove-btn").attr("disabled","disabled");
 		}
 	});
-	$("#related-org-seach-btn").on("click", function() {
+	$("#related-org-search-btn").on("click", function() {
 		$("#related-repair-size").val($(this).val());
 		$("#related-repair-page").val(1);
 		searchRelated(false);
@@ -219,11 +219,11 @@ define(function(require, exports, moudles) {
 		searchRelated(false);
 	});
 	setTimeout(function() {
-		$("#related-org-seach-btn").click();
+		$("#related-org-search-btn").click();
 	}, 10);
 	var searchRelated = function(loading) {
 		var hideOrgId = $('#hideOrgId').val();
-		$("#relatedorgBtnSelectAll").removeAttr("checked");// 取消选中
+		$("#relatedorgBtnSelectAll").prop("checked",false);// 取消选中
 		var param = $("#related_repair_search_form").serialize();
 		$.httpUtil.curl({
 					url : url.orgApi+"/"+hideOrgId+"/relateds.json",
@@ -294,7 +294,7 @@ define(function(require, exports, moudles) {
 						 var content="取消关联成功";
 			        	   if(data.success){
 			          			$msg.alert($(this),content);
-			        		   $("#related-org-seach-btn").click();
+			        		   $("#related-org-search-btn").click();
 			        		   return ;
 			        	   }else{
 			        		   if(data.result &&data.result.error_description){
@@ -336,7 +336,7 @@ define(function(require, exports, moudles) {
 						 var content="取消关联成功";
 			        	   if(data.success){
 			          			$msg.alert($(this),content);
-			          		   $("#related-org-seach-btn").click();
+			          		   $("#related-org-search-btn").click();
 			        		   return ;
 			        	   }else{
 			        		   if(data.result &&data.result.error_description){

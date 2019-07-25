@@ -9,7 +9,7 @@
 			 <label for="title" >友链名称:</label>
 			 <input type="text" class="form-control" style="width: 300px;" value='' id="name" name="name_LIKES" placeholder="友链名称">
 		 </div>
-		  <button type="button" id="seach-btn" class="btn btn-primary"><@spring.message code="label.default.button.search" /></button>
+		  <button type="button" id="search-btn" class="btn btn-primary"><@spring.message code="label.default.button.search" /></button>
 	   </form>	
    </div>
  	<div class="panel-body" > 

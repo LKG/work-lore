@@ -25,9 +25,9 @@ define(function(require, exports, moudles) {
     $("#btSelectAll").on("change",function() {
         var $checkBox = $tbody.find("input[name='id']:not(:disabled)");
         if ($(this).is(':checked')) {
-            $checkBox.attr("checked",'true');// 全选
+            $checkBox.prop("checked",true);// 全选
         } else {
-            $checkBox.removeAttr("checked");// 反选
+            $checkBox.prop("checked",false);// 反选
         }
     });
 	// 修改事件
@@ -78,14 +78,14 @@ define(function(require, exports, moudles) {
 	});
 	$(".page-size-sel").on("change", function() {
 		$("#size").val($(this).val());
-		$("#seach-btn").click();
+		$("#search-btn").click();
 	});
-	$("#refresh,#seach-btn").on("click", function() {
+	$("#refresh,#search-btn").on("click", function() {
 		$("#page").val(1);
 		search(true);
 	});
 	var search = function(loading) {
-		$("#btSelectAll").removeAttr("checked");
+		$("#btSelectAll").prop("checked",false);
 		var param = $("#search_form").serialize();
 		$.httpUtil.curl({url : url.api + "s.json",
 			type : "get",

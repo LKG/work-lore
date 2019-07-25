@@ -43,7 +43,7 @@
 					 		<input type="hidden" name="page" id="related-page" value="1" />
 					 		<input type="hidden" name="size" id="related-size" value="10" />
 						 </div>
-					  <button type="button" id="related-org-seach-btn" class="btn btn-primary"><@spring.message code="label.default.button.search" /></button>
+					  <button type="button" id="related-org-search-btn" class="btn btn-primary"><@spring.message code="label.default.button.search" /></button>
 					  <button type="button" id="related-remove-btn" class="btn btn-danger"><@spring.message code="label.default.button.del" /></button>
 					<div class="bars pull-right" >
 					 <p  style="background-color: #fff;    display: inline-block;" >
@@ -141,7 +141,7 @@
 						 <div class="input-group">
 							<span class="input-group-addon">名称</span>
 							 <input type="text" class="form-control" style="width: 200px;" value='' id="name" name="name_LIKES" placeholder="名称">
-							 <span class="input-group-btn"><button type="button" id="org-seach-btn" class="btn btn-primary"><@spring.message code="label.default.button.search" /></button></span>
+							 <span class="input-group-btn"><button type="button" id="org-search-btn" class="btn btn-primary"><@spring.message code="label.default.button.search" /></button></span>
 						 </div>
 					 </div>
 

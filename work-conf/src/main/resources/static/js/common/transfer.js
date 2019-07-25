@@ -41,7 +41,7 @@ define(function(require, exports, moudles) {
 					if (checkBox != 0) {
 						var arrVal = [];
 						checkBox.each(function() {
-							$(this).removeAttr("checked");
+							$(this).prop("checked",false);
 							var appendText = $(this).parents(".ty-tree-div").parent("li");
 							arrVal.push(appendText);
 							that.removeActiveEvent(a_tagClass, "active");
@@ -86,7 +86,7 @@ define(function(require, exports, moudles) {
 
 				this.alldivBoxes.bind("dblclick", function(event) {
 					var _this = $(this);
-					$(this).removeAttr("checked");
+					$(this).prop("checked",false);
 
 					if (_this.parents(".ty-transfer-list").hasClass("transfer-list-left")) {
 						inputCheckbox = _this.parents(".ty-transfer").find(".transfer-list-right ul");
@@ -102,7 +102,7 @@ define(function(require, exports, moudles) {
 					}
 					var appendText = _this.parent("li");
 					inputCheckbox.prepend(appendText);
-					appendText.find(".tyue-checkbox-input").removeAttr("checked");
+					appendText.find(".tyue-checkbox-input").prop("checked",false);
 
 				});
 			},

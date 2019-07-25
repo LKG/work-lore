@@ -15,9 +15,9 @@ require('jquery')
 		var val=$(this).val();
 		var $checkBox = $roleResourcebody.find("input[name=permissionIds_"+val+"]:not(:disabled)");
 		if ($(this).is(':checked')) {
-			$checkBox.attr("checked",'true');// 全选
+			$checkBox.prop("checked",true);// 全选
 	    } else {
-			$checkBox.removeAttr("checked");// 反选
+			$checkBox.prop("checked",false);// 反选
 		}
 	});
 	$addResBtn.on("click", function() {
@@ -36,7 +36,7 @@ require('jquery')
 					var code=$(this).attr("data-code");
 					var $permissionIds=$roleResourcebody.find("input[name=permissionIds_"+val+"]:checked:not(:disabled)");
 					if($permissionIds.length==0 ){
-						$(this).removeAttr("checked");//没有权限信息跳出循环
+						$(this).prop("checked",false);//没有权限信息跳出循环
 						return true;//跳出本次循环
 					}
 					var serializeObj={};
