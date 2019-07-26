@@ -15,12 +15,12 @@
 <#include "/index-toolbar.ftl"/>
 <!-- toolbar end-->
 <!-----------------------------------------顶部-------------->
-<!-- header begin-->
-<#include "/index-header.ftl" />
-<!-- header end-->
 <!-- banner 广告 begin-->
 <#include "/index-top-banner.ftl" />
 <!-- banner 广告 end-->
+<!-- header begin-->
+<#include "/index-header.ftl" />
+<!-- header end-->
 <!--轮播图上方导航栏  一栏-->
 <#include "/index-nav-top.ftl" />
 <div class="clear"></div>
