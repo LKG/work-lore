@@ -7,7 +7,6 @@ import im.heart.core.plugins.persistence.DynamicPageRequest;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.utils.StringUtilsEx;
 import im.heart.core.web.AbstractController;
-import im.heart.media.entity.PeriodicalConfig;
 import im.heart.usercore.entity.FrameOrg;
 import im.heart.usercore.service.FrameOrgService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
