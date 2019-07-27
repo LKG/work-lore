@@ -333,7 +333,7 @@ define(function(require, exports, moudles) {
 					dataType : "json",
                     data : null,
 					success :function(data) {
-						message($this,"更新成功");
+                        $msg.alert($this,"更新成功");
 						$("#page").val(1);
 						search(false);
 					},
