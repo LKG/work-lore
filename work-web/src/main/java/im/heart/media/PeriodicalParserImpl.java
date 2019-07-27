@@ -107,12 +107,12 @@ public class PeriodicalParserImpl implements PeriodicalParser {
             PDFTextStripper pdfTextStripper = new PDFTextStripper();
             String content = pdfTextStripper.getText(pdDocument);
             if(StringUtilsEx.isBlank(periodical.getSeoKeywords())){
-                List<String> seoKeywords=HanLP.extractPhrase(content, 13);
+                List<String> seoKeywords=HanLP.extractKeyword(content, 13);
                 //设置关键词
                 periodical.setSeoKeywords(StringUtilsEx.join(seoKeywords,","));
             }
             if(StringUtilsEx.isBlank(periodical.getSeoKeywords())){
-                List<String> summary= HanLP.extractSummary(content,5);;
+                List<String> summary= HanLP.extractSummary(content,5);
                 //生成文章摘要
                 periodical.setSeoDesc(StringUtilsEx.join(summary,","));
             }
