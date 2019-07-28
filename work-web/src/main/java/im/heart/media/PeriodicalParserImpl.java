@@ -2,6 +2,10 @@ package im.heart.media;
 
 import com.google.common.collect.Lists;
 import com.hankcs.hanlp.HanLP;
+import com.spire.doc.*;
+import com.spire.doc.documents.*;
+import com.spire.doc.fields.DocPicture;
+import com.spire.doc.fields.TextRange;
 import im.heart.core.CommonConst;
 import im.heart.core.utils.FileUtilsEx;
 import im.heart.core.utils.StringUtilsEx;
@@ -52,6 +56,69 @@ public class PeriodicalParserImpl implements PeriodicalParser {
     private PeriodicalImgService periodicalImgService;
     @Autowired
     private PeriodicalContentService periodicalContentService;
+
+
+    void clearHeaderFooter(){
+        Document doc = new Document("sample.docx");
+        //获取第一节
+        Section sec = doc.getSections().get(0);
+        sec.getHeadersFooters().getHeader().getChildObjects().clear();
+        sec.getHeadersFooters().getFooter().getChildObjects().clear();
+    }
+
+    public static void main(String[] args) {
+
+        //load a Word document
+        Document document = new Document();
+        document.loadFromFile("C:\\Users\\Administrator\\Desktop\\sample.docx");
+        Section section = document.getSections().get(0);
+        insertHeaderAndFooter(section);
+        //save to file
+        document.saveToFile("output/HeaderAndFooter.docx", FileFormat.Docx);
+    }
+
+    private static void insertHeaderAndFooter(Section section) {
+
+        //get header and footer from a section
+        HeaderFooter header = section.getHeadersFooters().getHeader();
+        HeaderFooter footer = section.getHeadersFooters().getFooter();
+
+        //add a paragraph to header
+        Paragraph headerParagraph = header.addParagraph();
+
+        //insert a picture to header paragraph and set its position
+        DocPicture headerPicture = headerParagraph.appendPicture("C:\\Users\\Administrator\\Desktop\\Logo.png");
+        headerPicture.setHorizontalAlignment(ShapeHorizontalAlignment.Left);
+        headerPicture.setVerticalOrigin(VerticalOrigin.Top_Margin_Area);
+        headerPicture.setVerticalAlignment(ShapeVerticalAlignment.Bottom);
+
+        //add text to header paragraph
+        TextRange text = headerParagraph.appendText("Demo of Spire.Doc");
+        text.getCharacterFormat().setFontName("Arial");
+        text.getCharacterFormat().setFontSize(10);
+        text.getCharacterFormat().setItalic(true);
+        headerParagraph.getFormat().setHorizontalAlignment(HorizontalAlignment.Right);
+
+        //set text wrapping to behind
+        headerPicture.setTextWrappingStyle(TextWrappingStyle.Behind);
+
+        //set the bottom border style of the header paragraph
+        headerParagraph.getFormat().getBorders().getBottom().setBorderType(BorderStyle.Single);
+        headerParagraph.getFormat().getBorders().getBottom().setLineWidth(1f);
+
+        //add a paragraph to footer
+        Paragraph footerParagraph = footer.addParagraph();
+
+        //add Field_Page and Field_Num_Pages fields to the footer paragraph
+        footerParagraph.appendField("page number", FieldType.Field_Page);
+        footerParagraph.appendText(" of ");
+        footerParagraph.appendField("number of pages", FieldType.Field_Num_Pages);
+        footerParagraph.getFormat().setHorizontalAlignment(HorizontalAlignment.Right);
+
+        //set the top border style of the footer paragraph
+        footerParagraph.getFormat().getBorders().getTop().setBorderType(BorderStyle.Single);
+        footerParagraph.getFormat().getBorders().getTop().setLineWidth(1f);
+    }
 
     @Value("${prod.upload.path.root:''}")
     private String uploadFilePath="";
