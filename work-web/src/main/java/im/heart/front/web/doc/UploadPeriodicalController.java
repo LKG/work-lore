@@ -1,6 +1,7 @@
 package im.heart.front.web.doc;
 
 import com.spire.doc.Document;
+import com.spire.doc.FileFormat;
 import com.spire.doc.Section;
 import im.heart.core.CommonConst;
 import im.heart.core.utils.StringUtilsEx;
@@ -65,7 +66,7 @@ public class UploadPeriodicalController extends AbstractController {
         Section sec = doc.getSections().get(0);
         sec.getHeadersFooters().getHeader().getChildObjects().clear();
         sec.getHeadersFooters().getFooter().getChildObjects().clear();
-        doc.saveToFile(realFilePath);
+        doc.saveToFile(realFilePath, FileFormat.Auto);
     }
     /**
      *
