@@ -57,27 +57,12 @@ public class PeriodicalParserImpl implements PeriodicalParser {
     @Autowired
     private PeriodicalContentService periodicalContentService;
 
-
-    /**
-     * 清除页眉页脚
-     * @param periodical
-     * @param is
-     */
-    public void clearHeaderFooter(Periodical periodical,InputStream is){
-        Document doc = new Document(is);
-        Section sec = doc.getSections().get(0);
-        sec.getHeadersFooters().getHeader().getChildObjects().clear();
-        sec.getHeadersFooters().getFooter().getChildObjects().clear();
-        doc.saveToFile(periodical.getRealFilePath());
-    }
-
     @Value("${prod.upload.path.root:''}")
     private String uploadFilePath="";
     @Override
     public void parser(Periodical periodical, InputStream is) {
         String suffixes=periodical.getFileHeader();
         String realFilePath=periodical.getRealFilePath();
-        clearHeaderFooter(periodical,is);
         File targetFile=new File(realFilePath+".pdf");
         DocumentFormat documentFormat= DefaultDocumentFormatRegistry.getInstance().getFormatByExtension(suffixes);
         String type=PeriodicalLog.PeriodicalLogType.convert.code;
