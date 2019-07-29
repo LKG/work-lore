@@ -89,7 +89,7 @@ public class UploadPeriodicalController extends AbstractController {
             @RequestParam(value = "categoryCode", required = false) String categoryCode,
             @RequestParam(value = "originPrice", required = false) BigDecimal originPrice,
             @RequestParam(value = "finalPrice", required = false) BigDecimal finalPrice,
-            @RequestParam(value = "clearHeader", required = false,defaultValue = "false") Boolean clearHeader ,
+            @RequestParam(value = "clearHeader", required = false,defaultValue = "true") Boolean clearHeader ,
             String filename,
             HttpServletResponse response,ModelMap model) {
         ResponseError responseError = new ResponseError(WebError.AUTH_CREDENTIALS_EXPIRED);
@@ -112,7 +112,9 @@ public class UploadPeriodicalController extends AbstractController {
                     realFileName= StringUtilsEx.replace(realFileName, File.separator, "/");
                     String suffixes = StringUtils.substringAfterLast(realFileName, ".");
                     String realFilePath=realPath+realFileName;
+                    logger.info("清除页眉页脚..........,{}",clearHeader);
                     if(clearHeader){
+                        logger.info("清除页眉页脚..........");
                         this.clearHeaderFooter(realFilePath,file.getInputStream());
                     }
                     Periodical periodical = new Periodical();

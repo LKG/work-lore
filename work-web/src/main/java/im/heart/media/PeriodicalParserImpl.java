@@ -69,7 +69,7 @@ public class PeriodicalParserImpl implements PeriodicalParser {
         try {
             this.documentConverter.convert(is,true).as(documentFormat).to(targetFile).as(DefaultDocumentFormatRegistry.PDF).execute();
             addParserLog(periodical, type,"{desc: ' pdf 转换成功！'}");
-            Integer pageNum=this.pdf2Image(targetFile, "",10,periodical);
+            Integer pageNum=this.pdf2Image(targetFile, "",20,periodical);
         } catch (OfficeException e) {
             logger.error(e.getStackTrace()[0].getMethodName(), e);
             addParserLog(periodical, type,"{desc:  '"+e.getMessage()+" ' }");
@@ -111,7 +111,7 @@ public class PeriodicalParserImpl implements PeriodicalParser {
             PDFTextStripper pdfTextStripper = new PDFTextStripper();
             String content = pdfTextStripper.getText(pdDocument);
             if(StringUtilsEx.isBlank(periodical.getSeoKeywords())){
-                List<String> seoKeywords=HanLP.extractKeyword(content, 13);
+                List<String> seoKeywords=HanLP.extractKeyword(content, 10);
                 //设置关键词
                 periodical.setSeoKeywords(StringUtilsEx.join(seoKeywords,","));
             }

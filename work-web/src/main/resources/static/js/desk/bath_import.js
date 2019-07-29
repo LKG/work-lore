@@ -85,6 +85,7 @@ define(function(require, exports, moudles) {
                   var periodicalCode=$("#periodicalCode").val();
                   var categoryId=$("#categoryId").val();
                   var categoryCode=$("#categoryCode").val();
+                  var clearHeader=$("#clearHeader").val();
                   var params={
                       // price:price,
                       finalPrice:finalPrice,
@@ -92,6 +93,7 @@ define(function(require, exports, moudles) {
                       periodicalCode:periodicalCode,
                       categoryId:categoryId,
                       categoryCode:categoryCode,
+                      clearHeader:clearHeader,
                   };
                   this.setParams(params);
              },
