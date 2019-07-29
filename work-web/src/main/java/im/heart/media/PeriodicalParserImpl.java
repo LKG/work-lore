@@ -80,14 +80,14 @@ public class PeriodicalParserImpl implements PeriodicalParser {
         clearHeaderFooter(periodical,is);
         File targetFile=new File(realFilePath+".pdf");
         DocumentFormat documentFormat= DefaultDocumentFormatRegistry.getInstance().getFormatByExtension(suffixes);
-        String type="convert";
+        String type=PeriodicalLog.PeriodicalLogType.convert.code;
         try {
             this.documentConverter.convert(is,true).as(documentFormat).to(targetFile).as(DefaultDocumentFormatRegistry.PDF).execute();
-            parserLog(periodical, type,"{desc: ' pdf 转换成功！'}");
+            addParserLog(periodical, type,"{desc: ' pdf 转换成功！'}");
             Integer pageNum=this.pdf2Image(targetFile, "",10,periodical);
         } catch (OfficeException e) {
             logger.error(e.getStackTrace()[0].getMethodName(), e);
-            parserLog(periodical, type,"{desc:  '"+e.getMessage()+" ' }");
+            addParserLog(periodical, type,"{desc:  '"+e.getMessage()+" ' }");
         } finally {
         }
     }
@@ -168,14 +168,14 @@ public class PeriodicalParserImpl implements PeriodicalParser {
             periodical.setPageNum(pageNum);
             periodical.setStatus(CommonConst.FlowStatus.processed);
             this.periodicalService.save(periodical);
-            this.parserContent(periodical,content);
+            this.addPeriodicalContent(periodical,content);
             this.periodicalImgService.saveAll(entities);
-            String type="parser";
-            this.parserLog(periodical,type,"{desc:  '解析文件并生成图片成功！' }");
+            String type=PeriodicalLog.PeriodicalLogType.parser.code;
+            this.addParserLog(periodical,type,"{desc:  '解析文件并生成图片成功！' }");
         } catch (Exception e) {
             logger.error(e.getStackTrace()[0].getMethodName(), e);
-            String type="parser";
-            this.parserLog(periodical, type,"{desc:  '"+e.getMessage()+" ' }");
+            String type=PeriodicalLog.PeriodicalLogType.parser.code;
+            this.addParserLog(periodical, type,"{desc:  '"+e.getMessage()+" ' }");
         }finally {
             IOUtils.closeQuietly(pdDocument);
             //删除pdf 文件
@@ -185,7 +185,7 @@ public class PeriodicalParserImpl implements PeriodicalParser {
         return pageNum;
     }
     @Async
-    public void parserContent(Periodical periodical,String content){
+    public void addPeriodicalContent(Periodical periodical,String content){
         PeriodicalContent periodicalContent=new PeriodicalContent();
         periodicalContent.setPeriodicalId(periodical.getId());
         periodicalContent.setPeriodicalCode(periodical.getPeriodicalCode());
@@ -194,7 +194,7 @@ public class PeriodicalParserImpl implements PeriodicalParser {
         this.periodicalContentService.save(periodicalContent);
     }
     @Async
-    public void parserLog(Periodical periodical,String type,String desc){
+    public void addParserLog(Periodical periodical,String type,String desc){
         PeriodicalLog periodicalLog=new PeriodicalLog();
         periodicalLog.setPeriodicalId(periodical.getId());
         periodicalLog.setUserId(periodical.getUserId());

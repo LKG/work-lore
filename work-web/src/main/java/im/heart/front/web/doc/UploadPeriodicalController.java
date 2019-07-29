@@ -112,9 +112,7 @@ public class UploadPeriodicalController extends AbstractController {
                     String realFilePath=realPath+realFileName;
                     clearHeaderFooter(realFilePath,file.getInputStream());
                     Periodical periodical = new Periodical();
-
                     periodical.setRealFilePath(realFilePath);
-
                     periodical.setFileHeader(suffixes);
                     periodical.setPeriodicalType(Periodical.PeriodicalType.sharing.code);
                     periodical.setAuthor(user.getNickName());
@@ -122,7 +120,6 @@ public class UploadPeriodicalController extends AbstractController {
                     periodical.setCategoryId(categoryId);
                     periodical.setCategoryCode(categoryCode);
                     periodical.setCityId("0");
-//                    periodical.setCityName(cityName);
                     periodical.setPeriodicalName(StringUtils.substringBeforeLast(filename,"."));
                     periodical.setPeriodicalCode(periodicalCode);
                     periodical.setFinalPrice(finalPrice);
@@ -137,7 +134,7 @@ public class UploadPeriodicalController extends AbstractController {
                     PeriodicalLog periodicalLog=new PeriodicalLog();
                     periodicalLog.setUserId(periodical.getUserId());
                     periodicalLog.setPeriodicalId(periodical.getId());
-                    periodicalLog.setType("upload");
+                    periodicalLog.setType(PeriodicalLog.PeriodicalLogType.upload.code);
                     periodicalLog.setLogDesc( "{desc: '文件上传成功,添加解析任务' }");
                     this.periodicalLogService.save(periodicalLog);
                     super.success(model, "url", pathUrl);

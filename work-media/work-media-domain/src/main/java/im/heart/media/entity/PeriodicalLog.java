@@ -24,6 +24,44 @@ import java.util.Date;
 @Data
 public class PeriodicalLog implements AbstractEntity<BigInteger> {
 
+	public enum PeriodicalLogType {
+
+		upload(1, "upload", "文档上传"),
+		convert(2, "convert", "文档转换pdf"),
+		parser(3, "parser", "文档解析");
+
+
+
+		public String code;
+		public int value;
+		public final String info;
+
+		private PeriodicalLogType(int value, String code, String info) {
+			this.code = code;
+			this.value = value;
+			this.info = info;
+		}
+
+		public static PeriodicalLogType findPeriodicalLogType(String code) {
+			for (PeriodicalLogType periodicalType : PeriodicalLogType.values()) {
+				if (periodicalType.code.equals(code)) {
+					return periodicalType;
+				}
+			}
+			return null;
+		}
+
+		public static PeriodicalLogType findPeriodicalLogType(int value) {
+			for (PeriodicalLogType periodicalLogType : PeriodicalLogType.values()) {
+				if (periodicalLogType.value == value) {
+					return periodicalLogType;
+				}
+			}
+			return null;
+		}
+	}
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(length = 32, name = "ID", nullable = false, unique = true, updatable = false)
