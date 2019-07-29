@@ -116,6 +116,13 @@
                                size='10' maxlength='10' id="finalPrice"  min="0"
                                value="0.00"/>
                     </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" checked name="clearHeader" id="clearHeader" > 清空页眉页脚
+                            </label>
+                        </div>
+                    </div>
                     <br/>
                     <div class="form-group">
                         <label for="finalPrice" >标题</label>

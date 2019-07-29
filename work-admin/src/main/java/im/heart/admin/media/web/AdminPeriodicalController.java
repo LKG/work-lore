@@ -60,7 +60,7 @@ public class AdminPeriodicalController extends AbstractController {
 			@RequestParam(value = "page", required = false, defaultValue = CommonConst.Page.DEFAULT_PAGE+"") Integer page,
 			@RequestParam(value = "size", required = false, defaultValue = CommonConst.Page.DEFAULT_SIZE+"") Integer size,
 			@RequestParam(value = "sort", required = false,defaultValue = "createTime") String sort,
-			@RequestParam(value = "order", required = false,defaultValue = CommonConst.Page.DEFAULT_ORDER) String order,
+			@RequestParam(value = "order", required = false,defaultValue = CommonConst.Page.ORDER_DESC) String order,
 			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
 			ModelMap model) {
 		Specification<Periodical> spec= DynamicSpecifications.bySearchFilter(request, Periodical.class);
