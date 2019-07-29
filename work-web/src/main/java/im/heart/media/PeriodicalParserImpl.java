@@ -58,66 +58,17 @@ public class PeriodicalParserImpl implements PeriodicalParser {
     private PeriodicalContentService periodicalContentService;
 
 
-    void clearHeaderFooter(){
-        Document doc = new Document("sample.docx");
-        //获取第一节
+    /**
+     * 清除页眉页脚
+     * @param periodical
+     * @param is
+     */
+    public void clearHeaderFooter(Periodical periodical,InputStream is){
+        Document doc = new Document(is);
         Section sec = doc.getSections().get(0);
         sec.getHeadersFooters().getHeader().getChildObjects().clear();
         sec.getHeadersFooters().getFooter().getChildObjects().clear();
-    }
-
-    public static void main(String[] args) {
-
-        //load a Word document
-        Document document = new Document();
-        document.loadFromFile("C:\\Users\\Administrator\\Desktop\\sample.docx");
-        Section section = document.getSections().get(0);
-        insertHeaderAndFooter(section);
-        //save to file
-        document.saveToFile("output/HeaderAndFooter.docx", FileFormat.Docx);
-    }
-
-    private static void insertHeaderAndFooter(Section section) {
-
-        //get header and footer from a section
-        HeaderFooter header = section.getHeadersFooters().getHeader();
-        HeaderFooter footer = section.getHeadersFooters().getFooter();
-
-        //add a paragraph to header
-        Paragraph headerParagraph = header.addParagraph();
-
-        //insert a picture to header paragraph and set its position
-        DocPicture headerPicture = headerParagraph.appendPicture("C:\\Users\\Administrator\\Desktop\\Logo.png");
-        headerPicture.setHorizontalAlignment(ShapeHorizontalAlignment.Left);
-        headerPicture.setVerticalOrigin(VerticalOrigin.Top_Margin_Area);
-        headerPicture.setVerticalAlignment(ShapeVerticalAlignment.Bottom);
-
-        //add text to header paragraph
-        TextRange text = headerParagraph.appendText("Demo of Spire.Doc");
-        text.getCharacterFormat().setFontName("Arial");
-        text.getCharacterFormat().setFontSize(10);
-        text.getCharacterFormat().setItalic(true);
-        headerParagraph.getFormat().setHorizontalAlignment(HorizontalAlignment.Right);
-
-        //set text wrapping to behind
-        headerPicture.setTextWrappingStyle(TextWrappingStyle.Behind);
-
-        //set the bottom border style of the header paragraph
-        headerParagraph.getFormat().getBorders().getBottom().setBorderType(BorderStyle.Single);
-        headerParagraph.getFormat().getBorders().getBottom().setLineWidth(1f);
-
-        //add a paragraph to footer
-        Paragraph footerParagraph = footer.addParagraph();
-
-        //add Field_Page and Field_Num_Pages fields to the footer paragraph
-        footerParagraph.appendField("page number", FieldType.Field_Page);
-        footerParagraph.appendText(" of ");
-        footerParagraph.appendField("number of pages", FieldType.Field_Num_Pages);
-        footerParagraph.getFormat().setHorizontalAlignment(HorizontalAlignment.Right);
-
-        //set the top border style of the footer paragraph
-        footerParagraph.getFormat().getBorders().getTop().setBorderType(BorderStyle.Single);
-        footerParagraph.getFormat().getBorders().getTop().setLineWidth(1f);
+        doc.saveToFile(periodical.getRealFilePath());
     }
 
     @Value("${prod.upload.path.root:''}")
@@ -126,6 +77,7 @@ public class PeriodicalParserImpl implements PeriodicalParser {
     public void parser(Periodical periodical, InputStream is) {
         String suffixes=periodical.getFileHeader();
         String realFilePath=periodical.getRealFilePath();
+        clearHeaderFooter(periodical,is);
         File targetFile=new File(realFilePath+".pdf");
         DocumentFormat documentFormat= DefaultDocumentFormatRegistry.getInstance().getFormatByExtension(suffixes);
         String type="convert";

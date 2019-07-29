@@ -1,5 +1,7 @@
 package im.heart.front.web.doc;
 
+import com.spire.doc.Document;
+import com.spire.doc.Section;
 import im.heart.core.CommonConst;
 import im.heart.core.utils.StringUtilsEx;
 import im.heart.core.web.AbstractController;
@@ -28,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
@@ -52,6 +55,18 @@ public class UploadPeriodicalController extends AbstractController {
     @Autowired
     private PeriodicalParser periodicalParser;
 
+    /**
+     * 清除页眉页脚
+     * @param realFilePath
+     * @param is
+     */
+    public void clearHeaderFooter(String realFilePath, InputStream is){
+        Document doc = new Document(is);
+        Section sec = doc.getSections().get(0);
+        sec.getHeadersFooters().getHeader().getChildObjects().clear();
+        sec.getHeadersFooters().getFooter().getChildObjects().clear();
+        doc.saveToFile(realFilePath);
+    }
     /**
      *
      * 文件上传
@@ -92,10 +107,14 @@ public class UploadPeriodicalController extends AbstractController {
                     if (StringUtilsEx.isBlank(filename)) {
                         filename = file.getOriginalFilename();
                     }
-                    Periodical periodical = new Periodical();
                     realFileName= StringUtilsEx.replace(realFileName, File.separator, "/");
-                    periodical.setRealFilePath(realPath+realFileName);
                     String suffixes = StringUtils.substringAfterLast(realFileName, ".");
+                    String realFilePath=realPath+realFileName;
+                    clearHeaderFooter(realFilePath,file.getInputStream());
+                    Periodical periodical = new Periodical();
+
+                    periodical.setRealFilePath(realFilePath);
+
                     periodical.setFileHeader(suffixes);
                     periodical.setPeriodicalType(Periodical.PeriodicalType.sharing.code);
                     periodical.setAuthor(user.getNickName());
