@@ -139,17 +139,10 @@ li{list-style-type: none;}
 	z-index: 2;
 	background: url(https://static.gongwk.com/images/switcher-pc.png) no-repeat 0 0;
 }
-.btn-2qrcode{
-	top: -5px;
-;
-}
 .btn-2login:hover,.btn-2qrcode:hover {text-decoration: none;}
 .btn-2login:focus,.btn-2qrcode:focus {outline: 0;}
-.btn-2qrcode {background-image: url(https://static.gongwk.com/images/switcher-qr.png);}
+.btn-2qrcode {	top: -5px;background-image: url(https://static.gongwk.com/images/switcher-qr.png);}
 .login-box-switch{
-/*	position: absolute;*/
-/*	width: 317px;;
-	min-height: 317px;*/
 	_height: 317px;
 	z-index: 1;
 	padding-left: 30px;

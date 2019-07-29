@@ -18,7 +18,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img src="https://dl.op.wpscdn.cn/odimg/web/2019-06-27/091549/1.png" alt="...">
+            <img src="https://static.gongwk.com/images/20190726001.jpg" alt="...">
             <div class="carousel-caption">
                 ...
             </div>
