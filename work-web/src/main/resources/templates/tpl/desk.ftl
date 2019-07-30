@@ -119,7 +119,7 @@
                     <div class="form-group">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" checked name="clearHeader" id="clearHeader" > 清空页眉页脚
+                                <input type="checkbox" checked name="clearHeader" id="clearHeader"> 清空页眉页脚
                             </label>
                         </div>
                     </div>

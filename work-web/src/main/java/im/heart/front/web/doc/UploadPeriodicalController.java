@@ -8,6 +8,7 @@ import im.heart.core.utils.StringUtilsEx;
 import im.heart.core.web.AbstractController;
 import im.heart.core.web.ResponseError;
 import im.heart.core.web.enums.WebError;
+import im.heart.core.web.utils.WebUtilsEx;
 import im.heart.media.entity.Periodical;
 import im.heart.media.entity.PeriodicalLog;
 import im.heart.media.parser.PeriodicalParser;
@@ -92,6 +93,7 @@ public class UploadPeriodicalController extends AbstractController {
             @RequestParam(value = "clearHeader", required = false,defaultValue = "true") Boolean clearHeader ,
             String filename,
             HttpServletResponse response,ModelMap model) {
+        System.out.println(WebUtilsEx.getParametersJson(request));
         ResponseError responseError = new ResponseError(WebError.AUTH_CREDENTIALS_EXPIRED);
         FrameUserVO user = SecurityUtilsHelper.getCurrentUser();
         if (user == null) {

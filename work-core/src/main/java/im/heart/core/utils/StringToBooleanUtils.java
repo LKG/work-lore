@@ -6,7 +6,8 @@ import java.util.Set;
 /**
  * 
  * @author gg
- * string 转换为boolan 摘自  org.springframework.core.convert.converter.Converter.StringToBooleanConverter
+ * string 转换为boolan 摘自
+ * @see  org.springframework.core.convert.support.StringToBooleanConverter
  */
 public final class StringToBooleanUtils {
 	private static final Set<String> trueValues = new HashSet<String>(4);
