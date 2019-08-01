@@ -65,9 +65,11 @@ public class UploadPeriodicalController extends AbstractController {
     public void clearHeaderFooter(String realFilePath, InputStream is){
         Document doc = new Document(is);
         Section sec = doc.getSections().get(0);
+
         sec.getHeadersFooters().getHeader().getChildObjects().clear();
         sec.getHeadersFooters().getFooter().getChildObjects().clear();
         doc.saveToFile(realFilePath, FileFormat.Auto);
+        doc.close();
     }
     /**
      *
