@@ -114,6 +114,7 @@
         <div class="col-sm-12 col-md-12 doc-col">
             <div class="panel panel-default"   id="work-doc"   style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
                 <div class="panel-heading" style="padding: 0px 2px 0px 0px;">
+                    <a href="${appHost}/topic.jhtml" class="pull-right" style="padding: 10px 10px;"  >更多<i class="fa fa-angle-double-right"></i></a>
                     <ul id="my-tab-work" class="myNavTab nav nav-tabs" role="tablist">
                         <li role="presentation" style="cursor:pointer" class="active">
                             <a id="my-tab-010001" data-key="tab-pane-010001">
@@ -169,6 +170,67 @@
                         </@media.periodical>
                         </div>
                         <!--- end -->
+                        <!--- begin -->
+                        <div role="tabpanel" class="tab-pane" id="tab-pane-010003">
+                            <@media.periodical categoryCode="010003">
+                                <div class="mc">
+                                    <ul>
+                                        <#if docs??>
+                                            <#list docs as model>
+                                                <li title="${model.periodicalName!''}"><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                            </#list>
+                                        </#if>
+                                    </ul>
+                                </div>
+                            </@media.periodical>
+                        </div>
+                        <!--- end -->
+                        <!--- begin -->
+                        <div role="tabpanel" class="tab-pane" id="tab-pane-010004">
+                            <@media.periodical categoryCode="010004">
+                                <div class="mc">
+                                    <ul>
+                                        <#if docs??>
+                                            <#list docs as model>
+                                                <li title="${model.periodicalName!''}"><i class="fa fa-${model.fileHeader!''}"  style="margin-right: 10px;"></i><a href="${appHost}/doc/${model.id!''}.jhtml" >${model.shortTitle!''}</a> <a  class="pull-right" href="${appHost}/fd/${model.id!''}.jhtml"> <i class="fa fa-download"  ></i></a></li>
+                                            </#list>
+                                        </#if>
+                                    </ul>
+                                </div>
+                            </@media.periodical>
+                        </div>
+                        <!--- end -->
+
+                    </div>
+
+                </div>
+            </div>
+            <!--- -->
+        </div>
+    </div>
+</div>
+<!------ 精品ppt推荐  --->
+<div class="container m-container" >
+    <div class="row">
+        <div class="col-sm-12 col-md-12 doc-col">
+            <div class="panel panel-default"   id="work-doc"   style="box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);">
+                <div class="panel-heading" style="padding: 0px 2px 0px 0px;">
+                    <a href="${appHost}/topic.jhtml" class="pull-right" style="padding: 10px 10px;"  >更多<i class="fa fa-angle-double-right"></i></a>
+                    <ul id="my-tab-work" class="myNavTab nav nav-tabs" role="tablist">
+                        <li role="presentation" style="cursor:pointer" class="active">
+                            <a id="my-tab-010001" data-key="tab-pane-010001">
+                                精品推荐
+                            </a>
+                        </li>
+                        <li role="presentation" style="cursor:pointer" class="">
+                            <a id="my-tab-010004" data-key="tab-pane-010004">
+                                今日热更
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-body">
+                    <div class="tab-content">
                         <!--- begin -->
                         <div role="tabpanel" class="tab-pane" id="tab-pane-010003">
                             <@media.periodical categoryCode="010003">

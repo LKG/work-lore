@@ -68,6 +68,7 @@ public class UploadPeriodicalController extends AbstractController {
         sec.getHeadersFooters().getHeader().getChildObjects().clear();
         sec.getHeadersFooters().getFooter().getChildObjects().clear();
         doc.saveToFile(realFilePath, FileFormat.Auto);
+        doc.close();
     }
     /**
      *
@@ -114,7 +115,6 @@ public class UploadPeriodicalController extends AbstractController {
                     realFileName= StringUtilsEx.replace(realFileName, File.separator, "/");
                     String suffixes = StringUtils.substringAfterLast(realFileName, ".");
                     String realFilePath=realPath+realFileName;
-                    logger.info("清除页眉页脚..........,{}",clearHeader);
                     if(clearHeader){
                         logger.info("清除页眉页脚..........");
                         this.clearHeaderFooter(realFilePath,file.getInputStream());
