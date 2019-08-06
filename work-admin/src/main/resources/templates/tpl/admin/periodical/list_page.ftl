@@ -20,14 +20,23 @@
 					 </div>
 					 ---->
 		   <div class="form-group">
-			   <label for="periodicalCode" >刊号</label>
-			   <input type="text" name='periodicalCode_LIKES' style="width: 80px;" class="Wdate form-control"
-					  size='10' maxlength='6' id="periodicalCode" value="" onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyyMM',maxDate:'%y-%M-%d'})"})"
-			   />
+               <label for="periodicalName" >期号</label>
+               <input type="text" name='periodicalCode_LIKES' style="width: 80px;" class="Wdate form-control"
+                      size='10' maxlength='6' id="periodicalCode" value="" onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyyMM',maxDate:'%y-%M-%d'})"})"
+               />
 		   </div>
 		   <div class="form-group">
 			   <label for="periodicalName" >名称</label>
 			   <input type="text" class="form-control" style="width: 300px;" id="periodicalName" name="periodicalName_LIKE" placeholder="名称">
+		   </div>
+           <div class="form-group">
+               <label for="createTime_GTE" >日期</label>
+               <input type="text" name='createTime_GTE' style="width: 120px;" class="Wdate form-control"
+                      size='10' maxlength='6' id="beginTime" value="" onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d'})"})"
+               />
+               <input type="text" name='createTime_LTE' style="width: 120px;" class="Wdate form-control"
+                      size='10' maxlength='6' id="endTime" value="" onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d'})"})"
+               />
 		   </div>
 		   <div class="form-group">
 			   <label for="rptCriType">状态</label>

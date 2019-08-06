@@ -58,7 +58,7 @@ public class AdminPeriodicalController extends AbstractController {
 	public ModelAndView list(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
 			@RequestParam(value = "page", required = false, defaultValue = CommonConst.Page.DEFAULT_PAGE+"") Integer page,
-			@RequestParam(value = "size", required = false, defaultValue = CommonConst.Page.DEFAULT_SIZE+"") Integer size,
+			@RequestParam(value = "size", required = false, defaultValue = "15") Integer size,
 			@RequestParam(value = "sort", required = false,defaultValue = "createTime") String sort,
 			@RequestParam(value = "order", required = false,defaultValue = CommonConst.Page.ORDER_DESC) String order,
 			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
