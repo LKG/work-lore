@@ -35,7 +35,7 @@
                       size='10' maxlength='6' id="beginTime" value="" onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d'})"})"
                />
                <input type="text" name='createTime_LTE' style="width: 120px;" class="Wdate form-control"
-                      size='10' maxlength='6' id="endTime" value="" onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d'})"})"
+                      size='10' maxlength='6' id="endTime" value="" onclick="WdatePicker({isShowClear:true,readOnly:false,dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'beginTime\')}',maxDate:'%y-%M-%d'})"})"
                />
 		   </div>
 		   <div class="form-group">
