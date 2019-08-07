@@ -396,8 +396,8 @@ _display: block;
 	width: 100%;
 	height: 469px;
 	position: absolute;
-	top: 5px;
-/*	background:url('https://static.gongwk.com/images/nav-imgs.jpg') no-repeat center top;*/
+	top: 1px;
+    background:url('https://static.gongwk.com/images/nav-imgs77.png.webp') no-repeat center top;
 }
 .focus .focus-d{position:absolute;top:3px;left:458px;}
 .focus .focus-d{
