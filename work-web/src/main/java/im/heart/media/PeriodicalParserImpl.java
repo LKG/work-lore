@@ -33,10 +33,15 @@ import org.springframework.stereotype.Service;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.InputStream;
 import java.math.BigInteger;
 import java.util.List;
 
+
+/**
+ *
+ * @author gg
+ * @desc 解析上传文档信息
+ */
 @Service
 public class PeriodicalParserImpl implements PeriodicalParser {
     protected static final Logger logger = LoggerFactory.getLogger(PeriodicalParserImpl.class);
@@ -56,14 +61,15 @@ public class PeriodicalParserImpl implements PeriodicalParser {
     @Value("${prod.upload.path.root:''}")
     private String uploadFilePath="";
     @Override
-    public void parser(Periodical periodical, InputStream is) {
+    public void parser(Periodical periodical) {
         String suffixes=periodical.getFileHeader();
         String realFilePath=periodical.getRealFilePath();
         File targetFile=new File(realFilePath+".pdf");
+        File file=new File(realFilePath);
         DocumentFormat documentFormat= DefaultDocumentFormatRegistry.getInstance().getFormatByExtension(suffixes);
         PeriodicalLogType type=PeriodicalLogType.convert;
         try {
-            this.documentConverter.convert(is,true).as(documentFormat).to(targetFile).as(DefaultDocumentFormatRegistry.PDF).execute();
+            this.documentConverter.convert(file).as(documentFormat).to(targetFile).as(DefaultDocumentFormatRegistry.PDF).execute();
             addParserLog(periodical, type,"{desc: ' pdf 转换成功！'}");
             Integer pageNum=this.pdf2Image(targetFile, "",20,periodical);
         } catch (OfficeException e) {
@@ -77,8 +83,8 @@ public class PeriodicalParserImpl implements PeriodicalParser {
 
     @Async
     @Override
-    public void addParserTask(Periodical periodical, InputStream is) {
-        parser(periodical,is);
+    public void addParserTask(Periodical periodical) {
+        parser(periodical);
     }
 
     /***

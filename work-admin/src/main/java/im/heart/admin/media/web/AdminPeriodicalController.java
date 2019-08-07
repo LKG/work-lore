@@ -103,14 +103,11 @@ public class AdminPeriodicalController extends AbstractController {
 		for(BigInteger periodicalId:ids){
 			Optional<Periodical> optional=this.periodicalService.findById(periodicalId);
 			if(optional.isPresent()){
-				FileInputStream inputStream=null;
 				try {
 					Periodical periodical=optional.get();
-					inputStream=FileUtilsEx.openInputStream(new File(periodical.getRealFilePath()));
-					this.periodicalParser.addParserTask(periodical,inputStream);
+					this.periodicalParser.addParserTask(periodical);
 				}catch (Exception e){
 					logger.error(e.getStackTrace()[0].getMethodName(), e);
-					IOUtils.closeQuietly(inputStream);
 				}
 			}
 

@@ -36,6 +36,7 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class UploadPeriodicalController extends AbstractController {
@@ -138,7 +139,7 @@ public class UploadPeriodicalController extends AbstractController {
                     String pathUrl="/"+FILE_ROOT_PATH+url;
                     periodical.setPathUrl(pathUrl);
                     this.periodicalService.save(periodical);
-                    this.periodicalParser.addParserTask(periodical,file.getInputStream());
+                    this.periodicalParser.addParserTask(periodical);
                     PeriodicalLog periodicalLog=new PeriodicalLog();
                     periodicalLog.setUserId(periodical.getUserId());
                     periodicalLog.setPeriodicalId(periodical.getId());
