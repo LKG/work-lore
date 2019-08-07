@@ -7,6 +7,7 @@ import im.heart.core.plugins.persistence.DynamicPageRequest;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.web.AbstractController;
+import im.heart.core.web.utils.WebUtilsEx;
 import im.heart.media.entity.Periodical;
 import im.heart.media.entity.PeriodicalContent;
 import im.heart.media.entity.PeriodicalPackage;
@@ -93,8 +94,8 @@ public class DocController extends AbstractController {
                              ModelMap model) {
         final Collection<SearchFilter> filters= DynamicSpecifications.buildSearchFilters(request);
         filters.add(new SearchFilter("checkStatus", SearchFilter.Operator.EQ, Status.enabled));
-        filters.add(new SearchFilter("finalPrice", SearchFilter.Operator.EQ, new BigDecimal(0)));
         Specification<Periodical> spec= DynamicSpecifications.bySearchFilter(filters, Periodical.class);
+        System.out.println(WebUtilsEx.getParametersJson(request));
         PageRequest pageRequest= DynamicPageRequest.buildPageRequest(page,size,sort,order,Periodical.class);
         Page<Periodical> pag = this.periodicalService.findAll(spec, pageRequest);
         if(pag!=null&&pag.hasContent()){
