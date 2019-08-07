@@ -108,15 +108,13 @@ public class UploadPeriodicalController extends AbstractController {
             for (MultipartFile file : uploadFileList) {
                 String path = File.separator+periodicalFilePath+File.separator +periodicalCode+File.separator + DateTime.now().toString("yyyyMMdd") + File.separator;
                 try {
-                    String realPath = uploadFilePath+path;
-                    String realFileName = this.uploadFile(file, realPath);
+
                     if (StringUtilsEx.isBlank(filename)) {
                         filename = file.getOriginalFilename();
                     }
-                    realFileName= StringUtilsEx.replace(realFileName, File.separator, "/");
-                    String suffixes = StringUtils.substringAfterLast(realFileName, ".");
-                    String realFilePath=realPath+realFileName;
-                    logger.info("清除页眉页脚..........,{}",clearHeader);
+                    String fileName = this.uploadFile(file, uploadFilePath+path);
+                    String suffixes = StringUtils.substringAfterLast(fileName, ".");
+                    String realFilePath= StringUtilsEx.replace(uploadFilePath+path+fileName, File.separator, "/");
                     if(clearHeader){
                         logger.info("清除页眉页脚..........");
                         this.clearHeaderFooter(realFilePath,file.getInputStream());
@@ -136,7 +134,7 @@ public class UploadPeriodicalController extends AbstractController {
                     periodical.setOriginPrice(originPrice);
                     periodical.setDataSize(file.getSize());
                     periodical.setStatus(CommonConst.FlowStatus.initial);
-                    String url = StringUtilsEx.replace(path + realFileName, File.separator, "/");
+                    String url = StringUtilsEx.replace(path + fileName, File.separator, "/");
                     String pathUrl="/"+FILE_ROOT_PATH+url;
                     periodical.setPathUrl(pathUrl);
                     this.periodicalService.save(periodical);

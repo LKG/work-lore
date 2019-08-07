@@ -32,14 +32,14 @@ public class AesECBUtils {
         }
     }
 
-    public static byte[] encryptNoPadding(byte[] content, String passwd){
-        return encryptNoPadding(content,passwd,KeySize.ks16);
+    public static byte[] encryptNoPadding(byte[] content, String pwd){
+        return encryptNoPadding(content,pwd,KeySize.ks16);
     }
-    public static String encryptNoPaddingBase64(byte[] content, String passwd) {
-        return encryptNoPaddingBase64(content,passwd,KeySize.ks16);
+    public static String encryptNoPaddingBase64(byte[] content, String pwd) {
+        return encryptNoPaddingBase64(content,pwd,KeySize.ks16);
     }
-    public static byte[] decryptNoPadding(byte[] content, String passwd) {
-        return decryptNoPadding(content,passwd,KeySize.ks16);
+    public static byte[] decryptNoPadding(byte[] content, String pwd) {
+        return decryptNoPadding(content,pwd,KeySize.ks16);
     }
     /**
      * AES加密

@@ -64,6 +64,8 @@ public class CommonConst {
         public static final String RESULT = "result";
         public static final String EXCEPTION = "exception";
         public static final String MESSAGE = "message";
+        public static final String IMEI = "imei";
+
         /**
          * 上个页面地址
          */
