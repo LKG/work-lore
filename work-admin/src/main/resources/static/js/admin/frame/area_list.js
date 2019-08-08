@@ -16,9 +16,7 @@ define(function(require, exports, moudles) {
 		data: postData,
 	})
 	var $httpUtil = require('/js/common/httpUtil.js');
-	var dialog = require('/js/common/dialog');
 	var $msg= require('/js/common/alerts.js');
-	window.dialog = dialog;
 	var laypage = require('laypage');
 	var $tbody = $("#table-tbody");
 	// 修改事件
