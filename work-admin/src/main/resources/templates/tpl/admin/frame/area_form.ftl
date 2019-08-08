@@ -34,9 +34,9 @@
 	<div class="col-xs-12">
 		<div class="input-group">
 	  	<span class="input-group-addon">名称</span>
-         	<input type="text" class="form-control" id="areaName" value="<#if result.name??>${result.name}</#if>" name="name" placeholder="名称"/>
+         	<input type="text" class="form-control" id="areaName" value="<#if result.name??>${result.name!''}</#if>" name="name" placeholder="名称"/>
           <div class="input-group-btn">
-           	<select name="status" id="status"  data="<#if result.status??>${result.status}</#if>" style="min-width:100px;"   class="form-control">
+           	<select name="status" id="status"  data="<#if result.status??>${result.status!''}</#if>" style="min-width:100px;"   class="form-control">
 				<option value="pending">未使用</option>
 				<option value="disabled">禁用</option>
 				<option value="enabled">可用</option>

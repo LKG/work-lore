@@ -75,24 +75,24 @@
 	  	  			</div>
 					<div class="panel-body">
 						<form class="form-horizontal " action="" id="J_articleForm"  method="post"  >
-							 <input type="hidden" class="form-control" id="id" value="${result.id}" name="id" />
+							 <input type="hidden" class="form-control" id="id" value="${result.id!''}" name="id" />
 						 <div class="form-group" >
 						 	<div class="col-xs-5">
 						 		<div class="input-group">
 							 		<span class="input-group-addon">名称</span>
-							 		<input type="text" class="form-control"  name="taskName" placeholder="名称" value="${result.taskName}" /> 
+							 		<input type="text" class="form-control"  name="taskName" placeholder="名称" value="${result.taskName!''}" />
 								</div>
 							</div>
 							<div class="col-xs-5">
 								<div class="input-group">
 							  		<span class="input-group-addon">代号</span>
-							  		<input type="text" class="form-control"  name="taskCode" placeholder="代号" value="${result.taskCode}" /> 
+							  		<input type="text" class="form-control"  name="taskCode" placeholder="代号" value="${result.taskCode!''}" />
 						        </div>
 							</div>
 						 </div>
 						 <div class="form-group" >
 							<div class="col-xs-10">
-								<textarea class="form-control" id="taskDesc" name="taskDesc" placeholder="任务描述" rows="2">${result.taskDesc}</textarea>
+								<textarea class="form-control" id="taskDesc" name="taskDesc" placeholder="任务描述" rows="2">${result.taskDesc!''}</textarea>
 							</div>
 						 </div>
 						   <div class="form-group">

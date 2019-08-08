@@ -4,10 +4,10 @@
 		<#if result.id??>
             <div class="input-group">
                 <span class="input-group-addon">代号</span>
-                <input type="hidden" class="form-control" id="dictId"  value="${result.id}" name="id" placeholder="字典代号">
-                <input type="hidden" class="form-control" id="dictType"  value="${result.dictType}" name="dictType" placeholder="字典类型">
-                <input type="hidden" class="form-control" id="dictCode"  value="${result.dictCode}" name="dictCode" placeholder="字典代号">
-                <p class="form-control form-control-static"><code>${result.dictCode}</code></p>
+                <input type="hidden" class="form-control" id="dictId"  value="${result.id!''}" name="id" placeholder="字典代号">
+                <input type="hidden" class="form-control" id="dictType"  value="${result.dictType!''}" name="dictType" placeholder="字典类型">
+                <input type="hidden" class="form-control" id="dictCode"  value="${result.dictCode!''}" name="dictCode" placeholder="字典代号">
+                <p class="form-control form-control-static"><code>${result.dictCode!''}</code></p>
             </div>
 		<#else>
             <div class="input-group">
@@ -21,7 +21,7 @@
         <div class="col-xs-12">
             <div class="input-group">
                 <span class="input-group-addon">名称</span>
-              <input type="text" class="form-control" id="dictName" value="<#if result.dictName??>${result.dictName}</#if>" name="dictName" placeholder="字典名称"/>
+              <input type="text" class="form-control" id="dictName" value="<#if result.dictName??>${result.dictName!''}</#if>" name="dictName" placeholder="字典名称"/>
 			 <#if result.id??>
                 <p class="form-control form-control-static hide">
                     <code>
@@ -30,7 +30,7 @@
                 </p>
 			<#else>
                 <div class="input-group-btn">
-                    <select name="dictType" id="dictType"  data="<#if result.dictType??>${result.dictType}</#if>" style="min-width:140px;"   class="form-control">
+                    <select name="dictType" id="dictType"  data="<#if result.dictType??>${result.dictType!''}</#if>" style="min-width:140px;"   class="form-control">
                         <option value="single">单个</option>
                         <option value="multiple">多选</option>
                         <option value="revisable">可变</option>
