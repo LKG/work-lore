@@ -3,7 +3,6 @@
     <ol class="carousel-indicators">
         <li data-target="#carousel-home-generic" data-slide-to="0" class="active"></li>
         <li data-target="#carousel-home-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-home-generic" data-slide-to="2"></li>
     </ol>
 <#--    <div class="themeCtrl">
         <a class="left" href="#carousel-home-generic" data-slide="prev" title="上一张">
@@ -24,13 +23,7 @@
             </div>
         </div>
         <div class="item">
-            <img src="https://dl.op.wpscdn.cn/odimg/web/2019-07-11/084525/sit-to-three-1310x350.png" alt="...">
-            <div class="carousel-caption">
-                ...
-            </div>
-        </div>
-        <div class="item">
-            <img src="http://dl.op.wpscdn.cn/odimg/web/2019-07-02/064854/1310x350.jpg" alt="...">
+            <img src="https://dl.op.wpscdn.cn/odimg/web/2019-07-02/064854/1310x350.jpg" alt="...">
             <div class="carousel-caption">
                 ...
             </div>
