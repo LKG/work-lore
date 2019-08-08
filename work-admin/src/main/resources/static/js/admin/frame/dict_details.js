@@ -3,9 +3,10 @@ define(function(require, exports, moudles) {
 	var $baseRoot = $('#baseRoot');
 	var baseRoot = $baseRoot.attr("href");
 	var template = require('arttemplate');
-	var dialog = require('/js/common/dialog');
+	require('art-dialog');
 	window.dialog = dialog;
 	 require('/js/common/validate');
+    require('art-dialog');
 	var $msg= require('/js/common/alerts.js');
 	var $status=$("#J_MainForm").find("#status");
 	$status.val($status.attr("data"));

@@ -7,7 +7,7 @@ define(function(require, exports, moudles) {
 		api : baseRoot + "/admin/friendlink",
 	};
 	var $httpUtil = require('/js/common/httpUtil.js');
-	var dialog = require('/js/common/dialog');
+	require('art-dialog');
 	var $msg= require('/js/common/alerts.js');
 	window.dialog = dialog;
 

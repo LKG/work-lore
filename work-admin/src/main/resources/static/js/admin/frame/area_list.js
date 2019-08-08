@@ -3,6 +3,7 @@ define(function(require, exports, moudles) {
 	var $baseRoot = $('#baseRoot');
 	var baseRoot = $baseRoot.attr("href");
 	var template = require('arttemplate');
+    require('art-dialog');
 	var url = {
 		api : baseRoot + "/admin/area",
 	};

@@ -7,8 +7,7 @@ define(function(require, exports, moudles) {
 		api : baseRoot + "/admin/smslog",
 	};
 	var $httpUtil = require('/js/common/httpUtil.js');
-	var dialog = require('/js/common/dialog');
-	window.dialog = dialog;
+    require('art-dialog');
 	var laypage = require('laypage');
 	var postData = {
 		      size: 10,

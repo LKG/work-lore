@@ -5,7 +5,7 @@
     <parent>
         <artifactId>work-frame</artifactId>
         <groupId>im.heart</groupId>
-        <version>0.1.40-SNAPSHOT</version>
+        <version>0.1.41-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,12 +14,12 @@
         <dependency>
             <groupId>im.heart</groupId>
             <artifactId>work-frame-domain</artifactId>
-            <version>0.1.40-SNAPSHOT</version>
+            <version>0.1.41-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>im.heart</groupId>
             <artifactId>work-conf</artifactId>
-            <version>0.1.40-SNAPSHOT</version>
+            <version>0.1.41-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
