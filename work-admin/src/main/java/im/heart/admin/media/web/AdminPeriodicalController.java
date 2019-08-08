@@ -82,6 +82,20 @@ public class AdminPeriodicalController extends AbstractController {
 		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
+	@RequestMapping(value = apiVer+"/{ids}/setCate",method = RequestMethod.POST)
+	protected ModelAndView setCate(
+			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN , required = false) String token,
+			@PathVariable BigInteger[] ids,
+			HttpServletRequest request,
+			ModelMap model) {
+		for(BigInteger id:ids){
+
+		}
+		super.success(model);
+		return new ModelAndView(VIEW_SUCCESS);
+	}
+
+
 	@RequestMapping(value = apiVer+"/{ids}/disabled",method = RequestMethod.POST)
 	protected ModelAndView deleted(
 			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN , required = false) String token,

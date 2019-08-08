@@ -64,9 +64,9 @@ spring:
     store-type: redis
   mail:
     host: smtp.163.com
-    username: lkg61230413@163.com
+    username: no-reply@gongwk.com
     password: lkg178wk
-    from: GG<lkg61230413@163.com>
+    from: service_reply@gongwk.com
     template-path: classpath:/templates/email/
     properties:mail:
       smtp:

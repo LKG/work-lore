@@ -18,19 +18,49 @@ import org.springframework.scheduling.annotation.Async;
 /**
  * 
  * @author gg
- * 材料价格表对外Service 接口
+ * 材料表对外Service 接口
  */
 public interface PeriodicalService extends CommonService<Periodical, BigInteger>{
 	public static final String BEAN_NAME = "periodicalService";
 
-	
+	/**
+	 * 根据状态查询
+	 * @param status
+	 * @param type
+	 * @return
+	 */
 	public List<Periodical>  findByStatusAndType(Status status, PeriodicalType type);
 
+	/**
+	 * 根据id  查询
+	 * @param ids
+	 * @return
+	 */
 	public List<Periodical>  findAllById(Iterable<BigInteger> ids);
+
+	/**
+	 * 查询列表
+	 * @param predicate
+	 * @param limit
+	 * @return
+	 */
 	public List<Periodical> findAll(Predicate predicate, long limit);
 
+	/**
+	 * 分页查询
+	 * @param predicate
+	 * @param limit
+	 * @param orders
+	 * @return
+	 */
 	public List<Periodical> findAll(Predicate predicate, long limit, OrderSpecifier<?>... orders);
 
+	/**
+	 *  获取待处理记录
+	 * @param type
+	 * @param pageable
+	 * @return
+	 */
 	public Page<Periodical> findInitPeriodicalByType(PeriodicalType type, Pageable pageable);
 
 	/**
