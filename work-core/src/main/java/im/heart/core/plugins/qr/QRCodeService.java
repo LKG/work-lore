@@ -8,13 +8,13 @@ import java.awt.image.BufferedImage;
 /**
  * 
  * @作者 LKG 
- * @功能说明：生成二维码接口 依赖google.zxing
+ * 生成二维码接口 依赖google.zxing
  */
 public interface QRCodeService {
 	public static final String BEAN_NAME = "qRCodeService";
 	/**
 	 * 
-	 * @功能说明：生成指定大小二维码
+	 * 生成指定大小二维码
 	 * @param contents
 	 * @return
 	 */
@@ -22,7 +22,7 @@ public interface QRCodeService {
 	
 	/**
 	 * 
-	 * @功能说明：生成二维码
+	 * 生成二维码
 	 * @param contents
 	 * @param width
 	 * @param height

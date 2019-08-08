@@ -34,7 +34,7 @@ public class AdminNoticeController extends AbstractController {
     @Autowired
     private NoticeService noticeService;
 	/**
-	 * @功能说明：分页查询
+	 * 分页查询
 	 * @param jsoncallback
 	 * @param page
 	 * @param size
@@ -64,7 +64,7 @@ public class AdminNoticeController extends AbstractController {
 		return new ModelAndView(VIEW_LIST);
 	}
 	/**
-	 * @功能说明：根据Id查询信息
+	 * 根据Id查询信息
 	 * @param jsoncallback
 	 * @param id
 	 * @param token
@@ -88,7 +88,7 @@ public class AdminNoticeController extends AbstractController {
 		return new ModelAndView(VIEW_DETAILS);
 	}
 	/**
-	 * @功能说明：统计记录数
+	 * 统计记录数
 	 * @param jsoncallback
 	 * @param request
 	 * @param token

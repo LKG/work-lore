@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * 
- * @功能说明：：MatrixToImageConfig 配置 ，直接copy com.google.zxing.javase
+ * ：MatrixToImageConfig 配置 ，直接copy com.google.zxing.javase
  * @作者 LKG
  */
 public class MatrixToImageConfig {

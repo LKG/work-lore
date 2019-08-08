@@ -88,7 +88,7 @@ public class RptConfigController extends AbstractController {
 	
 	/**
 	 * 
-	 * @功能说明：根据Id 查询项目信息
+	 * 根据Id 查询项目信息
 	 * @param jsoncallback
 	 * @param id
 	 * @param request
@@ -119,7 +119,7 @@ public class RptConfigController extends AbstractController {
 		return new ModelAndView(VIEW_SUCCESS);
 	}
 	/**
-	 * @功能说明：新增
+	 * 新增
 	 * @param rptConfig
 	 * @param request
 	 * @param response

@@ -33,7 +33,7 @@ public class SysRouteController extends AbstractController {
 
 	/**
 	 * 
-	 * @功能说明： 判断是否是黑名单ip
+	 *  判断是否是黑名单ip
 	 * @param ip
 	 * @return
 	 */
@@ -45,7 +45,7 @@ public class SysRouteController extends AbstractController {
 	private static int PACK_LENGTH=10;
 	/**
 	 * 
-	 * @功能说明：处理请求参数
+	 * 处理请求参数
 	 * @param input
 	 * @return
 	 */
@@ -82,7 +82,7 @@ public class SysRouteController extends AbstractController {
 	}
 	/**
 	 * 
-	 * @功能说明：提取公用参数
+	 * 提取公用参数
 	 * @return 
 	 */
 	protected Map<String, Object> pickCommonParams(RequestParas requestParameters){
@@ -131,7 +131,7 @@ public class SysRouteController extends AbstractController {
 	}
 
 	/**
-	 * @功能说明：手机端统一入口
+	 * 手机端统一入口
 	 * @param request
 	 * @param response
 	 */

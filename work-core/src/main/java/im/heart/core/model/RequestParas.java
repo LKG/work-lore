@@ -9,7 +9,7 @@ import java.util.List;
  * 
  * @作者 LKG 
  * @版本 V 1.0 
- * @功能说明：对外接口统一参数 model
+ * 对外接口统一参数 model
  */
 @Data
 public class RequestParas {

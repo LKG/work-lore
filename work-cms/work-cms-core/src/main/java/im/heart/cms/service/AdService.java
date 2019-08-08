@@ -7,7 +7,7 @@ import java.math.BigInteger;
 
 /**
  * 
- * @功能说明：广告操作接口
+ * 广告操作接口
  * @作者 LKG
  */
 public interface   AdService extends CommonService<Ad, BigInteger>{

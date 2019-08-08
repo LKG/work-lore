@@ -16,7 +16,7 @@ import java.net.URLDecoder;
 
 /**
  * 
- * @功能说明：图片处理工具类
+ * 图片处理工具类
  * @作者 LKG
  */
 public class ImageUtils {
@@ -25,7 +25,7 @@ public class ImageUtils {
 	private static final int RATIO_WIDTH = 20;
 	/**
 	 * 
-	 * @功能说明：readDataURIImage
+	 * readDataURIImage
 	 * @param uri
 	 * @return
 	 * @throws IOException
@@ -49,7 +49,7 @@ public class ImageUtils {
 	
 
 	/**
-	 * @功能说明：转换图片 文件BufferedImage copy 自 com.google.zxing.client.j2se
+	 * 转换图片 文件BufferedImage copy 自 com.google.zxing.client.j2se
 	 * @param file
 	 * @return
 	 * @throws IOException
@@ -60,7 +60,7 @@ public class ImageUtils {
 
 	/**
 	 * 
-	 * @功能说明：转换图片 BufferedImage copy 自 com.google.zxing.client.j2se
+	 * 转换图片 BufferedImage copy 自 com.google.zxing.client.j2se
 	 * @param uri
 	 * @return
 	 * @throws IOException
@@ -83,7 +83,7 @@ public class ImageUtils {
 
 	/**
 	 * 
-	 * @功能说明：转换byte 流为BufferedImage
+	 * 转换byte 流为BufferedImage
 	 * @param bytes
 	 * @return
 	 * @throws IOException
@@ -111,7 +111,7 @@ public class ImageUtils {
 	
 	/**
 	 * 
-	 * @功能说明：图片缩放
+	 * 图片缩放
 	 * @param logoImage
 	 * @return
 	 */

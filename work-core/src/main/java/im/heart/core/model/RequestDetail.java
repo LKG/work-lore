@@ -6,7 +6,7 @@ import lombok.Data;
  * 
  * @作者 LKG 
  * @版本 V 1.0 
- * @功能说明：请求明细 model
+ * 请求明细 model
  */
 @Data
 public class RequestDetail {

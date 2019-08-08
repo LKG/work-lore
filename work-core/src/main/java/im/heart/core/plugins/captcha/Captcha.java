@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * 
- * @功能说明：验证码接口
+ * 验证码接口
  * @作者 LKG
  */
 public interface Captcha extends Serializable {

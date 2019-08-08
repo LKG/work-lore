@@ -39,7 +39,7 @@ public class ApiAdController extends AbstractController {
 	protected static final String VIEW_DETAILS="cms/ad_details";
 	
 	/**
-	 * @功能说明：分页查询
+	 * 分页查询
 	 * @param jsoncallback
 	 * @param page
 	 * @param size
@@ -71,7 +71,7 @@ public class ApiAdController extends AbstractController {
 		return new ModelAndView(VIEW_LIST);
 	}
 	/**
-	 * @功能说明：根据Id查询信息
+	 * 根据Id查询信息
 	 * @param jsoncallback
 	 * @param id
 	 * @param token

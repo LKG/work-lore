@@ -42,7 +42,7 @@ public class AdminPeriodicalController extends AbstractController {
 
 	/**
 	 * 
-	 * @功能说明：查询所有
+	 * 查询所有
 	 * @param request
 	 * @param response
 	 * @param jsoncallback

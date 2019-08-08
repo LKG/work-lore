@@ -41,7 +41,7 @@ public class OrderController extends AbstractController {
     private PeriodicalService periodicalService;
 
     /**
-     * @功能说明： 提交订单
+     *  提交订单
      * @param request
      * @return
      */
@@ -56,7 +56,7 @@ public class OrderController extends AbstractController {
         return new ModelAndView(CREATE_LIST);
     }
     /**
-     * @功能说明： 确认订单
+     *  确认订单
      * @param request
      * @return
      */

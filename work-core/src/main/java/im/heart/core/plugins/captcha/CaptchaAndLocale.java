@@ -5,7 +5,7 @@ import java.util.Locale;
 
 /**
  * 
- * @功能说明：验证码包装类
+ * 验证码包装类
  * @作者 LKG
  */
 public class CaptchaAndLocale implements Serializable {

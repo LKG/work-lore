@@ -11,7 +11,7 @@ import java.io.OutputStream;
 /**
  * 
  * @作者 LKG 
- * @功能说明：MatrixToImageWriter  配置 ，直接copy com.google.zxing.javase
+ * MatrixToImageWriter  配置 ，直接copy com.google.zxing.javase
  * 
  */
 public class MatrixToImageWriter {

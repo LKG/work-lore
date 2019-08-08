@@ -17,7 +17,7 @@ import im.heart.core.entity.AbstractEntity;
  *
  *
  * @作者： LKG
- * @功能说明：物流公司列表
+ * 物流公司列表
  */
 //@Entity
 //@Table(name = "shop_logistics_corp")

@@ -15,7 +15,7 @@ import java.util.Date;
 
 /**
  * 
- * @功能说明：商品订单项表
+ * 商品订单项表
  * @作者 LKG
  */
 @Entity

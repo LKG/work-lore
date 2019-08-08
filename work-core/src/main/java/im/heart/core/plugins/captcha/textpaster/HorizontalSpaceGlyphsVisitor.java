@@ -4,7 +4,7 @@ import java.awt.geom.Rectangle2D;
 
 /**
  * 
- * @功能说明：绘制水平线
+ * 绘制水平线
  * @作者 LKG
  */
 public class HorizontalSpaceGlyphsVisitor implements GlyphsVisitors {
