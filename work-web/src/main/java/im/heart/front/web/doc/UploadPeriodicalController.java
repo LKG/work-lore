@@ -113,15 +113,9 @@ public class UploadPeriodicalController extends AbstractController {
                     if (StringUtilsEx.isBlank(filename)) {
                         filename = file.getOriginalFilename();
                     }
-<<<<<<< HEAD
-                    realFileName= StringUtilsEx.replace(realFileName, File.separator, "/");
-                    String suffixes = StringUtils.substringAfterLast(realFileName, ".");
-                    String realFilePath=realPath+realFileName;
-=======
                     String fileName = this.uploadFile(file, uploadFilePath+path);
                     String suffixes = StringUtils.substringAfterLast(fileName, ".");
                     String realFilePath= StringUtilsEx.replace(uploadFilePath+path+fileName, File.separator, "/");
->>>>>>> 8cb5882c439048fbaa439aa2c517c8bd92fa5874
                     if(clearHeader){
                         logger.info("清除页眉页脚..........");
                         this.clearHeaderFooter(realFilePath,file.getInputStream());
