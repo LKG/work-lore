@@ -6,7 +6,7 @@ import java.util.Random;
 
 /**
  * 
- * @功能说明：图像扭曲
+ * 图像扭曲
  * @作者 LKG
  */
 public class RotateGlyphsRandomVisitor implements GlyphsVisitors {

@@ -7,10 +7,8 @@ define(function(require, exports, moudles) {
 		api : baseRoot + "/admin/tpl",
 		createApi:baseRoot + "/admin/tpl/save.json",
 	};
-
+    require('art-dialog');
 	var $httpUtil = require('/js/common/httpUtil.js');
-	var dialog = require('/js/common/dialog');
-	window.dialog = dialog;
 	 require('/js/common/validate');
 	var $msg= require('/js/common/alerts.js');
 	 var $mainForm=$("#J_articleForm");

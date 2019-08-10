@@ -7,7 +7,7 @@ define(function(require, exports, moudles) {
 		api : baseRoot + "/userinfo/foolow",
 	};
 	var $httpUtil = require('/js/common/httpUtil.js');
-	var dialog = require('/js/common/dialog');
+	require('art-dialog');
 	window.dialog = dialog;
 	var laypage = require('laypage');
 	var $tbody = $("#table-tbody");

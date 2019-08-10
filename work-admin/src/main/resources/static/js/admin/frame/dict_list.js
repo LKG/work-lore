@@ -3,8 +3,7 @@ define(function(require, exports, moudles) {
 	var $baseRoot = $('#baseRoot');
 	var baseRoot = $baseRoot.attr("href");
 	var template = require('arttemplate');
-	var dialog = require('/js/common/dialog');
-	window.dialog = dialog;
+    require('art-dialog');
 	var url = {
 		api : baseRoot + "/admin/dict",
 	};

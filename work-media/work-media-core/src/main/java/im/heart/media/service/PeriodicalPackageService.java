@@ -19,7 +19,7 @@ public interface PeriodicalPackageService extends CommonService<PeriodicalPackag
 	public static final String BEAN_NAME = "periodicalPackageService";
 	/**
 	 *
-	 * @功能说明：批量保存
+	 * 批量保存
 	 * @param entities
 	 * @return
 	 */

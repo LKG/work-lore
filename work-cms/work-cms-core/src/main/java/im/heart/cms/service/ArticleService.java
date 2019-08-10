@@ -23,7 +23,7 @@ public interface   ArticleService extends CommonService<Article, BigInteger>{
 	public static final String BEAN_NAME = "articleService";
 	/**
 	 * 
-	 * @功能说明：批量保存
+	 * 批量保存
 	 * @param entities
 	 * @return
 	 */

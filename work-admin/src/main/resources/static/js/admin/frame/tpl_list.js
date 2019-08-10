@@ -3,8 +3,6 @@ define(function(require, exports, moudles) {
 	var $baseRoot = $('#baseRoot');
 	var baseRoot = $baseRoot.attr("href");
 	var template = require('arttemplate');
-	var dialog = require('/js/common/dialog');
-	window.dialog = dialog;
 	var url = {
 		api : baseRoot + "/admin/tpl",
 	};
@@ -17,6 +15,7 @@ define(function(require, exports, moudles) {
 			el: '#app',
 			data: postData,
 	});
+    require('art-dialog');
 	var $msg= require('/js/common/alerts.js');
 	var $httpUtil = require('/js/common/httpUtil.js');
 	var laypage = require('laypage');

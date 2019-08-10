@@ -13,7 +13,7 @@ import java.io.InputStreamReader;
 /**
  * 
  * @作者 LKG 
- * @功能说明：MAC地址工具
+ * MAC地址工具
  */
 public class MacUtils {
 	protected static final Logger logger = LoggerFactory.getLogger(MacUtils.class);

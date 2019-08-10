@@ -3,6 +3,7 @@ define(function(require, exports, moudles) {
 	var $baseRoot = $('#baseRoot');
 	var baseRoot = $baseRoot.attr("href");
 	var template = require('arttemplate');
+    require('art-dialog');
 	var url = {
 		api : baseRoot + "/admin/area",
 	};
@@ -16,9 +17,7 @@ define(function(require, exports, moudles) {
 		data: postData,
 	})
 	var $httpUtil = require('/js/common/httpUtil.js');
-	var dialog = require('/js/common/dialog');
 	var $msg= require('/js/common/alerts.js');
-	window.dialog = dialog;
 	var laypage = require('laypage');
 	var $tbody = $("#table-tbody");
 	// 修改事件

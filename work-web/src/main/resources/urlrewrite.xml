@@ -35,10 +35,6 @@
         <to>/index/topic.jhtml</to>
     </rule>
     <rule>
-        <from>^/articles/p-(\w+).?(.*)$</from>
-        <to>/articles.jhtml?page=$1</to>
-    </rule>
-    <rule>
         <from>^/articles/c-(\w+)-(\w+).?(.*)$</from>
         <to>/articles.jhtml?categoryId=$1&amp;page=$2</to>
     </rule>
@@ -47,16 +43,24 @@
         <to>/articles.jhtml?categoryId=$1</to>
     </rule>
     <rule>
+        <from>^/articles/p-(\w+).?(.*)$</from>
+        <to>/articles.jhtml?page=$1</to>
+    </rule>
+    <rule>
+        <from>^/docs/p-(\w+)-(\w+).?(.*)$</from>
+        <to>/docs.jhtml?categoryCode_LIKES=$1&amp;page=$2</to>
+    </rule>
+    <rule>
         <from>^/docs/p-(\w+).?(.*)$</from>
         <to>/docs.jhtml?page=$1</to>
     </rule>
     <rule>
-        <from>^/docs/c-(\w+).?(.*)$</from>
-        <to>/docs.jhtml?categoryCode_LIKES=$1</to>
-    </rule>
-    <rule>
         <from>^/docs/c-(\w+)-(\w+).?(.*)$</from>
         <to>/docs.jhtml?categoryCode_LIKES=$1&amp;page=$2</to>
+    </rule>
+    <rule>
+        <from>^/docs/c-(\w+).?(.*)$</from>
+        <to>/docs.jhtml?categoryCode_LIKES=$1</to>
     </rule>
     <rule>
         <from>^/made.?(.*)$</from>

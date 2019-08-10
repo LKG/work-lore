@@ -5,7 +5,7 @@ import java.util.Locale;
 
 /**
  * 
- * @功能说明：验证码存储接口
+ * 验证码存储接口
  * @作者 LKG
  */
 public interface CaptchaStore {

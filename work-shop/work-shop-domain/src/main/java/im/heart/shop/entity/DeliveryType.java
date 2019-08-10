@@ -18,7 +18,7 @@ import im.heart.core.entity.AbstractEntity;
 /**
  *
  *
- * @功能说明：配送方式
+ * 配送方式
  * @作者 LKG
  */
 //@Entity

@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * 
  * @作者： LKG
- * @功能说明：商品订单实体类
+ * 商品订单实体类
  */
 @Entity
 @Table(name = "shop_order")

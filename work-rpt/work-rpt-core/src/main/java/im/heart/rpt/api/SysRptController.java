@@ -50,7 +50,7 @@ public class SysRptController extends AbstractController {
 	
 	/**
 	 * 
-	 * @功能说明：防止sql 注入
+	 * 防止sql 注入
 	 * @param sSql
 	 * @return
 	 */
@@ -71,7 +71,7 @@ public class SysRptController extends AbstractController {
 
 	/**
 	 * 
-	 * @功能说明： 处理逻辑条件 {{if test="query" }}{{/if}}
+	 *  处理逻辑条件 {{if test="query" }}{{/if}}
 	 * @param sqlCont
 	 * @param reqargs
 	 * @return
@@ -107,7 +107,7 @@ public class SysRptController extends AbstractController {
 
 	/**
 	 * 
-	 * @功能说明：处理SQL
+	 * 处理SQL
 	 * @param sqlCont
 	 * @param reqargs
 	 * @return
@@ -162,7 +162,7 @@ public class SysRptController extends AbstractController {
 	
 	/**
 	 * 
-	 * @功能说明：根据报表Id 查询项目信息
+	 * 根据报表Id 查询项目信息
 	 * @param jsoncallback
 	 * @param rptId
 	 * @param request

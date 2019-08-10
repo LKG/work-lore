@@ -9,7 +9,7 @@ import java.util.Map;
  * 
  * @作者 LKG 
  * @版本 V 1.0 
- * @功能说明：客户端请求内容boby model 
+ * 客户端请求内容boby model
  */
 @Data
 public class RequestBody {

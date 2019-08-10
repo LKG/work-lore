@@ -36,6 +36,7 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class UploadPeriodicalController extends AbstractController {
@@ -65,6 +66,7 @@ public class UploadPeriodicalController extends AbstractController {
     public void clearHeaderFooter(String realFilePath, InputStream is){
         Document doc = new Document(is);
         Section sec = doc.getSections().get(0);
+
         sec.getHeadersFooters().getHeader().getChildObjects().clear();
         sec.getHeadersFooters().getFooter().getChildObjects().clear();
         doc.saveToFile(realFilePath, FileFormat.Auto);
@@ -105,16 +107,21 @@ public class UploadPeriodicalController extends AbstractController {
         List<MultipartFile> uploadFileList = super.getFileList(request);
         if (uploadFileList != null && !uploadFileList.isEmpty()) {
             for (MultipartFile file : uploadFileList) {
-                String path = File.separator+periodicalFilePath+File.separator +periodicalCode+File.separator + DateTime.now().toString("yyyyMMdd") + File.separator;
+                String path = periodicalFilePath+File.separator +periodicalCode+File.separator + DateTime.now().toString("yyyyMMdd") + File.separator;
                 try {
-                    String realPath = uploadFilePath+path;
-                    String realFileName = this.uploadFile(file, realPath);
+
                     if (StringUtilsEx.isBlank(filename)) {
                         filename = file.getOriginalFilename();
                     }
+<<<<<<< HEAD
                     realFileName= StringUtilsEx.replace(realFileName, File.separator, "/");
                     String suffixes = StringUtils.substringAfterLast(realFileName, ".");
                     String realFilePath=realPath+realFileName;
+=======
+                    String fileName = this.uploadFile(file, uploadFilePath+path);
+                    String suffixes = StringUtils.substringAfterLast(fileName, ".");
+                    String realFilePath= StringUtilsEx.replace(uploadFilePath+path+fileName, File.separator, "/");
+>>>>>>> 8cb5882c439048fbaa439aa2c517c8bd92fa5874
                     if(clearHeader){
                         logger.info("清除页眉页脚..........");
                         this.clearHeaderFooter(realFilePath,file.getInputStream());
@@ -134,11 +141,11 @@ public class UploadPeriodicalController extends AbstractController {
                     periodical.setOriginPrice(originPrice);
                     periodical.setDataSize(file.getSize());
                     periodical.setStatus(CommonConst.FlowStatus.initial);
-                    String url = StringUtilsEx.replace(path + realFileName, File.separator, "/");
+                    String url = StringUtilsEx.replace(File.separator+path + fileName, File.separator, "/");
                     String pathUrl="/"+FILE_ROOT_PATH+url;
                     periodical.setPathUrl(pathUrl);
                     this.periodicalService.save(periodical);
-                    this.periodicalParser.addParserTask(periodical,file.getInputStream());
+                    this.periodicalParser.addParserTask(periodical);
                     PeriodicalLog periodicalLog=new PeriodicalLog();
                     periodicalLog.setUserId(periodical.getUserId());
                     periodicalLog.setPeriodicalId(periodical.getId());

@@ -7,7 +7,7 @@ import java.math.BigInteger;
 
 /**
  * 
- * @功能说明：评论操作接口
+ * 评论操作接口
  * @作者 LKG
  */
 public interface   CommentService extends CommonService<Comment, BigInteger>{

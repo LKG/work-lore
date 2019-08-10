@@ -13,14 +13,12 @@ public interface PeriodicalParser {
 	/**
 	 * 同步处理接口
 	 * @param periodical
-	 * @param is
 	 */
-	public void parser(Periodical periodical, InputStream is);
+	public void parser(Periodical periodical);
 
 	/**
 	 * 添加异步线程处理接口
 	 * @param periodical
-	 * @param is
 	 */
-	public void addParserTask(Periodical periodical, InputStream is) ;
+	public void addParserTask(Periodical periodical) ;
 }

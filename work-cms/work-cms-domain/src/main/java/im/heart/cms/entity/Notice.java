@@ -19,7 +19,7 @@ import java.util.Date;
 /**
  * 
  * @作者： LKG  
- * @功能说明：宣传图片信息
+ * 宣传图片信息
  */
 @Entity
 @Table(name = "cms_notice")

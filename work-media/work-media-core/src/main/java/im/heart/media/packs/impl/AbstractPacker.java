@@ -13,7 +13,7 @@ public abstract class AbstractPacker<T> implements PackageDataService {
 	protected static final Logger logger = LoggerFactory.getLogger(AbstractPacker.class);
 	/**
 	 * 
-	 * @功能说明：写入数据包信息
+	 * 写入数据包信息
 	 * @param dbpath
 	 * @param materialPackage
 	 * @throws SQLException

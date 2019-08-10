@@ -16,7 +16,7 @@ import java.security.SecureRandom;
 public class DesUtils {
 	/**
 	 * 
-	 * @功能说明：base64加密
+	 * base64加密
 	 * @param str
 	 * @param sign
 	 * @return
@@ -31,7 +31,7 @@ public class DesUtils {
 
 	/**
 	 * 
-	 * @功能说明： base64解密
+	 *  base64解密
 	 * @param entry
 	 * @param sign
 	 * @return
@@ -44,7 +44,7 @@ public class DesUtils {
 
 	/**
 	 * 
-	 * @功能说明：base64解密
+	 * base64解密
 	 * @param entry
 	 * @param sign
 	 * @return
@@ -64,7 +64,7 @@ public class DesUtils {
 
 	/**
 	 * 
-	 * @功能说明：base64加密
+	 * base64加密
 	 * @param str
 	 * @param sign
 	 * @return

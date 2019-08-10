@@ -6,7 +6,7 @@ import java.math.BigInteger;
 
 /**
  * 
- * @功能说明：优惠券实体类
+ * 优惠券实体类
  * @作者 LKG
  */
 public class Coupon  implements AbstractEntity<Long> {

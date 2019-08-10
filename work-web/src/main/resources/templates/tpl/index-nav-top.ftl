@@ -1,5 +1,5 @@
 <div class="pull-container" style="position: relative;padding-top: 0px;margin-top: 7px;">
-    <div class="m-container container" style="position: relative;padding-top: 0px;">
+    <div class="m-container container" style="position: relative;padding-top: 15px;">
         <!-- 搜索框 begin-->
         <#include "index-top-search.ftl" />
         <!-- 搜索框 end-->
@@ -18,6 +18,9 @@
                     <li><a href="${appHost}/group.jhtml">QQ群交流<i class="fa fa-fire text-danger"></i></a></li>
                 </ul>
             </div>
+        </div>
+        <div id="treasure" style="display: none;">
+                <a id="J_promo_lk" class="promo_lk" href="${appHost}/group.jhtml" target="_blank" aria-label="推广位" style="background-image: url(&quot;https://img14.360buyimg.com/babel/jfs/t1/80462/17/6134/23893/5d43ad7eEdb75e03b/ae492f020abda4a5.png.webp&quot;);"></a>
         </div>
     </div>
     <div id="nav-v">

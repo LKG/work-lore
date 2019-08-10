@@ -2,14 +2,14 @@ package im.heart.core.utils;
 
 /**
  * 
- * @功能说明：转换utils
+ * 转换utils
  * @作者 ：LKG
  */
 public class ConvertUtils {
 
 	/**
 	 * 
-	 * @功能说明：半角转全角
+	 * 半角转全角
 	 * @param input
 	 * @return 全角字符串.
 	 */
@@ -27,7 +27,7 @@ public class ConvertUtils {
 
 	/**
 	 * 
-	 * @功能说明：全角转半角
+	 * 全角转半角
 	 * @param input
 	 * @return 半角字符串
 	 */

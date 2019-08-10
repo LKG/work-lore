@@ -1,5 +1,5 @@
 define(function (require, exports, moudles) {
-require('jquery')
+     require('jquery')
 	 require('/js/common/validate');
 	 require('art-dialog');
 	 var $baseRoot=$("#baseRoot");

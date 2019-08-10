@@ -76,18 +76,18 @@
 	  	  			</div>
 					<div class="panel-body">
 						<form class="form-horizontal " action="" id="J_articleForm"  method="post"  >
-							 <input type="hidden" class="form-control" id="id" value="${result.id}" name="id" />
+							 <input type="hidden" class="form-control" id="id" value="${result.id!''}" name="id" />
 						 <div class="form-group" >
 						 	<div class="col-xs-5">
 						 		<div class="input-group">
 							 		<span class="input-group-addon">名称</span>
-							 		<input type="text" class="form-control"  name="tplName" placeholder="名称" value="${result.tplName}" /> 
+							 		<input type="text" class="form-control"  name="tplName" placeholder="名称" value="${result.tplName!''}" />
 								</div>
 							</div>
 							<div class="col-xs-5">
 								<div class="input-group">
 							  		<span class="input-group-addon">代号</span>
-							  		<input type="text" class="form-control"  name="tplCode" placeholder="代号" value="${result.tplCode}" /> 
+							  		<input type="text" class="form-control"  name="tplCode" placeholder="代号" value="${result.tplCode!''}" />
 						        </div>
 							</div>
 						 </div>
@@ -99,7 +99,7 @@
 								 <option value="">---</option> 
 									<@dic.dict dictCode="tpl_type" >
 										<#list items as model>  
-											<option value="${model.itemValue}" >${model.itemName}</option>
+											<option value="${model.itemValue!''}" >${model.itemName!''}</option>
 										</#list>
 									</@dic.dict>
 								 </select>
@@ -108,13 +108,13 @@
 							 <div class="col-xs-5">
 							   <div class="input-group">
 							 	<span class="input-group-addon">模板路径:</span>
-								<input type="text" class="form-control"  name="tplPath" placeholder="模板路径" value="${result.tplPath}" /> 
+								<input type="text" class="form-control"  name="tplPath" placeholder="模板路径" value="${result.tplPath!''}" />
 								</div>
 							 </div>
 						 </div>
 						 <div class="form-group" >
 							<div class="col-xs-10">
-								<textarea class="form-control" id="tplDesc" name="tplDesc" placeholder="模板描述" rows="2">${result.tplDesc}</textarea>
+								<textarea class="form-control" id="tplDesc" name="tplDesc" placeholder="模板描述" rows="2">${result.tplDesc!''}</textarea>
 							</div>
 						 </div>
 						   <div class="form-group">

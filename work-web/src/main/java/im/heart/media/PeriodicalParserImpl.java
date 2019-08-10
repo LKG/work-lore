@@ -2,10 +2,6 @@ package im.heart.media;
 
 import com.google.common.collect.Lists;
 import com.hankcs.hanlp.HanLP;
-import com.spire.doc.*;
-import com.spire.doc.documents.*;
-import com.spire.doc.fields.DocPicture;
-import com.spire.doc.fields.TextRange;
 import im.heart.core.CommonConst;
 import im.heart.core.utils.FileUtilsEx;
 import im.heart.core.utils.StringUtilsEx;
@@ -13,6 +9,7 @@ import im.heart.media.entity.Periodical;
 import im.heart.media.entity.PeriodicalContent;
 import im.heart.media.entity.PeriodicalImg;
 import im.heart.media.entity.PeriodicalLog;
+import im.heart.media.entity.PeriodicalLog.PeriodicalLogType;
 import im.heart.media.parser.PeriodicalParser;
 import im.heart.media.service.PeriodicalContentService;
 import im.heart.media.service.PeriodicalImgService;
@@ -33,14 +30,18 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.InputStream;
 import java.math.BigInteger;
 import java.util.List;
 
+
+/**
+ *
+ * @author gg
+ * @desc 解析上传文档信息
+ */
 @Service
 public class PeriodicalParserImpl implements PeriodicalParser {
     protected static final Logger logger = LoggerFactory.getLogger(PeriodicalParserImpl.class);
@@ -60,18 +61,21 @@ public class PeriodicalParserImpl implements PeriodicalParser {
     @Value("${prod.upload.path.root:''}")
     private String uploadFilePath="";
     @Override
-    public void parser(Periodical periodical, InputStream is) {
+    public void parser(Periodical periodical) {
         String suffixes=periodical.getFileHeader();
         String realFilePath=periodical.getRealFilePath();
         File targetFile=new File(realFilePath+".pdf");
+        File file=new File(realFilePath);
         DocumentFormat documentFormat= DefaultDocumentFormatRegistry.getInstance().getFormatByExtension(suffixes);
-        String type=PeriodicalLog.PeriodicalLogType.convert.code;
+        PeriodicalLogType type=PeriodicalLogType.convert;
         try {
-            this.documentConverter.convert(is,true).as(documentFormat).to(targetFile).as(DefaultDocumentFormatRegistry.PDF).execute();
+            this.documentConverter.convert(file).as(documentFormat).to(targetFile).as(DefaultDocumentFormatRegistry.PDF).execute();
             addParserLog(periodical, type,"{desc: ' pdf 转换成功！'}");
             Integer pageNum=this.pdf2Image(targetFile, "",20,periodical);
         } catch (OfficeException e) {
             logger.error(e.getStackTrace()[0].getMethodName(), e);
+            periodical.setStatus(CommonConst.FlowStatus.fail);
+            this.periodicalService.save(periodical);
             addParserLog(periodical, type,"{desc:  '"+e.getMessage()+" ' }");
         } finally {
         }
@@ -79,8 +83,8 @@ public class PeriodicalParserImpl implements PeriodicalParser {
 
     @Async
     @Override
-    public void addParserTask(Periodical periodical, InputStream is) {
-        parser(periodical,is);
+    public void addParserTask(Periodical periodical) {
+        parser(periodical);
     }
 
     /***
@@ -155,11 +159,13 @@ public class PeriodicalParserImpl implements PeriodicalParser {
             this.periodicalService.save(periodical);
             this.addPeriodicalContent(periodical,content);
             this.periodicalImgService.saveAll(entities);
-            String type=PeriodicalLog.PeriodicalLogType.parser.code;
+            PeriodicalLogType type=PeriodicalLogType.parser;
             this.addParserLog(periodical,type,"{desc:  '解析文件并生成图片成功！' }");
         } catch (Exception e) {
             logger.error(e.getStackTrace()[0].getMethodName(), e);
-            String type=PeriodicalLog.PeriodicalLogType.parser.code;
+            periodical.setStatus(CommonConst.FlowStatus.fail);
+            this.periodicalService.save(periodical);
+            PeriodicalLogType type=PeriodicalLogType.parser;
             this.addParserLog(periodical, type,"{desc:  '"+e.getMessage()+" ' }");
         }finally {
             IOUtils.closeQuietly(pdDocument);
@@ -179,11 +185,11 @@ public class PeriodicalParserImpl implements PeriodicalParser {
         this.periodicalContentService.save(periodicalContent);
     }
     @Async
-    public void addParserLog(Periodical periodical,String type,String desc){
+    public void addParserLog(Periodical periodical, PeriodicalLogType logType, String desc){
         PeriodicalLog periodicalLog=new PeriodicalLog();
         periodicalLog.setPeriodicalId(periodical.getId());
         periodicalLog.setUserId(periodical.getUserId());
-        periodicalLog.setType(type);
+        periodicalLog.setType(logType.code);
         periodicalLog.setLogDesc(desc);
         this.periodicalLogService.save(periodicalLog);
     }

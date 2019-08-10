@@ -12,7 +12,7 @@ import java.math.BigInteger;
  * 
  * 
  * @作者： LKG
- * @功能说明：购物车实体类
+ * 购物车实体类
  */
 @Entity
 @Table(name = "shop_cart")

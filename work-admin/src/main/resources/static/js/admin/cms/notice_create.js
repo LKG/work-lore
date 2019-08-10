@@ -9,7 +9,7 @@ define(function(require, exports, moudles) {
 	};
 	var editormd = require('editor.md');
 	var $httpUtil = require('/js/common/httpUtil.js');
-	var dialog = require('/js/common/dialog');
+	require('art-dialog');
 	 require('/js/common/validate');
 	var $msg= require('/js/common/alerts.js');
 	window.dialog = dialog;

@@ -1,5 +1,6 @@
 package im.heart.core.support.handler;
 
+import im.heart.core.CommonConst;
 import im.heart.core.web.utils.WebUtilsEx;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -10,6 +11,11 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author: gg
+ * 处理请求日志
+ */
 @Slf4j
 @Component
 public class RequestLogMdcInterceptor extends HandlerInterceptorAdapter {
@@ -22,8 +28,8 @@ public class RequestLogMdcInterceptor extends HandlerInterceptorAdapter {
         String unqId = RandomStringUtils.randomNumeric(16);
         MDC.put("req.id",unqId);
         MDC.put("req.uri",request.getRequestURI());
-        if (request.getParameter("imei") != null) {
-            MDC.put("req.imei",request.getParameter("imei"));
+        if (request.getParameter(CommonConst.RequestResult.IMEI) != null) {
+            MDC.put("req.imei",request.getParameter(CommonConst.RequestResult.IMEI));
         }
         MDC.put("req.beginTime",System.currentTimeMillis() + "");
         return super.preHandle(request, response, handler);

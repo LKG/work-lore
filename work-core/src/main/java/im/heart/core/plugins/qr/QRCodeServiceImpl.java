@@ -23,7 +23,7 @@ import java.util.Hashtable;
 
 /**
  * 
- * @功能说明：二维码生成接口
+ * 二维码生成接口
  * @作者 LKG
  */
 @Service(value = QRCodeService.BEAN_NAME)

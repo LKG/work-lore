@@ -8,7 +8,7 @@ define(function(require, exports, moudles) {
 		createApi:baseRoot + "/admin/article/save.json",
 	};
 	var $httpUtil = require('/js/common/httpUtil.js');
-	var dialog = require('/js/common/dialog');
+	require('art-dialog');
 	 require('/js/common/validate');
 	var $msg= require('/js/common/alerts.js');
 	window.dialog = dialog;

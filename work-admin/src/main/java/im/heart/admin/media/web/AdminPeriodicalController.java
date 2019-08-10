@@ -42,7 +42,7 @@ public class AdminPeriodicalController extends AbstractController {
 
 	/**
 	 * 
-	 * @功能说明：查询所有
+	 * 查询所有
 	 * @param request
 	 * @param response
 	 * @param jsoncallback
@@ -58,7 +58,7 @@ public class AdminPeriodicalController extends AbstractController {
 	public ModelAndView list(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = CommonConst.RequestResult.JSON_CALLBACK, required = false) String jsoncallback,
 			@RequestParam(value = "page", required = false, defaultValue = CommonConst.Page.DEFAULT_PAGE+"") Integer page,
-			@RequestParam(value = "size", required = false, defaultValue = CommonConst.Page.DEFAULT_SIZE+"") Integer size,
+			@RequestParam(value = "size", required = false, defaultValue = "15") Integer size,
 			@RequestParam(value = "sort", required = false,defaultValue = "createTime") String sort,
 			@RequestParam(value = "order", required = false,defaultValue = CommonConst.Page.ORDER_DESC) String order,
 			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN, required = false) String token,
@@ -82,6 +82,20 @@ public class AdminPeriodicalController extends AbstractController {
 		}
 		return new ModelAndView(VIEW_DETAILS);
 	}
+	@RequestMapping(value = apiVer+"/{ids}/setCate",method = RequestMethod.POST)
+	protected ModelAndView setCate(
+			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN , required = false) String token,
+			@PathVariable BigInteger[] ids,
+			HttpServletRequest request,
+			ModelMap model) {
+		for(BigInteger id:ids){
+
+		}
+		super.success(model);
+		return new ModelAndView(VIEW_SUCCESS);
+	}
+
+
 	@RequestMapping(value = apiVer+"/{ids}/disabled",method = RequestMethod.POST)
 	protected ModelAndView deleted(
 			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN , required = false) String token,
@@ -103,14 +117,11 @@ public class AdminPeriodicalController extends AbstractController {
 		for(BigInteger periodicalId:ids){
 			Optional<Periodical> optional=this.periodicalService.findById(periodicalId);
 			if(optional.isPresent()){
-				FileInputStream inputStream=null;
 				try {
 					Periodical periodical=optional.get();
-					inputStream=FileUtilsEx.openInputStream(new File(periodical.getRealFilePath()));
-					this.periodicalParser.addParserTask(periodical,inputStream);
+					this.periodicalParser.addParserTask(periodical);
 				}catch (Exception e){
 					logger.error(e.getStackTrace()[0].getMethodName(), e);
-					IOUtils.closeQuietly(inputStream);
 				}
 			}
 

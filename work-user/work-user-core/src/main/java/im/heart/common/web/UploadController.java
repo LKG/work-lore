@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * 
  * @作者 LKG 
- * @功能说明：文件上传控制
+ * 文件上传控制
  */
 @Controller
 public class UploadController extends AbstractController {

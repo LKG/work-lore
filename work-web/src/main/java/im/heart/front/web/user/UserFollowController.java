@@ -28,7 +28,7 @@ import java.util.Collection;
 /**
  *
  * @作者 LKG
- * @功能说明：收藏商品
+ * 收藏商品
  */
 @Controller
 public class UserFollowController extends AbstractController {
