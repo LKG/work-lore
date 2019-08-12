@@ -32,6 +32,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
 /**
  *
  * @author gg
@@ -153,7 +156,7 @@ public class ValidateController extends AbstractController {
 	public ModelAndView passMobileCode(HttpServletRequest request,
                                        HttpServletResponse response,
                                        @RequestParam(value = "mobile", required = false ) String mobile,
-                                       @RequestParam(value = "type", required = false,defaultValue="1") String type, ModelMap model) {
+                                       @RequestParam(value = "type", required = false,defaultValue="1") String type, ModelMap model) throws InterruptedException, ExecutionException {
 		int mobileCode = (int)((Math.random()*9+1)*10000);
 		Map<String,Object> modelTemp = Maps.newHashMap();
 		UserCacheUtils.generateMobileCache(mobile, mobileCode);
@@ -161,9 +164,8 @@ public class ValidateController extends AbstractController {
 		modelTemp.put("product", "公文库");
 		modelTemp.put("expiredTime", UserCacheUtils.CacheConfig.MOBILE_CODE.expiredTime/60);
 		logger.info("mobile:[{}],mobileCode:[{}], type:[{}],mobileCode-host:[{}]", mobile,mobileCode,type,BaseUtils.getIpAddr(request));
-
-		Boolean isSuccess=this.smsSendService.sendSms(modelTemp, SmsTplEnum.REGISTER.templateId, new String[]{mobile});
-		if(isSuccess){
+		Future<Boolean> res=this.smsSendService.addSendSmsTask(modelTemp, SmsTplEnum.REGISTER.templateId, new String[]{mobile});
+		if(res.get()){
 			this.success(model);
 			return new ModelAndView(RESULT_PAGE);
 		}

@@ -13,11 +13,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Profile;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.Future;
 
 /**
  *
@@ -31,7 +34,6 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
     protected static final Logger logger = LoggerFactory.getLogger(QcloudSmsSendServiceImpl.class);
     @Resource
     private QcloudSmsProperties properties;
-
 
     /**
      * 根据发送短信，短信内容必须和模板中的一致
@@ -78,7 +80,6 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
         return sendSms(smsContent,mobileTo,"","","");
     }
 
-
     /**
      * 根据手机短信模板返送短信
      * @param model
@@ -123,4 +124,26 @@ public class QcloudSmsSendServiceImpl implements SmsSendService {
     public Boolean sendSms(Map<String, ?> model, String templateId, String[] mobileTo, String nationCode, String sign, String extend, String ext) {
         return sendSms(model,templateId,mobileTo,null,null,null,null);
     }
+    @Async
+    @Override
+    public Future<Boolean> addSendSmsTask(String smsContent, String mobileTo) {
+        return new AsyncResult(sendSms(smsContent,mobileTo));
+    }
+    @Async
+    @Override
+    public Future<Boolean>  addSendSmsTask(Map<String, ?> model, String templateId,
+                                           String[] mobileTo,String nationCode,String sign,String extend, String ext) {
+        return new AsyncResult(sendSms(model,templateId,mobileTo,nationCode,sign,extend,ext));
+    }
+    @Async
+    @Override
+    public Future<Boolean>  addSendSmsTask(String smsContent, String mobileTo, String nationCode, String extend, String ext) {
+        return new AsyncResult(sendSms(smsContent,mobileTo,nationCode,extend,ext));
+    }
+    @Async
+    @Override
+    public Future<Boolean>  addSendSmsTask(Map<String, ?> model, String templateId, String[] mobileTo) {
+        return new AsyncResult(sendSms( model,templateId,mobileTo));
+    }
+
 }

@@ -8,9 +8,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
+import java.util.concurrent.Future;
 
 
 /**
@@ -24,15 +26,13 @@ public class SampleSmsSendServiceImpl implements SmsSendService {
 	protected static final Logger logger = LoggerFactory.getLogger(SampleSmsSendServiceImpl.class);
 
 
-
 	/**
 	 * 根据发送短信，短信内容必须和模板中的一致
-	 *
 	 * @param smsContent
 	 * @param mobileTo
 	 * @return
 	 */
-	@Async
+
 	@Override
 	public Boolean sendSms(String smsContent, String mobileTo) {
 		return sendSms(smsContent,mobileTo,"","","");
@@ -48,17 +48,17 @@ public class SampleSmsSendServiceImpl implements SmsSendService {
 	 * @param ext        服务端原样返回的参数，可填空
 	 * @return
 	 */
-	@Async
 	@Override
 	public Boolean sendSms(String smsContent, String mobileTo, String nationCode, String extend, String ext) {
-		logger.info("模拟发送短信啦.smsContent:{},mobileTo:{}..............................",smsContent,JSON.toJSONString(mobileTo));
+		logger.info("非正式环境发送短信.smsContent:{},mobileTo:{}..............................",smsContent,JSON.toJSONString(mobileTo));
 		return Boolean.TRUE;
 	}
-	@Async
+
 	@Override
 	public Boolean sendSms(Map<String, ?> model, String templateId,
 								 String[] mobileTo,String nationCode,String sign,String extend, String ext) {
-		logger.info("模拟发送短信啦.templateId:{}.model:{},mobileTo:{}..............................",templateId,JSON.toJSONString(model),JSON.toJSONString(mobileTo));
+		logger.info("非正式环境模拟发送短信.templateId:{}.model:{},mobileTo:{}..............................",templateId,JSON.toJSONString(model),JSON.toJSONString(mobileTo));
+		System.out.println("####################################################");
 		return Boolean.TRUE;
 	}
 
@@ -70,9 +70,37 @@ public class SampleSmsSendServiceImpl implements SmsSendService {
 	 * @param mobileTo
 	 * @return
 	 */
-	@Async
 	@Override
 	public Boolean sendSms(Map<String, ?> model, String templateId, String[] mobileTo) {
 		return sendSms( model,templateId,mobileTo, "","","", "");
+	}
+	@Async
+	@Override
+	public Future<Boolean>  addSendSmsTask(String smsContent, String mobileTo, String nationCode, String extend, String ext) {
+		return new AsyncResult(sendSms(smsContent,mobileTo,nationCode,extend,ext));
+	}
+	/**
+	 *  异步处理 根据发送短信，短信内容必须和模板中的一致
+	 * @param smsContent
+	 * @param mobileTo
+	 * @return
+	 */
+	@Async
+	@Override
+	public Future<Boolean> addSendSmsTask(String smsContent, String mobileTo) {
+		return new AsyncResult(sendSms(smsContent,mobileTo));
+	}
+
+	@Async
+	@Override
+	public Future<Boolean>  addSendSmsTask(Map<String, ?> model, String templateId,
+						   String[] mobileTo,String nationCode,String sign,String extend, String ext) {
+		return new AsyncResult(sendSms(model,templateId,mobileTo,nationCode,sign,extend,ext));
+	}
+
+	@Async
+	@Override
+	public Future<Boolean>  addSendSmsTask(Map<String, ?> model, String templateId, String[] mobileTo) {
+		return new AsyncResult(sendSms( model,templateId,mobileTo));
 	}
 }

@@ -1,5 +1,6 @@
 package im.heart.media;
 
+import com.baidu.aip.nlp.AipNlp;
 import com.google.common.collect.Lists;
 import com.hankcs.hanlp.HanLP;
 import im.heart.core.CommonConst;
@@ -23,6 +24,7 @@ import org.jodconverter.DocumentConverter;
 import org.jodconverter.document.DefaultDocumentFormatRegistry;
 import org.jodconverter.document.DocumentFormat;
 import org.jodconverter.office.OfficeException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.math.BigInteger;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -87,6 +90,20 @@ public class PeriodicalParserImpl implements PeriodicalParser {
         parser(periodical);
     }
 
+    public static final String APP_ID = "16984737";
+    public static final String API_KEY = "MvxEAgOS94tBzGKw3N56EYaH";
+    public static final String SECRET_KEY = "WWO3y0nGTbSPsHRvhfyiX1o4b4Kp861z";
+
+    private void keyword(String title, String content, HashMap<String, Object> options){
+        AipNlp client = new AipNlp(APP_ID, API_KEY, SECRET_KEY);
+
+        // 可选：设置网络连接参数
+        client.setConnectionTimeoutInMillis(2000);
+        client.setSocketTimeoutInMillis(60000);
+        JSONObject res =    client.keyword(title,content,options);
+        System.out.println(res);
+    }
+
     /***
      * PDF文件转PNG图片
      * @param pdfFile pdf文件
@@ -119,6 +136,7 @@ public class PeriodicalParserImpl implements PeriodicalParser {
                 List<String> seoKeywords=HanLP.extractPhrase(content, 10);
                 seoKeywords.addAll(titles);
                 //设置关键词
+                keyword(periodical.getPeriodicalName(),content,null);
                 periodical.setSeoKeywords(StringUtilsEx.join(seoKeywords,","));
             }
             if(StringUtilsEx.isBlank(periodical.getSeoKeywords())){
