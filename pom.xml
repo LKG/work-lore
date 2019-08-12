@@ -95,6 +95,8 @@
         <qcloudsms.version>1.0.6</qcloudsms.version>
         <librec.version>2.0.0</librec.version>
         <java-jwt.version>3.4.1</java-jwt.version>
+        <baidu-sdk.version>4.11.3</baidu-sdk.version>
+
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -117,6 +119,11 @@
                 <groupId>com.upyun</groupId>
                 <artifactId>java-sdk</artifactId>
                 <version>${upyun.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baidu.aip</groupId>
+                <artifactId>java-sdk</artifactId>
+                <version>${baidu-sdk.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.qiniu</groupId>
