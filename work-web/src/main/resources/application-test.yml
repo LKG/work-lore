@@ -42,6 +42,14 @@ spring:
       force: true
   messages:
     encoding: UTF-8
+  cloud:
+    gateway:
+      routes:
+        id: fangxiaobai_test
+        host: 127.0.0.1
+        uri: http://www.baidu.com/
+        predicates:
+          Path=/house/**
   freemarker:
     prefix:
     suffix: .ftl

@@ -22,7 +22,7 @@ define(function(require, exports, moudles) {
          },
          validation: {
              allowedExtensions: ['zip','doc','xlsx','xls','pdf','docx','ppt','pptx','txt'],
-             itemLimit: 50,// 最多上传
+             itemLimit: 100,// 最多上传
              sizeLimit: 50*1024*1024*1024 // 50 kB = 50 * 1024 bytes
          },
           text: {
@@ -48,7 +48,7 @@ define(function(require, exports, moudles) {
          },
          showMessage:function(content) {
          	//------------
-        	// message($(this),content);
+             $msg.alert($(this),content);
          },
          /***
          showConfirm:function(message) {

@@ -1,6 +1,5 @@
 package im.heart.media;
 
-import com.baidu.aip.nlp.AipNlp;
 import com.google.common.collect.Lists;
 import com.hankcs.hanlp.HanLP;
 import im.heart.core.CommonConst;
@@ -24,7 +23,6 @@ import org.jodconverter.DocumentConverter;
 import org.jodconverter.document.DefaultDocumentFormatRegistry;
 import org.jodconverter.document.DocumentFormat;
 import org.jodconverter.office.OfficeException;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,18 +88,14 @@ public class PeriodicalParserImpl implements PeriodicalParser {
         parser(periodical);
     }
 
-    public static final String APP_ID = "16984737";
-    public static final String API_KEY = "MvxEAgOS94tBzGKw3N56EYaH";
-    public static final String SECRET_KEY = "WWO3y0nGTbSPsHRvhfyiX1o4b4Kp861z";
 
-    private void keyword(String title, String content, HashMap<String, Object> options){
-        AipNlp client = new AipNlp(APP_ID, API_KEY, SECRET_KEY);
+    private void keyword(String title, String content, HashMap<String, Object> options,Periodical periodical){
+        List<String> seoKeywords=Lists.newArrayList();
+        seoKeywords=HanLP.extractPhrase(content, 10);
+        List<String> titles=HanLP.extractPhrase(periodical.getPeriodicalName(), 3);
+        seoKeywords.addAll(titles);
 
-        // 可选：设置网络连接参数
-        client.setConnectionTimeoutInMillis(2000);
-        client.setSocketTimeoutInMillis(60000);
-        JSONObject res =    client.keyword(title,content,options);
-        System.out.println(res);
+        periodical.setSeoKeywords(StringUtilsEx.join(seoKeywords,","));
     }
 
     /***
@@ -132,12 +126,8 @@ public class PeriodicalParserImpl implements PeriodicalParser {
             PDFTextStripper pdfTextStripper = new PDFTextStripper();
             String content = pdfTextStripper.getText(pdDocument);
             if(StringUtilsEx.isBlank(periodical.getSeoKeywords())){
-                List<String> titles=HanLP.extractPhrase(periodical.getPeriodicalName(), 3);
-                List<String> seoKeywords=HanLP.extractPhrase(content, 10);
-                seoKeywords.addAll(titles);
-                //设置关键词
-                keyword(periodical.getPeriodicalName(),content,null);
-                periodical.setSeoKeywords(StringUtilsEx.join(seoKeywords,","));
+                keyword(periodical.getPeriodicalName(),content,null,periodical);
+//
             }
             if(StringUtilsEx.isBlank(periodical.getSeoKeywords())){
                 List<String> summary= HanLP.extractSummary(content,5);

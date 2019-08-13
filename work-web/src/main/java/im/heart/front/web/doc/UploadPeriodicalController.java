@@ -96,7 +96,6 @@ public class UploadPeriodicalController extends AbstractController {
             @RequestParam(value = "clearHeader", required = false,defaultValue = "true") Boolean clearHeader ,
             String filename,
             HttpServletResponse response,ModelMap model) {
-        System.out.println(WebUtilsEx.getParametersJson(request));
         ResponseError responseError = new ResponseError(WebError.AUTH_CREDENTIALS_EXPIRED);
         FrameUserVO user = SecurityUtilsHelper.getCurrentUser();
         if (user == null) {
