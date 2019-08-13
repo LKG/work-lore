@@ -22,7 +22,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @ComponentScan(basePackages={"im.heart"})
 @EnableAsync
 @EnableCaching
-public class App extends SpringBootServletInitializer implements CommandLineRunner{
+public class App  implements CommandLineRunner{
 
     public static ApplicationContext context;
     @Override
@@ -32,9 +32,5 @@ public class App extends SpringBootServletInitializer implements CommandLineRunn
         SpringApplication application=new SpringApplication(App.class);
         application.setBannerMode(Banner.Mode.OFF);
         context = application.run(args);
-    }
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(App.class);
     }
 }

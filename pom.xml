@@ -49,7 +49,7 @@
         <log4j2.log4jdbc.version>1.16</log4j2.log4jdbc.version>
         <!-- 日志相关end -->
         <lombok.version>1.18.6</lombok.version>
-        <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+        <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
         <!--数据库驱动依赖begin -->
         <mysql.jdbc.version>5.1.46</mysql.jdbc.version>

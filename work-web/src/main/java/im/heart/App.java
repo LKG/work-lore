@@ -26,7 +26,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @EnableCaching
 @EnableJpaRepositories
 @EnableRedisHttpSession(maxInactiveIntervalInSeconds=60 * 60 * 24 * 7)
-public class App extends SpringBootServletInitializer implements CommandLineRunner{
+public class App  implements CommandLineRunner{
 
     public static ApplicationContext context;
     @Override
@@ -37,9 +37,5 @@ public class App extends SpringBootServletInitializer implements CommandLineRunn
         System.setProperty("es.set.netty.runtime.available.processors", "false");
         application.setBannerMode(Banner.Mode.OFF);
         context = application.run(args);
-    }
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(App.class);
     }
 }
