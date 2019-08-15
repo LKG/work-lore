@@ -7,12 +7,18 @@ package im.heart.core;
  */
 public class CommonConst {
     public static final String BEAN_SUFFIX = "Service";
-    public static final String SESSION_USER_ID = "USER_ID";
-    public static final String SESSION_USER_NAME = "USER_NAME";
-    public static final String SESSION_LOGIN_TYPE = "LOGIN_TYPE";
-    public static final String SESSION_LOGIN_TIMES = "_login_times";
+
+
     public static final String STATIC_UPLOAD_ROOT="uploads";
     public static final String CACHE_MANAGER_NAME = "cacheManager";
+
+    public static class Session{
+        public static final String USER_ID = "USER_ID";
+        public static final String USER_NAME = "USER_NAME";
+        public static final String LOGIN_TYPE = "LOGIN_TYPE";
+        public static final String LOGIN_TIMES = "_login_times";
+    }
+
     /**
      *
      * @author： gg

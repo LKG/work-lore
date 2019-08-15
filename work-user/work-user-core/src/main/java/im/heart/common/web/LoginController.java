@@ -97,7 +97,7 @@ public class LoginController extends AbstractController {
 		WebError webError = this.parseException(request,username);
 		Integer times = ShiroLoginHelper.getLoginTimes();
 		if(times>=MAX_LOGIN_TIMES){
-			model.put(CommonConst.SESSION_LOGIN_TIMES, times);
+			model.put(CommonConst.Session.LOGIN_TIMES, times);
 		}
 		if(webError!=null){
 			ResponseError responseError=new ResponseError(webError);

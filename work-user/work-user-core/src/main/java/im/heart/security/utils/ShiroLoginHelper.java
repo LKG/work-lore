@@ -31,7 +31,7 @@ public class ShiroLoginHelper {
 	public static Integer getLoginTimes(Session session){
 		Integer loginTimes=0;
 		if(session!=null){
-			Object sessionLoginTimes=session.getAttribute(CommonConst.SESSION_LOGIN_TIMES);
+			Object sessionLoginTimes=session.getAttribute(CommonConst.Session.LOGIN_TIMES);
 			if(sessionLoginTimes!=null&&StringUtils.isNumeric(sessionLoginTimes.toString())){
 				loginTimes =  Integer.parseInt(sessionLoginTimes.toString());
 			}
@@ -47,7 +47,7 @@ public class ShiroLoginHelper {
 		Session session= SecurityUtils.getSubject().getSession();
 		Integer loginTimes= ShiroLoginHelper.getLoginTimes(session);
 		loginTimes++;
-		session.setAttribute(CommonConst.SESSION_LOGIN_TIMES,loginTimes);
+		session.setAttribute(CommonConst.Session.LOGIN_TIMES,loginTimes);
 	}
 	/**
 	 * 
@@ -56,7 +56,7 @@ public class ShiroLoginHelper {
 	public static void setLoginSuccessSession(){
 		Subject subject = SecurityUtils.getSubject();
 		Session session= subject.getSession();
-		session.setAttribute(CommonConst.SESSION_LOGIN_TIMES,0);
+		session.setAttribute(CommonConst.Session.LOGIN_TIMES,0);
 	}
 	
 }
