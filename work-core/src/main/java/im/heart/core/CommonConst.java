@@ -5,7 +5,7 @@ package im.heart.core;
  * @author gg
  * @desc 系统常量
  */
-public class CommonConst {
+public interface CommonConst {
     public static final String BEAN_SUFFIX = "Service";
 
 
