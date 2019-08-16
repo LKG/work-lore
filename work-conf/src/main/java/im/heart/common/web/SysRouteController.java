@@ -68,7 +68,7 @@ public class SysRouteController extends AbstractController {
 			logger.info("解压key：{} " ,new String(key, "UTF-8"));
 			// 转换压缩文件流为普通流
 			byte[] unpack = FileUtilsEx.uncompressToStringback(body);
-			String signBody = DesUtils.parseSignback(unpack, new String(key,"UTF-8"));
+			String signBody = DesUtils.parseSignBack(unpack, new String(key,"UTF-8"));
 			logger.info("解压signBody ：{}" ,signBody);
 			requestParameters = JSON.parseObject(signBody, RequestParas.class);
 		} catch (IOException e) {

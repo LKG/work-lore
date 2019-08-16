@@ -23,7 +23,7 @@ public class DesUtils {
 	 * @throws Exception
 	 */
 	public static String createSign(String str, String sign) throws Exception {
-		byte[] bytes = createSignback(str,sign);
+		byte[] bytes = createSignBack(str,sign);
 		String base64 = Base64.encodeBase64String(bytes);
 		return base64;
 
@@ -39,7 +39,7 @@ public class DesUtils {
 	 */
 	public static String parseSign(String entry, String sign) throws Exception {
 		byte[] bytes = Base64.decodeBase64(entry);
-		return parseSignback(bytes,sign);
+		return parseSignBack(bytes,sign);
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class DesUtils {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String parseSignback(byte[] entry, String sign) throws Exception {
+	public static String parseSignBack(byte[] entry, String sign) throws Exception {
 		SecureRandom sr = new SecureRandom();
 		DESKeySpec dks = new DESKeySpec(sign.getBytes());
 		SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
@@ -70,7 +70,7 @@ public class DesUtils {
 	 * @return
 	 * @throws Exception
 	 */
-	public static byte[] createSignback(String str, String sign) throws Exception {
+	public static byte[] createSignBack(String str, String sign) throws Exception {
 		SecureRandom sr = new SecureRandom();
 		DESKeySpec dks = new DESKeySpec(sign.getBytes());
 		SecretKeyFactory keyFactory = SecretKeyFactory.getInstance("DES");
