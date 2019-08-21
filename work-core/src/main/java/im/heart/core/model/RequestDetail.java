@@ -3,10 +3,9 @@ package im.heart.core.model;
 import lombok.Data;
 
 /**
- * 
- * @作者 LKG 
- * @版本 V 1.0 
- * 请求明细 model
+ *
+ * @author gg
+ * @desc 请求明细 model
  */
 @Data
 public class RequestDetail {
@@ -14,6 +13,7 @@ public class RequestDetail {
 	 * 压缩方法
 	 */
 	private String compressMethod;
+
 	private String shopid;
 	/**
 	 * 本地资源版本
@@ -22,7 +22,7 @@ public class RequestDetail {
 	/**
 	 * 应用的产品号
 	 */
-	private String pid; //
+	private String pid;
 
 	/**
 	 * 纬度

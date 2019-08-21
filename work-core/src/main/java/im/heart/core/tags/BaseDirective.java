@@ -95,12 +95,27 @@ public abstract class BaseDirective implements TemplateDirectiveModel {
 	protected void verifyParameters(Map<?, ?> params) throws TemplateModelException {
 	}
 
+	/**
+	 * renderBody 函数
+	 * @param env
+	 * @param body
+	 * @throws IOException
+	 * @throws TemplateException
+	 */
 	protected void renderBody(Environment env, TemplateDirectiveBody body) throws IOException, TemplateException {
 		if (body != null) {
 			body.render(env.getOut());
 		}
 	}
 
+	/**
+	 *  render 函数
+	 * @param env
+	 * @param params
+	 * @param body
+	 * @throws IOException
+	 * @throws TemplateException
+	 */
 	public abstract void render(Environment env, Map<?, ?> params, TemplateDirectiveBody body)
 			throws IOException, TemplateException;
 }

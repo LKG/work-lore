@@ -1,5 +1,8 @@
 package im.heart.core.validator;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
@@ -43,7 +46,7 @@ public class BeanValidators {
 	 * 辅助方法, 转换Set<ConstraintViolation>为List<message>
 	 */
 	public static List<String> extractMessage(Set<? extends ConstraintViolation<?>> constraintViolations) {
-		List<String> errorMessages = new ArrayList<String>();
+		List<String> errorMessages = Lists.newArrayList();
 		for (ConstraintViolation<?> violation : constraintViolations) {
 			errorMessages.add(violation.getMessage());
 		}
@@ -63,7 +66,7 @@ public class BeanValidators {
 	 * 辅助方法, 转换Set<ConstraintViolation>为Map<property, message>.
 	 */
 	public static Map<String, String> extractPropertyAndMessage(Set<? extends ConstraintViolation<?>> constraintViolations) {
-		Map<String, String> errorMessages = new HashMap<String, String>();
+		Map<String, String> errorMessages = Maps.newHashMap();
 		if(constraintViolations!=null){
 			for (ConstraintViolation<?> violation : constraintViolations) {
 				errorMessages.put(violation.getPropertyPath().toString(),violation.getMessage());
@@ -100,7 +103,7 @@ public class BeanValidators {
 	 * message>.
 	 */
 	public static List<String> extractPropertyAndMessageAsList(Set<? extends ConstraintViolation<?>> constraintViolations,String separator) {
-		List<String> errorMessages = new ArrayList<String>();
+		List<String> errorMessages = Lists.newArrayList();
 		if(constraintViolations!=null){
 			for (ConstraintViolation<?> violation : constraintViolations) {
 				errorMessages.add(violation.getPropertyPath() + separator+ violation.getMessage());

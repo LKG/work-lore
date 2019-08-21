@@ -6,15 +6,21 @@ import lombok.Data;
 import java.util.Map;
 
 /**
- * 
- * @作者 LKG 
- * @版本 V 1.0 
- * 客户端请求内容boby model
+ *
+ * @author gg
+ * @desc 客户端请求内容RequestBody model
  */
 @Data
 public class RequestBody {
-	private String action;//请求地址
-	private String requuid;//请求uuid
+	/**
+	 * //请求地址
+	 */
+	private String action;
+	/**
+	 * 请求uuid
+	 */
+	private String requuid;
+
 	Map<String, String> paras = Maps.newHashMap();
 
 }

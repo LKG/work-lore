@@ -2,16 +2,15 @@ package im.heart.core.validator;
 
 import im.heart.core.utils.StringUtilsEx;
 import org.apache.commons.lang3.RandomUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import lombok.extern.slf4j.Slf4j;
 /**
  * 
  * @author gg
  * @desc 验证工具类
  */
+
+@Slf4j
 public class ValidatorUtils implements Regular {
-	protected static final Logger logger = LoggerFactory.getLogger(ValidatorUtils.class);
 	/**
 	 * 
 	 *  判断是不是一个合法的电子邮件地址
@@ -48,7 +47,7 @@ public class ValidatorUtils implements Regular {
 	 * @param str
 	 * @return
 	 */
-	public static boolean isDatetime(String str) {
+	public static boolean isDateTime(String str) {
 		if (StringUtilsEx.isBlank(str)){
 			return false;
 		}
@@ -103,9 +102,4 @@ public class ValidatorUtils implements Regular {
 		 }
           return ID_CARD_ER.matcher(idCard).matches();
 	 }
-
-	public static void main(String[] args) {
-		int index= RandomUtils.nextInt(0,5);
-		System.out.println(index);
-	}
 }
