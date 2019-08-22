@@ -36,7 +36,7 @@ public enum WebError {
     AUTH_ACCOUNT_REPEAT("auth_account_repeat", "20111","账号已登录"),
     /***/
 
-    USER_SGIN_EXIT("user_sgin_exit", "20210","用户已签到"),
+    USER_SIGN_EXIT("user_sign_exit", "20210","用户已签到"),
 
     /**auth2 认证错误**/
     REDIRECT_URI_MISMATCH("redirect_uri_mismatch", "21322","重定向地址不匹配"),

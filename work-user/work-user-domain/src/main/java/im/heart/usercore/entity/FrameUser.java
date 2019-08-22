@@ -6,7 +6,6 @@ import im.heart.core.entity.AbstractEntity;
 import im.heart.core.enums.Status;
 import lombok.Data;
 import org.hibernate.annotations.*;
-import org.hibernate.validator.constraints.Length;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -69,7 +68,8 @@ public class FrameUser implements AbstractEntity<BigInteger> {
 	 */
 	@NotBlank
 	@Size(min = 5, max = 32)
-	@Length(max = 32)
+	@Min(5)
+	@Max(32)
 	@Column(length = 32, name = "USER_NAME", nullable = false, unique = true, updatable = false)
 	private String userName;
 	/**
@@ -82,12 +82,13 @@ public class FrameUser implements AbstractEntity<BigInteger> {
 	 * 用户手机号，可用于登录
 	 */
 	@NotBlank
-	@Length(min = 6, max = 13)
+	@Min(6)
+	@Max(13)
 	@Column(length = 32, name = "USER_PHONE", nullable = false)
 	private String userPhone;
 	
 	@JSONField(serialize = false)
-	@Length(max = 128)
+	@Max(128)
 	@Column(length = 128, name = "SALT_KEY", nullable = false)
 	private String saltKey;
 	/**
@@ -101,7 +102,7 @@ public class FrameUser implements AbstractEntity<BigInteger> {
 	/**
 	 *  昵称
 	 */
-	@Length(max = 128)
+	@Max(128)
 	@Column(length = 128, name = "NICK_NAME")
 	private String nickName = "";
 
@@ -109,7 +110,8 @@ public class FrameUser implements AbstractEntity<BigInteger> {
 	 * //用户邮箱，可用于登录
 	 */
 	@Email
-	@Length(max = 128)
+	@Min(2)
+	@Max(128)
 	@Column(length = 128, name = "USER_EMAIL")
 	private String userEmail;
 	
@@ -133,8 +135,6 @@ public class FrameUser implements AbstractEntity<BigInteger> {
 
 	public  Boolean getIsExpiry(){
 		if(Boolean.TRUE.equals(isVip)&&expiryTime!=null){
-			System.out.println("@@@@@@@@@@@@@@@2");
-			System.out.println("@@@@@@@@@@@@@@@2"+expiryTime);
 			return new DateTime(expiryTime).isAfterNow();
 		}
 		return Boolean.FALSE;
@@ -172,12 +172,12 @@ public class FrameUser implements AbstractEntity<BigInteger> {
 	@Column(name = "LAST_LOGIN_TIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date lastLoginTime;
-	
-	@Length(max = 64)
+
+	@Max(64)
 	@Column(length = 64, name = "LAST_LOGIN_IP", nullable = false)
 	private String lastLoginIP = "";
-	
-	@Length(max = 256)
+
+	@Max(256)
 	@Column(length = 256, name = "HEAD_IMG_URL", nullable = false)
 	private String headImgUrl ;
 
@@ -198,17 +198,18 @@ public class FrameUser implements AbstractEntity<BigInteger> {
 	/**
 	 * // 真实名称
 	 */
-	@Length(max = 128)
+	@Max(128)
 	@Column(length = 128, name = "REAL_NAME")
 	private String realName = "";
 	/**
 	 * // 渠道
 	 */
-	@Length(max = 128)
+	@Max(128)
 	@Column(length = 128, name = "USER_CHANNEL", updatable = false)
 	private String userChannel = "";
-	
-	@Length(min = 15, max = 32)
+
+	@Min(5)
+	@Max(32)
 	@Column(length = 32, name = "ID_CARD")
 	@Pattern(regexp="^(\\d{6})(\\d{4})(\\d{2})(\\d{2})(\\d{3})([0-9]|X)$")
 	private String idCard;
@@ -221,7 +222,8 @@ public class FrameUser implements AbstractEntity<BigInteger> {
 	private FrameOrg relateOrg;
 
 
-	@Length(max = 256)
+	@Min(5)
+	@Max(256)
 	@Column(length = 256, name = "REMARK")
 	@JSONField(serialize = false)
 	private String remark="";
