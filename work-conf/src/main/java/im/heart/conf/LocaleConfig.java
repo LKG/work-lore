@@ -53,15 +53,15 @@ public class LocaleConfig implements WebMvcConfigurer {
     }
 
 
-
-    @Bean
-    public MultipartConfigElement multipartConfigElement() {
-        MultipartConfigFactory factory = new MultipartConfigFactory();
-        //// 设置文件大小限制 ,超了，页面会抛出异常信息，这时候就需要进行异常信息的处理了;
-        //KB,MB
-        factory.setMaxFileSize(DataSize.ofMegabytes(100));
-        /// 设置总上传数据总大小
-        factory.setMaxRequestSize(DataSize.ofMegabytes(100));
-        return factory.createMultipartConfig();
-    }
+//
+//    @Bean
+//    public MultipartConfigElement multipartConfigElement() {
+//        MultipartConfigFactory factory = new MultipartConfigFactory();
+//        //// 设置文件大小限制 ,超了，页面会抛出异常信息，这时候就需要进行异常信息的处理了;
+//        //KB,MB
+//        factory.setMaxFileSize(DataSize.ofMegabytes(100));
+//        /// 设置总上传数据总大小
+//        factory.setMaxRequestSize(DataSize.ofMegabytes(100));
+//        return factory.createMultipartConfig();
+//    }
 }
