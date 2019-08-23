@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -81,7 +82,12 @@ public class RestExceptionHandler{
 		logger.error("handleSQLException:"+ex.getStackTrace()[0].getMethodName(), ex);
 		return this.chooseView(request,this.error(request, ex));
 	}
-
+	@ExceptionHandler(NoHandlerFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public ModelAndView handleNoHandlerFoundException(HttpServletRequest request, NoHandlerFoundException ex) {
+		logger.error("handleNoHandlerFoundException:"+ex.getStackTrace()[0].getMethodName(), ex);
+		return this.chooseView(request,this.error(request, ex));
+	}
 	@ExceptionHandler(HttpMessageNotReadableException.class)
 	public ModelAndView handleHttpMessageNotReadableException(HttpServletRequest request, HttpMessageNotReadableException ex) {
 		logger.error("handleHttpMessageNotReadableException:"+ex.getStackTrace()[0].getMethodName(), ex);
