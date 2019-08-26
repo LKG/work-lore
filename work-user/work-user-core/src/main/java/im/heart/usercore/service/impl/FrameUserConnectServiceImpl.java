@@ -5,7 +5,7 @@ import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.service.impl.CommonServiceImpl;
 import im.heart.usercore.entity.FrameUserConnect;
-import im.heart.usercore.enums.IdentityType;
+import im.heart.core.enums.IdentityType;
 import im.heart.usercore.repository.FrameUserConnectRepository;
 import im.heart.usercore.service.FrameUserConnectService;
 import org.springframework.beans.factory.annotation.Autowired;

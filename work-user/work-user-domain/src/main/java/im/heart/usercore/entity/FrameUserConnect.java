@@ -2,7 +2,7 @@ package im.heart.usercore.entity;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import im.heart.core.entity.AbstractEntity;
-import im.heart.usercore.enums.IdentityType;
+import im.heart.core.enums.IdentityType;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;

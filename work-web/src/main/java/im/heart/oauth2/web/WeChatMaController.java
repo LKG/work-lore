@@ -3,7 +3,7 @@ import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import im.heart.core.web.AbstractController;
 import im.heart.usercore.entity.FrameUserConnect;
-import im.heart.usercore.enums.IdentityType;
+import im.heart.core.enums.IdentityType;
 import im.heart.usercore.service.FrameUserConnectService;
 import im.heart.usercore.service.FrameUserService;
 import lombok.extern.slf4j.Slf4j;

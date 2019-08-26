@@ -3,7 +3,7 @@ package im.heart.usercore.service;
 
 import im.heart.core.service.CommonService;
 import im.heart.usercore.entity.FrameUserConnect;
-import im.heart.usercore.enums.IdentityType;
+import im.heart.core.enums.IdentityType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

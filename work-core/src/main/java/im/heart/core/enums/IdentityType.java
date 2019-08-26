@@ -1,4 +1,4 @@
-package im.heart.usercore.enums;
+package im.heart.core.enums;
 
 public enum IdentityType {
     qq("qq","QQ登录"),
