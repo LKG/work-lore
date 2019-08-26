@@ -1,5 +1,6 @@
 package im.heart.usercore.service.impl;
 
+import com.google.common.collect.Sets;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.plugins.persistence.SearchFilter.Operator;
@@ -24,14 +25,18 @@ import javax.validation.ConstraintViolationException;
 import java.math.BigInteger;
 import java.util.*;
 
+/**
+ *
+ * @author: gg
+ * 角色信息表
+ */
 @Service(value = FrameRoleService.BEAN_NAME)
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
 public class FrameRoleServiceImpl extends CommonServiceImpl<FrameRole, BigInteger> implements FrameRoleService {
-	
 	protected static final Logger logger = LoggerFactory.getLogger(FrameRoleServiceImpl.class);
 	@Autowired
 	private FrameRoleRepository frameRoleRepository;
-	
+
 	@Autowired
 	private FrameRoleResourceService frameRoleResourceService;
 
@@ -44,9 +49,13 @@ public class FrameRoleServiceImpl extends CommonServiceImpl<FrameRole, BigIntege
 	}
 	@Override
 	public Set<String> findRolePermissionsByCode(Iterable<String> roleCodes) {
-		Set<String> permissions=new HashSet<String>();
 		List<FrameRoleResource> roleResources=this.frameRoleResourceService.findByRoleCodes(roleCodes);
 		Map<BigInteger,String> framePermissions = this.framePermissionService.findPermissionMap();
+		return buildPermissions(roleResources,framePermissions);
+	}
+
+	Set<String> buildPermissions(List<FrameRoleResource> roleResources,Map<BigInteger,String> framePermissions){
+		Set<String> permissions=new HashSet<String>();
 		for(FrameRoleResource roleResource: roleResources){
 			Set<BigInteger> ids = roleResource.getPermissions();
 			String resourceCode=roleResource.getResourceCode();
@@ -61,28 +70,17 @@ public class FrameRoleServiceImpl extends CommonServiceImpl<FrameRole, BigIntege
 		}
 		return permissions;
 	}
+
+
 	@Override
 	public Set<String> findRolePermissionsById(Iterable<BigInteger> roleIds) {
-		Set<String> permissions=new HashSet<String>();
 		List<FrameRoleResource> roleResources=this.frameRoleResourceService.findByRoleIds(roleIds);
 		Map<BigInteger,String> framePermissions = this.framePermissionService.findPermissionMap();
-		for(FrameRoleResource roleResource: roleResources){
-			Set<BigInteger> ids = roleResource.getPermissions();
-			String resourceCode=roleResource.getResourceCode();
-			if(ids!=null&&!ids.isEmpty()){
-				for(BigInteger id:ids){
-					if(framePermissions.containsKey(id)){
-						String permissionCode=framePermissions.get(id);
-						permissions.add(resourceCode+":"+permissionCode);
-					}
-				}
-			}
-		}
-		return permissions;
+		return buildPermissions(roleResources,framePermissions);
 	}
 	@Override
 	public Set<String> findRoleResourceCodes(Iterable<String> roleCodes) {
-		Set<String> resources=new HashSet<String>();
+		Set<String> resources= Sets.newHashSet();
 		List<FrameRoleResource> roleResources=this.frameRoleResourceService.findByRoleCodes(roleCodes);
 		for(FrameRoleResource roleResource: roleResources){
 			resources.add(roleResource.getResourceCode());
@@ -91,14 +89,14 @@ public class FrameRoleServiceImpl extends CommonServiceImpl<FrameRole, BigIntege
 	}
 	@Override
 	public Set<BigInteger> findRoleResourceIds(Iterable<String> roleCodes) {
-		Set<BigInteger> resourceIds=new HashSet<BigInteger>();
+		Set<BigInteger> resourceIds= Sets.newHashSet();
 		List<FrameRoleResource> roleResources=this.frameRoleResourceService.findByRoleCodes(roleCodes);
 		for(FrameRoleResource roleResource: roleResources){
 			resourceIds.add(roleResource.getResourceId());
 		}
 		return resourceIds;
 	}
-	
+
 	@Override
 	public FrameRole save(FrameRole entity) {
 		if(entity.getRoleId()==null){
@@ -121,10 +119,7 @@ public class FrameRoleServiceImpl extends CommonServiceImpl<FrameRole, BigIntege
 		filters.add(new SearchFilter("roleCode", Operator.EQ, roleCode));
 		Specification<FrameRole> spec = DynamicSpecifications.bySearchFilter(filters, FrameRole.class);
 		long count = this.frameRoleRepository.count(spec);
-		if(count>0){
-			return true;
-		}
-		return false;
+		return count>0;
 	}
 
 }

@@ -17,7 +17,11 @@ import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
 
-
+/**
+ *
+ * @author: gg
+ * 机构关联信息表
+ */
 @Service(value = FrameOrgRelateService.BEAN_NAME)
 @Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
 public class FrameOrgRelateServiceImpl extends CommonServiceImpl<FrameOrgRelate, BigInteger> implements FrameOrgRelateService {

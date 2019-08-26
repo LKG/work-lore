@@ -1,5 +1,6 @@
 package im.heart.usercore.service.impl;
 
+import com.google.common.collect.Sets;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.service.impl.CommonServiceImpl;
@@ -17,9 +18,13 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
-
+/**
+ *
+ * @author gg
+ * @Desc : 用户关联信息表 Service
+ */
 @Service(value = FrameUserRelateService.BEAN_NAME)
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
 public class FrameUserRelateServiceImpl extends CommonServiceImpl<FrameUserRelate, BigInteger> implements FrameUserRelateService{
 	@Autowired
 	private FrameUserRelateRepository frameUserRelateRepository;
@@ -30,7 +35,7 @@ public class FrameUserRelateServiceImpl extends CommonServiceImpl<FrameUserRelat
 
 	@Override
 	public List<FrameUserRelate> findByOrgId(BigInteger userId) {
-		final Collection<SearchFilter> filters = new HashSet<SearchFilter>();
+		final Collection<SearchFilter> filters = Sets.newHashSet();
 		filters.add(new SearchFilter("userId", SearchFilter.Operator.EQ, userId));
 		Specification<FrameUserRelate> spec = DynamicSpecifications.bySearchFilter(filters, FrameUserRelate.class);
 		return this.frameUserRelateRepository.findAll(spec);
@@ -38,7 +43,7 @@ public class FrameUserRelateServiceImpl extends CommonServiceImpl<FrameUserRelat
 
 	@Override
 	public List<FrameUserRelate> findByOrgIdAndType(BigInteger userId, String relateType) {
-		final Collection<SearchFilter> filters = new HashSet<SearchFilter>();
+		final Collection<SearchFilter> filters = Sets.newHashSet();
 		filters.add(new SearchFilter("userId", SearchFilter.Operator.EQ, userId));
 		filters.add(new SearchFilter("relateType", SearchFilter.Operator.EQ, relateType));
 		Specification<FrameUserRelate> spec = DynamicSpecifications.bySearchFilter(filters, FrameUserRelate.class);

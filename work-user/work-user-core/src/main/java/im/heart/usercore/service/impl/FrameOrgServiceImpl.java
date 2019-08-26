@@ -21,8 +21,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ *
+ * @author: gg
+ * 机构信息表
+ */
 @Service(value = FrameOrgService.BEAN_NAME)
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
 public class FrameOrgServiceImpl extends CommonServiceImpl<FrameOrg, BigInteger> implements FrameOrgService {
 
 	@Autowired

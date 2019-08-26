@@ -19,8 +19,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ *
+ * @author: gg
+ * 角色资源信息表
+ */
 @Service(value = FrameRoleResourceService.BEAN_NAME)
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
 public class FrameRoleResourceServiceImpl extends CommonServiceImpl<FrameRoleResource, BigInteger> implements FrameRoleResourceService {
 	@Autowired
 	private FrameRoleResourceRepository frameRoleResourceRepository;

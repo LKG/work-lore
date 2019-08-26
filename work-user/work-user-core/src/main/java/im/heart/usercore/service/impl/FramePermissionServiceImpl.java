@@ -23,9 +23,9 @@ import java.util.Map;
  * @desc 权限表操作接口
  */
 @Service(value = FramePermissionService.BEAN_NAME)
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
 @CacheConfig(cacheNames = "permissions-cache")
-public class FramePermissionServiceImpl extends CommonServiceImpl<FramePermission, BigInteger> implements FramePermissionService{
+public class FramePermissionServiceImpl extends CommonServiceImpl<FramePermission, BigInteger> implements FramePermissionService {
 
 	@Autowired
 	private FramePermissionRepository framePermissionRepository;

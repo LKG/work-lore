@@ -21,8 +21,13 @@ import java.math.BigInteger;
 import java.util.Collection;
 import java.util.HashSet;
 
+/**
+ *
+ * @author: gg
+ * 资源信息表
+ */
 @Service(value = FrameResourceService.BEAN_NAME)
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
 public class FrameResourceServiceImpl  extends CommonServiceImpl<FrameResource, BigInteger> implements FrameResourceService {
 	protected static final Logger logger = LoggerFactory.getLogger(FrameResourceServiceImpl.class);
 	@Autowired

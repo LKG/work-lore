@@ -15,9 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
-
+/**
+ *
+ * @author gg
+ * @Desc : 用户角色信息表 Service
+ */
 @Service(value = FrameUserRoleService.BEAN_NAME)
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
 public class FrameUserRoleServiceImpl  extends CommonServiceImpl<FrameUserRole, BigInteger> implements FrameUserRoleService {
 
 	@Autowired

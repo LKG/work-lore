@@ -18,7 +18,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-
+/**
+ *
+ * @author gg
+ * @Desc : 用户关注信息表 Service
+ */
 @Service(value = FrameUserFollowService.BEAN_NAME)
 @Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
 public class FrameUserFollowServiceImpl extends CommonServiceImpl<FrameUserFollow, BigInteger> implements FrameUserFollowService {

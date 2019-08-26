@@ -20,9 +20,13 @@ import java.math.BigInteger;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-
+/**
+ *
+ * @author gg
+ * @Desc : 用户关联结构信息表 Service
+ */
 @Service(value = FrameUserOrgService.BEAN_NAME)
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
 public class FrameUserOrgServiceImpl extends CommonServiceImpl<FrameUserOrg, BigInteger> implements FrameUserOrgService {
 
 	@Autowired

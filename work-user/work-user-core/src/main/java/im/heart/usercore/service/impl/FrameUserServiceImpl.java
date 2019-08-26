@@ -30,9 +30,13 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+/**
+ *
+ * @author gg
+ * @Desc : 用户信息表 Service
+ */
 @Service(value = FrameUserService.BEAN_NAME)
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional(propagation = Propagation.SUPPORTS,rollbackFor = Exception.class)
 public class FrameUserServiceImpl extends CommonServiceImpl<FrameUser,BigInteger> implements FrameUserService {
 	
 	protected static final Logger logger = LoggerFactory.getLogger(FrameUserServiceImpl.class);
