@@ -6,6 +6,11 @@ import lombok.Data;
 import java.math.BigInteger;
 import java.util.List;
 
+/**
+ *
+ * @author gg
+ * @Desc : 资源权限多选模型
+ */
 @Data
 public class ResourceCheckModel {
 	private BigInteger resourceId;
