@@ -50,11 +50,11 @@ public class PasswordServiceImpl implements PasswordService {
 
 	@Override
 	public boolean passwordsMatch(FrameUser frameUser, String newPassword) {
-		String slafPassword = new SimpleHash(algorithmName, newPassword,
+		String safePassword = new SimpleHash(algorithmName, newPassword,
 				ByteSource.Util.bytes(frameUser.getCredentialsSalt()),
 				hashIterations).toHex();
-		if (frameUser.getPassWord() != null
-				&& frameUser.getPassWord().equals(slafPassword)) {
+		String pwd=frameUser.getPassWord();
+		if (frameUser!=null&&pwd != null && pwd.equals(safePassword)) {
 			return true;
 		}
 		return false;

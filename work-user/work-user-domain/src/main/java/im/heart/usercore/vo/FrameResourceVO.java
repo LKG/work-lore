@@ -28,7 +28,7 @@ public class FrameResourceVO extends FrameResource {
 	private static final long serialVersionUID = -5560379410382708216L;
 	private Boolean ischecked = Boolean.FALSE;
 	@JSONField(serialize = false)
-	private Date modiTime;
+	private Date modifyTime;
 	@JSONField (serialize=false)
 	private String resourceDesc;
 	

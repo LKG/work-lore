@@ -5,10 +5,10 @@ import im.heart.core.entity.AbstractEntity;
 import lombok.Data;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.math.BigInteger;
@@ -35,7 +35,7 @@ public class FrameLogOperate implements AbstractEntity<BigInteger> {
 	
 	@NotBlank
 	@Size(min = 5, max = 32)
-	@Length(max = 32)
+	@Max(32)
 	@Column(length = 32, name = "USER_NAME", nullable = false,updatable = false)
 	private String userName;
 	
