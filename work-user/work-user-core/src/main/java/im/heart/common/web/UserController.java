@@ -71,9 +71,16 @@ public class UserController extends AbstractController {
 		return new ModelAndView(RESULT_PAGE);
 	}
 
-
+	/**
+	 * 设置默认机构
+	 * @param token
+	 * @param relateId
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = apiVer+"/setdefault/{relateId}",method = RequestMethod.POST)
-	protected ModelAndView setdefault(
+	protected ModelAndView setDefault(
 			@RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN , required = false) String token,
 			@PathVariable BigInteger relateId,
 			HttpServletRequest request,

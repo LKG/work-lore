@@ -32,7 +32,9 @@ public class FrameTpl implements AbstractEntity<BigInteger> {
 		mail("mail","邮件模板",2),
 		word("word","word模板",3),
 		excel("excel","excel模板",4),
-		print("print","打印模板",5);
+		print("print","打印模板",5),
+		sms("sms","短信模板",6),
+		wx("wx","微信模板",7);
 		private TplType(String code, String value, int intValue) {
 			this.code = code;
 			this.value = value;

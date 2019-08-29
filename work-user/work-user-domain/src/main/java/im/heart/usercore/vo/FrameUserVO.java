@@ -4,12 +4,14 @@ import im.heart.core.utils.StringUtilsEx;
 import im.heart.core.validator.ValidatorUtils;
 import im.heart.usercore.entity.FrameUser;
 import org.springframework.beans.BeanUtils;
+import org.springframework.context.annotation.Profile;
 
 /**
  *
  * @author gg
  * 用户VO
  */
+
 public class FrameUserVO extends FrameUser {
 
 
