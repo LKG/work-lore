@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.beans.PropertyEditorSupport;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  *
@@ -21,7 +22,7 @@ public class DateEditorSupport extends PropertyEditorSupport {
     public void setAsText(String value) {
         if(StringUtils.isNotBlank(value)){
             try {
-                Date val = DateUtils.parseDateStrictly(value,
+                Date val = DateUtils.parseDateStrictly(value, Locale.CHINA,
                         "yyyy-MM-dd HH:mm:ss","yyyy-MM-dd HH:mm","yyyy-MM-dd HH","yyyy-MM-dd","yyyy-MM","yyyy");
                 setValue(val);
             } catch (ParseException e) {
