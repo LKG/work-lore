@@ -25,7 +25,7 @@ public enum ShiroCacheConfig {
 				return value.getExpiredTime();
 			}
 		}
-		return 0;
+		return 0L;
 	}
 	
 	public String getKeyPrefix() {

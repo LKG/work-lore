@@ -2,6 +2,7 @@ package im.heart.security.filter;
 
 import com.google.common.collect.Lists;
 import im.heart.security.cache.ShiroCacheConfig;
+import im.heart.security.session.KickOutSession;
 import im.heart.security.utils.SecurityUtilsHelper;
 import im.heart.usercore.vo.FrameUserVO;
 import org.apache.shiro.session.Session;

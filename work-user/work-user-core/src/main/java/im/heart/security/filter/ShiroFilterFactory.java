@@ -1,5 +1,6 @@
 package im.heart.security.filter;
 
+import com.google.common.collect.Sets;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.servlet.AbstractShiroFilter;
 import org.slf4j.Logger;
@@ -23,7 +24,7 @@ public class ShiroFilterFactory extends ShiroFilterFactoryBean{
 
     public ShiroFilterFactory() {
         super();
-        ignoreExt = new HashSet<String>();
+        ignoreExt = Sets.newHashSet();
         ignoreExt.add(".jpg");
         ignoreExt.add(".png");
         ignoreExt.add(".gif");
