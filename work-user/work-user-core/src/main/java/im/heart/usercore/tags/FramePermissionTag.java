@@ -59,7 +59,7 @@ public class FramePermissionTag extends BaseDirective {
 				}
 				vos.add(vo);
 			}
-			super.setVariable("permissions",vos,env);
+			setVariable("permissions",vos,env);
 			super.renderBody(env,body);
 		}
 	}

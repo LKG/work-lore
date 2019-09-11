@@ -24,7 +24,7 @@ public class TranslateAllToRandomPointVisitor implements GlyphsVisitors {
 		this.horizontalMargins = horizontalmargins;
 		this.verticalMargins = verticalmargins;
 	}
-
+	@Override
 	public void visit(Glyphs glyphs, Rectangle2D backroundBounds) {
 		double xRange = backroundBounds.getWidth() - glyphs.getBoundsWidth()
 				- horizontalMargins;

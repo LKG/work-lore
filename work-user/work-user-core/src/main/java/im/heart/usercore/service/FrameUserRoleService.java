@@ -16,15 +16,7 @@ import java.util.Map;
 public interface   FrameUserRoleService extends CommonService<FrameUserRole, BigInteger> {
 	
 	public static final String BEAN_NAME = "frameUserRoleService";
-	
-	
-	/**
-	 * 
-	 * 批量保存
-	 * @param entities
-	 * @return
-	 */
-	public List<FrameUserRole>  saveAll(Iterable<FrameUserRole> entities);
+
 
 	public void saveUserRole(BigInteger userId, String... roleCodes) throws ServiceException;
 	

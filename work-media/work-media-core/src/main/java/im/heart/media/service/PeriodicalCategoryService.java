@@ -14,20 +14,6 @@ import java.util.List;
 public interface PeriodicalCategoryService extends CommonService<PeriodicalCategory, BigInteger>{
 	public static final String BEAN_NAME = "periodicalCategoryService";
 
-	/**
-	 *
-	 * 批量保存
-	 * @param entities
-	 * @return
-	 */
-	public List<PeriodicalCategory>  saveAll(Iterable<PeriodicalCategory> entities);
-	/**
-	 *
-	 *
-	 * @param entitie
-	 * @return
-	 */
-	public PeriodicalCategory save(PeriodicalCategory entitie);
 
 	public  List<PeriodicalCategory>  findByParentId(BigInteger parentId);
 

@@ -18,13 +18,6 @@ import org.springframework.data.domain.Pageable;
  */
 public interface PeriodicalImgService extends CommonService<PeriodicalImg, BigInteger>{
 	public static final String BEAN_NAME = "periodicalImgService";
-	/**
-	 *
-	 *批量保存
-	 * @param entities
-	 * @return
-	 */
-	public List<PeriodicalImg>  saveAll(Iterable<PeriodicalImg> entities);
 
 	/**
 	 * PeriodicalImg是否存在

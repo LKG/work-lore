@@ -14,14 +14,7 @@ import java.util.List;
 public interface   FrameUserOrgService extends CommonService<FrameUserOrg, BigInteger> {
 	
 	public static final String BEAN_NAME = "frameUserOrgService";
-	
-	/**
-	 * 
-	 * 批量保存
-	 * @param entities
-	 * @return
-	 */
-	public List<FrameUserOrg>  saveAll(Iterable<FrameUserOrg> entities);
+
 
 	public void setDefaultOrgById(BigInteger relateId);
 

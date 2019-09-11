@@ -23,13 +23,6 @@ public interface PeriodicalLogService extends CommonService<PeriodicalLog, BigIn
 	 * @param periodicalLog
 	 */
 	public void addSaveTask(PeriodicalLog periodicalLog) ;
-	/**
-	 *
-	 *批量保存
-	 * @param entities
-	 * @return
-	 */
-	public List<PeriodicalLog>  saveAll(Iterable<PeriodicalLog> entities);
 
 	/**
 	 * 条件查询

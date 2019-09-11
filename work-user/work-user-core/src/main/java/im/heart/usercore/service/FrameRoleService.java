@@ -56,7 +56,6 @@ public interface   FrameRoleService extends CommonService<FrameRole, BigInteger>
 	 * @return
 	 */
 	public Set<BigInteger> findRoleResourceIds(Iterable<String> roleCodes);
-	
-	public FrameRole save(FrameRole frameRole);
+
 	public boolean existsRoleCode(String roleCode);
 }

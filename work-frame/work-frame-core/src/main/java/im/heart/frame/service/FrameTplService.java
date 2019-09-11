@@ -12,8 +12,7 @@ import java.math.BigInteger;
  */
 public interface FrameTplService extends CommonService<FrameTpl, BigInteger> {
 	public static final String BEAN_NAME = "frameTplService";
-	public FrameTpl save(FrameTpl frameTpl);
-	
+
 	/**
 	 * 判断是否定义模板
 	 * @param tplCode

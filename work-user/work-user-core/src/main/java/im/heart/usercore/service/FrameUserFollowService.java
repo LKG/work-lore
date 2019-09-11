@@ -16,13 +16,6 @@ public interface FrameUserFollowService extends CommonService<FrameUserFollow, B
 
 	public static final String BEAN_NAME = "frameUserFollowService";
 	/**
-	 *
-	 * 批量保存
-	 * @param entities
-	 * @return
-	 */
-	public List<FrameUserFollow>  saveAll(Iterable<FrameUserFollow> entities);
-	/**
 	 *  根据机构号查询关联信息
 	 * @param userId
 	 * @return

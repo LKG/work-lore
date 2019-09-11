@@ -23,13 +23,6 @@ public interface PeriodicalContentService extends CommonService<PeriodicalConten
 	 * @param periodicalContent
 	 */
 	public void addSaveTask(PeriodicalContent periodicalContent) ;
-	/**
-	 *
-	 *批量保存
-	 * @param entities
-	 * @return
-	 */
-	public List<PeriodicalContent>  saveAll(Iterable<PeriodicalContent> entities);
 
 	/**
 	 * 

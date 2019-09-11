@@ -21,13 +21,6 @@ import java.util.List;
 public interface   ArticleService extends CommonService<Article, BigInteger>{
 	
 	public static final String BEAN_NAME = "articleService";
-	/**
-	 * 
-	 * 批量保存
-	 * @param entities
-	 * @return
-	 */
-	public List<Article>  saveAll(Iterable<Article> entities);
 
 	public Page<ArticleDTO> findAll(Predicate predicate, Pageable pageable);
 

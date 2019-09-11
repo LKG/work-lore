@@ -20,14 +20,6 @@ import java.util.Optional;
  */
 public interface FrameOrgService extends CommonService<FrameOrg, BigInteger> {
 	public static final String BEAN_NAME = "frameOrgService";
-	
-	/**
-	 * 
-	 * 批量保存
-	 * @param entities
-	 * @return
-	 */
-	public List<FrameOrg>  saveAll(Iterable<FrameOrg> entities);
 
 	public Optional<FrameOrg> findByName(String orgName);
 	

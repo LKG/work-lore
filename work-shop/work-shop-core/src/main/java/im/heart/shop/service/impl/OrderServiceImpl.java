@@ -43,6 +43,7 @@ public class OrderServiceImpl extends CommonServiceImpl<Order, Long> implements 
      * @param pageable
      * @return
      */
+    @Override
     public Page<Order> findAllUnpaid(Specification<Order> spec, Pageable pageable){
         return this.orderRepository.findAll(spec,pageable);
     };
@@ -53,6 +54,7 @@ public class OrderServiceImpl extends CommonServiceImpl<Order, Long> implements 
      * @param pageable
      * @return
      */
+    @Override
     public Page<Order> findAllUnConfirm(Specification<Order> spec, Pageable pageable){
         return this.orderRepository.findAll(spec,pageable);
     };

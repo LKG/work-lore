@@ -14,13 +14,6 @@ import java.util.List;
 public interface   FrameUserRelateService extends CommonService<FrameUserRelate, BigInteger> {
 	
 	public static final String BEAN_NAME = "frameUserRelateService";
-	/**
-	 * 
-	 * 批量保存
-	 * @param entities
-	 * @return
-	 */
-	public List<FrameUserRelate>  saveAll(Iterable<FrameUserRelate> entities);
 
 	/**
 	 *  根据机构号查询关联信息

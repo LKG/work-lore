@@ -13,10 +13,7 @@ import java.math.BigInteger;
 public interface FrameResourceService extends CommonService<FrameResource, BigInteger> {
 
 	public static final String BEAN_NAME = "frameResourceService";
-	
-	
-	public FrameResource save(FrameResource entity);
-	
+
 	/**
 	 * 
 	 * 根据资源标识查找

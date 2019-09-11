@@ -15,13 +15,6 @@ public interface   FrameOrgRelateService extends CommonService<FrameOrgRelate, B
 	
 	public static final String BEAN_NAME = "frameOrgRelateService";
 	/**
-	 * 
-	 * 批量保存
-	 * @param entities
-	 * @return
-	 */
-	public List<FrameOrgRelate>  saveAll(Iterable<FrameOrgRelate> entities);
-	/**
 	 *  根据机构号查询关联信息
 	 * @param orgId
 	 * @return

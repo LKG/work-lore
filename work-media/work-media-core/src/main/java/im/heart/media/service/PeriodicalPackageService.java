@@ -17,14 +17,6 @@ import java.util.Optional;
  */
 public interface PeriodicalPackageService extends CommonService<PeriodicalPackage, BigInteger>{
 	public static final String BEAN_NAME = "periodicalPackageService";
-	/**
-	 *
-	 * 批量保存
-	 * @param entities
-	 * @return
-	 */
-	public List<PeriodicalPackage>  saveAll(Iterable<PeriodicalPackage> entities);
-
 
 	public Optional<PeriodicalPackage> findByAreaAndCodeAndType(String cityId, String packageCode, PackageType packageType);
 

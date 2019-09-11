@@ -11,7 +11,7 @@ public class TranslateGlyphsVerticalRandomVisitor implements GlyphsVisitors {
     public TranslateGlyphsVerticalRandomVisitor(double verticalRange) {
         this.verticalRange = verticalRange;
     }
-
+    @Override
     public void visit(Glyphs gv, Rectangle2D backroundBounds) {
 
        for(int i=0;i<gv.size();i++){
