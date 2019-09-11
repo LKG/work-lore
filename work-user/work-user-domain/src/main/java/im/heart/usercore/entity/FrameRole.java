@@ -96,7 +96,7 @@ public class FrameRole implements AbstractEntity<BigInteger> {
 	/**
 	 * 是否有子节点
 	 */
-	@Formula(value = "( exists(select 1 from dic_frame_role_resource model where model.role_id = role_id) )")
+	@Formula(value = "( exists(select count(1) from dic_frame_role_resource model where model.role_id = role_id) )")
 	private boolean hasChildren;
 	
 	@JSONField (format="yyyy-MM-dd HH:mm:ss")

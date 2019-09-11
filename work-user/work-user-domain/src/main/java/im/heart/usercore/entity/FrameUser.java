@@ -57,6 +57,14 @@ public class FrameUser implements AbstractEntity<BigInteger> {
 			}
 			return CheckStatus.fail;
 		}
+		public static CheckStatus findByCode(String code) {
+			for (CheckStatus status : CheckStatus.values()) {
+				if (status.code.equals(code)) {
+					return status;
+				}
+			}
+			return CheckStatus.fail;
+		}
 	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

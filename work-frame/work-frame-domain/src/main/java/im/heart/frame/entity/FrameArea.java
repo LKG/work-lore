@@ -67,7 +67,7 @@ public class FrameArea implements TreeEntity<String> {
     /**
      * //是否有子节点
      */
-    @Formula(value = "( exists(select 1 from dic_frame_area model where model.parent_id = area_code) )")
+    @Formula(value = "( exists(select count(1) from dic_frame_area model where model.parent_id = area_code) )")
     private boolean hasChildren;
 
     @Column(name = "STATUS", nullable = false, length = 15)

@@ -93,7 +93,7 @@ public class ArticleCategory implements TreeEntity<Long>{
 	@Column(name = "PARENT_ID",length=32,nullable = false)
 	private BigInteger parentId=BigInteger.ZERO;
 
-	@Formula(value = "( exists(select 1 from cms_article_category model where model.parent_id = id) )")
+	@Formula(value = "( exists(select count(1) from cms_article_category model where model.parent_id = id) )")
 	private boolean hasChildren;
 	@PrePersist
 	protected void onCreate() {

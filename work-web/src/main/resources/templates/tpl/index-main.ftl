@@ -186,8 +186,8 @@
                         </div>
                         <!--- end -->
                         <!--- begin -->
-                        <div role="tabpanel" class="tab-pane" id="tab-pane-010004">
-                            <@media.periodical categoryCode="010004">
+                        <div role="tabpanel" class="tab-pane" id="tab-pane-hots">
+                            <@media.periodical >
                                 <div class="mc">
                                     <ul>
                                         <#if docs??>
@@ -209,7 +209,7 @@
         </div>
     </div>
 </div>
-<!------ 精品ppt推荐  --->
+<!-- 最新上传 begin--->
 <div class="container m-container" >
     <div class="row">
         <div class="col-sm-12 col-md-12 doc-col">
@@ -271,3 +271,5 @@
     </div>
 </div>
 <div class="clearfix"></div>
+<!-- 最新上传 end--->
+

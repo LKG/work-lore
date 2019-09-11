@@ -91,7 +91,7 @@ public class FrameDictItem implements TreeEntity<BigInteger> {
 	protected void onUpdate() {
 		modifyTime = new Date();
     }
-	@Formula(value = "( exists(select 1 from dic_frame_dict_item model where model.parent_id = item_id) )")
+	@Formula(value = "( exists(select count(1) from dic_frame_dict_item model where model.parent_id = item_id) )")
 	private boolean hasChildren;
 	
 

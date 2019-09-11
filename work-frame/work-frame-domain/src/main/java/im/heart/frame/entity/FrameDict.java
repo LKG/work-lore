@@ -84,7 +84,7 @@ public class FrameDict implements AbstractEntity<BigInteger> {
 	@Column(nullable=false, name = "MODIFY_TIME" ,updatable = false)
 	private Date modifyTime;
 	
-	@Formula(value = "( exists(select 1 from dic_frame_dict_item model where model.dict_id = id) )")
+	@Formula(value = "( exists(select count(1) from dic_frame_dict_item model where model.dict_id = id) )")
 	private boolean hasChildren;
 	@PrePersist
 	protected void onCreate() {

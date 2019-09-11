@@ -43,8 +43,9 @@ public class QRCodeServiceImpl implements QRCodeService {
 	@Override
 	public BufferedImage generateQRcodeImage(String contents, int width,
                                              int height, int margin, ErrorCorrectionLevel errorCorrectionLevel, String logoUrl) {
-		if (errorCorrectionLevel == null)
+		if (errorCorrectionLevel == null){
 			errorCorrectionLevel = ErrorCorrectionLevel.L;
+		}
 		Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>();
 		// 指定纠错等级
 		hints.put(EncodeHintType.ERROR_CORRECTION, errorCorrectionLevel);

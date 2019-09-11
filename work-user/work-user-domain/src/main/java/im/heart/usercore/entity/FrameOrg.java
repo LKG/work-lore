@@ -123,7 +123,7 @@ public class FrameOrg implements TreeEntity<BigInteger> {
 	/**
 	 * //是否有子节点
 	 */
-	@Formula(value = "( exists(select 1 from dic_frame_org model where model.parent_id = org_id) )")
+	@Formula(value = "( exists(select count(1) from dic_frame_org model where model.parent_id = org_id) )")
 	private boolean hasChildren;
 	@JSONField(format = "yyyy-MM-dd HH:mm:ss", serialize = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")

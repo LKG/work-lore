@@ -151,7 +151,7 @@ public class FrameResource implements TreeEntity<BigInteger>  {
 	/**
 	 * //是否有子节点
 	 */
-	@Formula(value = "( exists(select 1 from dic_frame_resource model where model.parent_id = resource_id) )")
+	@Formula(value = "( exists(select count(1) from dic_frame_resource model where model.parent_id = resource_id) )")
 	private boolean hasChildren;
 	@PrePersist
 	protected void onCreate() {
