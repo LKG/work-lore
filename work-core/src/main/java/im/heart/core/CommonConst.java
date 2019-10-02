@@ -7,8 +7,6 @@ package im.heart.core;
  */
 public interface CommonConst {
     public static final String BEAN_SUFFIX = "Service";
-
-
     public static final String STATIC_UPLOAD_ROOT="uploads";
     public static final String CACHE_MANAGER_NAME = "cacheManager";
 
@@ -26,8 +24,17 @@ public interface CommonConst {
      */
     public static enum Active{
         WAITING(-1, "waiting", "等待"),  RUNNING(0,	"running", "运行中");
+        /**
+         * 活跃状态code
+         */
         public String code;
+        /**
+         * 活跃状态值
+         */
         public int value;
+        /**
+         * 活跃状态描述信息
+         */
         public final String info;
         Active(int value, String code, String info) {
             this.code = code;
@@ -35,6 +42,13 @@ public interface CommonConst {
             this.info = info;
         }
     }
+
+
+    /**
+     *
+     * @author： gg
+     * 流程状态枚举
+     */
     public static enum FlowStatus{
         initial("initial","初始化"),
         waiting("waiting","处理中"),
@@ -47,7 +61,13 @@ public interface CommonConst {
             this.code = code;
             this.desc = desc;
         }
+        /**
+         * 流程状态code
+         */
         public String code;
+        /**
+         * 流程状态描述信息
+         */
         public String desc;
     }
     /**
@@ -60,7 +80,7 @@ public interface CommonConst {
         public static final int MAX_SIZE = 500;
         public static final String ORDER_ASC = "ASC";
         public static final String ORDER_DESC = "DESC";
-        public static final String DEFAULT_ORDER = ORDER_ASC;
+        public static final String DEFAULT_ORDER = ORDER_DESC;
     }
     /**
      * Request返回结果对象
@@ -76,7 +96,6 @@ public interface CommonConst {
          * 上个页面地址
          */
         public static final String BACK_URL = "back_url";
-        public static final String HTTP_STATUS = "httpStatus";
         /**
          * 上个页面地址
          */
@@ -86,7 +105,7 @@ public interface CommonConst {
          */
         public static final String CURRENT_URL = "current_url";
         public static final String SUCCESS = "success";
-        public static final String REQUEST_URL = "requestUrl";
+        public static final String REQUEST_URL = "request_url";
         public static final String START_TIME = "startTime";
         public static final String EXECUTE_TIME = "executeTime";
         /**

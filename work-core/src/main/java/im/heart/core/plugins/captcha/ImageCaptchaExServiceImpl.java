@@ -13,18 +13,35 @@ import java.util.Random;
 public class ImageCaptchaExServiceImpl implements ImageCaptchaExService {
 	@Autowired
 	protected CaptchaStore store;
-	// 验证码字符集
-	public  final static String wordData="ABCDEFGHJKLMNRSTUWXY235689";
-	
-	// 字符数量
+
+	/**
+     * 验证码字符集
+	 */
+	public  final static String WORD_DATA="ABCDEFGHJKLMNRSTUWXY235689";
+
+	/**
+     * 字符数量
+	 */
 	private static final int SIZE = 4;
-	// 干扰线数量
+
+	/**
+     * 干扰线数量
+	 */
 	private static final int LINES = 5;
-	// 宽度
+
+	/**
+     * 宽度
+	 */
 	private static final int IMAGE_WIDTH = 80;
-	// 高度
+
+	/**
+     * 高度
+	 */
 	private static final int IMAGE_HEIGHT = 35;
-	// 字体大小
+
+	/**
+     * 字体大小
+	 */
 	private static final int FONT_SIZE = 20;
 
 	/**
@@ -100,7 +117,7 @@ public class ImageCaptchaExServiceImpl implements ImageCaptchaExService {
 		graphic.fillRect(0, 0, IMAGE_WIDTH, IMAGE_HEIGHT);
 		// 5.画随机字符
 	   Random ran = new SecureRandom();
-	   char[] chars=wordData.toCharArray();
+	   char[] chars=WORD_DATA.toCharArray();
 	   for (int i = 0; i < SIZE; i++) {
 			// 取随机字符索引
 			int n = ran.nextInt(chars.length);

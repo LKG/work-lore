@@ -1,15 +1,21 @@
 package im.heart.core.plugins.captcha;
 
+import com.google.common.collect.Maps;
+
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ *
+ * 验证码存储
+ * @author gg
+ */
 public class MapCaptchaStore implements CaptchaStore {
 	Map<String,CaptchaAndLocale> store;
 
 	public MapCaptchaStore() {
-		this.store = new HashMap<String,CaptchaAndLocale>();
+		this.store = Maps.newHashMap();
 	}
 
 	@Override
@@ -71,12 +77,11 @@ public class MapCaptchaStore implements CaptchaStore {
 	 */
 	@Override
 	public void empty() {
-		this.store =new HashMap<String,CaptchaAndLocale>();
+		this.store = Maps.newHashMap();
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
-	 * 
 	 * @see com.octo.captcha.service.captchastore.CaptchaStore#initAndStart()
 	 */
 	@Override
@@ -84,11 +89,9 @@ public class MapCaptchaStore implements CaptchaStore {
 		// Nothing to do with map implementations
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.octo.captcha.service.captchastore.CaptchaStore#shutdownAndClean()
+	 * @see com.octo.captcha.service.captchastore.CaptchaStore#shutdownAndClean()
 	 */
 	@Override
 	public void cleanAndShutdown() {
