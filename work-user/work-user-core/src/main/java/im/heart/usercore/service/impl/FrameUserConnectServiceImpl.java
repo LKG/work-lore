@@ -1,11 +1,11 @@
 package im.heart.usercore.service.impl;
 
 import com.google.common.collect.Sets;
+import im.heart.core.enums.IdentityType;
 import im.heart.core.plugins.persistence.DynamicSpecifications;
 import im.heart.core.plugins.persistence.SearchFilter;
 import im.heart.core.service.impl.CommonServiceImpl;
 import im.heart.usercore.entity.FrameUserConnect;
-import im.heart.core.enums.IdentityType;
 import im.heart.usercore.repository.FrameUserConnectRepository;
 import im.heart.usercore.service.FrameUserConnectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,20 +42,22 @@ public class FrameUserConnectServiceImpl extends CommonServiceImpl<FrameUserConn
         Optional<FrameUserConnect>  optional=this.frameUserConnectRepository.findOne(spec);
         return optional;
     }
-    @Override
-    public Page<FrameUserConnect> findAllByUserIdAndType(BigInteger userId, IdentityType identityType, Pageable pageable) {
+
+    Specification<FrameUserConnect> buildSpecification(BigInteger userId, IdentityType identityType){
         final Collection<SearchFilter> filters = Sets.newHashSet();
         filters.add(new SearchFilter("userId", SearchFilter.Operator.EQ, userId));
         filters.add(new SearchFilter("identityType", SearchFilter.Operator.EQ, identityType));
-        Specification<FrameUserConnect> spec = DynamicSpecifications.bySearchFilter(filters, FrameUserConnect.class);
+        return DynamicSpecifications.bySearchFilter(filters, FrameUserConnect.class);
+    }
+
+    @Override
+    public Page<FrameUserConnect> findAllByUserIdAndType(BigInteger userId, IdentityType identityType, Pageable pageable) {
+        Specification<FrameUserConnect> spec = buildSpecification(userId,identityType);
         return this.frameUserConnectRepository.findAll(spec,pageable);
     }
     @Override
     public List<FrameUserConnect> findAllByUserIdAndType(BigInteger userId, IdentityType identityType) {
-        final Collection<SearchFilter> filters = Sets.newHashSet();
-        filters.add(new SearchFilter("userId", SearchFilter.Operator.EQ, userId));
-        filters.add(new SearchFilter("identityType", SearchFilter.Operator.EQ, identityType));
-        Specification<FrameUserConnect> spec = DynamicSpecifications.bySearchFilter(filters, FrameUserConnect.class);
+        Specification<FrameUserConnect> spec = buildSpecification(userId,identityType);
         return  this.frameUserConnectRepository.findAll(spec);
     }
 
