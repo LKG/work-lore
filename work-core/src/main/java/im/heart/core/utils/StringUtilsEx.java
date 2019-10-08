@@ -50,7 +50,7 @@ public class StringUtilsEx extends StringUtils {
 	/**
 	 * 过滤特殊字符 .不移除
 	 */
-	public final static String regEx = "[`~!@#$%^&*()+=|{}':;'-,\\[\\]<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
+	public final static String REG_EX = "[`~!@#$%^&*()+=|{}':;'-,\\[\\]<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
 	//"^*\\d+$"
 	/**
 	 * 
@@ -141,7 +141,7 @@ public class StringUtilsEx extends StringUtils {
 	 * @return
 	 */
 	public static String filterString(String   filterStr){   
-          return   filterString(filterStr,regEx);     
+          return   filterString(filterStr,REG_EX);
 	}
 	/**
 	 * 
@@ -241,7 +241,11 @@ public class StringUtilsEx extends StringUtils {
 	public static String maskingStrBe(int beginIndex,int endIndex,String content) {
 	     return maskingStrBetween(beginIndex,endIndex,content,DEFAULT_REPLACE);
 	}
-	
+
+    /**
+     * 补零长度
+	 */
+	static final int SOMEZERO_LENGTH = 7;
 	/**
 	 * 10进制转换16进制
 	 * 
@@ -249,11 +253,11 @@ public class StringUtilsEx extends StringUtils {
 	 * @return
 	 */
 	public static String changeByteLength(int length) {
-		String tentosix = Integer.toHexString(length);
-		if (tentosix.length() > 7){
-			return tentosix;
+		String tenTosix = Integer.toHexString(length);
+		if (tenTosix.length() > SOMEZERO_LENGTH){
+			return tenTosix;
 		}else{
-			return someZero(8 - tentosix.length()) + tentosix;
+			return someZero(8 - tenTosix.length()) + tenTosix;
 		}
 	}
 	/**

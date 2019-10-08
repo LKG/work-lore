@@ -1,5 +1,6 @@
 package im.heart.core.plugins.persistence;
 
+import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,8 +75,7 @@ public class SearchFilter {
 	 * @return
 	 */
 	public static Map<String, SearchFilter> parse(Map<String, Object> searchParams) {
-		Map<String, SearchFilter> filters = new HashMap<String, SearchFilter>();
-
+		Map<String, SearchFilter> filters = Maps.newHashMap();
 		for (Entry<String, Object> entry : searchParams.entrySet()) {
 			// 过滤掉空值
 			String key = entry.getKey();

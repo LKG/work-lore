@@ -200,6 +200,34 @@ public class BaseUtils {
 		}
 		return true;
 	}
+
+	/**
+     * 浏览器类型
+	 */
+	public static class AgentType{
+		/**
+         * 火狐
+		 */
+		public static final String FIREFOX  ="firefox";
+		/**
+         * chrome
+		 */
+		public static final String CHROME  ="chrome";
+		/**
+         * safari
+		 */
+		public static final String SAFARI  ="safari";
+		/**
+         * ie
+		 */
+		public static final String MSIE  ="msie";
+		/**
+         * opera
+		 */
+		public static final String OPERA  ="opera";
+
+	}
+
 	/**
 	 * 
 	 * 设置让浏览器弹出下载对话框的Header,不同浏览器使用不同的编码方式.
@@ -213,11 +241,11 @@ public class BaseUtils {
 			String encodedfileName = null;
 	        if (null != agent) {  
 	        	agent = agent.toLowerCase();
-	            if (agent.contains("firefox") || agent.contains("chrome") || agent.contains("safari")) {
+	            if (agent.contains(AgentType.FIREFOX) || agent.contains(AgentType.CHROME) || agent.contains(AgentType.SAFARI)) {
 	    			encodedfileName = "filename=\"" + new String(fileName.getBytes(), StandardCharsets.ISO_8859_1) + "\"";
-	            } else if (agent.contains("msie")) {
+	            } else if (agent.contains(AgentType.MSIE)) {
 	            	encodedfileName = "filename=\"" + URLEncoder.encode(fileName,"UTF-8") + "\"";
-	            } else if (agent.contains("opera")) {  
+	            } else if (agent.contains(AgentType.OPERA)) {
 	            	encodedfileName = "filename*=UTF-8\"" + fileName + "\"";
 	            } else {
 	            	encodedfileName = "filename=\"" + URLEncoder.encode(fileName,"UTF-8") + "\"";
