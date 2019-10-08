@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
 import java.util.StringTokenizer;
 
@@ -25,6 +26,11 @@ public class BaseUtils {
 	static final String HTTP_PREFIX = "http";
 	static final String HTTPS_PREFIX = "https";
 	static final String UNKNOWN ="unknown";
+	static final String XML_HTTP_REQUEST ="XMLHttpRequest";
+	static final String SEPARATOR_DOT  =".";
+	static final String SEPARATOR_COMMA  =",";
+	static final String SEPARATOR_ASTERISK  ="*";
+
 	static final int HTTP_PORT = 80;
 	static final int HTTPS_PORT = 443;
 	/**
@@ -81,10 +87,10 @@ public class BaseUtils {
 			Enumeration<NetworkInterface> netInterfaces = NetworkInterface.getNetworkInterfaces();  
 	        InetAddress ip = null;  
 	        while (netInterfaces.hasMoreElements()) {  
-	            NetworkInterface ni = (NetworkInterface) netInterfaces.nextElement();  
+	            NetworkInterface ni = netInterfaces.nextElement();
 	            Enumeration<InetAddress>  addresses = ni.getInetAddresses();
 	            while (addresses.hasMoreElements()) {  
-	            	ip = (InetAddress) addresses.nextElement();
+	            	ip = addresses.nextElement();
 	            	if (ip != null && ip instanceof Inet4Address){
 	            		serverIp = ip.getHostAddress();  
 	            		return serverIp;
@@ -161,7 +167,8 @@ public class BaseUtils {
 
 	/**
 	 * 
-	 *  根据浏览器 If-None-Match Header, 计算Etag是否已无效.如果Etag有效, checkIfNoneMatch返回false, 设置304 not modify status. 用来判定重复提交
+	 *  根据浏览器 If-None-Match Header, 计算Etag是否已无效.如果Etag有效, checkIfNoneMatch返回false,
+	 *  设置304 not modify status. 用来判定重复提交
 	 * @param request
 	 * @param response
 	 * @param etag  内容的ETag.
@@ -171,8 +178,8 @@ public class BaseUtils {
 		String headerValue = request.getHeader(HttpHeaders.IF_NONE_MATCH);
 		if (headerValue != null) {
 			boolean conditionSatisfied = false;
-			if (!"*".equals(headerValue)) {
-				StringTokenizer commaTokenizer = new StringTokenizer(headerValue, ",");
+			if (!SEPARATOR_ASTERISK.equals(headerValue)) {
+				StringTokenizer commaTokenizer = new StringTokenizer(headerValue, SEPARATOR_COMMA);
 				while (!conditionSatisfied && commaTokenizer.hasMoreTokens()) {
 					String currentToken = commaTokenizer.nextToken();
 					if (currentToken.trim().equals(etag)) {
@@ -202,10 +209,11 @@ public class BaseUtils {
 			String agent = request.getHeader(HttpHeaders.USER_AGENT);
 			String encodedfileName = null;
 	        if (null != agent) {  
-	        	agent = agent.toLowerCase();  
-	            if (agent.contains("firefox") || agent.contains("chrome") || agent.contains("safari")) {  
-	    			encodedfileName = "filename=\"" + new String(fileName.getBytes(), "ISO8859-1") + "\"";
-	            } else if (agent.contains("msie")) {  
+	        	agent = agent.toLowerCase();
+	            if (agent.contains("firefox") || agent.contains("chrome") || agent.contains("safari")) {
+	    			encodedfileName = "filename=\"" + new String(fileName.getBytes(), StandardCharsets.ISO_8859_1) + "\"";
+	            } else if (agent.contains("msie")) {
+
 	            	encodedfileName = "filename=\"" + URLEncoder.encode(fileName,"UTF-8") + "\"";
 	            } else if (agent.contains("opera")) {  
 	            	encodedfileName = "filename*=UTF-8\"" + fileName + "\"";
@@ -247,7 +255,7 @@ public class BaseUtils {
 	 */
 	public static boolean isAjaxRequest(HttpServletRequest request){
 		String requestType = request.getHeader("X-Requested-With");
-		if("XMLHttpRequest".equalsIgnoreCase(requestType)){
+		if(XML_HTTP_REQUEST.equalsIgnoreCase(requestType)){
 			return true;
 		}
 		return false;
@@ -280,10 +288,10 @@ public class BaseUtils {
 				response.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
 			}
 			if (!response.containsHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS)) {
-				response.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "*");
+				response.addHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, SEPARATOR_ASTERISK);
 			}
 		} catch (Exception e) {
-			logger.warn("", e);
+			logger.warn("crossOrigin", e);
 		}
 	}
 
@@ -323,7 +331,7 @@ public class BaseUtils {
 		}
 		// 对于通过多个代理的情况，第一个IP为客户端真实IP,多个IP按照','分割 // "***.***.***.***".length()
 		if (ipAddress != null && ipAddress.length() > 15) {
-			if (ipAddress.indexOf(",") > 0) {
+			if (ipAddress.indexOf(SEPARATOR_COMMA) > 0) {
 				ipAddress = ipAddress.substring(0, ipAddress.indexOf(","));
 			}
 		}

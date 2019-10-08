@@ -37,7 +37,6 @@ public class RestExceptionHandler{
 
 	protected Map<String, Object> error(HttpServletRequest request,HttpStatus httpStatus) {
 		Map<String, Object> errorMap = Maps.newHashMap();
-		errorMap.put(RequestResult.HTTP_STATUS, httpStatus.value());
 		errorMap.put(RequestResult.SUCCESS, false);
 		errorMap.put(RequestResult.REQUEST_URL, request.getRequestURL());
 		return errorMap;
