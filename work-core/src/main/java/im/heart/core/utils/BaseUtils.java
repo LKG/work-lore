@@ -30,9 +30,12 @@ public class BaseUtils {
 	static final String SEPARATOR_DOT  =".";
 	static final String SEPARATOR_COMMA  =",";
 	static final String SEPARATOR_ASTERISK  ="*";
-
+	static final String LOCAL_HOST_4  ="127.0.0.1";
+	static final String LOCAL_HOST_6  ="0:0:0:0:0:0:0:1";
+	static final int IPADDRESS_LENGTH = 15;
 	static final int HTTP_PORT = 80;
 	static final int HTTPS_PORT = 443;
+	static final long C1 = 1000L;
 	/**
 	 * 
 	 * 获取客户IP地址
@@ -110,7 +113,7 @@ public class BaseUtils {
 	 */
 	public static void setExpiresHeader(HttpServletResponse response, long expiresSeconds) {
 		// Http 1.0 header, set a fix expires date.
-		response.setDateHeader(HttpHeaders.EXPIRES, System.currentTimeMillis() + (expiresSeconds * 1000));
+		response.setDateHeader(HttpHeaders.EXPIRES, System.currentTimeMillis() + (expiresSeconds * C1));
 		// Http 1.1 header, set a time after now.
 		response.setHeader(HttpHeaders.CACHE_CONTROL, "private, max-age=" + expiresSeconds);
 	}
@@ -158,7 +161,7 @@ public class BaseUtils {
 	public static boolean checkIfModifiedSince(HttpServletRequest request, HttpServletResponse response,
 			long lastModified) {
 		long ifModifiedSince = request.getDateHeader(HttpHeaders.IF_MODIFIED_SINCE);
-		if ((ifModifiedSince != -1) && (lastModified < (ifModifiedSince + 1000))) {
+		if ((ifModifiedSince != -1) && (lastModified < (ifModifiedSince + C1))) {
 			response.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
 			return false;
 		}
@@ -213,7 +216,6 @@ public class BaseUtils {
 	            if (agent.contains("firefox") || agent.contains("chrome") || agent.contains("safari")) {
 	    			encodedfileName = "filename=\"" + new String(fileName.getBytes(), StandardCharsets.ISO_8859_1) + "\"";
 	            } else if (agent.contains("msie")) {
-
 	            	encodedfileName = "filename=\"" + URLEncoder.encode(fileName,"UTF-8") + "\"";
 	            } else if (agent.contains("opera")) {  
 	            	encodedfileName = "filename*=UTF-8\"" + fileName + "\"";
@@ -324,15 +326,15 @@ public class BaseUtils {
 		}
 		if (StringUtils.isBlank(ipAddress)|| UNKNOWN.equalsIgnoreCase(ipAddress)) {
 			ipAddress = request.getRemoteAddr();
-			if ("127.0.0.1".equals(ipAddress)||"0:0:0:0:0:0:0:1".equals(ipAddress)) {
+			if (LOCAL_HOST_4.equals(ipAddress)||LOCAL_HOST_6.equals(ipAddress)) {
 				// 根据网卡取本机配置的IP
 				ipAddress = getServerIp();
 			}
 		}
 		// 对于通过多个代理的情况，第一个IP为客户端真实IP,多个IP按照','分割 // "***.***.***.***".length()
-		if (ipAddress != null && ipAddress.length() > 15) {
+		if (ipAddress != null && ipAddress.length() > IPADDRESS_LENGTH) {
 			if (ipAddress.indexOf(SEPARATOR_COMMA) > 0) {
-				ipAddress = ipAddress.substring(0, ipAddress.indexOf(","));
+				ipAddress = ipAddress.substring(0, ipAddress.indexOf(SEPARATOR_COMMA));
 			}
 		}
 		return ipAddress;
