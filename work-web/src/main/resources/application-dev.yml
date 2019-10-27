@@ -62,24 +62,28 @@ spring:
     password:
   session:
     store-type: redis
+  ############## 邮件发送
   mail:
-    host: smtp.163.com
-    port: 465
-    username: lkg61230413@163.com
     password: lkg178
+    username: lkg61230413@163.com
+    port: 465
+    auth: true
+    host: smtp.163.com
     from: GG<lkg61230413@163.com>
     template-path: classpath:/templates/email/
     properties:
       imap:
-        ssl:socketFactory:fallback: false
+        ssl:
+          socketFactory:
+            fallback: false
       mail:
         smtp:
           auth: true
-          ssl:enable: true
+          ssl:
+            enable: true
           starttls:
             enable: true
             required: true
-        debug: true
   datasource:
     url: jdbc:mysql://192.168.100.240:3306/test_lore?Unicode=true&characterEncoding=UTF-8&useSSL=false
     username: test
