@@ -139,7 +139,6 @@ public class FrameAuthenticationFilter extends FormAuthenticationFilter {
 			JSONObject jsObj = new JSONObject();
 			jsObj.put("successUrl", loginSuccessUrl);
 			jsObj.put(CommonConst.RequestResult.SUCCESS, true);
-			jsObj.put(CommonConst.RequestResult.HTTP_STATUS, HttpStatus.OK.toString());
 			out.println(jsObj);
 			out.flush();
 			out.close();
