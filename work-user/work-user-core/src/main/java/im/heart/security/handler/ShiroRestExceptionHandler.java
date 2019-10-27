@@ -27,7 +27,6 @@ public class ShiroRestExceptionHandler{
 
 	protected Map<String, Object> error(HttpServletRequest request) {
 		Map<String, Object> errorMap = Maps.newHashMap();
-		errorMap.put(RequestResult.HTTP_STATUS, HttpStatus.FORBIDDEN.value());
 		errorMap.put(RequestResult.SUCCESS, false);
 		errorMap.put(RequestResult.RESULT, request.getRequestURL());
 		return errorMap;
