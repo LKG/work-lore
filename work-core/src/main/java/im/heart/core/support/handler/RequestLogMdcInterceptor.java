@@ -22,9 +22,9 @@ public class RequestLogMdcInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info(WebUtilsEx.getParametersJson(request));
-        log.info(WebUtilsEx.getHeadersJson(request));
-        log.info(WebUtilsEx.getParametersJson(request));
+        logger.info(WebUtilsEx.getParametersJson(request));
+        logger.info(WebUtilsEx.getHeadersJson(request));
+        logger.info(WebUtilsEx.getParametersJson(request));
         String unqId = RandomStringUtils.randomNumeric(16);
         MDC.put("req.id",unqId);
         MDC.put("req.uri",request.getRequestURI());
@@ -37,7 +37,7 @@ public class RequestLogMdcInterceptor extends HandlerInterceptorAdapter {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         Long totalTime = System.currentTimeMillis() - Long.parseLong(MDC.get("req.beginTime"));
-        log.info("请求：{}, 耗时：{} ms", MDC.get("req.uri"), totalTime);
+        logger.info("请求：{}, 耗时：{} ms", MDC.get("req.uri"), totalTime);
         MDC.remove("req.id");
         MDC.remove("req.uri");
         MDC.remove("req.imei");

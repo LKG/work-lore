@@ -11,13 +11,13 @@ public class Reptile71KejiaoJob   extends CommonJob {
 
     @Scheduled(cron = "0 57 16 * * ?")
     void executeJob()throws Exception{
-        log.info("..........begin...........");
+        logger.info("..........begin...........");
 
         ArticleCategory category=new ArticleCategory();
         category.setCode("02009");
         category.setId(29L);
         category.setName("科教");
         parseArticleList("http://www.71.cn/acastudies/expcolumn/kejiao/1.shtml",category);
-        log.info("...........end..........");
+        logger.info("...........end..........");
     }
 }

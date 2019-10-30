@@ -1,0 +1,12 @@
+pay:
+  alipay:
+    appId: 2016091200495262
+    #服务器异步通知页面路径
+    notifyUrl: http://test.gongwk.com/notify/alipay
+    #页面跳转同步通知页面路径
+    returnUrl: http://test.gongwk.com/paySuccess.html
+    #请求网关地址
+    URL: https://openapi.alipaydev.com/gateway.do
+    publicKey:
+    privateKey:
+    logPath:

@@ -11,7 +11,7 @@ public class Reptile71NationaldefenseJob extends CommonJob {
 
     @Scheduled(cron = "0 45 19 * * ?")
     void executeJob() throws Exception {
-        log.info("..........begin...........");
+        logger.info("..........begin...........");
         ArticleCategory category=new ArticleCategory();
         category.setCode("02010");
         category.setId(30L);

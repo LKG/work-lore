@@ -11,13 +11,13 @@ public class Reptile71PoliticsJob    extends CommonJob {
 
     @Scheduled(cron = "0 26 12 * * ?")
     void executeJob()throws Exception{
-        log.info("..........begin...........");
+        logger.info("..........begin...........");
         ArticleCategory category=new ArticleCategory();
         category.setCode("02002");
         category.setId(22L);
         category.setName("政治");
         parseArticleList("http://www.71.cn/acastudies/expcolumn/politics/1.shtml",category);
-        log.info("...........end..........");
+        logger.info("...........end..........");
     }
 
 }

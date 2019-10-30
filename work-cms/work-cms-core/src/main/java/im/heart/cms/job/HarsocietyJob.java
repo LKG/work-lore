@@ -15,13 +15,13 @@ public class HarsocietyJob extends CommonJob {
     ArticleService articleService;
     @Scheduled(cron = "0 34 09 * * ?")
     void executeJob()throws Exception{
-        log.info("...........begin..........");
+        logger.info("...........begin..........");
         ArticleCategory category=new ArticleCategory();
         category.setCode("03004");
         category.setId(40L);
         category.setName("和谐社会");
         parseArticleList("http://www.71.cn/towrite/officialdocument/thoughtandstudy/harsociety/1.shtml",category);
-        log.info("...........end..........");
+        logger.info("...........end..........");
     }
 
 }

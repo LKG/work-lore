@@ -11,12 +11,12 @@ public class Reptile71LlJob   extends CommonJob {
 
     @Scheduled(cron = "0 25 19 * * ?")
     void executeJob()throws Exception{
-        log.info("..........begin...........");
+        logger.info("..........begin...........");
         ArticleCategory category=new ArticleCategory();
         category.setCode("00215");
         category.setId(35L);
         category.setName("理论");
         parseArticleList("http://www.71.cn/acastudies/expcolumn/ll/1.shtml",category);
-        log.info("...........end..........");
+        logger.info("...........end..........");
     }
 }

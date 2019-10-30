@@ -11,13 +11,13 @@ public class Reptile71EconomyJob   extends  CommonJob{
 
     @Scheduled(cron = "0 20 13 * * ?")
     void executeJob()throws Exception{
-        log.info("..........begin...........");
+        logger.info("..........begin...........");
         ArticleCategory category=new ArticleCategory();
         category.setCode("02001");
         category.setId(21L);
         category.setName("经济");
         parseArticleList("http://www.71.cn/acastudies/expcolumn/economy/1.shtml",category);
-        log.info("...........end..........");
+        logger.info("...........end..........");
     }
 
 }

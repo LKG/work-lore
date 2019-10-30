@@ -1,26 +1,23 @@
-package im.heart.web.notify;
+package im.heart.alipay.web;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import im.heart.core.web.AbstractController;
+import im.heart.core.web.utils.WebUtilsEx;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  * 接收处理支付宝通知
  */
 @Controller
-public class AliPayNotifyController extends BasePayController {
-    protected static final Logger logger = LoggerFactory.getLogger(AliPayNotifyController.class);
+@Slf4j
+public class AliPayNotifyController extends AbstractController {
     /**
      * 支付宝移动支付后台通知响应
      * @param request
@@ -28,10 +25,15 @@ public class AliPayNotifyController extends BasePayController {
      * @throws ServletException
      * @throws IOException
      */
-    @RequestMapping(value = "/notify/pay/aliPayNotifyRes.htm")
+    @RequestMapping(value = "/notify/pay/aliPayNotifyRes")
     public ModelAndView aliPayNotifyRes(HttpServletRequest request,
                                         ModelMap model) throws ServletException, IOException {
         logger.info("====== 开始接收支付宝支付回调通知 ======");
+        //验证签名 校验签名
+        boolean signVerified = false;
+        if (signVerified) {
+            logger.info("支付宝验证签名成功！");
+        }
         String notifyRes = doAliPayRes(request);
         logger.info("响应给支付宝:{}", notifyRes);
         logger.info("====== 完成接收支付宝支付回调通知 ======");
@@ -42,6 +44,8 @@ public class AliPayNotifyController extends BasePayController {
     public String doAliPayRes(HttpServletRequest request) throws ServletException, IOException {
         String logPrefix = "【支付宝支付回调通知】";
         //获取支付宝POST过来反馈信息
+        String body=WebUtilsEx.getRequestBodyForString(request);
+        logger.info("{}通知请求数据:reqStr={}", logPrefix,body);
         return   logPrefix;
     }
 }

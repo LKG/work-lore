@@ -61,7 +61,7 @@
 //    public ModelAndView authorize(@RequestParam(value = "state" ,required = false) String state) throws UnsupportedEncodingException {
 //        String url="http://doc.itaobao.pub/wechat/userInfo";
 //        String redirectUrl=wxMpService.oauth2buildAuthorizationUrl(url, WxConsts.OAuth2Scope.SNSAPI_USERINFO, URLEncoder.encode(state,"UTF-8"));
-//        log.info("【微信网页授权】获取code,redirectUrl={}",redirectUrl);
+//        logger.info("【微信网页授权】获取code,redirectUrl={}",redirectUrl);
 //        return new ModelAndView(redirectToUrl(redirectUrl));
 //    }
 //
@@ -89,7 +89,7 @@
 //            userConnect.setIdentityType(IdentityType.wechat);
 //            userConnect.setMessage(JSON.toJSONString(wxMpOAuth2AccessToken));
 //            this.userConnectService.save(userConnect);
-//            log.info("【微信网页授权】wxMpOAuth2AccessToken={}", JSON.toJSONString(wxMpOAuth2AccessToken));
+//            logger.info("【微信网页授权】wxMpOAuth2AccessToken={}", JSON.toJSONString(wxMpOAuth2AccessToken));
 //            return new ModelAndView(redirectToUrl(returnUrl+"?openId="+openId));
 //        }
 //        userConnect=optional.get();
@@ -101,7 +101,7 @@
 //        userConnect.setMessage(JSON.toJSONString(wxMpOAuth2AccessToken));
 //        userConnect.setRefreshToken(wxMpOAuth2AccessToken.getRefreshToken());
 //        this.userConnectService.save(userConnect);
-//        log.info("【微信网页授权】获取openid={},returnUrl={},wxMpOAuth2AccessToken={}",openId,returnUrl,JSON.toJSONString(wxMpOAuth2AccessToken));
+//        logger.info("【微信网页授权】获取openid={},returnUrl={},wxMpOAuth2AccessToken={}",openId,returnUrl,JSON.toJSONString(wxMpOAuth2AccessToken));
 //        return new ModelAndView(redirectToUrl(returnUrl+"?openid="+openId));
 //
 //    }
@@ -167,7 +167,7 @@
 //            @RequestParam(value = "identityType" ,defaultValue="wechat") String identityType,
 //            HttpServletRequest request, HttpServletResponse response,
 //            ModelMap model) throws WxErrorException{
-//        log.info("开始绑定手机号：{}。。{} 。。",userPhone,phoneCode);
+//        logger.info("开始绑定手机号：{}。。{} 。。",userPhone,phoneCode);
 //        //校验验证码
 //        Boolean isResponseCorrect = UserCacheUtils.checkMobileCode(userPhone, phoneCode);
 //        if(!isResponseCorrect){
@@ -183,7 +183,7 @@
 //            user.setUserName(userPhone);
 //            user.setPassWord("888888");
 //            user= this.userService.save(user);
-//            log.info("weichat auto register userId:{}"+user.getUserId());
+//            logger.info("weichat auto register userId:{}"+user.getUserId());
 //        }
 //        if(!Status.enabled.equals(user.getStatus())){
 //            super.fail(model,new ResponseError(WebError.AUTH_ACCOUNT_DISABLED));
@@ -194,7 +194,7 @@
 //            success(model);
 //            WebUtils.setSessionAttribute(request,"openId",openId);
 //            WebUtils.setSessionAttribute(request,"userId",user.getUserId());
-//            log.info("账号：{}绑定 openId {} 成功",userPhone,openId);
+//            logger.info("账号：{}绑定 openId {} 成功",userPhone,openId);
 //            return  new ModelAndView(VIEW_SUCCESS);
 //        }catch (WxErrorException ex){
 //            logger.error("WxErrorException:"+ex.getStackTrace()[0].getMethodName(), ex);
@@ -214,11 +214,11 @@
 //        if(userId==null||BigInteger.ZERO.equals(userId)){
 //            WxMpUser wxUser=this.wxMpService.getUserService().userInfo(openId);
 //            if(wxUser==null){
-//                log.info(JSON.toJSONString(wxUser));
+//                logger.info(JSON.toJSONString(wxUser));
 //                throw new WxErrorException(WxError.builder().errorCode(HttpStatus.INTERNAL_SERVER_ERROR.value()).errorMsg("未获取到wxUser"+openId+" 存储信息").build());
 //            }
 //            if(!wxUser.getSubscribe()){
-//                log.info(JSON.toJSONString(wxUser));
+//                logger.info(JSON.toJSONString(wxUser));
 //                throw new WxErrorException(WxError.builder().errorCode(HttpStatus.FORBIDDEN.value()).errorMsg("未关注公众号").build());
 //            }
 //            String  nickName=wxUser.getNickname();
@@ -245,7 +245,7 @@
 //            @RequestParam(value = "passWord" ,defaultValue="") String passWord,
 //            HttpServletRequest request, HttpServletResponse response,
 //            ModelMap model){
-//        log.info("开始绑定账号：{}。。。。",userName);
+//        logger.info("开始绑定账号：{}。。。。",userName);
 //        FrameUser user=this.userService.findFrameUser(userName);
 //        if(user==null){
 //            //用户不存在
@@ -265,7 +265,7 @@
 //        }
 //        try {
 //            bindUser(user,openId,IdentityType.wechat);
-//            log.info("账号：{}绑定 openId {} 成功",userName,openId);
+//            logger.info("账号：{}绑定 openId {} 成功",userName,openId);
 //            success(model);
 //            //设置session
 //            WebUtils.setSessionAttribute(request,"openId",openId);

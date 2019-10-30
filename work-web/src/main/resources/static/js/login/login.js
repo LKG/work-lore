@@ -98,7 +98,7 @@ define(function (require, exports, moudles) {
 	}
 	//键盘监听
 	$("#J_PassWord").on("keyup keydown",function(e){
-		if(e.keyCode==20){
+		if(e.keyCode === 20){
 			$("#J_CapsLockTip").show();
 		}else{
 			$("#J_CapsLockTip").hide();

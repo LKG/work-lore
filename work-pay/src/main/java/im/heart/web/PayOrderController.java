@@ -3,6 +3,7 @@ package im.heart.web;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import im.heart.core.web.AbstractController;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,8 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
+@Slf4j
 public class PayOrderController extends AbstractController {
-    protected static final Logger logger = LoggerFactory.getLogger(PayOrderController.class);
     /**
      * 查询支付订单接口:
      * 1)先验证接口参数以及签名信息

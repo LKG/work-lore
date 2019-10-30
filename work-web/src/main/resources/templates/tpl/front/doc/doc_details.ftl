@@ -72,7 +72,7 @@
                             <#if result.allowDown>
                                 href="${appHost}/fd/${result.id!''}.jhtml"
                             <#else>
-                                href="${appHost}/order/getOrderInfo.jhtml?id=${result.id!''}"
+                                href="${appHost}/order/confirmOrderInfo.jhtml?id=${result.id!''}"
                             </#if>
                         ><i class="fa  fa-cloud-download">立即下载</i></a>
                 <button type="button" id="btn-focus"  class="btn btn-danger pull-right" data-url="${appHost}/doc/${result.id!''}/collect.json">

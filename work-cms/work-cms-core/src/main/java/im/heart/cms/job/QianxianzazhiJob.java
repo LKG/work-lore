@@ -15,13 +15,13 @@ public class QianxianzazhiJob extends CommonJob {
     ArticleService articleService;
     @Scheduled(cron = "0 52 12 * * ?")
     void executeJob()throws Exception{
-        log.info("...........begin..........");
+        logger.info("...........begin..........");
         ArticleCategory category=new ArticleCategory();
         category.setCode("04");
         category.setId(4L);
         category.setName("《前线》杂志");
         parseArticleList("http://www.71.cn/acastudies/qianxianzazhi/1.shtml",category);
-        log.info("...........end..........");
+        logger.info("...........end..........");
     }
 
 }

@@ -98,6 +98,6 @@ public class SearchArticleController  extends AbstractController {
         model.put("qu","q");
         model.put("qt",qt);
         super.success(model,pag);
-        return new ModelAndView("front/search/search_list");
+        return new ModelAndView("front/search/search-list");
     }
 }

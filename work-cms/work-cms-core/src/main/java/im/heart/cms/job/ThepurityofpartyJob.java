@@ -15,13 +15,13 @@ public class ThepurityofpartyJob extends CommonJob {
     ArticleService articleService;
     @Scheduled(cron = "0 48 09 * * ?")
     void executeJob()throws Exception{
-        log.info("...........begin..........");
+        logger.info("...........begin..........");
         ArticleCategory category=new ArticleCategory();
         category.setCode("03001");
         category.setId(37L);
         category.setName("党的纯洁性");
         parseArticleList("http://www.71.cn/towrite/officialdocument/thoughtandstudy/thepurityofparty/1.shtml",category);
-        log.info("...........end..........");
+        logger.info("...........end..........");
     }
 
 }

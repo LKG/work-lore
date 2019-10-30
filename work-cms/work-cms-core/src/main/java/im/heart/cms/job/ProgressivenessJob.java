@@ -15,13 +15,13 @@ public class ProgressivenessJob extends CommonJob {
 
     @Scheduled(cron = "0 22 10 * * ?")
     void executeJob()throws Exception{
-        log.info("...........begin..........");
+        logger.info("...........begin..........");
         ArticleCategory category=new ArticleCategory();
         category.setCode("03003");
         category.setId(39L);
         category.setName("先进性教育");
         parseArticleList("http://www.71.cn/towrite/officialdocument/thoughtandstudy/progressiveness/16.shtml",category);
-        log.info("...........end..........");
+        logger.info("...........end..........");
     }
 
 }

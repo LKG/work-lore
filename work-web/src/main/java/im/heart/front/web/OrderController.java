@@ -32,8 +32,8 @@ import java.util.Optional;
 @Controller
 public class OrderController extends AbstractController {
     protected static final String apiVer = "/order";
-    protected static final String CREATE_LIST="shop/order_create";
-    protected static final String CONFIRM_PAGE="shop/order_confirm";
+    protected static final String CONFIRM_PAGE="shop/order-confirm";
+    protected static final String PAY_PAGE="shop/pay";
     @Autowired
     private OrderService orderService;
 
@@ -45,7 +45,7 @@ public class OrderController extends AbstractController {
      * @param request
      * @return
      */
-    @RequestMapping(value={apiVer+"/getOrderProdInfo"} ,method = RequestMethod.GET)
+    @RequestMapping(value={apiVer+"/confirmOrderInfo"} ,method = RequestMethod.GET)
     public ModelAndView getOrderInfo(HttpServletRequest request,
                                      @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN , required = false) String token,
                                      ModelMap model, BigInteger id) {
@@ -53,14 +53,14 @@ public class OrderController extends AbstractController {
         if(optional.isPresent()){
             super.success(model, new PeriodicalVO(optional.get()));
         }
-        return new ModelAndView(CREATE_LIST);
+        return new ModelAndView(CONFIRM_PAGE);
     }
     /**
      *  确认订单
      * @param request
      * @return
      */
-    @RequestMapping(value={apiVer+"/confirmOrderInfo"} ,method = RequestMethod.GET)
+    @RequestMapping(value={apiVer+"/payOrder"} ,method = RequestMethod.GET)
     public ModelAndView confirmOrderInfo(HttpServletRequest request,
                                          @RequestParam(value = CommonConst.RequestResult.ACCESS_TOKEN , required = false) String token,
                                          ModelMap model, Long orderId) {
@@ -68,7 +68,7 @@ public class OrderController extends AbstractController {
         if(optional.isPresent()){
             super.success(model, optional.get());
         }
-        return new ModelAndView(CONFIRM_PAGE);
+        return new ModelAndView(PAY_PAGE);
     }
     /**
      * 创建订单
@@ -99,7 +99,6 @@ public class OrderController extends AbstractController {
          orderDto.setUserId(userId);
         Order po=this.orderService.create(orderDto);
         super.success(model,po);
-      // String redirectUrl= "/order/confirmOrderInfo?orderId="+po.getOrderId();
-        return new ModelAndView(CONFIRM_PAGE);
+        return new ModelAndView(PAY_PAGE);
     }
 }

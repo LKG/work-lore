@@ -12,12 +12,12 @@ public class Reptile71DangjianJob  extends CommonJob {
 
     @Scheduled(cron = "0 36 17 * * ?")
     void executeJob()throws Exception{
-        log.info("..........begin...........");
+        logger.info("..........begin...........");
         ArticleCategory category=new ArticleCategory();
         category.setCode("02006");
         category.setId(26L);
         category.setName("党建");
         parseArticleList("http://www.71.cn/acastudies/expcolumn/dangjian/1.shtml",category);
-        log.info("...........end..........");
+        logger.info("...........end..........");
     }
 }

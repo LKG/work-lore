@@ -148,7 +148,7 @@ public class WebUtilsEx extends WebUtils {
             ServletInputStream inputStream = request.getInputStream();
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             StringBuffer sBuff=new StringBuffer();
-             String line="";
+             String line = "" ;
             while ((line = reader.readLine()) != null) {
                 sBuff.append(line);
             }

@@ -45,13 +45,13 @@ public class CommonJob extends  AbstractJob {
             String idStr= StringUtils.substringAfterLast(url,"/");
             idStr=StringUtils.substringBefore(idStr,".");
             if (StringUtils.isBlank(idStr)){
-                log.info("获取id 失败"+url);
+                logger.info("获取id 失败"+url);
                 return null;
             }
             BigInteger id=new BigInteger(idStr);
             boolean exist=this.articleService.existsById(id);
             if (exist){
-                log.info("已收录"+url);
+                logger.info("已收录"+url);
                 return null;
             }
             entity.setId(id);
@@ -97,7 +97,7 @@ public class CommonJob extends  AbstractJob {
                 log.error(e.getStackTrace()[0].getMethodName(), e);
             }
             if (!contentEle.hasText()){
-                log.info("获取内容异常"+url);
+                logger.info("获取内容异常"+url);
             }
             entity.setUrl(url);
             entity.setSource(source);

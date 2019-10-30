@@ -15,13 +15,13 @@ public class ScientificdevelopJob extends CommonJob {
 
     @Scheduled(cron = "0 43 09 * * ?")
     void executeJob()throws Exception{
-        log.info("...........begin..........");
+        logger.info("...........begin..........");
         ArticleCategory category=new ArticleCategory();
         category.setCode("03002");
         category.setId(38L);
         category.setName("科学发展观");
         parseArticleList("http://www.71.cn/towrite/officialdocument/thoughtandstudy/scientificdevelop/1.shtml",category);
-        log.info("...........end..........");
+        logger.info("...........end..........");
     }
 
 }

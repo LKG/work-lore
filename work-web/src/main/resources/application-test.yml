@@ -64,8 +64,8 @@ spring:
     store-type: redis
 ############## 邮件发送
   mail:
-    password: lkg178
     username: lkg61230413@163.com
+    password: lkg178
     port: 465
     auth: true
     host: smtp.163.com
@@ -145,14 +145,17 @@ jodconverter:
     office-home: C:\Program Files (x86)\OpenOffice 4 # 设置Office主目录
     portNumbers: 8100,8101,8102 ,8103,8104,8105,8106,8107   # 开启多个Office进程，每个端口对应一个进程
     maxTasksPerProcess: 50 # Office进程重启前的最大进程数
-alipay:
-  appId: 2016091200495262
-  #服务器异步通知页面路径
-  notify_url: http://test.api.gongwk.com/notify/alipay
-  #页面跳转同步通知页面路径
-  return_url: http://test.api.gongwk.com/notify/paySuccess.html
-  #请求网关地址
-  URL: https://openapi.alipaydev.com/gateway.do
+pay:
+  alipay:
+    #请求网关地址
+    URL: https://openapi.alipaydev.com/gateway.do
+    appId: 2016091200495262
+    #服务器异步通知页面路径
+    notify_url: https://www.gongwk.com/notify/alipay
+    #页面跳转同步通知页面路径
+    return_url: https://www.gongwk.com/notify/paySuccess.html
+    user:
+      custom_url: HTTPS://QR:ALIPAY:COM/FKX08169YRE1ZNUDTX0W44
 dingtalk:
   appId: dingoaqzoeij0scglcaclb
   appSecret: vgufnnRTDY-jnwQTl348uy4MJHdyqu0ZbBkmKkqyge9sd8OYeVyu2mz0xQM1wo04

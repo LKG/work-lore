@@ -52,7 +52,7 @@ public class DownloadController extends AbstractController {
         if(this.downloadRetryCache==null){
             this.downloadRetryCache = this.cacheManager.getCache(CACHE_NAME);
         }
-        AtomicInteger retryCount = (AtomicInteger)this.downloadRetryCache.get(username,AtomicInteger.class);
+        AtomicInteger retryCount = this.downloadRetryCache.get(username,AtomicInteger.class);
         if (retryCount == null) {
             retryCount = new AtomicInteger(0);
         }

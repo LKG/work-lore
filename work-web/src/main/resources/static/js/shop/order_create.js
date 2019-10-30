@@ -66,7 +66,7 @@ define(function (require, exports, moudles) {
                 if(data.success){
                  //   $msg.alert($btn,"<i class='fa  fa-check-circle text-success'></i>订单提交成功");
                     post_flag=true;
-                    return window.location.href = "/order/confirmOrderInfo?orderId=" + data.result.orderId;
+                    return window.location.href = "/order/payOrder?orderId=" + data.result.orderId;
                 }else{
                     $msg.alert($btn,"<i class='fa fa-exclamation-triangle text-danger'></i>订单提交异常");
                 }

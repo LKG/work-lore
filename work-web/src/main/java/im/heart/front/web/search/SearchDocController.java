@@ -112,6 +112,6 @@ public class SearchDocController extends AbstractController {
         model.put("qu","pq");
         model.put("qt",qt);
         super.success(model,pag);
-        return new ModelAndView("front/search/search_doc_list");
+        return new ModelAndView("front/search/search-doc-list");
     }
 }
