@@ -78,7 +78,7 @@
 //        try {
 //            wxMpOAuth2AccessToken=wxMpService.oauth2getAccessToken(code);
 //        }catch (WxErrorException e){
-//            log.error("【微信网页授权】,wxMpOAuth2AccessToken:{},e:{}",JSON.toJSONString(wxMpOAuth2AccessToken), e);
+//            logger.error("【微信网页授权】,wxMpOAuth2AccessToken:{},e:{}",JSON.toJSONString(wxMpOAuth2AccessToken), e);
 //        }
 //        String openId=wxMpOAuth2AccessToken.getOpenId();
 //        Optional<FrameUserConnect> optional= this.userConnectService.findByOpenIdAndType(openId,IdentityType.wechat);
@@ -298,7 +298,7 @@
 //        try{
 //            wxMpOAuth2AccessToken=wxMpService.oauth2getAccessToken(code);
 //        }catch (WxErrorException e){
-//            log.error("【微信网页授权】,wxMpOAuth2AccessToken:{},e:{}",JSON.toJSONString(wxMpOAuth2AccessToken), e);
+//            logger.error("【微信网页授权】,wxMpOAuth2AccessToken:{},e:{}",JSON.toJSONString(wxMpOAuth2AccessToken), e);
 //            super.fail(model,new ResponseError(WebError.AUTH_ACCOUNT_UNKNOWN));
 //            return  new ModelAndView(RESULT_PAGE);
 //        }

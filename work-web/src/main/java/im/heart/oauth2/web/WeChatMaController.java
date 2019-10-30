@@ -32,7 +32,7 @@ public class WeChatMaController extends AbstractAuthController {
 
             }
         }catch (WxErrorException e){
-            log.error(e.getStackTrace()[0].getMethodName(), e);
+            logger.error(e.getStackTrace()[0].getMethodName(), e);
         }
       return null;
     }

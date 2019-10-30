@@ -93,8 +93,8 @@ public class CommonJob extends  AbstractJob {
             try {
                 entity.setPushTime(DateUtilsEx.stringToDate(dateEle.text(),"yyyy-MM-dd HH:mm"));
             } catch (ParseException e) {
-                log.error(url);
-                log.error(e.getStackTrace()[0].getMethodName(), e);
+                logger.error(url);
+                logger.error(e.getStackTrace()[0].getMethodName(), e);
             }
             if (!contentEle.hasText()){
                 logger.info("获取内容异常"+url);
@@ -105,14 +105,14 @@ public class CommonJob extends  AbstractJob {
             entity.setUserId(BigInteger.ZERO);
             this.articleService.save(entity);
         }catch (MalformedURLException e){
-            log.error(url);
-            log.error(e.getStackTrace()[0].getMethodName(), e);
+            logger.error(url);
+            logger.error(e.getStackTrace()[0].getMethodName(), e);
         }catch (IOException e){
-            log.error(url);
-            log.error(e.getStackTrace()[0].getMethodName(), e);
+            logger.error(url);
+            logger.error(e.getStackTrace()[0].getMethodName(), e);
         }catch (Exception e){
-            log.error(url);
-            log.error(e.getStackTrace()[0].getMethodName(), e);
+            logger.error(url);
+            logger.error(e.getStackTrace()[0].getMethodName(), e);
         }
         return entity;
     }

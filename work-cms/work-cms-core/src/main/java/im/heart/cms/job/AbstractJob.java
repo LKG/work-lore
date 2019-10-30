@@ -23,7 +23,7 @@ public abstract class  AbstractJob {
             String pageStr= StringUtils.substringAfterLast(url,"/");
             pageStr=StringUtils.substringBefore(pageStr,".");
             if(Integer.valueOf(pageStr)>this.getMaxPage()){
-                log.error("{},达到最大页 {} ,url:{}：",pageStr,this.getMaxPage(),url);
+                logger.error("{},达到最大页 {} ,url:{}：",pageStr,this.getMaxPage(),url);
                 return;
             }
             Document listEle= Jsoup.parse(new URL(url),10000);
@@ -33,7 +33,7 @@ public abstract class  AbstractJob {
                 try {
                     Thread.sleep(RandomUtils.nextLong(100,800));
                 } catch (InterruptedException e) {
-                    log.error(e.getStackTrace()[0].getMethodName(), e);
+                    logger.error(e.getStackTrace()[0].getMethodName(), e);
                 }
                 parseArticle(articleUrl,category);
             }
@@ -44,8 +44,8 @@ public abstract class  AbstractJob {
             String aUrl=pages.attr("href");
             parseArticleList(aUrl,category);
         } catch (IOException e) {
-            log.error(url);
-            log.error(e.getStackTrace()[0].getMethodName(), e);
+            logger.error(url);
+            logger.error(e.getStackTrace()[0].getMethodName(), e);
         }
     }
 
