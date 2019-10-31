@@ -62,6 +62,18 @@ public class AliPayServiceImpl implements AliPayService {
     }
 
     /**
+     * 查询订单
+     *
+     * @param transactionId
+     * @param outTradeNo
+     * @return
+     */
+    @Override
+    public String queryOrder(String transactionId, String outTradeNo) {
+        return null;
+    }
+
+    /**
      * 阿里支付退款
      *
      * @param product
