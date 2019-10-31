@@ -8,32 +8,32 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 public class WxPayConfig{
-    @Value("${hostIp}")
+    @Value("${pay.weixin.hostIp}")
     private String hostIp;
-    @Value("${weixin.certPath}")
+    @Value("${pay.weixin.certPath}")
     private String certPath;
 
-    @Value("${weixin.appId}")
+    @Value("${pay.weixin.appId}")
     private String appId;
-    @Value("${weixin.mchId}")
+    @Value("${pay.weixin.mchId}")
     private String mchId;
-    @Value("${weixin.key}")
+    @Value("${pay.weixin.key}")
     private String key;
-    @Value("${weixin.signType}")
+    @Value("${pay.weixin.signType}")
     private String signType;
-    @Value("${weixin.deviceInfo}")
+    @Value("${pay.weixin.deviceInfo}")
     private String deviceInfo;
-    @Value("${weixin.frontUrl}")
+    @Value("${pay.weixin.frontUrl}")
     private String frontUrl;
-    @Value("${weixin.backUrl}")
+    @Value("${pay.weixin.backUrl}")
     private String backUrl;
-    @Value("${weixin.api.unifiedorder}")
+    @Value("${pay.weixin.api.unifiedorder}")
     private String unifiedorderApi;
 
-    @Value("${weixin.sceneInfo.h5Info.type}")
+    @Value("${pay.weixin.sceneInfo.h5Info.type}")
     private String sceneInfo_h5Info_type;
-    @Value("${weixin.sceneInfo.h5Info.wapUrl}")
+    @Value("${pay.weixin.sceneInfo.h5Info.wapUrl}")
     private String sceneInfo_h5Info_wapUrl;
-    @Value("${weixin.sceneInfo.h5Info.wapName}")
+    @Value("${pay.weixin.sceneInfo.h5Info.wapName}")
     private String sceneInfo_h5Info_wapName;
 }

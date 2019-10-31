@@ -8,7 +8,7 @@ define(function (require, exports, moudles) {
     require('/js/common/validate');
     var $msg= require('/js/common/alerts.js');
     var url = {
-        createApi : baseRoot + "/order/subscribe.json",
+        createApi : baseRoot + "/pay/aliPay/qr.json",
     };
     //注册按钮
     var getFormData=function(obj){
@@ -46,28 +46,37 @@ define(function (require, exports, moudles) {
         if(!$mainForm.valid()){
             return;
         }
-        var $btn=$(this);
-        var dataHtml=$(this).html();
         var action=url.createApi;
         if(action.indexOf("?") == -1){
             action = action + "?rid="+Math.random();
         }else{
             action = action + "&rid="+Math.random();
         }
-        var prodIds=[];
-        $("#J_OrderItemForm input[name=prodId]").each(function(){
-            var value = $(this).val(); //这里的value就是每一个input的value值~
-            prodIds.push(value);
-        });
         var items = getFormData($("#J_OrderItemForm"));
-        var sendData={
-            couponId:0,
-            invoiceFlag:0,
-            items:items,
-            prodIds:prodIds,
-        };
         if(post_flag) return; //如果正在提交则直接返回，停止执行
+        var $btn=$(this);
+        var dataHtml=$(this).html();
         $btn.html($btn.attr("data-loading-text")).attr("disabled","disabled");
-        alert("@@@@@@@@@@2")
+        var data={
+            productId:productId,
+            subject:subject,
+            body:body,
+            totalFee:totalFee,
+            outTradeNo:outTradeNo,
+            outTradeNo:outTradeNo,
+        };
+        $.httpUtil.curl({
+            url : action,
+            type : "post",
+            loading : false,
+            dataType : "json",
+            data : data,
+            success : function(data) {
+                var content="删除成功";
+                $msg.alert($(this),content);
+                $btn.html(dataHtml).removeAttr("disabled");
+            },
+        });
+        $btn.html(dataHtml).removeAttr("disabled");
     });
 });

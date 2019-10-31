@@ -1,12 +1,9 @@
 package im.heart.alipay.web;
 
-import com.alipay.api.AlipayClient;
-import com.alipay.api.DefaultAlipayClient;
-import com.alipay.api.domain.Product;
-import com.alipay.api.request.AlipayTradePrecreateRequest;
-import com.alipay.api.response.AlipayTradePrecreateResponse;
 import im.heart.alipay.service.AliPayService;
+import im.heart.core.utils.BaseUtils;
 import im.heart.core.web.AbstractController;
+import im.heart.pay.model.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +11,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -52,8 +51,11 @@ public class AliPayController extends AbstractController {
         return new ModelAndView();
     }
     @RequestMapping(value="pay/aliPay/qr",method=RequestMethod.POST)
-    public String  qrPay(String orderId, ModelMap model) {
-        logger.info("二维码支付orderId:{}",orderId);
+    public String  qrPay(Product product, ModelMap model, HttpServletRequest request) {
+        String ip= BaseUtils.getIpAddr(request);
+        product.setSpbillCreateIp(ip);
+        String form  =  aliPayService.pay(product);
+        logger.info("二维码支付orderId:{}",product.getOutTradeNo());
         return "alipay/qcpay";
     }
     @RequestMapping(value="pay/aliPay/app",method=RequestMethod.POST)

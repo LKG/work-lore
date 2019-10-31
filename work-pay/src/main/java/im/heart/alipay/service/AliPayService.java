@@ -1,8 +1,7 @@
 package im.heart.alipay.service;
 
-import com.alipay.api.domain.Product;
 
-import java.util.Map;
+import im.heart.pay.model.Product;
 
 public interface AliPayService {
     /**
@@ -16,6 +15,16 @@ public interface AliPayService {
      *
      */
     String pay(Product product);
+
+
+    /**
+     * 查询订单
+     * @param transactionId
+     * @param outTradeNo
+     * @return
+     */
+    String queryOrder(String transactionId, String outTradeNo);
+
     /**
      * 阿里支付退款
      * @param product
