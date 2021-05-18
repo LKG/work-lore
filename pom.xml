@@ -73,7 +73,7 @@
         <aliyun.oss.version>2.7.0</aliyun.oss.version>
         <aliyun.ons.version>1.7.8.Final</aliyun.ons.version>
         <validation.version>2.0.1.Final</validation.version>
-        <xstream.version>1.4.9</xstream.version>
+        <xstream.version>1.4.17</xstream.version>
         <urlrewrite.version>4.0.4</urlrewrite.version>
         <spring-session.version>2.1.4.RELEASE</spring-session.version>
         <!-- 二维码begin -->
