@@ -67,7 +67,7 @@
         <commons-lang3.version>3.8.1</commons-lang3.version>
         <commons-io.version>2.6</commons-io.version>
         <commons-codec.version>1.11</commons-codec.version>
-        <commons-compress.version>1.18</commons-compress.version>
+        <commons-compress.version>1.21</commons-compress.version>
         <commons-fileupload.version>1.4</commons-fileupload.version>
         <easyexcel.version>1.0.1</easyexcel.version>
         <aliyun.oss.version>2.7.0</aliyun.oss.version>
